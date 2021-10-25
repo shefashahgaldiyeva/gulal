@@ -1,0 +1,66 @@
+.table{
+    width: 70%;
+}
+table{
+    width: 100%;
+    padding: 0 2rem;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+table tr{
+    width: 100%;
+}
+table thead th{
+    border-bottom: .1rem solid #ebebeb;
+}
+table th{
+    text-align: left;
+    padding: 1.4rem 0;
+    font-weight: 400;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #999;
+}
+table td{
+    padding: 1rem 0;
+    text-align: left;
+    border-bottom: .1rem solid #ebebeb;
+}
+table td div{
+    width: 70%;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+}
+table img{
+    margin: 0 2.8rem 0 0;
+    width: 70px;
+}
+table div h3{
+    display: inline-block;
+    color: #333;
+    font-weight: 400;
+    font-size: 1.2rem;  
+    line-height: 1.25;
+}
+.quantity{
+    border: 1px solid #999;
+    width: 60% !important;
+}
+.quantity button{
+    padding: .8rem;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+}
+button{
+    border: transparent;
+    outline: none;
+    background-color: white;
+}
+.btn svg path{
+    color: #999 !important;
+}
+.btn:hover{
+    cursor: pointer;
+}

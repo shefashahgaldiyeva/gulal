@@ -1,0 +1,138 @@
+.shop{
+    border-top: .1rem solid hsla(0,0%,92.2%,.55);
+    display: flex;
+    padding: 0 2rem;
+}
+.filter{
+    width: 25%;
+    /* border: .2rem dashed #d7d7d7; */
+}
+.filter .filterClean{
+    display: flex;
+    padding: 1.5rem 1rem;
+}
+.filter .filterClean label{
+    color: #4d4d4d;
+    font-weight: 400;
+    font-size: 1.4rem;
+    letter-spacing: -.01em;
+}
+.filter .filterClean button,
+.filter .filterDo button{
+    font-weight: 300;
+    font-size: 1rem;
+    margin-left: auto;
+    cursor: pointer;
+    color: #d4b9bd;
+    background-color: transparent;
+}
+.filter .filterDo{
+    border-top: .1rem solid #ebebeb;
+}
+.filter .filterDo button{
+    margin: 1rem;
+}
+.openFilter{
+    color: #4d4d4d;
+    cursor: pointer;
+    padding: 1.5rem 1rem .5rem 1rem;
+    border-top: .1rem solid #ebebeb;
+}
+.openFilter a{
+    color: inherit;
+    font-size: .95rem;
+    letter-spacing: -.01em;
+    display: flex;
+    justify-content: space-between;
+}
+.openFilter>a{
+    margin-bottom: 1rem;
+}
+.openFilter ul li{
+    display: flex;
+    align-items: center;
+}
+/* .openFilter ul li span{
+    font-size: .95rem;
+    margin-left: .5rem;
+}
+.filter div:nth-child(4) ul{
+    width: 100%;
+    display: flex;
+}
+.filter div:nth-child(4) ul li{
+    margin-right: .3rem;
+}
+.filter div:nth-child(4) ul li input{
+    width: 1rem;
+    height: 1rem;
+} */
+.range{
+    padding: 0 1rem;
+}
+.shop .products{
+    width: 75%;
+}
+.shop .products .productsTop{
+    padding: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.shop .products .productsTopLeft p{
+    display: inline-block;
+    color: rgb(150, 150, 150);
+}
+.shop .products .productsTopLeft span{
+    color: black;
+}
+.shop .products .productsTopRight{
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.productsTopRight label{
+    font-weight: 400;
+    color: #333;
+    font-size: .9rem;
+    letter-spacing: -.01em;
+    margin-right: .4rem;
+}
+.productsTopRight select{
+    border-color: #d7d7d7;
+    outline: none;
+    font-size: .9rem;
+    padding: .3rem 0.2rem;
+    max-width: 72%;
+}
+.productsTopRight .grids{
+    display: flex;
+}
+.productsTopRight .grids a{
+    color: #a5a5a5;
+    font-size: 1.1rem;
+}
+.productsTopRight .gridSame{
+    margin: .3rem 0 0 .4rem;
+}
+.productsTopRight .gridSame a{
+    font-size: .75rem;
+}
+.productsTopRight .gridSame a svg{
+    margin-right: -.06rem;
+}
+.productsTopRight .grids a:focus{
+    color: black;
+}
+.productsBottom{
+    width: 100%;
+    padding-left: 1rem;
+}
+.productsBottomItem{
+    width: 33.33%;
+    display: inline-flex;
+    flex-flow: row wrap;
+    /* justify-content: center; */
+    /* display: -webkit-box; */
+}

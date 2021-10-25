@@ -1,0 +1,107 @@
+.total{
+    width: 29%;
+    color: #333;
+}
+.subTotal{
+    width: 100%;
+    padding: 2.5rem 3rem 3rem;
+    border: .1rem dashed #d7d7d7;
+    background-color: #f9f9f9;
+    border-radius: .3rem;
+    margin-bottom: 3rem;
+}
+.subTotal h3{
+    font-weight: 450;
+    font-size: 1.4rem;
+    padding-bottom: 1.3rem;
+    border-bottom: .1rem solid #ccc;
+}
+.sum,form p{
+    color: #333;
+    font-weight: 400;
+    font-size: 1.3rem;
+    padding: 1.3rem 0 0 0;
+    display: flex;
+    justify-content: space-between;
+}
+.shipping{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.shipping span{
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+.shipping label{
+    margin: .1rem .5rem 0 0;
+    font-size: 1.1rem;
+}
+h2{
+    padding-top: 1.4rem;
+    font-weight: 400;
+    font-size: 1.15rem;
+}
+.subTotal .adres a{
+    margin-top: .6rem;
+    margin-bottom: 1.6rem;
+    display: inline-block;
+    font-weight: 300;
+    color: #999;
+    font-size: 1rem;
+    border-bottom: .1rem solid #999;
+}
+.totalSpan{
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.totalSpan span{
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: #d4b9bd;
+    border-bottom: none;
+}
+.subTotal>a{
+    color: #d4b9bd;
+    border: 1px solid #d4b9bd;
+    box-shadow: none;
+}
+.subTotal>a:hover{
+    color: #fff !important;
+    background-color: #d4b9bd;
+}
+.total .continue{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: .85rem 2rem;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    transition: all .3s;
+    color: #333;;
+    border: 1px solid #ebebeb;
+    width: 100%;
+    line-height: 1;
+}
+.continue svg{
+    margin-left: .5rem;
+}
+.total .continue:hover{
+    color: #d4b9bd;
+    background-color: #fafafa;
+    border-color: #ebebeb;
+    box-shadow: none;
+}
+.btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: .85rem 2rem;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    transition: all .3s;
+    width: 100%;
+    line-height: 1;
+}

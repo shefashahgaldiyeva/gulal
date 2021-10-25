@@ -1,0 +1,34 @@
+.cart{
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+}
+.cartTop{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-image: url(../img/cardBg.jpg); */
+    /* background-position: 50% 10%; */
+    /* background-size: cover; */
+    /* background-repeat: no-repeat; */
+    position: relative;
+}
+.cartTop::before{
+    content: '';
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background-color: rgba(0, 0, 0, .3);
+}
+.cartTop h2{
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 3.6rem;
+    padding: 4rem 0;
+    z-index: 9;
+}

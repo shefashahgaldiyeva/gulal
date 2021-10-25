@@ -1,0 +1,194 @@
+.box {
+  position: relative;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: rgba(0, 0, 0, 0.5); */
+  overflow: hidden;
+  border-radius: 20px;
+
+}
+
+.box::after {
+  content: "";
+  position: absolute;
+  /* inset: 4px; */
+  /* background: #0e1538; */
+}
+.box:hover::before{
+    animation: animate 4s linear infinite;
+    width: 150px;
+    height: 140%;
+}
+.box::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  background: #e4dad7;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(350deg);
+  }
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap');
+.shoppingCardWrapper{
+    width: 98%;
+    position: relative;
+}
+.ShoppingCardWrapper{
+    z-index: 9;
+}
+.ShoppingCard{
+    /* width: 100%; */
+    text-align: center;
+    overflow: hidden;
+    background-color: white;
+}
+.ShoppingCard .image{
+    width: 100%;
+    height: 70%; 
+}
+.ShoppingCard .image img{
+    width: 100%;
+    height: 100%;
+}
+.ShoppingCard .image .view{
+    position: absolute;
+    right: 1.5rem;
+    top: .7rem;
+    display: flex;
+    flex-direction: column;
+}
+.ShoppingCard .image .view a{
+    /* position: relative; */
+    padding: .37rem;
+    margin: .2rem 0;
+    font-size: .9rem;
+    color: black;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+}
+.ShoppingCard .image .view a svg{
+    z-index: 2;
+}
+.ShoppingCard .image .view a:hover{
+    color: #fff !important;
+    background-color: #e4dad7;
+}
+.ShoppingCard .image .view a span{
+    padding: .27rem .8rem;
+    display: none;
+    color: #fff !important;
+    background-color: #e4dad7;
+    transform: translateX(-95%);
+    position: absolute;
+    white-space: nowrap;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+}
+.ShoppingCard .image .view a:hover span{
+    display: inline-block;
+}
+.ShoppingCard .image .view a:hover{
+    color: #fff !important;
+    background-color: #e4dad7;
+}
+a{
+    transition: color .3s ease;
+}
+.bottom h3 a:hover{
+    color: #e4dad7 ;
+}
+.ShoppingCard .category{
+    color: #777;
+    font-weight: 300;
+    font-size: 14px;
+    /* line-height: 1.2; */
+    letter-spacing: -.01em;
+}
+.ShoppingCard h3{
+    font-weight: 400;
+    font-size: 1.3rem;
+    line-height: 0.9;
+    letter-spacing: -.01em;
+    margin: .5rem 0;
+}
+.ShoppingCard .category a{
+    color: #777;
+}
+.ShoppingCard h3 a{
+    color: #333;
+}
+.ShoppingCard .price{
+    /* color: #ccc; */
+    color: #e4dad7;
+    font-weight: 400;
+    font-size: 1.3rem;
+}
+.ShoppingCard:hover{
+    cursor: pointer;
+    box-shadow: 0 5px 15px #777777;
+}
+.ShoppingCard:hover .btn{
+    animation-name: btn;
+}
+.ShoppingCard .btn{
+    animation-name: button;
+}
+.ShoppingCard:hover .btn,
+.ShoppingCard .btn{
+    visibility: visible !important;
+    animation-duration: 500ms;
+    animation-timing-function: ease;
+    animation-delay: 100ms;
+    animation-direction: alternate;
+    animation-fill-mode: both;
+    animation-iteration-count: 1;
+}
+@keyframes button {
+    0%   {   transform: translateY(0); }
+    100% {   transform: translateY(150%); }
+}
+@keyframes btn {
+    0%   {   transform: translateY(150%); }
+    100% {   transform: translateY(0); }
+}
+.ShoppingCard .bottom .btn{
+    visibility: hidden;
+    text-transform: uppercase;
+    border: .1rem solid #ebebeb;
+    margin: .8rem 2rem ;
+    padding: .3rem 0;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    transition: all .35s ease;
+}
+.ShoppingCard .bottom .btn:hover{
+    background-color: #e4dad7;
+}
+.ShoppingCard .bottom .btn a{
+    color: #666 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ShoppingCard .bottom .btn:hover a{
+    color: white !important;
+}
+.ShoppingCard .bottom .btn a span{
+    padding: 1px 4px 0 0;
+}
+.ShoppingCard .review {
+    margin: .3rem;
+} 

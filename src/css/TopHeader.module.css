@@ -1,0 +1,90 @@
+.topHeader{
+       /* width: 100%; */
+       /* height: 53px; */
+       /* background-color: #e4dad7; */
+       background-color: #e4dad7;
+       /* display: flex; */
+       /* justify-content: space-between; */
+       padding: 1rem  2rem;
+}
+.topHeader a:hover{
+    color: #d4b9bd;
+    transition: ease-in-out .2s;
+}
+.topHeaderInner{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.topHeader .left{
+    width: 26%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.topHeader .right{
+    width: 54%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.left>a,
+.right div{
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+}
+.before::before{
+    content: '';
+    width: 2px; 
+    height: 30px;
+    background-color: #fff;
+    position: absolute;
+    transform: translateX(-15px);
+}
+.active{
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.2;
+    color: #FFFFFF;
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.langbar{
+    cursor: pointer;
+}
+.langbar span{
+    display: flex;
+    align-items: center;
+}
+.langbar:hover .activeDropdown {
+    opacity: 1;
+    pointer-events: all;
+}
+.currency_box .activeDropdown{
+    width: 35%;
+}
+.activeDropdown {
+    position: absolute;
+    z-index: 9;
+    background-color: #e4dad7;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: .2s ease;
+    overflow: hidden;
+    top: 3.3rem;
+}
+.activeDropdown a{
+    color: #fff;
+    padding: .3rem .8rem;
+}
+.topHeader svg{
+    font-size: 1.3rem;
+    margin-right: .4rem;
+}

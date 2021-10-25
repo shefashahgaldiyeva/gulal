@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap');
+.newOffer{
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.newOfferInner{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.newOfferCards{
+    margin-top: 2rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+.headingInner h2{
+    /* color: #e4dad7; */
+    color: black;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 3.6rem;
+}
+.heading{
+    display: flex;
+    align-items: center;
+}
+.heading span svg{
+    font-size: 1.5rem;
+    color: #e4dad7;
+}
+.heading span:first-child{
+    transform: rotate(335deg) translateY(40%) translateX(-100%);
+}
+.heading span:last-child{
+    transform: rotate(35deg) translateY(40%) translateX(100%);
+}
+/* .headingInner{
+    width: 70%;
+}
+.headingInner img{
+    width: 100%;
+} */

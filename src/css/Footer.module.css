@@ -1,0 +1,171 @@
+.footer{
+    width: 100%;
+    padding: 10rem 0 0 0;
+    /* height: 80vh; */
+    background-image: url(../img/footerBg.png);
+    background-position: 50% 20%;
+    background-size: 140%;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer a{
+    cursor: pointer;
+}
+.footer a:hover{
+    color: rgb(192, 153, 174);
+}
+.footerInner{
+    width: 90%;
+}
+.footerTop{
+    width: 100%;
+    display: flex;
+    justify-content: space-between ;
+}
+.footerTopLeft{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+.footerTopLeft>div:first-child{
+    display: flex;
+    justify-content: space-between;
+}
+.footerTopLeft h3{
+    font-family: Abril Fatface;
+    font-weight: 400;
+    font-size: 1rem;
+    padding-bottom: 1.5rem;
+}
+.footerTopLeft ul li{
+    color: #4d4d4d;
+    padding-bottom: .8rem;
+}
+.footerTopRight{
+    position: relative;
+    width: 45%;
+    background-image: url(../img/sendEmailBg.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.footerTopRightInner{
+    width: 70%;
+    z-index: 9;
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.footerTopRight::before{
+    content: '';
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgb(0 0 0 / .1);
+}
+.footerTopRightInner span{
+    font-family: Abril Fatface;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding-bottom: 1.5rem;
+    /* color: #4d4d4d; */
+    color: white;
+}
+.footerTopRightInner input{
+    color: #4d4d4d;
+    outline: 0;
+    border: 0;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #000;
+    font-family: Poppins;
+    font-weight: 400;
+    width: 70%;
+    height: 46px;
+    font-size: .85rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.footerTopRightInner button{
+    width: 40%;
+    cursor: pointer;
+    background-color: #f5e7e6;
+    border: none;
+    outline: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-family: Poppins;
+    font-weight: 400;
+}
+.footerTopRightInner button:hover{
+    background-color: #d4b9bd;
+    color: white;
+    transition: ease-in-out .2s;
+
+}
+.footer .contact{
+    padding: 2rem 0;
+    display: flex;
+    align-items: center;
+}
+.footer .icons{
+    width: 50%;
+    padding-left: 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.footer .icons a{
+    /* justify-content: center; */
+    font-size: 1.5rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    color: #777;
+    background-color: transparent;
+    border: .1rem solid #eef;
+    border-radius: 50%;
+    text-decoration: none;
+    opacity: 1;
+    transition: all .35s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer .icons a svg{
+    font-size: 1.4rem;
+}
+.footer .icons a:hover{
+    border: .1rem solid rgb(171, 171, 184)   ;
+}
+.footer .icons a:hover{
+    color: #fff !important;
+}
+.footerBottom{
+    width: 100%;
+    padding: 1.6rem 0;
+    margin-top: 2rem;
+    border-top: 1px solid  rgba(136,136,136,.15) ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footerCard{
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.footerBottom img{
+    width: 15%;
+}

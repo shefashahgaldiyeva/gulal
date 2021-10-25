@@ -1,0 +1,47 @@
+.newOfferCard{
+    width: 23%;
+    margin-bottom: 2rem;
+    display: flex;
+    border-radius: 10px;
+    transition: color .3s ease;
+}
+a{
+    transition: color .3s ease;
+}
+.newOfferCard:hover{
+    cursor: pointer;
+    box-shadow: 0 5px 15px #777777;
+    transition: color .3s ease;
+
+}
+.newOfferCard>div{
+    width: 50%;
+}
+.newOfferCard .left img{
+    width: 100%;
+    height: 100%;
+}
+.newOfferCard h3{
+    font-weight: 400;
+    font-size: 1.1rem;
+    line-height: 0.9;
+    text-align: center;
+}
+.newOfferCard h3 a{
+    color: #333;
+}
+.newOfferCard h3 a:hover{
+    color: #e4dad7 ;
+}
+.newOfferCard .right{
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.newOfferCard .price{
+    color: #e4dad7;
+    font-weight: 400;
+    font-size: 1.3rem;
+}
