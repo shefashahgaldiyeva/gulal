@@ -19,7 +19,7 @@ function Detail() {
     return (
         <div>
             <div className={styles.left}>
-                <DetailSlider data={selector}/>
+                <DetailSlider data={selector}/>nkjnjsnfj
             </div>
         </div>
     )
