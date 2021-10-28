@@ -1,3 +1,4 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Open+Sans:wght@300&family=Zen+Antique&display=swap'); */
 .footer{
     width: 100%;
     padding: 10rem 0 0 0;
@@ -35,7 +36,8 @@
     justify-content: space-between;
 }
 .footerTopLeft h3{
-    font-family: Abril Fatface;
+    /* font-family: Abril Fatface; */
+    font-family: 'Zen Antique', serif;
     font-weight: 400;
     font-size: 1rem;
     padding-bottom: 1.5rem;
@@ -47,13 +49,14 @@
 .footerTopRight{
     position: relative;
     width: 45%;
-    background-image: url(../img/sendEmailBg.jpg);
-    background-position: center;
+    background-image: url(../img/footerBgNew.jpg);
+    background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
+    font-family: 'Zen Antique', serif;
 }
 .footerTopRightInner{
     width: 70%;
@@ -61,7 +64,7 @@
     margin: 2rem;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
 }
 .footerTopRight::before{
     content: '';
@@ -71,9 +74,12 @@
     height: 100%;
     position: absolute;
     background-color: rgb(0 0 0 / .1);
+    /* border: 1px solid rgb(193, 193, 202); */
+    /* backdrop-filter: blur(1.5px); */
+
 }
 .footerTopRightInner span{
-    font-family: Abril Fatface;
+    /* font-family: Abril Fatface; */
     font-weight: 500;
     font-size: 1.1rem;
     padding-bottom: 1.5rem;
@@ -89,7 +95,7 @@
     border: 1px solid #000;
     font-family: Poppins;
     font-weight: 400;
-    width: 70%;
+    width: 62%;
     height: 46px;
     font-size: .85rem;
     border: 1px solid #ccc;
@@ -104,9 +110,10 @@
     border: none;
     outline: none;
     padding: 1rem 2rem;
-    font-size: 1rem;
-    font-family: Poppins;
+    /* font-size: 1rem; */
+    font-family: 'Zen Antique', serif;
     font-weight: 400;
+    text-transform: uppercase;
 }
 .footerTopRightInner button:hover{
     background-color: #d4b9bd;

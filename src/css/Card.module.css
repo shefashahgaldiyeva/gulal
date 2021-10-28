@@ -142,6 +142,7 @@ a{
     background-color: #e4dad7;
 }
 .ShoppingCard .bottom .btn a{
+    width: 100%;
     color: #666 !important;
     display: flex;
     justify-content: center;
@@ -164,7 +165,7 @@ a{
     align-items: center;
 }
 .quantity button{
-    padding: .8rem;
+    padding: .2rem .8rem;
     display: flex;
     justify-content: space-between;
 }

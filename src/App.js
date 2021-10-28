@@ -14,6 +14,7 @@ import MyProfile from './components/MyProfile'
 import WishList from './components/WishList';
 import TransitionsModal from './components/TransitionsModal';
 import Detail from './components/Detail';
+import Arrow from './components/Arrow';
 // import IntegrationNotistack from './components/CustomizedSnackbars';
 
 
@@ -87,6 +88,7 @@ function App() {
             </Switch>
             <Footer/>
             {/* <TransitionsModal/> */}
+            <Arrow/>
         </div>
     );
 }

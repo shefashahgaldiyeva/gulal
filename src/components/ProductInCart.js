@@ -8,6 +8,7 @@ const ProductInCart = () =>{
 
     const dispatch = useDispatch();
     const cardData = useSelector(state => state.bucketReducer)
+    console.log(cardData)
     // const table = document.getElementById('table')
     // const tbody = document.getElementById('tbody')
     // console.log(table,tbody)
@@ -25,10 +26,10 @@ const ProductInCart = () =>{
         //     plusItem[0].quantity += 1
         // }
 
-        console.log({
-            id: item.id,
-            quantity: 1
-        })
+        // console.log({
+        //     id: item.id,
+        //     quantity: 1
+        // })
 
         dispatch({
             type: 'UPDATE_BUCKET',
@@ -77,7 +78,16 @@ const ProductInCart = () =>{
                             </div>
                         </td>
                         <td><span>{item.price} azn</span></td>
-                        <td><div className={styles.quantity}><button onClick={() => handleMinus(item)}>-</button>{item.quantity && item.quantity}<button onClick={() => handlePlus(item)}>+</button></div></td>
+                        <td>
+                            <div className={styles.quantity}>
+                                <button onClick={() => handleMinus(item)}>
+                                    -
+                                </button>{item.quantity && item.quantity}
+                                <button onClick={() => handlePlus(item)}>
+                                    +
+                                </button>
+                            </div>
+                        </td>
                         <td><p>{item.total} azn</p></td>
                         <td><button className={styles.btn} onClick={()=>dispatch({
                             type: 'SEBETDEN_SIL',

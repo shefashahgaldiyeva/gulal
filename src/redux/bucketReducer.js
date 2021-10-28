@@ -110,10 +110,11 @@ const bucketReducer = (state = data, action) => {
 
         case 'SEBETDEN_SIL':
             return state = state.filter(item => item.id !== action.payload.id)
+
         case 'UPDATE_BUCKET':
-            state.find(item => item.id !== action.payload.id).quantity += action.payload.quantity
-            console.log(state)
-            return state = [...state]
+            (state.filter(item => item.id == action.payload.id))[0].quantity += action.payload.quantity
+            return [...state]
+
         default:
             return empty
     }

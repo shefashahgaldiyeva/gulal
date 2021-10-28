@@ -29,9 +29,8 @@ const TotalInCart = () =>{
     const [total, setTotal] = useState(0)
 
     const shippingClick = () => {
-        console.log("yeah")
         let val = document.querySelector('input[name="shipping"]:checked').value;
-        // console.log(val)
+        console.log(val)
         // let totall = subTotal + Number(val);
         // setTotal(totall)
         // console.log(totall)
@@ -51,21 +50,21 @@ const TotalInCart = () =>{
                     <p>Çatdırılma:</p>
                     <div className={styles.shipping}>
                         <label for='free'>
-                            <input checked onChange={shippingClick} id='free' name='shipping' value={0} type='radio'/>
+                            <input checked onChange={shippingClick} id='free' name='shipping' value={0} type='radio'/>&nbsp;
                             Mağazadan alış:
                         </label>
                         <span>0.00 azn</span>
                     </div>
                     <div className={styles.shipping}>
                         <label for='standart'>
-                            <input onChange={shippingClick} id='standart' name='shipping' value={5} type='radio'/>
+                            <input onChange={shippingClick} id='standart' name='shipping' value={5} type='radio'/>&nbsp;
                             Standard çatdırılma: 
                         </label>
-                        <span>5.00azn</span>
+                        <span>5.00 azn</span>
                     </div>
                     <div className={styles.shipping}>
                         <label for='express'>
-                            <input onChange={shippingClick} id='express' name='shipping' value={10} type='radio'/>
+                            <input onChange={shippingClick} id='express' name='shipping' value={10} type='radio'/>&nbsp;
                             Express:
                         </label>
                         <span>10.00 azn</span>
