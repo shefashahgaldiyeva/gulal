@@ -9,6 +9,7 @@ const data = [
         image: flower,
         img2: flowerHover,
         text: 'Welcome Little One Bouquet',
+        p: 'Dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.',
         price: 50,
         review: 5,
         id: 1,
@@ -18,89 +19,110 @@ const data = [
         image: flowerHover,
         img2: flowerHover,
         text: 'Welcome ',
+        p: 'Dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.',
         price: 50,
         review: 5,
         id: 2,
         quantity: 1
     },{
         img: flower,
+        image: flower,
         img2: flowerHover,
         text: 'Little One Bouquet',
+        p: 'Dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.',
         price: 50,
         review: 5,
         id: 3,
         quantity: 1
     },{
         img: flower,
+        image: flowerHover,
         img2: flowerHover,
         text: 'Welcome One Bouquet',
+        p: 'Dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.',
         price: 50,
         review: 5,
         id: 4,
         quantity: 1
     },{
         img: flower,
+        image: flower,
         img2: flowerHover,
         text: 'Welcome Little One Bouquet',
+        p: 'Dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.',
         price: 50,
         review: 5,
-        id: 1,
+        id: 5,
         quantity: 1
     },{
         img: flower,
+        image: flowerHover,
         img2: flowerHover,
         text: 'Welcome ',
+        p: 'Dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.',
         price: 50,
         review: 5,
-        id: 2,
+        id: 6,
         quantity: 1
     },{
         img: flower,
+        image: flower,
         img2: flowerHover,
         text: 'Little One Bouquet',
+        p: 'Dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.',
         price: 50,
         review: 5,
-        id: 3,
+        id: 7,
         quantity: 1
     },{
         img: flower,
+        image: flowerHover,
         img2: flowerHover,
         text: 'Welcome One Bouquet',
+        p: 'Dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.',
         price: 50,
         review: 5,
-        id: 4,
+        id: 8,
         quantity: 1
     },{
         img: flower,
+        image: flower,
         img2: flowerHover,
         text: 'Welcome Little One Bouquet',
+        p: 'Dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.',
         price: 50,
         review: 5,
-        id: 1,
+        id: 9,
         quantity: 1
     },{
         img: flower,
+        image: flowerHover,
         img2: flowerHover,
         text: 'Welcome ',
+        p: 'Dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.',
         price: 50,
         review: 5,
-        id: 2,
+        id: 10,
         quantity: 1
     },{
         img: flower,
+        image: flower,
         img2: flowerHover,
         text: 'Little One Bouquet',
+        p: 'Dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.',
         price: 50,
         review: 5,
-        id: 3,
+        id: 11,
         quantity: 1
     },{
         img: flower,
+        image: flowerHover,
         img2: flowerHover,
         text: 'Welcome One Bouquet',
+        p: 'Dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.',
         price: 50,
         review: 5,
-        id: 4,
+        id: 12,
         quantity: 1
     }
 ]

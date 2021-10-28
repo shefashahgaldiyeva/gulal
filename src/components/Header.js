@@ -33,7 +33,7 @@ function Header() {
             <div className={styles.right}>
             <div className={styles.searchCart}>
                 <label onClick={toogleClass} for='search'><BsSearch/></label>
-                <input className={isPassive ? 'passive' : 'active'} name='search' type="text" placeholder='Axtarış et...'/>
+                <input className={isPassive ? 'passive' : 'activee'} name='search' type="text" placeholder='Axtarış et...'/>
             </div>
             <ul>
                 <li><Link to='/Sevimliler'><span className={styles.heart}><BsSuitHeart/></span></Link></li>

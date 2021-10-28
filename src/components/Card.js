@@ -5,6 +5,11 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import  styled  from '../css/WishList.module.css';
@@ -30,7 +35,25 @@ const style = {
     justifyContent: 'space-evenly'
   };
 
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
 function Card(props) { 
+
+  const [openSnack, setOpenSnack] = React.useState(false);
+  const handleClickSnack = () => {
+    setOpenSnack(true);
+  };
+  const handleCloseSnack = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenSnack(false);
+  };
+    const handleOpenSnack = () => setOpenSnack(true);
+//   const handleClose = () => setOpen(false);
     // const selectorAll = useSelector(state => state.allDataReducer)
     // selectorAll.map((item)=>{
     //         console.log(item.id)
@@ -90,18 +113,22 @@ function Card(props) {
             minusItem[0].quantity -= 1
         }
     }
+    
 
     return (
         <div className={styles.shoppingCardWrapper}>
-            {/* {
-                selectorAll.map((item)=>{ */}
+               <Snackbar style={{position: 'fixed'}} open={openSnack} autoHideDuration={60000} onClose={handleCloseSnack}>
+                    <Alert onClose={handleCloseSnack} severity="success" sx={{ width: '100%' }}>
+                        Səbətə uğurla əlavə edildi!
+                    </Alert>
+                </Snackbar>
                     <div key={props.item.id} className={styles.ShoppingCard}>
                     <div className={styles.image}>
                         <div className={styles.view}>
                             <a href='javascript:void(0)' onClick={() => handleAddWishlist(props.item)}><span>sevimliyə əlavə et</span><FiHeart/></a>
                             {/* <a href='javascript:void(0)'><span>sevimliyə əlavə et</span><FiHeart/></a> */}
                             {/* <Link to={`/${item.id}`} title='quick view'><FaRegEye/></Link> */}
-                            <a onClick={handleOpen} href='javascript:void(0)' title='quick view'><FaRegEye/></a>
+                            <a onClick={handleOpen} href='javascript:void(0)' title='ön baxış'><FaRegEye/></a>
                             <Modal
                                 aria-labelledby="transition-modal-title"
                                 aria-describedby="transition-modal-description"
@@ -116,26 +143,26 @@ function Card(props) {
                                 <Fade in={open}>
                                 <Box sx={style}>
                                     <Typography id="transition-modal-description" sx={{ mt: 20 }}>
-                                        <div style={{width: '100%'}}><img  style={{width: '100%'}} src={props.item.img} onMouseOver={(a)=>{a.target.src = props.item.img2}} onMouseOut={(a)=>{a.target.src = props.item.img}}/></div>
+                                        <div style={{width: '100%'}}><img className={styles.modalInImg} src={props.item.img} onMouseOver={(a)=>{a.target.src = props.item.img2}} onMouseOut={(a)=>{a.target.src = props.item.img}}/></div>
                                     </Typography>
                                     <Typography id="transition-modal-title" variant="h6" component="h2">
                                         <h3>{props.item.text}</h3>
                                         <span className={styles.price}>{props.item.price} azn</span>
-                                        <p>Dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.</p>
+                                        <p>{props.item.p}</p>
                                        <div className={styles.df}>
                                             <div className={styles.quantity}>
-                                                <button onClick={() => handleMinus(props.item.quantity)}>
+                                                <button onClick={() => handleMinus(props.item)}>
                                                     -
                                                 </button>
                                                 {props.item.quantity && props.item.quantity}
-                                                <button onClick={() => handlePlus(props.item.quantity)}>
+                                                <button onClick={() => handlePlus(props.item)}>
                                                     +
                                                 </button>
                                             </div>
-                                            <Link to='/cart'><button className={styled.btn} onClick={()=>dispatch({
+                                            <a href='javascript:void(0)'><button className={styled.btn} onClick={()=>dispatch({
                                                 type: 'ELAVE_ET',
                                                 payload: props.item
-                                            })}><FaCartPlus/>SATIN AL</button></Link>
+                                            })}><FaCartPlus/>SATIN AL</button></a>
                                        </div>
                                     </Typography>
                                 </Box>
@@ -153,14 +180,24 @@ function Card(props) {
                             <span className={styles.review}>({props.item.review} baxış)</span>
                         </div>
                         <div className={styles.btn}>
-                            <a href='javascript:void(0)' onClick={() => handleAdd(props.item)}><span><BsCartPlus/></span>Satın al</a>
-                            {/* <a href='#'><span><BsCartPlus/></span>Satin al</a> */}
+                        <Stack spacing={2} sx={{ width: '100%' }}>
+                            <Button variant="outlined" onClick={()=>handleClickSnack()}>
+                                <a href='javascript:void(0)' onClick={() => handleAdd(props.item)}><span><BsCartPlus/></span>Satın al</a>
+                            </Button>
+                            {/* <Snackbar open={openSnack} autoHideDuration={6000} onClose={handleCloseSnack}>
+                                <Alert onClose={handleCloseSnack} severity="success" sx={{ width: '100%' }}>
+                                    This is a success message!
+                                </Alert>
+                            </Snackbar> */}
+                        </Stack>
                         </div>
                     </div>
             </div>
-                {/* })
-            } */}
-            
+                        {/* <Snackbar style={{position: 'fixed'}} open={openSnack} autoHideDuration={6000} onClose={handleCloseSnack}>
+                                <Alert onClose={handleCloseSnack} severity="success" sx={{ width: '100%' }}>
+                                    Səbətə uğurla əlavə edildi!
+                                </Alert>
+                        </Snackbar> */}
         </div>
     )
 }

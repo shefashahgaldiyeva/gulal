@@ -29,30 +29,6 @@ function AllProducts() {
                             </SwiperSlide>
                         ))
                     }
-                        {/* <SwiperSlide className={styles.allProductSwip}>
-                            <Card/>
-                        </SwiperSlide>
-                        <SwiperSlide className={styles.allProductSwip}>
-                            <Card/>
-                        </SwiperSlide>
-                        <SwiperSlide className={styles.allProductSwip}>
-                            <Card/>
-                        </SwiperSlide>
-                        <SwiperSlide className={styles.allProductSwip}>
-                            <Card/>
-                        </SwiperSlide>
-                        <SwiperSlide className={styles.allProductSwip}>
-                            <Card/>
-                        </SwiperSlide>
-                        <SwiperSlide className={styles.allProductSwip}>
-                            <Card/>
-                        </SwiperSlide>
-                        <SwiperSlide className={styles.allProductSwip}>
-                            <Card/>
-                        </SwiperSlide>
-                        <SwiperSlide className={styles.allProductSwip}>
-                            <Card/>
-                        </SwiperSlide> */}
                     </Swiper>
                     </div>
                 </div>

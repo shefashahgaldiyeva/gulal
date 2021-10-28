@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { useRouteMatch } from 'react-router'
 import styles from '../css/Detail.module.css'
 import DetailSlider from '../components/DetailSlider'
+import DetailRight from '../components/DetailRight'
 
 function Detail() {
 
@@ -12,16 +13,29 @@ function Detail() {
     // allFlowersReducer
 
     // const selector = useSelector(state => state.allFlowersReducer.id == match.params.topicId)
-    const selector = useSelector(state => state.allFlowersReducer)
+    const data = useSelector(state => state.newOfferData.filter(item => item.id == match.params.topicId))
+    // data.map((item)=>(
+    //     console.log(item)
+    // ))
+
     // const selector = useSelector(state =>state.allFlowersReducer.filter(item => item.id === match.params.topicId))
     // console.log(selector)
 
     return (
-        <div>
-            <div className={styles.left}>
-                <DetailSlider data={selector}/>nkjnjsnfj
+            <div className={styles.detail}>
+                <div className={styles.detailInner}>
+                    <div className={styles.left}>
+                        <DetailSlider data={data}/>
+                    </div>
+                    <div className={styles.right}>
+                        {
+                            data.map((item)=>(
+                                <DetailRight item={item}/>
+                            ))
+                        }
+                    </div>
+                </div>
             </div>
-        </div>
     )
 }
 

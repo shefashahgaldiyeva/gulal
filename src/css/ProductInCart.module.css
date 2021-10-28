@@ -45,7 +45,10 @@ table div h3{
 }
 .quantity{
     border: 1px solid #999;
-    width: 60% !important;
+    /* width: 75% !important; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 .quantity button{
     padding: .8rem;

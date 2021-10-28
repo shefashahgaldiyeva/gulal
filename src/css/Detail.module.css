@@ -1,3 +1,18 @@
+.detail{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+.detailInner{
+    width: 98%;
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+}
 .left{
-    width: 50%;
+    width: 40%;
+}
+.right{
+    width: 59%;
 }

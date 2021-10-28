@@ -102,12 +102,18 @@ const data = [
 ]
 const empty = []
 
-const bucketReducer = (state = data,action) => {
+const bucketReducer = (state = data, action) => {
     switch (action.type) {
         case 'ELAVE_ET':
             console.log(action.payload)
             return [...state,action.payload]
-    
+
+        case 'SEBETDEN_SIL':
+            return state = state.filter(item => item.id !== action.payload.id)
+        case 'UPDATE_BUCKET':
+            state.find(item => item.id !== action.payload.id).quantity += action.payload.quantity
+            console.log(state)
+            return state = [...state]
         default:
             return empty
     }

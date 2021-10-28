@@ -1,6 +1,7 @@
 import './App.css';
 import { Route, Switch } from 'react-router-dom'
-import { matchPath } from 'react-router';
+// import { matchPath } from 'react-router';
+import { StyledEngineProvider } from '@mui/material/styles';
 import TopHeader from './components/TopHeader'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -9,9 +10,12 @@ import Cart from './components/Cart'
 import Login from './components/Login'
 import ShopAllCategory from './components/ShopAllCategory'
 import SignUp from './components/SignUp'
+import MyProfile from './components/MyProfile'
 import WishList from './components/WishList';
 import TransitionsModal from './components/TransitionsModal';
 import Detail from './components/Detail';
+// import IntegrationNotistack from './components/CustomizedSnackbars';
+
 
 
 function App() {
@@ -22,21 +26,27 @@ function App() {
             <Header/>
             <Switch>
                 <Route exact path='/'>
-                    <Home/>
+                    <StyledEngineProvider injectFirst>
+                        <Home/>
+                       {/* <IntegrationNotistack /> */}
+                    </StyledEngineProvider>
                 </Route>
                 <Route path='/Sebet'>
                     <Cart/>
                 </Route>
-                <Route exact path='/Sevimliler'>
+                <Route path='/Sevimliler'>
                     <WishList/>
                 </Route>
-                <Route exact path='/Daxil-ol'>
+                <Route path='/Daxil-ol'>
                     <Login/>
                 </Route>
-                <Route exact path='/Qeydiyyat'>
+                <Route path='/Qeydiyyat'>
                     <SignUp/>
                 </Route>
-                <Route exact path='/Butun-Kateqoriyalar'>
+                <Route path='/Hesabim'>
+                    <MyProfile/>
+                </Route>
+                <Route path='/Butun-Kateqoriyalar'>
                     <ShopAllCategory/>
                 </Route>
                 <Route path='/Tulpan-Buketleri'>

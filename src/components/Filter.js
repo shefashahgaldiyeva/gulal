@@ -11,7 +11,7 @@ import Slider from '@material-ui/core/Slider';
 function Filter() {
 
 
-    const [value, setValue] = React.useState([2,10]);
+    const [value, setValue] = React.useState([2,1000]);
 
     const rangeSelector = (event, newValue) => {
         setValue(newValue);
@@ -111,7 +111,7 @@ function Filter() {
                         <div>Qiymət aralığı: <span className={styles.range}>{value[0]} azn - {value[1]} azn</span></div>
                         <div style={{margin: 'auto', display: 'block', padding: '1rem 0'}}>
                             <Typography id="range-slider" gutterBottom>Aralığı seçin:</Typography>
-                            <Slider value={value} onChange={rangeSelector} valueLabelDisplay="auto"/>
+                            <Slider step={1} max={1000} min={0} value={value} onChange={rangeSelector} valueLabelDisplay="auto"/>
                         </div>
                     </div>
                 </div>

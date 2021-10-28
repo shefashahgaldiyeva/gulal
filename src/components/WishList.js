@@ -5,6 +5,7 @@ import  styles  from '../css/WishList.module.css';
 import  styled  from '../css/Cart.module.css';
 // import { GrClose } from 'react-icons/gr'
 import { FaCartPlus } from 'react-icons/fa'
+import { FiHeart } from 'react-icons/fi'
 import wishBg from '../img/wishBg.jpg'
 
 function WishList(item) {
@@ -12,6 +13,8 @@ function WishList(item) {
     const dispatch = useDispatch();
     const cardData = useSelector(state => state.wishListReducers)
     const reducerData = useSelector(state => state.bucketReducer)
+
+    const selector = useSelector(state => state.wishListReducers)
 
   
     cardData.map((item)=>{
@@ -25,7 +28,7 @@ function WishList(item) {
         <div className={styled.cartTop} style={{backgroundImage: `url(${wishBg})`,backgroundPosition: '50% 100%'}}>
             <h2>Sevimlilər</h2>
         </div>
-        <div className={styles.table}>
+        <div className={selector.length != 0 ? styles.table : styles.none}>
             <table>
                 <thead id='table'>
                     <tr>
@@ -57,6 +60,10 @@ function WishList(item) {
                 </tbody>
             </table>
         </div>
+        <div className={selector.length == 0 ? styled.emptyCart : styles.none}>
+                <FiHeart/>
+                <Link to='/'>Ana səhifəyə keçid</Link>
+            </div>
         </>
     )
 }

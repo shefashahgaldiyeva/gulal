@@ -10,6 +10,7 @@ const ProductInCart = () =>{
     const cardData = useSelector(state => state.bucketReducer)
     // const table = document.getElementById('table')
     // const tbody = document.getElementById('tbody')
+    // console.log(table,tbody)
     // tbody ? table : table.style.display = 'none'
     // let bool = true; 
     // if(bool){
@@ -19,11 +20,23 @@ const ProductInCart = () =>{
     // }
 
     const handlePlus = (item) =>{
-        const plusItem = cardData.filter(index => index.id == item.id)
-        console.log(plusItem)
-        if(plusItem){
-            plusItem[0].quantity += 1
-        }
+        // const plusItem = cardData.filter(index => index.id == item.id)
+        // if(plusItem){
+        //     plusItem[0].quantity += 1
+        // }
+
+        console.log({
+            id: item.id,
+            quantity: 1
+        })
+
+        dispatch({
+            type: 'UPDATE_BUCKET',
+            payload: {
+                id: item.id,
+                quantity: 1
+            }
+        })
         // item.quantity += 1
         // console.log(item.quantity)
     }
@@ -38,6 +51,8 @@ const ProductInCart = () =>{
         item.total = Number(item.price) * item.quantity
         // console.log(item.total)
     })
+
+  
 
     return (
         <div className={styles.table}>
@@ -54,7 +69,6 @@ const ProductInCart = () =>{
                 <tbody id='tbody'>
                 {
                     cardData.map((item)=>(
-                       
                         <tr key={item.id}>
                         <td>
                             <div>
