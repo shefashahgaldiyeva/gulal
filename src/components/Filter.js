@@ -51,7 +51,7 @@ function Filter() {
                     <label>Filterlər:</label>
                     <button type='reset'>Filterləri sıfırla</button>
                 </div>
-                <div className={styles.openFilter}>
+                <div style={{transition: '.4s'}} className={styles.openFilter}>
                     <a onClick={(e)=>handleAddClass(e)}> Kateqoriya<span className={'notRotate'}><MdOutlineKeyboardArrowDown/></span></a>
                     <div  id={'no1'} className={'closeDrop'}>
                         <ul>

@@ -128,11 +128,27 @@
 .productsBottom{
     width: 100%;
     padding-left: 1rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
 }
-.productsBottomItem{
+.productsBottomItem3{
     width: 33.33%;
     display: inline-flex;
     flex-flow: row wrap;
     /* justify-content: center; */
     /* display: -webkit-box; */
+}
+.productsBottomItem4{
+    width: 24%;
+    display: inline-flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+.productsBottomItem4 a{
+    font-size: 1.1rem;
+}
+.productsBottomItem4>div{
+    margin-right: 0 !important;
+
 }

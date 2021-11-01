@@ -32,7 +32,7 @@ const ProductInCart = () =>{
         // })
 
         dispatch({
-            type: 'UPDATE_BUCKET',
+            type: 'UPDATE_BUCKET_MINUS',
             payload: {
                 id: item.id,
                 quantity: 1
@@ -42,11 +42,19 @@ const ProductInCart = () =>{
         // console.log(item.quantity)
     }
     const handleMinus = (item) =>{
-        const minusItem = cardData.filter(index => index.id == item.id)
-        console.log(minusItem)
-        if(minusItem){
-            minusItem[0].quantity -= 1
-        }
+        // const minusItem = cardData.filter(index => index.id == item.id)
+        // console.log(minusItem)
+        // if(minusItem){
+        //     minusItem[0].quantity -= 1
+        // }
+
+        dispatch({
+            type: 'UPDATE_BUCKET_PLUS',
+            payload: {
+                id: item.id,
+                quantity: 1
+            }
+        })
     }
     cardData.map((item)=>{
         item.total = Number(item.price) * item.quantity

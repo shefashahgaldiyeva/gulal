@@ -1,7 +1,7 @@
 import React from 'react'
 // import styles from '../css/MyProfile.module.css'
 import '../css/MyProfilePure.css'
-import '../css/MyProfilePure2.css'
+// import '../css/MyProfilePure2.css'
 
 
 function MyProfile() {
@@ -16,7 +16,7 @@ function MyProfile() {
                     <span className="logo-icon">
                         <i className="bi bi-bag-check-fill fs-4"></i>
                     </span>
-                    <span className="logo-text">eBazar</span>
+                    <span className="logo-text">GulAL</span>
                 {/* </a> */}
                 {/* <!-- Menu: main ul --> */}
                 <ul className="menu-list flex-grow-1 mt-3">
@@ -247,10 +247,10 @@ function MyProfile() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
+                            <div style={{display: 'flex'},{justifyContent: 'flex-end'}} className="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
                                 <div className="u-info me-2">
                                     <p className="mb-0 text-end line-height-sm "><span className="font-weight-bold">John Quinn</span></p>
-                                    <small>User Profile</small>
+                                    <small>İstifadəçi paneli</small>
                                 </div>
                                 {/* <a className="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
                                     <img className="avatar lg rounded-circle img-thumbnail" src="assets/images/profile_av.svg" alt="profile"/>
@@ -306,7 +306,7 @@ function MyProfile() {
                     <div className="row align-items-center">
                         <div className="border-0 mb-4">
                             <div className="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-                                <h3 className="fw-bold mb-0">User Profile</h3>
+                                <h3 className="fw-bold mb-0">İstifadəçi paneli</h3>
                             </div>
                         </div>
                     </div> 
@@ -315,22 +315,22 @@ function MyProfile() {
                         <div className="col-xl-4 col-lg-5 col-md-12">
                             <div className="card profile-card flex-column mb-3">
                                 <div className="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
-                                    <h6 className="mb-0 fw-bold ">Profile</h6>
+                                    <h6 className="mb-0 fw-bold ">Profil</h6>
                                 </div>
                                 <div className="card-body d-flex profile-fulldeatil flex-column">
                                     <div className="profile-block text-center w220 mx-auto">
-                                        <a href="#">
+                                        {/* <a href="#"> */}
                                             {/* <img src="assets/images/lg/avatar4.svg" alt="" className="avatar xl rounded img-thumbnail shadow-sm"/> */}
-                                        </a>
+                                        {/* </a> */}
                                         {/* <button className="btn btn-primary" style="position: absolute;top:15px;right: 15px;" data-bs-toggle="modal" data-bs-target="#editprofile"><i className="icofont-edit"></i></button> */}
                                         <div className="about-info d-flex align-items-center mt-3 justify-content-center flex-column">
-                                            <span className="text-muted small">User ID : PXL-0001</span>
+                                            <span className="text-muted small">İstifadəçi ID'si : PXL-0001</span>
                                         </div>
                                     </div>
                                     <div className="profile-info w-100">
                                         <h6  className="mb-0 mt-2  fw-bold d-block fs-6 text-center">Adrian	Allan</h6>
-                                        <span className="py-1 fw-bold small-11 mb-0 mt-1 text-muted text-center mx-auto d-block">24 years, California</span>
-                                        <p className="mt-2">Duis felis ligula, pharetra at nisl sit amet, ullamcorper fringilla mi. Cras luctus metus non enim porttitor sagittis. Sed tristique scelerisque arcu id dignissim.</p>
+                                        {/* <span className="py-1 fw-bold small-11 mb-0 mt-1 text-muted text-center mx-auto d-block">24 years, California</span> */}
+                                        {/* <p className="mt-2">Duis felis ligula, pharetra at nisl sit amet, ullamcorper fringilla mi. Cras luctus metus non enim porttitor sagittis. Sed tristique scelerisque arcu id dignissim.</p> */}
                                         <div className="row g-2 pt-2">
                                             <div className="col-xl-12">
                                                 <div className="d-flex align-items-center">
@@ -344,12 +344,12 @@ function MyProfile() {
                                                     <span className="ms-2">adrianallan@gmail.com</span>
                                                 </div>
                                             </div>
-                                            <div className="col-xl-12">
+                                            {/* <div className="col-xl-12">
                                                 <div className="d-flex align-items-center">
                                                     <i className="icofont-birthday-cake"></i>
                                                     <span className="ms-2">19/03/1980</span>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                             <div className="col-xl-12">
                                                 <div className="d-flex align-items-center">
                                                     <i className="icofont-address-book"></i>
@@ -360,7 +360,7 @@ function MyProfile() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="card mb-3">
+                            {/* <div className="card mb-3">
                                 <div className="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
                                     <h6 className="mb-0 fw-bold ">Payment Method</h6>
                                 </div>
@@ -374,23 +374,23 @@ function MyProfile() {
                                     </div>
                                     <p className="mt-3"><a href="javascript:void(0);" className="btn btn-primary"> Add Payment Info</a></p>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="card">
                                 <div className="card-body">
-                                    <h5>Notification preferences</h5>
-                                    <span className="text-muted">Control all our newsletter and email related notifications to your email</span>
+                                    <h5>Bildiriş seçimləri</h5>
+                                    <span className="text-muted">Bütün bildirişlərinizə nəzarət edin</span>
                                     <div className="mt-4">
                                         <div className="form-check form-switch mt-2">
                                             <input className="form-check-input" type="checkbox" id="np-Newsletter"/>
-                                            <label className="form-check-label" for="np-Newsletter">Activity Notifications</label>
+                                            <label className="form-check-label" for="np-Newsletter">Yeni məhsul bildirişləri</label>
                                         </div>
                                         <div className="form-check form-switch mt-2">
                                             <input className="form-check-input" type="checkbox" id="np-Notifications"/>
-                                            <label className="form-check-label" for="np-Notifications">Comment Notifications</label>
+                                            <label className="form-check-label" for="np-Notifications">Şərh bildirişləri</label>
                                         </div>
                                         <div className="form-check form-switch mt-2">
-                                            <input className="form-check-input" type="checkbox" id="np-Preferences" checked=""/>
-                                            <label className="form-check-label" for="np-Preferences">Email Preferences</label>
+                                            <input className="form-check-input" type="checkbox" id="np-Preferences"/>
+                                            <label className="form-check-label" for="np-Preferences">Endirim bildirişləri</label>
                                         </div>
                                     </div>
                                 </div>
@@ -399,37 +399,37 @@ function MyProfile() {
                         <div className="col-xl-8 col-lg-7 col-md-12">
                             <div className="card mb-3">
                                 <div className="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
-                                    <h6 className="mb-0 fw-bold ">Profile Settings</h6>
+                                    <h6 className="mb-0 fw-bold ">Profil Parametrləri</h6>
                                 </div>
                                 <div className="card-body">
                                     <form className="row g-4">
                                         <div className="col-sm-6">
                                             <div className="form-group">
-                                                <label className="form-label">User Name</label>
+                                                <label className="form-label">İstifadəçi adı</label>
                                                 <input className="form-control"  type="text"/>
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="form-group">
-                                                <label className="form-label">Password</label>
+                                                <label className="form-label">Şifrə</label>
                                                 <input className="form-control" type="Password"/>
                                             </div>
                                         </div>
-                                        <div className="col-md-4 col-sm-12">
+                                        {/* <div className="col-md-4 col-sm-12">
                                             <div className="form-group">
                                                 <label className="form-label">Company Name <span className="text-danger">*</span></label>
                                                 <input className="form-control" type="text" value=""/>
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div className="col-md-4 col-sm-12">
                                             <div className="form-group">
-                                                <label className="form-label">Contact Person</label>
+                                                <label className="form-label">Əlaqədar şəxs</label>
                                                 <input className="form-control" type="text"/>
                                             </div>
                                         </div>
                                         <div className="col-md-4 col-sm-12">
                                             <div className="form-group">
-                                                <label className="form-label">Mobile Number <span className="text-danger">*</span></label>
+                                                <label className="form-label">Mobil Telefon <span className="text-danger">*</span></label>
                                                 <input className="form-control"  type="text"/>
                                             </div>
                                         </div>
@@ -446,14 +446,14 @@ function MyProfile() {
                                                 <input type="text" className="form-control"/>
                                             </div>
                                         </div>
-                                        <div className="col-md-6 col-sm-12">
+                                        {/* <div className="col-md-6 col-sm-12">
                                             <label className="form-label">Website Url</label>
                                             <div className="input-group">
                                                 <span className="input-group-text">http://</span>
                                                 <input type="text" className="form-control" value=""/>
                                             </div>
-                                        </div>
-                                        <div className="col-sm-6 col-md-6 col-lg-3">
+                                        </div> */}
+                                        {/* <div className="col-sm-6 col-md-6 col-lg-3">
                                             <div className="form-group">
                                                 <label className="form-label">Country</label>
                                                 <select className="form-control">
@@ -709,58 +709,57 @@ function MyProfile() {
                                                     <option value="ZW">Zimbabwe</option>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div className="col-sm-6 col-md-6 col-lg-3">
                                             <div className="form-group">
-                                                <label className="form-label">State/Province</label>
+                                                <label className="form-label">Şəhər</label>
                                                 <select className="form-control">
-                                                    <option>California</option>
-                                                    <option>Alaska</option>
-                                                    <option>Alabama</option>
+                                                    <option>Bakı</option>
+                                                    <option>Sumqayıt</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div className="col-sm-6 col-md-6 col-lg-3">
                                             <div className="form-group">
-                                                <label className="form-label">City</label>
+                                                <label className="form-label">Rayon</label>
                                                 <input className="form-control"  type="text"/>
                                             </div>
                                         </div>
-                                        <div className="col-sm-6 col-md-6 col-lg-3">
+                                        {/* <div className="col-sm-6 col-md-6 col-lg-3">
                                             <div className="form-group">
                                                 <label className="form-label">Postal Code</label>
                                                 <input className="form-control"  type="text"/>
                                             </div>
-                                        </div>
+                                        </div> */}
                                         
                                         <div className="col-12 mt-4">
-                                            <button type="button" className="btn btn-primary text-uppercase px-5">SAVE</button>
+                                            <button type="button" className="btn btn-primary text-uppercase px-5">Yadda saxla</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                             <div className="card auth-detailblock">
                                 <div className="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
-                                    <h6 className="mb-0 fw-bold ">Authentication Details</h6>
+                                    <h6 className="mb-0 fw-bold ">Doğrulama Detalları</h6>
                                     {/* <button className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#authchange"><i className="icofont-edit"></i></button> */}
                                 </div>
                                 <div className="card-body">
                                     <div className="row g-3">
                                         <div className="col-12">
-                                            <label className="form-label col-6 col-sm-5">User Name :</label>
+                                            <label className="form-label col-6 col-sm-5">İstifadəçi adı :</label>
                                             <span><strong>Adrian007</strong></span>
                                         </div>
                                         <div className="col-12">
-                                            <label className="form-label col-6 col-sm-5">Login Password :</label>
+                                            <label className="form-label col-6 col-sm-5">Şifrə :</label>
                                             <span><strong>Abc*******</strong></span>
                                         </div>
                                         <div className="col-12">
-                                            <label className="form-label col-6 col-sm-5">Last Login:</label>
+                                            <label className="form-label col-6 col-sm-5">Sonuncu Şifrə :</label>
                                             <span><strong>128.456.89 (Apple) safari</strong></span>
                                         </div>
                                         <div className="col-12">
-                                            <label className="form-label col-6 col-sm-5">Last Password change:</label>
-                                            <span><strong>3 Month Ago</strong></span>
+                                            <label className="form-label col-6 col-sm-5">Son parol dəyişikliyi :</label>
+                                            <span><strong>3 Ay Əvvəl</strong></span>
                                         </div>
                                     </div>
                                 </div>
@@ -942,7 +941,7 @@ function MyProfile() {
                     </div>
                     <div className="modal-footer">
                         {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Done</button> */}
-                        <button type="submit" className="btn btn-primary">Save</button>
+                        <button type="submit" className="btn btn-primary">Yadda saxla</button>
                     </div>
                 </div>
                 </div>
@@ -1008,7 +1007,7 @@ function MyProfile() {
                     </div>
                     <div className="modal-footer">
                         {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Done</button> */}
-                        <button type="submit" className="btn btn-primary">Save</button>
+                        <button type="submit" className="btn btn-primary">Yadda saxla</button>
                     </div>
                 </div>
                 </div>

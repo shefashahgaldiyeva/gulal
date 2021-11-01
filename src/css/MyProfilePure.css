@@ -15853,12 +15853,16 @@ body.font-mukta{
     }
 }
 body a{
-    color:var(--text-color);
+    /* color:var(--text-color); */
     text-decoration:none
 }
 body a:hover{
     text-decoration:none;
-    color:var(--secondary-color)
+    /* color:var(--secondary-color) */
+    color: #d4b9bd;
+}
+body a:focus{
+    color: #d4b9bd;
 }
 @media only screen and (max-width: 554px){
     .btn-set-task{
@@ -16722,8 +16726,10 @@ body.rtl_mode .modal.right.fade.show .modal-dialog{
     background:var(--primary-color)
 }
 .form-switch .form-check-input:checked{
-    background-color:var(--primary-color);
-    border-color:var(--border-color)
+    /* background-color:var(--primary-color);
+    border-color:var(--border-color) */
+    background-color: #e4dad7;
+    border-color: #e4dad7;
 }
 .big-search{
     color:var(--color-fff)

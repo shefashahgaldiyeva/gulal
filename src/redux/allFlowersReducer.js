@@ -7,7 +7,7 @@ const allFlowersReducer = ( state = [], action) => {
             return action.payload
     
         default:
-            console.log('no payload')
+            // console.log('no payload')
             return state
     }
 }

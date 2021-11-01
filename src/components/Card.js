@@ -83,37 +83,68 @@ function Card(props) {
         })
     }
 
-    const allFlowersAdd = (index) =>{
+    const allFlowersAdd = (item) =>{
         dispatch({
             type: 'GELEN_DATA',
-            payload: index 
+            payload: item 
         })
         // console.log(index)
     }
 
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
+    const handleOpen = (item) => {
+        setOpen(true);
+        console.log(cardData.length)
+            dispatch({
+                type: 'ELAVE_ET',
+                payload: item 
+            })
+        
+        
+    }
     const handleClose = () => setOpen(false);
 
     const cardData = useSelector(state => state.bucketReducer)
 
+    // const handlePlus = (item) =>{
+    //     const plusItem = cardData.filter(index => index.id == item.id)
+    //     console.log(plusItem)
+    //     if(plusItem){
+    //         plusItem[0].quantity += 1
+    //     }
+    //     // item.quantity += 1
+    //     // console.log(item.quantity)
+    // }
+    // const handleMinus = (item) =>{
+    //     const minusItem = cardData.filter(index => index.id == item.id)
+    //     console.log(minusItem)
+    //     if(minusItem){
+    //         minusItem[0].quantity -= 1
+    //     }
+    // }
+
     const handlePlus = (item) =>{
-        const plusItem = cardData.filter(index => index.id == item.id)
-        console.log(plusItem)
-        if(plusItem){
-            plusItem[0].quantity += 1
-        }
-        // item.quantity += 1
-        // console.log(item.quantity)
+        console.log(item)
+        dispatch({
+            type: 'UPDATE_BUCKET_MINUS',
+            payload: {
+                id: item.id,
+                quantity: 1
+            }
+        })
     }
     const handleMinus = (item) =>{
-        const minusItem = cardData.filter(index => index.id == item.id)
-        console.log(minusItem)
-        if(minusItem){
-            minusItem[0].quantity -= 1
-        }
+        dispatch({
+            type: 'UPDATE_BUCKET_PLUS',
+            payload: {
+                id: item.id,
+                quantity: 1
+            }
+        })
     }
-    
+    // cardData.map((item)=>{
+    //     console.log(item.quantity)
+    // })
 
     return (
         <div className={styles.shoppingCardWrapper}>
@@ -126,9 +157,7 @@ function Card(props) {
                     <div className={styles.image}>
                         <div className={styles.view}>
                             <a href='javascript:void(0)' onClick={() => handleAddWishlist(props.item)}><span>sevimliyə əlavə et</span><FiHeart/></a>
-                            {/* <a href='javascript:void(0)'><span>sevimliyə əlavə et</span><FiHeart/></a> */}
-                            {/* <Link to={`/${item.id}`} title='quick view'><FaRegEye/></Link> */}
-                            <a onClick={handleOpen} href='javascript:void(0)' title='ön baxış'><FaRegEye/></a>
+                            <a onClick={()=>handleOpen(props.item)} href='javascript:void(0)' title='ön baxış'><FaRegEye/></a>
                             <Modal
                                 aria-labelledby="transition-modal-title"
                                 aria-describedby="transition-modal-description"
@@ -149,16 +178,25 @@ function Card(props) {
                                         <h3>{props.item.text}</h3>
                                         <span className={styles.price}>{props.item.price} azn</span>
                                         <p>{props.item.p}</p>
-                                       <div className={styles.df}>
-                                            <div className={styles.quantity}>
-                                                <button onClick={() => handleMinus(props.item)}>
-                                                    -
-                                                </button>
-                                                {props.item.quantity && props.item.quantity}
-                                                <button onClick={() => handlePlus(props.item)}>
-                                                    +
-                                                </button>
-                                            </div>
+                                        <div className={styles.df}>
+                                        <div className={styles.quantity}>
+                                            {
+                                                cardData.map( item => (
+                                                    <>
+                                                    <button onClick={() => handleMinus(item)}>
+                                                     -
+                                                    </button>
+                                                    {item.quantity}
+                                                    <button onClick={() => handlePlus(item)}>
+                                                     +
+                                                    </button>
+                                                    </>
+                                                ))
+
+                                            }
+                                            
+                                        </div>
+
                                             <a href='javascript:void(0)'><button className={styled.btn} onClick={()=>dispatch({
                                                 type: 'ELAVE_ET',
                                                 payload: props.item

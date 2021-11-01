@@ -111,7 +111,11 @@ const bucketReducer = (state = data, action) => {
         case 'SEBETDEN_SIL':
             return state = state.filter(item => item.id !== action.payload.id)
 
-        case 'UPDATE_BUCKET':
+        case 'UPDATE_BUCKET_PLUS':
+            (state.filter(item => item.id == action.payload.id))[0].quantity -= action.payload.quantity
+            return [...state]
+
+        case 'UPDATE_BUCKET_MINUS':
             (state.filter(item => item.id == action.payload.id))[0].quantity += action.payload.quantity
             return [...state]
 

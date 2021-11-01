@@ -55,6 +55,7 @@ function Login() {
                         <span><a href='https://www.facebook.com'><FaFacebookF/></a></span>
                     </div>
                     <p>ilə daxil olun</p>
+                    <span className={styles.signUp}><Link to='/Sifariş-et'>Qonaq kimi davam et</Link></span>
                     <span className={styles.signUp}><Link to='/Qeydiyyat'>Qeydiyyatdan keç</Link></span>
                 </div>
                 <div className={styles.right}>

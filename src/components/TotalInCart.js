@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import styles from '../css/TotalInCart.module.css'
 import { HiOutlineRefresh } from 'react-icons/hi'
+import { linkClasses } from '@mui/material'
 
 const TotalInCart = () =>{
 
@@ -50,21 +51,21 @@ const TotalInCart = () =>{
                     <p>Çatdırılma:</p>
                     <div className={styles.shipping}>
                         <label for='free'>
-                            <input checked onChange={shippingClick} id='free' name='shipping' value={0} type='radio'/>&nbsp;
+                            <input tabindex="0" checked="checked" onChange={shippingClick} id='free' name='shipping' value={0} type='radio'/>&nbsp;
                             Mağazadan alış:
                         </label>
                         <span>0.00 azn</span>
                     </div>
                     <div className={styles.shipping}>
                         <label for='standart'>
-                            <input onChange={shippingClick} id='standart' name='shipping' value={5} type='radio'/>&nbsp;
-                            Standard çatdırılma: 
+                            <input tabindex="0" onChange={shippingClick} id='standart' name='shipping' value={5} type='radio'/>&nbsp;
+                            Standard çatdırılma:
                         </label>
                         <span>5.00 azn</span>
                     </div>
                     <div className={styles.shipping}>
                         <label for='express'>
-                            <input onChange={shippingClick} id='express' name='shipping' value={10} type='radio'/>&nbsp;
+                            <input tabindex="0" onChange={shippingClick} id='express' name='shipping' value={10} type='radio'/>&nbsp;
                             Express:
                         </label>
                         <span>10.00 azn</span>
@@ -78,7 +79,7 @@ const TotalInCart = () =>{
                     <span>Toplam:</span>
                     <span>{total}.00 azn</span>
                 </div>
-                <a className={styles.btn} href='#'>ÇIXIŞA GET</a>
+                <Link className={styles.btn} to='/Sifariş-et'>SIFARİŞ ET </Link>
             </div>
             <div>
             <Link className={styles.continue} to='/'>
