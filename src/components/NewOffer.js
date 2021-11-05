@@ -12,6 +12,7 @@ function NewOffer() {
     //     console.log(item)
     // })
     // console.log(selector)
+    
     return (
         <div className={styles.newOffer}>
             <div className={styles.newOfferInner}>

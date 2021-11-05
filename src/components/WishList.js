@@ -29,12 +29,12 @@ function WishList(item) {
             <h2>Sevimlilər</h2>
         </div>
         <div className={selector.length != 0 ? styles.table : styles.none}>
-            <table>
+            <table className={styles.table}>
                 <thead id='table'>
                     <tr>
                         <th>Məhsul</th>
                         <th>Qiymət</th>
-                        <th>Stok haqqında</th>
+                        <th>Stok</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -49,7 +49,7 @@ function WishList(item) {
                                 </div>
                             </td>
                             <td><span className={styles.price}>{item.price} azn</span></td>
-                            <td><p>Stokda var</p></td>
+                            <td className={styles.tdP}><p>Stokda var</p></td>
                             <td><Link to='/cart'><button className={styles.btn} onClick={()=>dispatch({
                                 type: 'ELAVE_ET',
                                 payload: item

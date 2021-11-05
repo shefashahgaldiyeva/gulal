@@ -65,3 +65,39 @@
 .none{
     display: none;
 }
+@media only screen and (max-width: 1440px) {}
+@media only screen and (max-width: 1024px) {
+
+}
+@media only screen and (max-width: 768px) {
+    .cart{
+        flex-direction: column;
+    }
+    .emptyCart>a{
+        width: 24%;
+    }
+}
+@media only screen and (max-width: 426px) {
+    .cartTop h2{
+        font-size: 3rem;
+        padding: 2.5rem 0;
+    }
+    .emptyCart svg{
+        font-size: 7rem;
+        margin: 1.3rem 0;
+    }
+    .emptyCart>a{
+        width: 36%;
+        padding: .85rem 1rem;
+    }
+}
+@media only screen and (max-width: 376px) {
+    .emptyCart svg{
+        font-size: 6rem;
+        margin: 1.3rem 0;
+    }
+    .emptyCart>a{
+        width: 40%;
+        padding: .5rem .5rem;
+    }
+}

@@ -45,3 +45,39 @@ a{
     font-weight: 400;
     font-size: 1.3rem;
 }
+@media only screen and (max-width: 768px) {
+    .newOfferCard{
+        width: 32%;
+        margin-bottom: 1rem;
+    }
+}
+@media only screen and (max-width: 426px) {
+    .newOfferCard{
+        width: 48%;
+        margin-bottom: 1rem;
+    }
+    .newOfferCard h3{
+        font-size: .9rem;
+    }
+    .newOfferCard .price{
+        font-size: 1rem;
+    }
+    .newOfferCard .review{
+        font-size: .7rem;
+    }
+}
+@media only screen and (max-width: 376px){
+    .newOfferCard{
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    .newOfferCard h3{
+        font-size: 1rem;
+    }
+    .newOfferCard .price{
+        font-size: 1.2rem;
+    }
+    .newOfferCard .review{
+        font-size: .8rem;
+    }
+}

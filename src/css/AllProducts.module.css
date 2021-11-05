@@ -48,3 +48,33 @@
     justify-content: center;
     align-items: flex-end;
 }
+@media only screen and (max-width: 1024px) {
+    .headingInner h2{
+        font-size: 3rem;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .headingInner{
+        width: 40%;
+    }
+    .headingInner{
+        width: 50%;
+        margin-bottom: .5rem;
+    }
+}
+@media only screen and (max-width: 426px) {
+    .headingInner{
+        width: 70%;
+    }
+    .headingInner h2{
+        font-size: 2rem;
+    }
+    .allProductSwip{
+        width: 33.3% !important;
+    }
+}
+@media only screen and (max-width: 426px) {
+    .allProductSwip{
+        width: 33.33% !important;
+    }
+}

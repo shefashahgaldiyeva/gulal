@@ -77,3 +77,33 @@
     from {transform: translateX(200%);}
     to {transform: translateX(0%);}
 }
+@media only screen and (max-width: 768px) {
+    .lecekBack{
+        margin: 0 30% 20% 0;
+        font-size: 2rem;
+    }
+}
+@media only screen and (max-width: 426px) {
+    .lilacSwip{
+        background-position: 90% 100%;
+    }
+    .lecekBack{
+        font-size: 2rem;
+        margin: 0 50% 40% 0;
+    }
+    .lecekBack .btn{
+        width: 120px;
+        padding: .5rem;
+        font-weight: 500;
+    }
+}
+@media only screen and (max-width: 376px) {
+    .lilacSwip{
+        background-position: 90% 100%;
+    }
+    .lecekBack .btn{
+        width: 120px;
+        padding: .5rem;
+        font-weight: 600;
+    }
+}

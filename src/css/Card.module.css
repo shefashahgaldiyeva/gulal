@@ -198,3 +198,115 @@ button{
     background: transparent;
     padding: 0;
 }
+@media only screen and (max-width: 1024px) {
+    .ShoppingCard h3{
+        font-size: 1rem;
+        margin: .3rem 0;
+    }
+    .ShoppingCard .image .view{
+        right: .7rem !important;
+    }
+    .ShoppingCard .bottom .btn a{
+        font-size: 1rem;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .shoppingCardWrapper{
+        margin-right: 10px;
+        margin-top: .6rem;
+    }
+    .ShoppingCard .image .view{
+        right: .7rem;
+        top: .5rem;
+    }
+    .ShoppingCard .image .view a{
+        padding: .3rem;
+        margin: .2rem 0;
+        font-size: .7rem;
+    }
+    .ShoppingCard .price{
+        font-size: 1rem;
+    }
+    .ShoppingCard .bottom .btn{
+        margin: .4rem 1rem ;
+    }
+    .ShoppingCard .bottom .btn a{
+        font-size: .7rem;
+    }
+    .ShoppingCard .bottom a{
+        font-size: .85rem;
+    }
+    /* .snackbar{
+        width: 30%;
+    } */
+    
+    /* .ShoppingCard h3{
+        font-size: 1rem;
+        margin: .3rem 0;
+    } */
+    .ShoppingCard .image .view a span{
+        padding: 0.23rem 0.5rem;
+        letter-spacing: -.02em;
+    }
+}
+@media only screen and (max-width: 426px) {
+    .ShoppingCard h3{
+        font-size: .9rem;
+    }
+    .ShoppingCard .price{
+        font-size: .9rem;
+    }
+    .ShoppingCard .bottom .btn{
+        margin: .4rem 1rem ;
+        font-weight: 400;
+    }
+    .ShoppingCard .bottom .btn a{
+        font-weight: 400;
+        font-size: .7rem;
+    }
+    /* .shoppingCardWrapper{
+        margin-right: 4px;
+        margin-top: .4rem;
+    } */
+    .ShoppingCard .review {
+       font-size: .7rem;
+    }
+    .ShoppingCard .image .view a span{
+        padding: 0.28rem 0.5rem;
+        letter-spacing: -.04em;
+        font-size: .6rem;
+    }
+    .ShoppingCard .image .view{
+        right: .4rem !important;
+    }
+}
+@media only screen and (max-width: 376px) {
+    .ShoppingCard h3{
+        font-size: .8rem;
+    }
+    .shoppingCardWrapper{
+        margin-right: 4px;
+        margin-top: .4rem;
+    }
+    .ShoppingCard .review {
+        font-size: .7rem;
+    }
+    .ShoppingCard .image .view a{
+        padding: 0.4rem;
+        font-size: .8rem;
+    }
+    .ShoppingCard .image .view a span{
+        padding: .34rem .5rem;
+        letter-spacing: 0;
+        font-size: .8rem;
+    }
+    .ShoppingCard .image .view{
+        right: .7rem !important;
+    }
+    .ShoppingCard .bottom a{
+        font-size: 1rem;
+    }
+    .ShoppingCard .price{
+        font-size: 1.2rem;
+    }
+}

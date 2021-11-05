@@ -2,7 +2,24 @@ import React from 'react'
 // import styles from '../css/MyProfile.module.css'
 import '../css/MyProfilePure.css'
 // import '../css/MyProfilePure2.css'
-
+import styles from '../css/TopHeader.module.css'
+import { BiSpa } from 'react-icons/bi'
+import { AiOutlineUser } from 'react-icons/ai'
+import { GiFlowerEmblem } from 'react-icons/gi'
+import { BsPatchQuestion } from 'react-icons/bs'
+import { MdOutlineLogout } from 'react-icons/md'
+import { BiHeart } from 'react-icons/bi'
+import { RiMapPinLine } from 'react-icons/ri'
+import { BsChevronDoubleLeft } from 'react-icons/bs'
+import { AiOutlineSetting } from 'react-icons/ai'
+import { AiFillCaretDown } from 'react-icons/ai'
+import { IoMdNotificationsOutline } from 'react-icons/io'
+import { BsTelephone } from 'react-icons/bs'
+import { SiGmail } from 'react-icons/si'
+import { style } from '@mui/system'
+// import { RiMapPinLine } from 'react-icons/ri'
+// import { RiMapPinLine } from 'react-icons/ri'
+// import { RiMapPinLine } from 'react-icons/ri'
 
 function MyProfile() {
     return (
@@ -13,117 +30,56 @@ function MyProfile() {
         <div className="sidebar px-4 py-4 py-md-5 me-0">
             <div className="d-flex flex-column h-100">
                 {/* <a href="index.html" className="mb-0 brand-icon"> */}
-                    <span className="logo-icon">
-                        <i className="bi bi-bag-check-fill fs-4"></i>
-                    </span>
+                    {/* <span className="logo-icon"> */}
+                        {/* <BiSpa  style={{display: 'inline-blocks'}}/> */}
+                    {/* </span> */}
                     <span className="logo-text">GulAL</span>
                 {/* </a> */}
                 {/* <!-- Menu: main ul --> */}
                 <ul className="menu-list flex-grow-1 mt-3">
                     {/* <li><a className="m-link" href="index.html"><i className="icofont-home fs-5"></i> <span>Dashboard</span></a></li> */}
                     <li className="collapsed">
-                        {/* <a className="m-link" data-bs-toggle="collapse" data-bs-target="#menu-product" href="#">
-                            <i className="icofont-truck-loaded fs-5"></i> <span>Products</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a> */}
-                            {/* <!-- Menu: Sub menu ul --> */}
-                            {/* <ul className="sub-menu collapse" id="menu-product">
-                                <li><a className="ms-link" href="product-grid.html">Product Grid</a></li>
-                                <li><a className="ms-link" href="product-list.html">Product List</a></li>
-                                <li><a className="ms-link" href="product-edit.html">Product Edit</a></li>
-                                <li><a className="ms-link" href="product-detail.html">Product Details</a></li>
-                                <li><a className="ms-link" href="product-add.html">Product Add</a></li>
-                                <li><a className="ms-link" href="product-cart.html">Shopping Cart</a></li>
-                                <li><a className="ms-link" href="checkout.html">Checkout</a></li>
-                            </ul> */}
+                        <a  className="m-link" href="#">
+                        <AiOutlineUser/>&nbsp;<span>Hesab haqqında</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>
                     </li>
                     <li className="collapsed">
-                        {/* <a className="m-link" data-bs-toggle="collapse" data-bs-target="#categories" href="#">
-                            <i className="icofont-chart-flow fs-5"></i> <span>Categories</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a> */}
-                            {/* <!-- Menu: Sub menu ul --> */}
-                            {/* <ul className="sub-menu collapse" id="categories">
-                                <li><a className="ms-link" href="categorie-list.html">Categories List</a></li>
-                                <li><a className="ms-link" href="categories-edit.html">Categories Edit</a></li>
-                                <li><a className="ms-link" href="categories-add.html">Categories Add</a></li>
-                            </ul> */}
+                        <a className="m-link" href="#">
+                        <GiFlowerEmblem/>&nbsp; <span>Sifarişlərim</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>
                     </li>
                     <li className="collapsed">
-                        {/* <a className="m-link" data-bs-toggle="collapse" data-bs-target="#menu-order" href="#">
-                        <i className="icofont-notepad fs-5"></i> <span>Orders</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a> */}
-                        {/* <!-- Menu: Sub menu ul --> */}
-                        {/* <ul className="sub-menu collapse" id="menu-order">
-                            <li><a className="ms-link" href="order-list.html">Orders List</a></li>
-                            <li><a className="ms-link" href="order-details.html">Order Details</a></li>
-                            <li><a className="ms-link" href="order-invoices.html">Order Invoices</a></li>
-                        </ul> */}
+                        <a className="m-link" href="#">
+                        <BiHeart/>&nbsp; <span>Sevimlilər</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>
                     </li>
                     <li className="collapsed">
-                        {/* <a className="m-link" data-bs-toggle="collapse" data-bs-target="#customers-info" href="#">
-                        <i className="icofont-funky-man fs-5"></i> <span>Customers</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a> */}
-                        {/* <!-- Menu: Sub menu ul --> */}
-                        {/* <ul className="sub-menu collapse" id="customers-info">
-                            <li><a className="ms-link" href="customers.html">Customers List</a></li>
-                            <li><a className="ms-link" href="customer-detail.html">Customers Details</a></li>
-                        </ul> */}
+                        <a className="m-link" href="#">
+                        <RiMapPinLine/>&nbsp; <span>Ünvanlarım</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>
                     </li>
+                    {/* <li className="collapsed">
+                        <a className="m-link" href="#">
+                        <i className="icofont-sale-discount fs-5"></i> <span>Sales Promotion</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>
+                    </li> */}
                     <li className="collapsed">
-                        {/* <a className="m-link" data-bs-toggle="collapse" data-bs-target="#menu-sale" href="#">
-                        <i className="icofont-sale-discount fs-5"></i> <span>Sales Promotion</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a> */}
-                        {/* <!-- Menu: Sub menu ul --> */}
-                        {/* <ul className="sub-menu collapse" id="menu-sale">
-                            <li><a className="ms-link" href="coupons-list.html">Coupons List</a></li>
-                            <li><a className="ms-link" href="coupon-add.html">Coupons Add</a></li>
-                            <li><a className="ms-link" href="coupon-edit.html">Coupons Edit</a></li>
-                        </ul> */}
+                        <a className="m-link" href="#">
+                        <BsPatchQuestion/>&nbsp; <span>Kömək</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>
                     </li>
+                    {/* <li className="collapsed">
+                        <a className="m-link" href="#">
+                        <i className="icofont-ui-calculator"></i> <span>Accounts</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>
+                    </li> */}
                     <li className="collapsed">
-                        {/* <a className="m-link" data-bs-toggle="collapse" data-bs-target="#menu-inventory" href="#">
-                        <i className="icofont-chart-histogram fs-5"></i> <span>Inventory</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a> */}
-                        {/* <!-- Menu: Sub menu ul --> */}
-                        {/* <ul className="sub-menu collapse" id="menu-inventory">
-                            <li><a className="ms-link" href="inventory-info.html">Stock List</a></li>
-                            <li><a className="ms-link" href="purchase.html">Purchase</a></li>
-                            <li><a className="ms-link" href="supplier.html">Supplier</a></li>
-                            <li><a className="ms-link" href="returns.html">Returns</a></li>
-                            <li><a className="ms-link" href="department.html">Department</a></li>
-                        </ul> */}
-                    </li>
-                    <li className="collapsed">
-                        {/* <a className="m-link" data-bs-toggle="collapse" data-bs-target="#menu-Componentsone" href="#"><i
-                                className="icofont-ui-calculator"></i> <span>Accounts</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a> */}
-                        {/* <!-- Menu: Sub menu ul --> */}
-                        {/* <ul className="sub-menu collapse" id="menu-Componentsone">
-                            <li><a className="ms-link" href="invoices.html">Invoices </a></li>
-                            <li><a className="ms-link" href="expenses.html">Expenses </a></li>
-                            <li><a className="ms-link" href="salaryslip.html">Salary Slip </a></li>
-                        </ul> */}
-                    </li>
-                    <li className="collapsed">
-                        {/* <a className="m-link" data-bs-toggle="collapse" data-bs-target="#app" href="#">
-                        <i className="icofont-code-alt fs-5"></i> <span>App</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a> */}
-                        {/* <!-- Menu: Sub menu ul --> */}
-                        {/* <ul className="sub-menu collapse" id="app">
-                            <li><a className="ms-link" href="calendar.html">Calandar</a></li>
-                            <li><a className="ms-link" href="chat.html"> Chat App</a></li>
-                        </ul> */}
+                        <a className="m-link" href="#">
+                        <MdOutlineLogout/>&nbsp; <span>Çıxış</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>
                     </li>
                     {/* <li><a className="m-link" href="store-locator.html"><i className="icofont-focus fs-5"></i> <span>Store Locator</span></a></li> */}
                     {/* <li><a className="m-link" href="ui-elements/ui-alerts.html"><i className="icofont-paint fs-5"></i> <span>UI Components</span></a></li> */}
-                    <li className="collapsed">
-                        {/* <a className="m-link active" data-bs-toggle="collapse" data-bs-target="#page" href="#">
-                        <i className="icofont-page fs-5"></i> <span>Other Pages</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a> */}
-                        {/* <!-- Menu: Sub menu ul --> */}
-                        {/* <ul className="sub-menu collapse show" id="page">
-                            <li><a className="ms-link active" href="admin-profile.html">Profile Page</a></li>
-                            <li><a className="ms-link" href="purchase-plan.html">Price Plan Example</a></li>
-                            <li><a className="ms-link" href="charts.html">Charts Example</a></li>
-                            <li><a className="ms-link" href="table.html">Table Example</a></li>
-                            <li><a className="ms-link" href="forms.html">Forms Example</a></li>
-                            <li><a className="ms-link" href="icon.html">Icons</a></li>
-                        </ul> */}
-                    </li>
+                    {/* <li className="collapsed">
+                        <a className="m-link active" href="#">
+                        <i className="icofont-page fs-5"></i> <span>Ana Səhifə</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>
+                    </li> */}
                 </ul>
                 {/* <!-- Menu: menu collepce btn --> */}
                 <button type="button" className="btn btn-link sidebar-mini-btn text-light">
-                    <span className="ms-2"><i className="icofont-bubble-right"></i></span>
+                    <span className="ms-2"><BsChevronDoubleLeft/></span>
                 </button>
             </div>
         </div>  
@@ -140,16 +96,24 @@ function MyProfile() {
                         <div className="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">
                             <div className="d-flex">
                                 {/* <a className="nav-link text-primary collapsed" href="help.html" title="Get Help"> */}
-                                    <i className="icofont-info-square fs-5"></i>
+                                    {/* <i className="icofont-info-square fs-5"></i> */}
                                 {/* </a> */}
                             </div>
-                            <div className="dropdown zindex-popover">
-                                {/* <a className="nav-link dropdown-toggle pulse" href="#" role="button" data-bs-toggle="dropdown"> */}
-                                    {/* <img src="assets/images/flag/GB.png" alt=""/> */}
-                                {/* </a> */}
+                            <div className={styles.langbar}>
+                                        <span>AZ &nbsp; <AiFillCaretDown/></span>
+                                        <div className={styles.activeDropdown}>
+                                            <a href='#'>EN</a>
+                                            <a href='#'>RU</a>
+                                        </div>
+                            </div>
+                            {/* <div className="dropdown zindex-popover">
+                                <a className="nav-link dropdown-toggle pulse" href="#" role="button" data-bs-toggle="dropdown">
+                                    <img src="assets/images/flag/GB.png" alt=""/>
+                                </a>
                                 <div className="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-md-end p-0 m-0 mt-3">
+                                  
                                     <div className="card border-0">
-                                        {/* <ul className="list-unstyled py-2 px-3">
+                                        <ul className="list-unstyled py-2 px-3">
                                             <li>
                                                 <a href="#" className=""><img src="assets/images/flag/GB.png" alt=""/> English</a>
                                             </li>
@@ -165,16 +129,16 @@ function MyProfile() {
                                             <li>
                                                 <a href="#" className=""><img src="assets/images/flag/RU.png" alt=""/> Russian</a>
                                             </li>
-                                        </ul> */}
+                                        </ul>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             
                             <div className="dropdown notifications">
-                                {/* <a className="nav-link dropdown-toggle pulse" href="#" role="button" data-bs-toggle="dropdown">
-                                    <i className="icofont-alarm fs-5"></i>
+                                <a className="nav-link dropdown-toggle pulse" href="#" role="button" data-bs-toggle="dropdown">
+                                    <IoMdNotificationsOutline style={{fontSize: '1.3rem'}}/>
                                     <span className="pulse-ring"></span>
-                                </a> */}
+                                </a>
                                 <div id="NotificationsDiv" className="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-md-end p-0 m-0 mt-3">
                                     <div className="card border-0 w380">
                                         <div className="card-header border-0 p-3">
@@ -249,7 +213,7 @@ function MyProfile() {
                             </div>
                             <div style={{display: 'flex'},{justifyContent: 'flex-end'}} className="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
                                 <div className="u-info me-2">
-                                    <p className="mb-0 text-end line-height-sm "><span className="font-weight-bold">John Quinn</span></p>
+                                    <p className="mb-0 text-end line-height-sm "><span className="font-weight-bold">John Quinn</span>&nbsp;<AiOutlineSetting/></p>
                                     <small>İstifadəçi paneli</small>
                                 </div>
                                 {/* <a className="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
@@ -334,13 +298,13 @@ function MyProfile() {
                                         <div className="row g-2 pt-2">
                                             <div className="col-xl-12">
                                                 <div className="d-flex align-items-center">
-                                                    <i className="icofont-ui-touch-phone"></i>
+                                                    <BsTelephone/>
                                                     <span className="ms-2">202-555-0174 </span>
                                                 </div>
                                             </div>
                                             <div className="col-xl-12">
                                                 <div className="d-flex align-items-center">
-                                                    <i className="icofont-email"></i>
+                                                    <SiGmail/>
                                                     <span className="ms-2">adrianallan@gmail.com</span>
                                                 </div>
                                             </div>
@@ -352,7 +316,7 @@ function MyProfile() {
                                             </div> */}
                                             <div className="col-xl-12">
                                                 <div className="d-flex align-items-center">
-                                                    <i className="icofont-address-book"></i>
+                                                    <RiMapPinLine/>
                                                     <span className="ms-2">2734  West Fork Street,EASTON 02334.</span>
                                                 </div>
                                             </div>

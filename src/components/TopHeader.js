@@ -19,9 +19,9 @@ function TopHeader() {
                         <BsFillTelephoneFill/>
                         +994506001133
                     </a>
-                    <a href="mailto:support@buket.az">
+                    <a href="mailto:support@gulal.az">
                         <SiTinyletter/>
-                        support@buket.az
+                        support@gulal.az
                     </a>
                 </div>
                 <div className={styles.right}>

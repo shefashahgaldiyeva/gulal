@@ -22,6 +22,16 @@ function Header() {
         setPassive(!isPassive);
     }
 
+    const [showMenu, setShowMenu] = useState(false)
+    function toogleButton(e){
+        if (!showMenu) {
+            setShowMenu(!showMenu)
+            // console.log(!showMenu)
+        } else {
+            setShowMenu(!showMenu)
+            // console.log(!showMenu)
+        }
+    }
 
 
     return (
@@ -31,16 +41,36 @@ function Header() {
                 <Link to='/'><img src={logo}/></Link>
             </div>
             <div className={styles.right}>
-            <div className={styles.searchCart}>
-                <label onClick={toogleClass} for='search'><BsSearch/></label>
-                <input className={isPassive ? 'passive' : 'activee'} name='search' type="text" placeholder='Axtarış et...'/>
-            </div>
-            <ul>
-                <li><Link to='/Sevimliler'><span className={styles.heart}><BsSuitHeart/></span></Link></li>
-                <li><Link to='/Sebet'><span  className={styles.pocket}><BsBasket2/></span><span className={styles.count}>{bucket.length}</span></Link></li>
-                <li><Link to='/Daxil-ol' className={styles.myProfile} href='/DaxilOl'><FaRegUserCircle/>Daxil ol</Link></li>
-                <li><span><BsBell/></span></li>
-            </ul>
+                <div className={styles.searchCart}>
+                    <label onClick={toogleClass} for='search'><BsSearch/></label>
+                    <input className={isPassive ? 'passive' : 'activee'} name='search' type="text" placeholder='Axtarış et...'/>
+                </div>
+                <ul className={styles.ul1}>
+                    <li><Link to='/Sevimliler'><span className={styles.heart}><BsSuitHeart/></span></Link></li>
+                    <li><Link to='/Sebet'><span  className={styles.pocket}><BsBasket2/></span><span className={styles.count}>{bucket.length}</span></Link></li>
+                    <li>
+                        <div onClick={()=>toogleButton()} id='menu-button' className={styles.menuButton}>
+                            <div className={!showMenu ? styles.child1 : styles.menuButtonLine}></div>
+                            <div className={!showMenu ? styles.child2 : styles.menuButtonLine}></div>
+                            <div className={!showMenu ? styles.child3 : styles.menuButtonLine}></div>
+                        </div>
+                        <div id='openMenu' className={!showMenu ? styles.showMenu : styles.openMenu}>
+                            <ul>
+                                <li><Link to='/Butun-Kateqoriyalar'>Bütün Kateqoriyalar</Link></li>
+                                <li><Link to='/Tulpan-Buketleri'>Tülpan Buketləri</Link></li>
+                                <li><Link to='/Ucuz-Guller'>Ucuz Güllər</Link></li>
+                                <li><Link to='/Buketler'>Buketlər</Link></li>
+                                <li><Link to='/Guller'>Güllər</Link></li>
+                                <li><Link to='/101-Qızılgul'>101 Qızılgül</Link></li>
+                                <li><Link to='/Ofis-Bitkileri'>Ofis Bitkiləri</Link></li>
+                                <li><Link to='/8-Mart'>8 Mart</Link></li>
+                                <li><Link to='/En-Çox-Satılanlar'>Ən Çox Satılanlar</Link></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><Link to='/Daxil-ol' className={styles.myProfile} href='/DaxilOl'><FaRegUserCircle/>Daxil ol</Link></li>
+                    <li><span><BsBell/></span></li>
+                </ul>
             </div>
             </div>
                 <div className={styles.bottom}>

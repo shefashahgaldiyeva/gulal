@@ -106,3 +106,20 @@ h2{
     width: 100%;
     line-height: 1;
 }
+@media only screen and (max-width: 1440px) {}
+@media only screen and (max-width: 1024px) {
+    .total{
+        width: 34%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .total{
+        width: 50%;
+    }
+}
+@media only screen and (max-width: 426px) {
+    .total{
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 376px) {}

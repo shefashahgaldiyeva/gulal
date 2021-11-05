@@ -45,3 +45,24 @@
 .headingInner img{
     width: 100%;
 } */
+@media only screen and (max-width: 768px) {
+    .headingInner h2{
+        font-size: 3rem;
+    }
+}
+@media only screen and (max-width: 426px) {
+    .headingInner h2{
+        font-size: 2rem;
+    }
+    .heading span svg{
+        font-size: 1.2rem;
+    }
+}
+/* @media only screen and (max-width: 376px) {
+    .headingInner h2{
+        font-size: 2rem;
+    }
+    .heading span svg{
+        font-size: 1.2rem;
+    }
+} */

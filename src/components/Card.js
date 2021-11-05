@@ -148,7 +148,7 @@ function Card(props) {
 
     return (
         <div className={styles.shoppingCardWrapper}>
-               <Snackbar style={{position: 'fixed'}} open={openSnack} autoHideDuration={60000} onClose={handleCloseSnack}>
+               <Snackbar className={styles.snackbar} style={{position: 'fixed'}} open={openSnack} autoHideDuration={60000} onClose={handleCloseSnack}>
                     <Alert onClose={handleCloseSnack} severity="success" sx={{ width: '100%' }}>
                         Səbətə uğurla əlavə edildi!
                     </Alert>
@@ -179,23 +179,22 @@ function Card(props) {
                                         <span className={styles.price}>{props.item.price} azn</span>
                                         <p>{props.item.p}</p>
                                         <div className={styles.df}>
-                                        <div className={styles.quantity}>
-                                            {
-                                                cardData.map( item => (
-                                                    <>
-                                                    <button onClick={() => handleMinus(item)}>
-                                                     -
-                                                    </button>
-                                                    {item.quantity}
-                                                    <button onClick={() => handlePlus(item)}>
-                                                     +
-                                                    </button>
-                                                    </>
-                                                ))
+                                            <div className={styles.quantity}>
+                                                {
+                                                    cardData.map( item => (
+                                                        <>
+                                                        <button onClick={() => handleMinus(item)}>
+                                                        -
+                                                        </button>
+                                                        {item.quantity}
+                                                        <button onClick={() => handlePlus(item)}>
+                                                        +
+                                                        </button>
+                                                        </>
+                                                    ))
 
-                                            }
-                                            
-                                        </div>
+                                                }
+                                            </div>
 
                                             <a href='javascript:void(0)'><button className={styled.btn} onClick={()=>dispatch({
                                                 type: 'ELAVE_ET',

@@ -81,3 +81,43 @@ button{
 .none{
     display: none;
 }
+@media only screen and (max-width: 1440px) {}
+@media only screen and (max-width: 1024px) {}
+@media only screen and (max-width: 768px) {
+    table td div{
+        width: 100%;
+    }
+    .btn{
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 426px) {
+    .table th{
+        padding: 1.4rem .5rem 1.4rem 0;
+        font-size: 1rem;
+        line-height: 1;
+        white-space: nowrap;
+    }
+    .table div h3{
+        font-size: .9rem;  
+        line-height: 1;
+    }
+    .table img{
+        margin: 0 .8rem 0 0;
+        width: 60px;
+    }
+    .btn{
+        white-space: nowrap;
+        height: 2rem;
+        font-size: .6rem;
+        padding: 0 0.2rem;
+    }
+}
+@media only screen and (max-width: 376px) {
+    .table div h3{
+        font-size: .8rem;  
+    }
+    .table .tdP{
+        font-size: .75rem;
+    }
+}

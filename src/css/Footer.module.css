@@ -46,6 +46,7 @@
     color: #4d4d4d;
     padding-bottom: .8rem;
 }
+
 .footerTopRight{
     position: relative;
     width: 45%;
@@ -175,4 +176,79 @@
 }
 .footerBottom img{
     width: 15%;
+}
+@media only screen and (max-width: 1440px) {}
+@media only screen and (max-width: 1024px) {
+    .footerTopRightInner button{
+        width: 45%;
+        padding: .9rem 0;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .footer{
+        background-size: 147%;
+        padding: 11rem 0 0 0;
+    }
+    .footerTopLeft{
+        width:48%;
+    }
+    .footerTopRight{
+        width: 50%;
+    }
+    .footerCard{
+        width: 29%;
+    }
+    .footerBottom img{
+        width: 20%;
+        margin-right: 1rem;
+    }
+}
+@media only screen and (max-width: 426px) {
+    .footer{
+        background-size: 310%;
+        padding: 13rem 0 0 0;
+    }
+    .footerTop{
+        flex-direction: column;
+    }
+    .footerTopLeft{
+        width: 100%;
+    }
+    .footerTopRight{
+        width: 100%;
+    }
+    .footerCard{
+        width: 29%;
+    }
+    .footerBottom{
+        flex-direction: column;
+    }
+    .footerBottom img{
+        width: 25%;
+        margin-right: .5rem;
+    }
+    .footerBottom div:first-child{
+        display: none;
+    }
+    .footerCard{
+        margin-top: .5rem;
+    }
+    .footerCard span{
+        white-space: nowrap;
+        margin-right: 1rem;
+    }
+}
+@media only screen and (max-width: 376px) {
+    .footer{
+        background-position: 50% 50%;
+        background-size: 375%;
+        padding: 8rem 0 0 0;
+    }
+    .footerTopLeft h3{
+        font-size: .9rem;
+        padding-bottom: 1rem;
+    }
+    .footerTopRightInner input{
+        width: 75%;
+    }
 }

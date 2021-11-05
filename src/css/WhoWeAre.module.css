@@ -36,9 +36,113 @@
 }
 .who h5{
     font-size: 1.1rem;
-
 }
 .who p{
     padding-top: .5rem;
     display: inline-block;
+}
+@media only screen and (max-width: 1440px) {
+    .whoWeAre {
+        background-size: 100%;
+        padding: 16rem 0 17rem 0;
+    }
+}
+@media only screen and (max-width: 1024px) {
+    .whoWeAre{
+        width: 100%;
+        padding: 16rem 0 11rem 0;
+    }
+    .whoWrapper{
+        width: 100%;
+        padding: 2rem 0;
+    }
+    .whoWeAre {
+        background-size: 120%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .whoWeAre{
+        width: 100%;
+        padding: 10rem 0 11rem 0;
+    }
+    .whoWeAre h2{
+        font-size: 3rem;
+    }
+    .whoWrapper{
+        width: 90%;
+        padding: 1rem 0 0 0;
+    }
+    .whoWeAre {
+        background-size: 120%;
+    }
+    .who{
+        width: 18.5%;
+    }
+    .who svg{
+        font-size: 1.7rem;
+    }
+    .who h5{
+        font-size: .9rem;
+    }
+    .who p{
+        font-size: .8rem;
+        padding-top: .4rem;
+    }
+}
+@media only screen and (max-width: 426px) {
+    .whoWeAre {
+        background-size: 170%;
+        background-position: 55% 0;
+        padding: 6rem 0 0rem 0;
+    }
+    .whoWeAre h2{
+        font-size: 2rem;
+    }
+    .whoWrapper{
+        display: flex;
+        flex-flow: row wrap;
+    }
+    .who{
+        width: 26%;
+        margin: .9rem .5rem  .5rem;
+    }
+    .who svg{
+        font-size: 1.5rem;
+        transform: translateY(-67%);
+    }
+    .who h5{
+        font-size: .8rem;
+    }
+    .who p{
+        font-size: .7rem;
+        padding-top: .3rem;
+    }
+}
+@media only screen and (max-width: 376px) {
+    .whoWeAre {
+        background-size: 200%;
+        /* background-position: 55% 0; */
+        padding: 6rem 0 2.8rem 0;
+    }
+    .whoWeAre h2{
+        font-size: 2rem;
+    }
+    /* .whoWrapper{
+        display: flex;
+        flex-flow: row wrap;
+    } */
+    .who{
+        width: 28%;
+        margin: .3rem .5rem  .5rem;
+    }
+    .who svg{
+        font-size: 1.4rem;
+    }
+    .who h5{
+        font-size: .75rem;
+    }
+    .who p{
+        font-size: .65rem;
+        padding-top: .2rem;
+    }
 }

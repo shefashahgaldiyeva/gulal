@@ -5,7 +5,7 @@ const data = [
     {
         img: flower,
         img2: flowerHover,
-        text: 'Welcome Little One Bouquet',
+        text: 'Big Bouquet',
         price: 50,
         review: 5,
         id: 1,
@@ -21,7 +21,7 @@ const data = [
     },{
         img: flower,
         img2: flowerHover,
-        text: 'Little One Bouquet',
+        text: 'Bouquet',
         price: 50,
         review: 5,
         id: 3,
@@ -29,7 +29,7 @@ const data = [
     },{
         img: flower,
         img2: flowerHover,
-        text: 'Welcome One Bouquet',
+        text: 'One Bouquet',
         price: 50,
         review: 5,
         id: 4,
@@ -37,7 +37,7 @@ const data = [
     },{
         img: flower,
         img2: flowerHover,
-        text: 'Welcome Little One Bouquet',
+        text: 'Big Bouquet',
         price: 50,
         review: 5,
         id: 1,
@@ -53,7 +53,7 @@ const data = [
     },{
         img: flower,
         img2: flowerHover,
-        text: 'Little One Bouquet',
+        text: 'Bouquet',
         price: 50,
         review: 5,
         id: 3,
@@ -61,7 +61,7 @@ const data = [
     },{
         img: flower,
         img2: flowerHover,
-        text: 'Welcome One Bouquet',
+        text: 'One Bouquet',
         price: 50,
         review: 5,
         id: 4,
@@ -69,7 +69,7 @@ const data = [
     },{
         img: flower,
         img2: flowerHover,
-        text: 'Welcome Little One Bouquet',
+        text: 'Big Bouquet',
         price: 50,
         review: 5,
         id: 1,
@@ -85,7 +85,7 @@ const data = [
     },{
         img: flower,
         img2: flowerHover,
-        text: 'Little One Bouquet',
+        text: 'Bouquet',
         price: 50,
         review: 5,
         id: 3,
@@ -93,7 +93,7 @@ const data = [
     },{
         img: flower,
         img2: flowerHover,
-        text: 'Welcome One Bouquet',
+        text: 'One Bouquet',
         price: 50,
         review: 5,
         id: 4,

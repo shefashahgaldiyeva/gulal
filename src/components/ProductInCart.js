@@ -79,13 +79,13 @@ const ProductInCart = () =>{
                 {
                     cardData.map((item)=>(
                         <tr key={item.id}>
-                        <td>
+                        <td className={styles.tdImgName}>
                             <div>
-                                <img src={item.img}/>
+                                <img className={styles.img} src={item.img}/>
                                 <h3>{item.text}</h3>
                             </div>
                         </td>
-                        <td><span>{item.price} azn</span></td>
+                        <td className={styles.price}><span>{item.price} azn</span></td>
                         <td>
                             <div className={styles.quantity}>
                                 <button onClick={() => handleMinus(item)}>
@@ -96,7 +96,7 @@ const ProductInCart = () =>{
                                 </button>
                             </div>
                         </td>
-                        <td><p>{item.total} azn</p></td>
+                        <td><p className={styles.total}>{item.total} azn</p></td>
                         <td><button className={styles.btn} onClick={()=>dispatch({
                             type: 'SEBETDEN_SIL',
                             payload: item

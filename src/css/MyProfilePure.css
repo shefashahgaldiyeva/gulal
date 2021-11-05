@@ -4,6 +4,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600&amp;display=swap");
 @import url("font-awesome/4.7.0/css/font-awesome.min.css");
 @import url("bootstrap-icons/font/bootstrap-icons.css"); */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap');
 /* :root{
     --bs-blue: #0d6efd;
     --bs-indigo: #6610f2;
@@ -16262,6 +16263,9 @@ body.rtl_mode .owl-carousel{
 body.rtl_mode .owl-carousel .ms-2{
     margin-left:0.5rem !important
 }
+.ms-2 svg{
+    color: #464646;
+}
 body.rtl_mode .sidebar{
     margin-left:0px !important;
     margin-right:25px !important
@@ -17718,7 +17722,7 @@ input[type="date"],input[type="time"]{
     color:var(--white-color)
 }
 .theme-tradewind .sidebar .menu-list .m-link:hover,.theme-tradewind .sidebar .menu-list .m-link.active,.theme-tradewind .sidebar .menu-list .ms-link:hover,.theme-tradewind .sidebar .menu-list .ms-link.active{
-    color:#ffe4c7
+    color: #d4b9bd;
 }
 .dropdown-animation{
     opacity:0;
@@ -17760,7 +17764,7 @@ input[type="date"],input[type="time"]{
     transform:translate3d(0, -3px, 0)
 }
 .pulse .pulse-ring{
-    border-color:var(--primary-color);
+    border-color: #d4b9bd;
     display:block;
     position:absolute;
     -webkit-animation:animation-pulse 3.5s ease-out;
@@ -18067,7 +18071,7 @@ input[type="date"],input[type="time"]{
     display:flex
 }
 .sidebar .menu-list .m-link:hover,.sidebar .menu-list .m-link.active,.sidebar .menu-list .ms-link:hover,.sidebar .menu-list .ms-link.active{
-    color:var(--secondary-color)
+    color: #d4b9bd;
 }
 .sidebar .menu-list .m-link:hover::before,.sidebar .menu-list .m-link.active::before,.sidebar .menu-list .ms-link:hover::before,.sidebar .menu-list .ms-link.active::before{
     display:block
@@ -18285,10 +18289,11 @@ input[type="date"],input[type="time"]{
         width:25px
     }
 }
-.sidebar .brand-icon .logo-text{
+.sidebar .logo-text{
     font-weight:bold;
-    color:var(--white-color);
-    font-size:18px;
+    font-family: 'Cormorant Garamond', serif;
+    color: #464646;
+    font-size: 1.3rem;
     display:inline-block;
     padding-left:15px;
     padding-top:9px

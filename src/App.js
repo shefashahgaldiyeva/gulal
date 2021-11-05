@@ -35,8 +35,15 @@ function App() {
     //   useEffect(() => {
     //       localStorage.setItem("name", JSON.stringify(name));
     //       }, [name]);
+    
+    
+
+
+
+
+
         return (
-        //   <div className="App">
+        // <div className="App">
         //       <form>
         //       <input
         //           type="text"
@@ -47,9 +54,9 @@ function App() {
         //       />
         //       <input type="submit" value="Submit"></input>
         //       </form>
-        //           </div>
-        
-        <div className="App">
+        // </div>
+
+		<div className="App">
             <TopHeader/>
             <Header/>
             <Switch>

@@ -25,7 +25,7 @@ function SelectedCard() {
                     <div className={styles.bottom}>
                         {/* <div className={styles.category}><a href='#'>{props.item.category}</a></div> */}
                         {/* <h3><a href='#'>{props.item.h3}</a></h3> */}
-                        <h3><a href='#'>Welcome Little One Bouquet</a></h3>
+                        <h3><a href='#'>Big Bouquet</a></h3>
                         {/* <span className={styles.price}>{props.item.price}</span> */}
                         <span className={styles.price}>{50}azn</span>
                         <div>

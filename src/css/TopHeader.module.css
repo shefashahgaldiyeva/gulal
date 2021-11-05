@@ -88,3 +88,51 @@
     font-size: 1.3rem;
     margin-right: .4rem;
 }
+.onMouseHoverColor:hover{
+    color: #977c80 !important;
+}
+@media only screen and (max-width: 1024px) {
+    .left>a{
+        font-size: .85rem;
+        margin-right: 1rem;
+    }
+    .right div{
+        font-size: .85rem;
+        /* margin-right: .4rem; */
+    }
+    .before::before{
+        margin-left: .4rem;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .right div:first-child{
+        transform: translateX(20%);
+    }
+    .right div:nth-child(3){
+        white-space: nowrap;
+    }
+    .left>a{
+        font-size: .85rem;
+        margin-right: 1rem;
+    }
+    .right div{
+        font-size: .85rem;
+    }
+    .topHeader .left svg,
+    .topHeader .right .langbar svg{
+        font-size: 1rem;
+    }
+}
+@media only screen and (max-width: 426px) {
+    .topHeader .left{
+        width: 80%;
+    }
+    .right div:first-child,
+    .right div:nth-child(2),
+    .right div:nth-child(3){
+        display: none;
+    }
+    .topHeader svg{
+        margin-right: 0.1rem;
+    }
+}
