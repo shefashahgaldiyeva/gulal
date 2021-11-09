@@ -1,0 +1,29 @@
+.arrow{
+    padding: 1rem;
+    font-size: 1.3rem;
+    background-color: #e4dad7;
+    color: #fff;
+    border: 1px solid #BDBDBD;
+    border-radius: 50%;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 999;
+    scroll-behavior: smooth;
+    box-shadow: 0px 9px 27px #e4dad7;
+}
+@media only screen and (max-width: 768px) {
+    .arrow{
+        display: none;
+    }
+}
+@media only screen and (max-width: 426px) {
+    .arrow{
+        display: none;
+    }
+}
+@media only screen and (max-width: 376px) {
+    .arrow{
+        display: none;
+    }
+}

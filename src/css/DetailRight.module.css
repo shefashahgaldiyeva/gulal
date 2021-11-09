@@ -54,3 +54,48 @@
     font-size: 1rem;
     background-color: rgb(181, 212, 228);
 }
+.quantity{
+    border: 1px solid #999;
+    font-size: 1.2rem;
+    width: 30% !important;
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.quantity button{
+    padding: .3rem .8rem;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    background-color: transparent;
+}
+.btn{
+    width: 70%;
+    height: 2.5rem;
+    background-color: #e4dad7;
+    color: #fff;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn svg path{
+    color: #999 !important;
+}
+.btn:hover{
+    cursor: pointer;
+    background-color: #dcc;
+    box-shadow: 0px 9px 27px #e4dad7;
+}
+.btn svg{
+    font-size: 1.1rem;
+    margin-right: .2rem;
+}
+@media only screen and (max-width: 768px) {
+    .quantity{
+        width: 50% !important;
+    }
+}
+@media only screen and (max-width: 426px) {
+
+}
+@media only screen and (max-width: 376px) {}

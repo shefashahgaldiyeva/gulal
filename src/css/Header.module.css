@@ -183,7 +183,7 @@ header ul li a{
       height: 2px;
       width: 24px;
 	  background: #fff;
-	  transform: rotate(45deg)translate(-45px,-48px);
+	  transform: rotate(45deg)translate(-74px,-63px);
 	  transition:1.2s;
 	  animation: none !important;
   }  
@@ -194,7 +194,7 @@ header ul li a{
       height: 2px;
       width: 24px;
 	  background: #fff;
-	  transform: rotate(-45deg)translate(49px,-47px);
+	  transform: rotate(-45deg)translate(64px,-75px);
 	  transition:1.2s;
 	  animation: none !important;
   }  
@@ -213,6 +213,7 @@ header ul li a{
       width: 100%;
 	  /* height: 100vh; */
       top: 2.9rem;
+      padding-bottom: 1rem;
       position: absolute;
 	  background-color: #e4dad7;
 	  transition: .4s easy;
@@ -224,11 +225,14 @@ header ul li a{
 	  animation-iteration-count: 1;
 	  animation-name: openMenuAnimation;
       z-index: 998;
+      box-shadow: 0px 14px 17px -9px rgba(92, 92, 92, 0.85);
+
   }
   .showMenu{
 	width: 100%;
 	/* height: 100vh; */
     top: 2.9rem;
+    padding-bottom: 1rem;
     position: absolute;
 	background-color: #e4dad7;
 	transition: .4s easy;
@@ -240,6 +244,8 @@ header ul li a{
     animation-iteration-count: 1;
 	animation-name: showMenuAnimation;
     z-index: 998;
+    box-shadow: 0px 11px 17px -9px rgba(92, 92, 92, 0.85);
+
 }
 @keyframes openMenuAnimation {
   0%   {   right: 0;}
@@ -262,9 +268,11 @@ header ul li a{
 .showMenu>ul li{
     width: 50%;
     border: 1px dashed rgb(204, 204, 204);
+    border-radius: 10px;
+    box-shadow: 1px 1px 21px -5px #818181;
     padding: 1rem;
     margin: .5rem 0 !important;
-
+    text-align: center;
 }
 .openMenu>ul li a,
 .showMenu>ul li a{
@@ -274,41 +282,6 @@ header ul li a{
 .openMenu>ul li a:focus,
 .showMenu>ul li a:focus{
     background-color: #e4dad7;
-}
-@media only screen and (max-width: 426px) {
-    .searchCart{
-        margin-right: 0;
-        width: 65%;
-    }
-    .logo{
-        width: 100px;
-        height: 100px;
-    }
-    .right{
-        width: 70%;
-        display: flex;
-        align-items: center;
-    }
-    .header .right>ul li:nth-child(1){
-        margin-left: 1.5rem;
-        display: flex;
-        align-items: center;
-    }
-    .bottom,
-    .myProfile,
-    /* .ul1 li:nth-child(2), */
-    .ul1 li:nth-child(5){ 
-        display: none;
-    }
-    .ul1 li:nth-child(2){
-        left: -20px;
-        z-index: 1000;
-    }
-
-    .header .right>ul>li:nth-child(3){
-        display: inline-block;
-    }
-    
 }
 @media only screen and (max-width: 768px) {
     .bottom{
@@ -334,5 +307,75 @@ header ul li a{
         margin-top: 1.5rem;
         right: 2rem;
     }
+    .openMenu{
+        top: 3.2rem;
+        /* display: none; */
+    }
+    .showMenu{
+        top: 3.2rem;
+      /* display: inline-block; */
+    }
+    .menuButton{
+        /* top: 0; */
+        margin-top: 3.6rem;
+        right: .3rem;
+    }
+}
+@media only screen and (max-width: 426px) {
+    .searchCart{
+        margin-right: 0;
+        margin-left: 1rem;
+        width: 65%;
+    }
+    .logo{
+        width: 100px;
+        height: 100px;
+    }
+    .right{
+        width: 70%;
+        display: flex;
+        align-items: center;
+    }
+    .header .right>ul li:nth-child(1){
+        margin-left: 1.5rem;
+        display: flex;
+        align-items: center;
+    }
+    .bottom,
+    .myProfile,
+    .ul1 li:nth-child(2),
+    .ul1 li:nth-child(5){ 
+        display: none;
+    }
+    .ul1 li:nth-child(2){
+        left: -20px;
+        z-index: 1000;
+    }
 
+    .header .right>ul>li:nth-child(3){
+        display: inline-block;
+    }
+    .menuButton{
+        margin-top: 1.7rem;
+        right: .1rem;
+    }
+    .child1{
+        transform: rotate(45deg)translate(-55px,-40px);
+    }  
+    .child3{
+        transform: rotate(-45deg)translate( 41px,-57px);
+    } 
+    .header .right>ul{
+        width: 33%;
+    }
+    .openMenu{
+        top: 2.9rem;
+        /* display: none; */
+        /* visibility: hidden; */
+    }
+    .showMenu{
+        top: 2.9rem;
+      /* display: inline-block; */
+      /* visibility: visible; */
+    }
 }

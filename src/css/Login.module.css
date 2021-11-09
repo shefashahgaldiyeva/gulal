@@ -9,6 +9,7 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    text-align: center;
 }
 .loginInner{
     width: 80%;
@@ -130,3 +131,45 @@
     border-bottom-left-radius: 2rem;
     border-top-left-radius: 2rem;
 }
+@media only screen and (max-width: 1440px) {}
+@media only screen and (max-width: 1024px) {
+    .login .left{
+        width: 45%;
+    }
+    .login .right .bgColor{
+        margin: -2.4rem;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .loginInner{
+        width: 90%;
+    }
+    .login .left{
+        width: 55%;
+    }
+    .login .right{
+        margin-left: 2.5rem;
+    }
+    .login .right img{
+        width: 100%;
+    }
+    .login .right .bgColor{
+        width: 90%;
+        height: 208%;
+        background-color: #e4dad7;
+        transform: translateX(100%);
+        margin: -48%;
+    }
+}
+@media only screen and (max-width: 426px) {
+    .login .left{
+        width: 100%;
+    }
+    .login .right{
+        display: none;
+    }
+    .login ::placeholder{
+        font-size: .8rem;
+    }
+}
+@media only screen and (max-width: 376px) {}

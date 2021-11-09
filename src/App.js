@@ -1,6 +1,6 @@
 import './App.css';
 import { Route, Switch } from 'react-router-dom'
-  import { matchPath } from 'react-router';
+import { matchPath } from 'react-router';
 import { StyledEngineProvider } from '@mui/material/styles';
 import TopHeader from './components/TopHeader'
 import Header from './components/Header'
@@ -16,6 +16,7 @@ import TransitionsModal from './components/TransitionsModal';
 import Detail from './components/Detail';
 import Arrow from './components/Arrow';
 import Guest from './components/Guest';
+import BottomMenu from './components/BottomMenu';
 
 import IntegrationNotistack from './components/CustomizedSnackbars';
 import { useState, useEffect } from "react";
@@ -128,6 +129,7 @@ function App() {
               <Footer/>
               {/* <TransitionsModal/> */}
               <Arrow/>
+              <BottomMenu/>
           </div> 
     );
 }

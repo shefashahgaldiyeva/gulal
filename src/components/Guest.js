@@ -21,8 +21,8 @@ function Guest() {
                     <input required type='text' placeholder='Ünvan...'/>
                     {/* <input required type='text' placeholder='Çatdırılacaq gün və saat...'/> */}
                     <div className={styles.date}>
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DateTimePicker
+                        <LocalizationProvider className={styles.LocalProvider} dateAdapter={AdapterDateFns}>
+                        <DateTimePicker  className={styles.DatePicker}
                             renderInput={(props) => <TextField {...props} />}
                             label="Çatdırılacaq gün və saat"
                             value={value}

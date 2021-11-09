@@ -105,8 +105,13 @@
     }
 }
 @media only screen and (max-width: 768px) {
+    .topHeader .right{
+        width: 40%;
+        margin-right: 1.5rem;
+    }
     .right div:first-child{
-        transform: translateX(20%);
+        /* transform: translateX(20%); */
+        display: none;
     }
     .right div:nth-child(3){
         white-space: nowrap;
@@ -134,5 +139,9 @@
     }
     .topHeader svg{
         margin-right: 0.1rem;
+    }
+    .left>a{
+        font-size: .75rem;
+        margin-right: .4rem;
     }
 }

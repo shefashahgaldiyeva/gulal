@@ -3,8 +3,6 @@ import styles from '../css/DetailRight.module.css'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import  styled  from '../css/WishList.module.css';
-import  styless from '../css/Card.module.css'
 import {FiHeart} from 'react-icons/fi'
 import {FaRegEye} from 'react-icons/fa'
 import {BsCartPlus} from 'react-icons/bs'
@@ -39,7 +37,7 @@ function DetailRight(props) {
             <span className={styles.review}>({props.item.review} baxış)</span>
             <span className={styles.price}>{props.item.price} azn</span>
             <div className={styles.df}>
-                <div className={styless.quantity}>
+                <div className={styles.quantity}>
                     <button onClick={() => handleMinus(props.item)}>
                          -
                     </button>
@@ -48,7 +46,7 @@ function DetailRight(props) {
                          +
                     </button>
                 </div>
-                <Link to='/cart'><button className={styled.btn} onClick={()=>dispatch({
+                <Link to='/cart'><button className={styles.btn} onClick={()=>dispatch({
                     type: 'ELAVE_ET',
                     payload: props.item
                 })}><FaCartPlus/>SATIN AL</button></Link>

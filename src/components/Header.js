@@ -10,7 +10,7 @@ import {FaRegUserCircle} from 'react-icons/fa'
 import {BsBell} from 'react-icons/bs'
 // import {BsSearch} from 'react-icons/bs'
 import logo from '../img/logo.jpg'
-import { SiIterm2 } from 'react-icons/si'
+
 
 function Header() {
 
@@ -22,14 +22,14 @@ function Header() {
         setPassive(!isPassive);
     }
 
-    const [showMenu, setShowMenu] = useState(false)
+    const [showMenu, setShowMenu] = useState(true)
     function toogleButton(e){
-        if (!showMenu) {
+        if (showMenu) {
             setShowMenu(!showMenu)
-            // console.log(!showMenu)
+            console.log(!showMenu)
         } else {
             setShowMenu(!showMenu)
-            // console.log(!showMenu)
+            console.log(!showMenu)
         }
     }
 
@@ -73,19 +73,19 @@ function Header() {
                 </ul>
             </div>
             </div>
-                <div className={styles.bottom}>
-                    <ul>
-                        <li><Link to='/Butun-Kateqoriyalar'>Bütün Kateqoriyalar</Link></li>
-                        <li><Link to='/Tulpan-Buketleri'>Tülpan Buketləri</Link></li>
-                        <li><Link to='/Ucuz-Guller'>Ucuz Güllər</Link></li>
-                        <li><Link to='/Buketler'>Buketlər</Link></li>
-                        <li><Link to='/Guller'>Güllər</Link></li>
-                        <li><Link to='/101-Qızılgul'>101 Qızılgül</Link></li>
-                        <li><Link to='/Ofis-Bitkileri'>Ofis Bitkiləri</Link></li>
-                        <li><Link to='/8-Mart'>8 Mart</Link></li>
-                        <li><Link to='/En-Çox-Satılanlar'>Ən Çox Satılanlar</Link></li>
-                    </ul>
-                </div>
+            <div className={styles.bottom}>
+                <ul>
+                    <li><Link to='/Butun-Kateqoriyalar'>Bütün Kateqoriyalar</Link></li>
+                    <li><Link to='/Tulpan-Buketleri'>Tülpan Buketləri</Link></li>
+                    <li><Link to='/Ucuz-Guller'>Ucuz Güllər</Link></li>
+                    <li><Link to='/Buketler'>Buketlər</Link></li>
+                    <li><Link to='/Guller'>Güllər</Link></li>
+                    <li><Link to='/101-Qızılgul'>101 Qızılgül</Link></li>
+                    <li><Link to='/Ofis-Bitkileri'>Ofis Bitkiləri</Link></li>
+                    <li><Link to='/8-Mart'>8 Mart</Link></li>
+                    <li><Link to='/En-Çox-Satılanlar'>Ən Çox Satılanlar</Link></li>
+                </ul>
+            </div>
             </header>
     )
 }
