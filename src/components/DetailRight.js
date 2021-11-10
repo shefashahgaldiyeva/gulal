@@ -10,6 +10,7 @@ import { FaCartPlus } from 'react-icons/fa'
 
 function DetailRight(props) {
 
+    console.log(props.item)
     const dispatch = useDispatch();
     const cardData = useSelector(state => state.bucketReducer)
 
@@ -41,7 +42,7 @@ function DetailRight(props) {
                     <button onClick={() => handleMinus(props.item)}>
                          -
                     </button>
-                    {props.item.quantity && props.item.quantity}
+                    {props.item.quantity}
                     <button onClick={() => handlePlus(props.item)}>
                          +
                     </button>
@@ -50,6 +51,7 @@ function DetailRight(props) {
                     type: 'ELAVE_ET',
                     payload: props.item
                 })}><FaCartPlus/>SATIN AL</button></Link>
+                {/* <Link to='/cart'><button className={styles.btn}><FaCartPlus/>SATIN AL</button></Link> */}
             </div>
             <h3>Stokda var</h3>
         </div>

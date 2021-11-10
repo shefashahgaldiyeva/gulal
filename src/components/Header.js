@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import {useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import styles from '../css/Header.module.css'
@@ -33,7 +33,6 @@ function Header() {
         }
     }
 
-
     return (
         <header>
         <div className={styles.header}>
@@ -56,15 +55,15 @@ function Header() {
                         </div>
                         <div id='openMenu' className={!showMenu ? styles.showMenu : styles.openMenu}>
                             <ul>
-                                <li><Link to='/Butun-Kateqoriyalar'>Bütün Kateqoriyalar</Link></li>
-                                <li><Link to='/Tulpan-Buketleri'>Tülpan Buketləri</Link></li>
-                                <li><Link to='/Ucuz-Guller'>Ucuz Güllər</Link></li>
-                                <li><Link to='/Buketler'>Buketlər</Link></li>
-                                <li><Link to='/Guller'>Güllər</Link></li>
-                                <li><Link to='/101-Qızılgul'>101 Qızılgül</Link></li>
-                                <li><Link to='/Ofis-Bitkileri'>Ofis Bitkiləri</Link></li>
-                                <li><Link to='/8-Mart'>8 Mart</Link></li>
-                                <li><Link to='/En-Çox-Satılanlar'>Ən Çox Satılanlar</Link></li>
+                                <li key={1}><Link to='/Butun-Kateqoriyalar'>Bütün Kateqoriyalar</Link></li>
+                                <li key={2}><Link to='/Tulpan-Buketleri'>Tülpan Buketləri</Link></li>
+                                <li key={3}><Link to='/Ucuz-Guller'>Ucuz Güllər</Link></li>
+                                <li key={4}><Link to='/Buketler'>Buketlər</Link></li>
+                                <li key={5}><Link to='/Guller'>Güllər</Link></li>
+                                <li key={6}><Link to='/101-Qızılgul'>101 Qızılgül</Link></li>
+                                <li key={7}><Link to='/Ofis-Bitkileri'>Ofis Bitkiləri</Link></li>
+                                <li key={8}><Link to='/8-Mart'>8 Mart</Link></li>
+                                <li key={9}><Link to='/En-Çox-Satılanlar'>Ən Çox Satılanlar</Link></li>
                             </ul>
                         </div>
                     </li>
@@ -75,15 +74,15 @@ function Header() {
             </div>
             <div className={styles.bottom}>
                 <ul>
-                    <li><Link to='/Butun-Kateqoriyalar'>Bütün Kateqoriyalar</Link></li>
-                    <li><Link to='/Tulpan-Buketleri'>Tülpan Buketləri</Link></li>
+                    <li  key={10}><Link to='/Butun-Kateqoriyalar'>Bütün Kateqoriyalar</Link></li>
+                    {/* <li><Link to='/Tulpan-Buketleri'>Tülpan Buketləri</Link></li>
                     <li><Link to='/Ucuz-Guller'>Ucuz Güllər</Link></li>
                     <li><Link to='/Buketler'>Buketlər</Link></li>
                     <li><Link to='/Guller'>Güllər</Link></li>
                     <li><Link to='/101-Qızılgul'>101 Qızılgül</Link></li>
                     <li><Link to='/Ofis-Bitkileri'>Ofis Bitkiləri</Link></li>
                     <li><Link to='/8-Mart'>8 Mart</Link></li>
-                    <li><Link to='/En-Çox-Satılanlar'>Ən Çox Satılanlar</Link></li>
+                    <li><Link to='/En-Çox-Satılanlar'>Ən Çox Satılanlar</Link></li> */}
                 </ul>
             </div>
             </header>

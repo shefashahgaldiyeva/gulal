@@ -186,7 +186,7 @@ function Card(props) {
                                                         <button onClick={() => handleMinus(item)}>
                                                         -
                                                         </button>
-                                                        {item.quantity}
+                                                        {item.quantity} 
                                                         <button onClick={() => handlePlus(item)}>
                                                         +
                                                         </button>
@@ -196,10 +196,11 @@ function Card(props) {
                                                 }
                                             </div>
 
-                                            <a href='javascript:void(0)'><button className={styled.btn} onClick={()=>dispatch({
+                                            {/* <a href='javascript:void(0)'><button className={styled.btn} onClick={()=>dispatch({
                                                 type: 'ELAVE_ET',
                                                 payload: props.item
-                                            })}><FaCartPlus/>SATIN AL</button></a>
+                                            })}><FaCartPlus/>SATIN AL</button></a> */}
+                                              <a href='javascript:void(0)'><button className={styled.btn}><FaCartPlus/>SATIN AL</button></a>
                                        </div>
                                     </Typography>
                                 </Box>

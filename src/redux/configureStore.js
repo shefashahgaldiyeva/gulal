@@ -4,13 +4,15 @@ import bucketReducer from "./bucketReducer";
 import wishListReducers from "./wishListReducers";
 import allFlowersReducer from "./allFlowersReducer";
 import saleProductData from "./saleProductData";
+import allCategoriesReducer from "./allCategoriesReducer";
 
 const reducers = combineReducers({
     newOfferData,
     bucketReducer,
     wishListReducers,
     allFlowersReducer,
-    saleProductData
+    saleProductData,
+    allCategoriesReducer
 
 })
 
