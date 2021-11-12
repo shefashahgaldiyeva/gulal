@@ -15,6 +15,8 @@ import logo from '../img/logo.jpg'
 function Header() {
 
     const bucket = useSelector(state=>state.bucketReducer)
+    const category = useSelector(state=>state.allCategoriesReducer)
+    console.log(category)
     // console.log(bucket)
 
     const [isPassive, setPassive] = useState(false)
@@ -75,14 +77,14 @@ function Header() {
             <div className={styles.bottom}>
                 <ul>
                     <li  key={10}><Link to='/Butun-Kateqoriyalar'>Bütün Kateqoriyalar</Link></li>
-                    {/* <li><Link to='/Tulpan-Buketleri'>Tülpan Buketləri</Link></li>
+                    <li><Link to='/Tulpan-Buketleri'>Tülpan Buketləri</Link></li>
                     <li><Link to='/Ucuz-Guller'>Ucuz Güllər</Link></li>
                     <li><Link to='/Buketler'>Buketlər</Link></li>
                     <li><Link to='/Guller'>Güllər</Link></li>
                     <li><Link to='/101-Qızılgul'>101 Qızılgül</Link></li>
                     <li><Link to='/Ofis-Bitkileri'>Ofis Bitkiləri</Link></li>
                     <li><Link to='/8-Mart'>8 Mart</Link></li>
-                    <li><Link to='/En-Çox-Satılanlar'>Ən Çox Satılanlar</Link></li> */}
+                    <li><Link to='/En-Çox-Satılanlar'>Ən Çox Satılanlar</Link></li>
                 </ul>
             </div>
             </header>

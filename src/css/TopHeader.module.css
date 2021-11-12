@@ -2,11 +2,22 @@
        /* width: 100%; */
        /* height: 53px; */
        /* background-color: #e4dad7; */
-       background-color: #e4dad7;
+       background-color: #e6ccc4;
        /* display: flex; */
        /* justify-content: space-between; */
        padding: 1rem  2rem;
+       animation: glow 1s ease-in-out infinite alternate;
+       box-shadow: 0 0 0px #fff, 0 0 0px #fff, 0 0 30px #e6ccc4, 0 0 40px #e6ccc4, 0 0 50px #e6ccc4, 0 0 60px #e6ccc4, 0 0 70px #e6ccc4;
 }
+/* @keyframes glow {
+    from {
+      box-shadow: 0 0 0px #fff, 0 0 0px #fff, 0 0 30px #e6ccc4, 0 0 40px #e6ccc4, 0 0 50px #e6ccc4, 0 0 60px #e6ccc4, 0 0 70px #e6ccc4;
+    }
+    
+    to {
+      box-shadow: 0 0 0px #fff, 0 0 0px #e2c3b9, 0 0 40px #e2c3b9, 0 0 50px #e2c3b9, 0 0 60px #e2c3b9, 0 0 70px #e2c3b9, 0 0 80px #e2c3b9;
+    }
+} */
 .topHeader a:hover{
     color: #d4b9bd;
     transition: ease-in-out .2s;
