@@ -32,54 +32,44 @@ import axios from 'axios';
         // axios.get('http://127.0.0.1:8000/api/category/all').onload = () => {console.log(card)};\
         
         
-        // let obj = {};
-        // let cats = [];
-        // function api(){
-        //     axios.get('http://127.0.0.1:8000/api/category/all')
-        //     .then(res =>{
-        //         for(let i = 0;i<res.data.data.length;i++){
-        //             obj.id = (res.data.data[i]).id;
-        //             obj.name = (res.data.data[i]).name;
-        //             cats.push(obj)
-        //         };
-        //     })
-        // }
-        // api()
+        let obj = {}
+        let cats = [];
+        function api(){
+            axios.get('http://127.0.0.1:8000/api/category/all')
+            .then(res =>{
+                for(let i = 0;i<res.data.data.length;i++){
+                    let obj = {id: res.data.data[i].id, name: res.data.data[i].name};
+                    cats.push(obj)
+                };
+            })
+        }
+        api()
         
-// let data = [];
-// function getCats(){
-//     if(data.length < 1){
-//             if(cats.length < 1 ){
-//                 setInterval(function(){
-//                     api()
-//                     getCats()
-//                 },1000)
-//                 console.log('cats bosdur')
-//             }else{
-//                 data = cats
-//                 console.log('cats doludur')
-//             }
-//         }
-//     }
-//     // console.log(data)
-// getCats()
+let data = [];
+function getCats(){
+    if(data.length < 1){
+            if(cats.length < 1 ){
+                setInterval(function(){
+                    getCats()
+                },1000)
+                console.log('cats bosdur')
+            }else{
+                data = cats 
+                console.log('cats doludur')
+                console.log(data)
+            }
+        }
+    }
+getCats()
 
 
-
-
-
-const allCategoriesReducer = ( state = [], action ) => {
+const allCategoriesReducer = ( state = data , action ) => {
     switch (action.type) {
         case 'GET_DATA_CATEGORIES':
             return state
 
         default:
-        //     getData().then( res => {
-        //         return res
-        //    })
-            // setTimeout(() => {
-                console.log(`menimDatam ${state}`)
-            // }, 1500);
+            console.log(`menimDatam ${state}`)
             return state
     }
 }
