@@ -1,5 +1,5 @@
-import flower from '../img/flower.jpg'
-import flowerHover from '../img/flowerHover.jpg'
+import flower from '../../img/flower.jpg'
+import flowerHover from '../../img/flowerHover.jpg'
 
 
 

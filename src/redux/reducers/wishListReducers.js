@@ -1,5 +1,5 @@
-import flower from '../img/flower.jpg'
-import flowerHover from '../img/flowerHover.jpg'
+import flower from '../../img/flower.jpg'
+import flowerHover from '../../img/flowerHover.jpg'
 
 const data = [
     {
@@ -102,27 +102,15 @@ const data = [
 ]
 const empty = []
 
-const bucketReducer = (state = data, action) => {
-    switch (action.type) {
-        case 'ELAVE_ET':
-            console.log(action.payload)
-            return [...state,action.payload]
-
-        case 'SEBETDEN_SIL':
+const wishlistReducers = (state = data ,action) =>{
+    switch (action.type){
+        case 'SEVIMLIYE_ELAVE_ET': 
+            // console.log(action.payload)
+            return  [...state,action.payload]
+        case 'SEVIMLIDEN_SIL':
             return state = state.filter(item => item.id !== action.payload.id)
-
-        case 'UPDATE_BUCKET_PLUS':
-            (state.filter(item => item.id == action.payload.id))[0].quantity -= action.payload.quantity
-            return [...state]
-
-        case 'UPDATE_BUCKET_MINUS':
-            (state.filter(item => item.id == action.payload.id))[0].quantity += action.payload.quantity
-            return [...state]
-
-        default:
-            return empty
+        default: 
+            return  empty
     }
 }
-
-export default bucketReducer;
-
+export default wishlistReducers;
