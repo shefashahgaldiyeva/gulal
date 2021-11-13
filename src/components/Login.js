@@ -25,14 +25,11 @@ function Login() {
         const article = { email: email, password: password};
         axios.post('http://127.0.0.1:8000/api/login', article)
         .then(response => 
-        axios.get('http://127.0.0.1:8000/api/user', { headers: { Authorization: `Bearer ${response.data.token}` }})
-        .then(res => console.log(res))
+            axios.get('http://127.0.0.1:8000/api/user', { headers: { Authorization: `Bearer ${response.data.token}` }})
+            .then(res => console.log(res))
         )
         // .then(response => response.data.succses == true ? setToken(response.data.succses) : null);
-        
     }
-
-    
 
         // useEffect(() => {
         //     axios.get('http://127.0.0.1:8000/api/user')

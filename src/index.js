@@ -5,13 +5,17 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import configureStore from './redux/configureStore';
+import UsersPage from "./pages/Users";
+
+// import configureStore from "./redux/stores/configureStore";
 
 const store = configureStore();
 
 ReactDOM.render(
   	<BrowserRouter>
     	<Provider store={store}>
-      		<App/>
+      		{/* <App/> */}
+			<UsersPage />
       	</Provider>
   	</BrowserRouter>,
   document.getElementById('root')
