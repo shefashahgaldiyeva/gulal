@@ -2,7 +2,6 @@ import flower from '../../img/flower.jpg'
 import flowerHover from '../../img/flowerHover.jpg'
 
 
-
 const data = [
     {
         img: flower,
@@ -46,7 +45,6 @@ const data = [
         quantity: 1
     }
 ]
-
 
 const saleProductData = (state = data, action) => {
     switch (action.type) {

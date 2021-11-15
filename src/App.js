@@ -67,6 +67,9 @@ function App() {
                        {/* <IntegrationNotistack /> */}
                       </StyledEngineProvider>
                   </Route>
+                  <Route path='/category/:catId'>
+                      <ShopAllCategory/>
+                  </Route>
                   <Route path='/Sebet'>
                       <Cart/>
                   </Route>

@@ -13,7 +13,7 @@ import {RiLayoutGridFill} from 'react-icons/ri'
 function ProductsInShop() {
 
     const selectorData = useSelector(state => state.newOfferData)
-    console.log(selectorData)
+    // console.log(selectorData)
 
     const [changeClass, setChangeClass] = useState(false)
     function handleChangeClassGrid3(){

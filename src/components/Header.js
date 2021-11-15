@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react'
-import {useSelector} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import styles from '../css/Header.module.css'
 import '../css/Pure.css'
@@ -10,13 +10,25 @@ import {FaRegUserCircle} from 'react-icons/fa'
 import {BsBell} from 'react-icons/bs'
 // import {BsSearch} from 'react-icons/bs'
 import logo from '../img/logo.jpg'
+import { loadCategoriesAsync } from "../redux/reducers/categories/categories.thunks";
 
 
 function Header() {
 
     const bucket = useSelector(state=>state.bucketReducer)
-    const category = useSelector(state=>state.allCategoriesReducer)
-    console.log(category)
+    const dispatch = useDispatch();
+    // console.log(bucket)
+
+    const { isLoading, categories, errorMessage } = useSelector(
+        (state) => state.categories
+    );
+    
+    useEffect(() => {
+        dispatch(loadCategoriesAsync());
+    }, []);
+    
+    // console.log(categories)
+    // console.log(category)
     // console.log(bucket)
 
     const [isPassive, setPassive] = useState(false)
@@ -76,7 +88,16 @@ function Header() {
             </div>
             <div className={styles.bottom}>
                 <ul>
-                    <li  key={10}><Link to='/Butun-Kateqoriyalar'>Bütün Kateqoriyalar</Link></li>
+                    <li key={1}>
+                        <Link to="/category/all">Bütün Kateqoriyalar</Link>
+                    </li>
+                    {categories && categories.data.map((category) => (
+                        //   <h5 key={category.id}>{category.name}</h5>
+                        <li key={category.id}>
+                            <Link to={`/category/${category.id}`}>{category.name}</Link>
+                        </li>
+                        ))}
+                    {/* <li  key={10}><Link to='/Butun-Kateqoriyalar'>Bütün Kateqoriyalar</Link></li>
                     <li><Link to='/Tulpan-Buketleri'>Tülpan Buketləri</Link></li>
                     <li><Link to='/Ucuz-Guller'>Ucuz Güllər</Link></li>
                     <li><Link to='/Buketler'>Buketlər</Link></li>
@@ -84,7 +105,7 @@ function Header() {
                     <li><Link to='/101-Qızılgul'>101 Qızılgül</Link></li>
                     <li><Link to='/Ofis-Bitkileri'>Ofis Bitkiləri</Link></li>
                     <li><Link to='/8-Mart'>8 Mart</Link></li>
-                    <li><Link to='/En-Çox-Satılanlar'>Ən Çox Satılanlar</Link></li>
+                    <li><Link to='/En-Çox-Satılanlar'>Ən Çox Satılanlar</Link></li> */}
                 </ul>
             </div>
             </header>
