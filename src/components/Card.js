@@ -172,7 +172,7 @@ function Card(props) {
                                 <Fade in={open}>
                                 <Box sx={style}>
                                     <Typography id="transition-modal-description" sx={{ mt: 20 }}>
-                                        <div style={{width: '100%'}}><img className={styles.modalInImg} src={props.item.img} onMouseOver={(a)=>{a.target.src = props.item.img2}} onMouseOut={(a)=>{a.target.src = props.item.img}}/></div>
+                                        <div style={{width: '100%'}}><img className={styles.modalInImg} src={props.item.photo} onMouseOver={(a)=>{a.target.src = props.item.photo}} onMouseOut={(a)=>{a.target.src = props.item.img}}/></div>
                                     </Typography>
                                     <Typography id="transition-modal-title" variant="h6" component="h2">
                                         <h3>{props.item.text}</h3>
@@ -207,11 +207,11 @@ function Card(props) {
                                 </Fade>
                             </Modal>
                         </div>
-                        <Link onClick={()=>allFlowersAdd(props.item)} to={`/${props.item.id}`}><img src={props.item.img} onMouseOver={(a)=>{a.target.src = props.item.img2}} onMouseOut={(a)=>{a.target.src = props.item.img}}/></Link>
+                        <Link onClick={()=>allFlowersAdd(props.item)} to={`/${props.item.id}`}><img src={props.item.img} onMouseOver={(a)=>{a.target.src = props.item.photo}} onMouseOut={(a)=>{a.target.src = props.item.photo}}/></Link>
                     </div>
                     <div className={styles.bottom}>
                         {/* <div className={styles.category}><a href='#'>{props.item.category}</a></div> */}
-                        <h3><a href='javascript:void(0)'>{props.item.text}</a></h3>
+                        <h3><a href='javascript:void(0)'>{props.item.name}</a></h3>
                         <span className={styles.price}>{props.item.price} azn</span>
                         <div>
                             {/* <div className={styles.stars}>stars</div> */}

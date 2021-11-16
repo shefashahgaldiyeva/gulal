@@ -10,7 +10,7 @@ import {RiLayoutGridFill} from 'react-icons/ri'
 // import { Switch } from '@mui/material'
 
 
-function ProductsInShop() {
+function ProductsInShop(props) {
 
     const selectorData = useSelector(state => state.newOfferData)
     // console.log(selectorData)
@@ -51,20 +51,11 @@ function ProductsInShop() {
                 </div>
                 <div id='myDiv' className={styles.productsBottom}>
                     {
-                        selectorData.map((item) => (
+                        props.data.map((item) => (
                             <Switch>
-                                {/* <Redirect from="/Butun-Kateqoriyalar" to="/Grid3" /> */}
-                                {/* <Redirect strict from="/Butun-Kateqoriyalar/" to="/Grid3" /> */}
-                                {/* <Route path='/Grid3'> */}
-                                    <div key={'grid'} id='grid' className={changeClass ? styles.productsBottomItem3 : styles.productsBottomItem4}>
+                                    <div className={changeClass ? styles.productsBottomItem3 : styles.productsBottomItem4}>
                                         <Card item={item}/>
                                     </div>
-                                {/* </Route>
-                                <Route path='/Grid4'>
-                                    <div className={styles.productsBottomItem4}>
-                                        <Card item={item}/>
-                                    </div>
-                                </Route> */}
                             </Switch>
                         ))
                     }

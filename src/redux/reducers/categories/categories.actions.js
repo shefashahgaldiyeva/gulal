@@ -15,30 +15,8 @@ const categoriesLoadError = (errorMessage) => ({
 });
 
 
-
-
-
-const getProductsLoadStart = () => ({
-	type: actionTypes.PRODUCTS_LOAD_START,
-});
-
-const getProductsLoadSuccess = (products) => ({
-	type: actionTypes.PRODUCTS_LOAD_SUCCESS,
-	payload: products,
-});
-
-const getProductsLoadError = (errorMessage) => ({
-	type: actionTypes.PRODUCTS_LOAD_ERROR,
-	payload: errorMessage,
-});
-
-
-
 export default {
 	categoriesLoadStart,
 	categoriesLoadSuccess,
 	categoriesLoadError,
-	getProductsLoadStart,
-	getProductsLoadSuccess,
-	getProductsLoadError
 };

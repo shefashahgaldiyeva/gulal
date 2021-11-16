@@ -15,7 +15,6 @@ const rootReducer = () =>
 		users: usersReducer,
 		categories : categoriesReducer,
 		products : productsReducer,
-		getProducts : categoriesReducer,
 			newOfferData,
 		    bucketReducer,
 		    wishListReducers,

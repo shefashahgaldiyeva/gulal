@@ -8,3 +8,10 @@ export const loadProductsAsync = () => (dispatch) => {
 		.then((response) => dispatch(actions.productsLoadSuccess(response.data)))
 		.catch((error) => dispatch(actions.productsLoadError(error.message)));
 };
+export const loadProductByCategoryAsync = (id) => (dispatch) => {
+	dispatch(actions.getProductsLoadStart());
+
+	ProductsService.getProductByCategory(id)
+		.then((response) => dispatch(actions.getProductsLoadSuccess(response)))
+		.catch((error) => dispatch(actions.getProductsLoadError(error)));
+};

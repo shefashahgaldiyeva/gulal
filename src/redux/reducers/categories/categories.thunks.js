@@ -10,12 +10,9 @@ export const loadCategoriesAsync = () => (dispatch) => {
 };
 
 export const loadProductByCategoryAsync = (id) => (dispatch) => {
-	console.log(id)
 	dispatch(actions.getProductsLoadStart());
 
 	CategoriesService.getProductByCategory(id)
 		.then((response) => dispatch(actions.getProductsLoadSuccess(response)))
-		// .then((response) =>console.log(response))
 		.catch((error) => dispatch(actions.getProductsLoadError(error)));
-		// .catch((error) => console.log(error));
 };

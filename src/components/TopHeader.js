@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState, useEffect } from "react";
 import styles from '../css/TopHeader.module.css'
 import {BsFillTelephoneFill} from 'react-icons/bs'
 import {AiFillCaretDown} from 'react-icons/ai'
@@ -11,6 +12,26 @@ import {SiTinyletter} from 'react-icons/si'
 // import truck from '../img/truck.png'
 
 function TopHeader() {
+
+    const [language, setLanguage] = useState(() => {
+        const saved = localStorage.getItem("language");
+        console.log(saved)
+        const initialValue = JSON.parse(saved);
+        return initialValue || "";
+    });
+    useEffect(() => {
+        localStorage.setItem("language", JSON.stringify(language));
+    }, [language]);
+
+    
+    const handleChangeLang = (e) => {
+        setLanguage(e.target.attributes.language.value)
+        let lang = document.getElementById('lang')
+        lang.innerText = e.target.innerText
+        // console.log(lang.nextElementSibling.getElementsByTagName('a'))
+        console.log(e.target.attributes.language.value)
+    }
+
     return (
         <div className={styles.topHeader}>
             <div className={styles.topHeaderInner}>
@@ -41,10 +62,11 @@ function TopHeader() {
                         </div>
                     </div>
                     <div className={styles.langbar}>
-                        <span>AZ <AiFillCaretDown/></span>
+                        <span id='lang'>AZ <AiFillCaretDown/></span>
                         <div className={styles.activeDropdown}>
-                            <a href='#'>EN</a>
-                            <a href='#'>RU</a>
+                            <a onClick={(e)=>handleChangeLang(e)} language='AZ' href='#'>AZ</a>
+                            <a onClick={(e)=>handleChangeLang(e)} language='EN' href='#'>EN</a>
+                            <a onClick={(e)=>handleChangeLang(e)} language='RU' href='#'>RU</a>
                         </div>
                     </div>
                 </div>
