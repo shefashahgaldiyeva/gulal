@@ -4,7 +4,7 @@ import actions from "./users.actions";
 export const loadUsersAsync = () => (dispatch) => {
 	dispatch(actions.usersLoadStart());
 
-	UsersService.getAllUsers()
+	UsersService.getUser()
 		.then((response) => dispatch(actions.usersLoadSuccess(response.data)))
 		.catch((error) => dispatch(actions.usersLoadError(error.message)));
 };

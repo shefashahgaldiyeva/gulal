@@ -23,10 +23,14 @@ import Language from "./components/Language";
 import { useState } from "react";
 import { useEffect } from "react";
 import { loadCategoriesAsync } from "./redux/reducers/categories/categories.thunks";
+import { loadUsersAsync } from "./redux/reducers/users/users.thunks";
 
 import LanguageService from "./services/language.service";
+import UsersService  from "./services/users.service";
 
 function App() {
+  console.log(UsersService.getUser())
+  
   LanguageService.getLang();
   const currentLang = localStorage.getItem("locale");
 
@@ -35,8 +39,14 @@ function App() {
     (state) => state.categories
   );
   useEffect(() => {
-    dispatch(loadCategoriesAsync());
+    dispatch(loadCategoriesAsync(),loadUsersAsync());
   }, []);
+
+
+
+
+     // axios.get('http://127.0.0.1:8000/api/auth/user', { headers: { Authorization: `Bearer ${response.data.token}` }})
+            // .then(res => console.log(res))
   // console.log(currentLang);
   //   const [name, setName] = useState(() => {
   //       const saved = localStorage.getItem("name");

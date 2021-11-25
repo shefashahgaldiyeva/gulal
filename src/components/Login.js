@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { useDispatch,useSelector } from 'react-redux';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import styles from '../css/Login.module.css'
@@ -10,6 +11,9 @@ import img from '../img/login.png'
 function Login() {
 
  
+        const dispatch = useDispatch()
+        useSelector(state => console.log(state.tokenReducer))   
+        
         // fetch('http://127.0.0.1:8000/api/login')
         // .then(res => res.json())
         // .then(response => console.log(response))
@@ -19,14 +23,16 @@ function Login() {
     
     // const [state, setstate] = useState(initialState)
     const submit = () =>{
-        // const [tokenn, setTokenn] = useState()
         const email = document.getElementById('email').value
         const password = document.getElementById('password').value
         const article = { email: email, password: password};
         axios.post('http://127.0.0.1:8000/api/login', article)
-        .then(response => 
-            axios.get('http://127.0.0.1:8000/api/user', { headers: { Authorization: `Bearer ${response.data.token}` }})
-            .then(res => console.log(res))
+        .then(response =>
+            // dispatch({
+            //     type: 'SET_TOKEN',
+            //     payload: response.data.token
+            // })
+            localStorage.setItem('token',response.data.token)
         )
         // .then(response => response.data.succses == true ? setToken(response.data.succses) : null);
     }

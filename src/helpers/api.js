@@ -1,16 +1,17 @@
 import axios from "axios";
 
-const apiCategory = () => {
-// const  {REACT_APP_API_URL}  = process.env;
+const api = () => {
+	// const  {REACT_APP_API_URL}  = process.env;
 
 	const axiosInstance = axios.create({
 		baseURL: 'http://127.0.0.1:8000/api/',
 		responseType: "json",
 		headers: {
-			'X-localization': localStorage.getItem('locale')
-		  }
+			'X-localization': localStorage.getItem('locale'),
+			// Authorization: `Bearer ${localStorage.getItem('token')}`                                                          
+		}
 	});
-	return axiosInstance;
+	return axiosInstance ;
 };
 
-export default apiCategory;
+export default api;

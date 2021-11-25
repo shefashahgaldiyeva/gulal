@@ -7,6 +7,7 @@ import newOfferData from "./newOfferData";
 import bucketReducer from "./bucketReducer";
 import wishListReducers from "./wishListReducers";
 import paramsReducer from "./paramsReducer";
+import tokenReducer from "./tokenReducer";
 import allFlowersReducer from "./allFlowersReducer";
 import saleProductData from "./saleProductData";
 // import allCategoriesReducer from "./allCategoriesReducer";
@@ -17,6 +18,7 @@ const rootReducer = () =>
 		categories : categoriesReducer,
 		products : productsReducer,
 		paramsReducer,
+		tokenReducer,
 			newOfferData,
 		    bucketReducer,
 		    wishListReducers,

@@ -1,7 +1,8 @@
-import apiClient from "../helpers/api";
+import api from "../helpers/api";
 
 class UsersService {
-	getAllUsers = () => apiClient(userId).get(`auth/user/${userId}`);
+    getUser = () => api().get(`auth/user`);
+    register = (params) => api().post(`register`, params);
 }
 
 export default new UsersService();
