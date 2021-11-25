@@ -28,11 +28,53 @@ const getProductsLoadError = (errorMessage) => ({
 });
 
 
+const getProductDetailLoadStart = () => ({
+	type: actionTypes.PRODUCTS_LOAD_START,
+});
+
+const getProductDetailLoadSuccess = (products) => ({
+	type: actionTypes.PRODUCTS_LOAD_SUCCESS,
+	payload: products,
+});
+
+const getProductDetailLoadError = (errorMessage) => ({
+	type: actionTypes.PRODUCTS_LOAD_ERROR,
+	payload: errorMessage,
+})
+
+
+
+
+
+
+
+const getDiscountProductLoadStart = () => ({
+	type: actionTypes.PRODUCTS_LOAD_START,
+});
+
+const getDiscountProductLoadSuccess = (products) => ({
+	type: actionTypes.PRODUCTS_LOAD_SUCCESS,
+	payload: products,
+});
+
+const getDiscountProductLoadError = (errorMessage) => ({
+	type: actionTypes.PRODUCTS_LOAD_ERROR,
+	payload: errorMessage,
+})
+
+
 export default {
 	productsLoadStart,
 	productsLoadSuccess,
 	productsLoadError,
 	getProductsLoadStart,
 	getProductsLoadSuccess,
-	getProductsLoadError
+	getProductsLoadError,
+	getProductDetailLoadStart,
+	getProductDetailLoadSuccess,
+	getProductDetailLoadError,
+
+	getDiscountProductLoadStart,
+	getDiscountProductLoadSuccess,
+	getDiscountProductLoadError
 };

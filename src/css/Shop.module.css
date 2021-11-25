@@ -151,9 +151,12 @@
 .productsBottomItem4>div{
     margin-right: 0 !important;
 }
-.productsTopRight select{
+/* .productsTopRight select{ */
     /* appearance: none; */
     /* text-indent: 0; */
+/* } */
+.openFilter input{
+    margin-right: 4px;
 }
 @media only screen and (max-width: 1440px) {}
 @media only screen and (max-width: 1024px) {

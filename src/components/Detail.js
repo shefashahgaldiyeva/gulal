@@ -1,42 +1,45 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { useRouteMatch } from 'react-router'
-import styles from '../css/Detail.module.css'
-import DetailSlider from '../components/DetailSlider'
-import DetailRight from '../components/DetailRight'
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useRouteMatch } from "react-router";
+import styles from "../css/Detail.module.css";
+import DetailSlider from "../components/DetailSlider";
+import DetailRight from "../components/DetailRight";
+import { useEffect } from "react";
+
+import { loadProductDetail } from "../redux/reducers/products/products.thunks";
 
 function Detail() {
+  const dispatch = useDispatch();
+  const match = useRouteMatch();
+  const productId = match.params.productId;
 
-    const match = useRouteMatch()
-    // console.log(match)
+  const { isLoading, products, errorMessage } = useSelector(
+    (state) => state.products
+  );
 
-    // allFlowersReducer
+  useEffect(() => {
+    dispatch(loadProductDetail(productId));
+  }, [productId]);
 
-    // const selector = useSelector(state => state.allFlowersReducer.id == match.params.topicId)
-    const data = useSelector(state => state.newOfferData.filter(item => item.id == match.params.topicId))
-    // data.map((item)=>(
-    //     console.log(item)
-    // ))
-
-    // const selector = useSelector(state =>state.allFlowersReducer.filter(item => item.id === match.params.topicId))
-    // console.log(selector)
-
-    return (
-            <div className={styles.detail}>
-                <div className={styles.detailInner}>
-                    <div className={styles.left}>
-                        <DetailSlider data={data}/>
-                    </div>
-                    <div className={styles.right}>
-                        {
-                            data.map((item)=>(
-                                <DetailRight item={item}/>
-                            ))
-                        }
-                    </div>
-                </div>
+  if (!isLoading && products) {
+    console.log(products.data.data[0]);
+  }
+  return (
+    //   <></>
+    <div className={styles.detail}>
+        <div className={styles.detailInner}>
+            <div className={styles.left}>
+                {/* { !isLoading && products ? <DetailSlider data={products.data.data[0]}/> : null } */}
+                
             </div>
-    )
+            <div className={styles.right}>
+                {
+                    !isLoading && products ? <DetailRight item={products.data.data[0]}/> : null
+                }
+            </div>
+        </div>
+    </div>
+  );
 }
 
 export default Detail;

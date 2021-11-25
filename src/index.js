@@ -16,7 +16,7 @@ ReactDOM.render(
   	<BrowserRouter>
     	<Provider store={store}>
       		<App/>
-			<UsersPage />
+			{/* <UsersPage /> */}
 			{/* <ProductsPage /> */}
       	</Provider>
   	</BrowserRouter>,

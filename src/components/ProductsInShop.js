@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { Link, Route, Switch, Redirect } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useRouteMatch } from 'react-router'
+import { Link, Switch } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import styles from '../css/Shop.module.css'
 // import '../css/Pure.css'
@@ -7,22 +9,34 @@ import styles from '../css/Shop.module.css'
 import Card from '../components/Card'
 import {BsFillGrid3X3GapFill} from 'react-icons/bs'
 import {RiLayoutGridFill} from 'react-icons/ri'
-// import { Switch } from '@mui/material'
+import { loadByFilterAsync } from "../redux/reducers/products/products.thunks";
 
 
 function ProductsInShop(props) {
 
+    const dispatch = useDispatch();
+    const match = useRouteMatch();
+  
+    const catId = match.params.catId;
     const selectorData = useSelector(state => state.newOfferData)
-    // console.log(selectorData)
-
+    const paramsHeader = useSelector((state) => state.paramsReducer);
     const [changeClass, setChangeClass] = useState(false)
+
     function handleChangeClassGrid3(){
         setChangeClass(!changeClass)
-        // console.log(changeClass)
     }
     function handleChangeClassGrid4(){
         setChangeClass(!changeClass)
-        // console.log(changeClass)
+    }
+
+    function sortable(e){
+        dispatch({
+            type: 'SET_SORT',
+            payload: e.target.value,
+        })
+        console.log(paramsHeader)
+        console.log(e.target.value)
+        dispatch(loadByFilterAsync(catId, paramsHeader));
     }
 
     return (
@@ -34,11 +48,10 @@ function ProductsInShop(props) {
                     <div className={styles.productsTopRight}>
                         <div>
                             <label for='select'>Sırala: </label>
-                            <select name='select'>
-                                <option>Tövsiyə olunan</option>
+                            <select name='select' onChange={(e)=>sortable(e)}>
                                 <option>Çox satılanlar</option>
-                                <option>Qiymətə görə</option>
-                                <option>Ən yenilər</option>
+                                <option value="0">Artan Qiymət</option>
+                                <option value="1">Azalan Qiymət</option>
                             </select>
                         </div>
                         <div className={styles.grids}>
@@ -50,7 +63,7 @@ function ProductsInShop(props) {
                     </div>
                 </div>
                 <div id='myDiv' className={styles.productsBottom}>
-                    {
+                    {props.data &&
                         props.data.map((item) => (
                             <Switch>
                                     <div className={changeClass ? styles.productsBottomItem3 : styles.productsBottomItem4}>

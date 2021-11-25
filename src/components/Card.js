@@ -35,10 +35,11 @@ const style = {
     justifyContent: 'space-evenly'
   };
 
-
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
+
+
 
 function Card(props) { 
 
@@ -99,8 +100,6 @@ function Card(props) {
                 type: 'ELAVE_ET',
                 payload: item 
             })
-        
-        
     }
     const handleClose = () => setOpen(false);
 
@@ -172,7 +171,7 @@ function Card(props) {
                                 <Fade in={open}>
                                 <Box sx={style}>
                                     <Typography id="transition-modal-description" sx={{ mt: 20 }}>
-                                        <div style={{width: '100%'}}><img className={styles.modalInImg} src={props.item.photo} onMouseOver={(a)=>{a.target.src = props.item.photo}} onMouseOut={(a)=>{a.target.src = props.item.img}}/></div>
+                                        <div style={{width: '100%'}}><img className={styles.modalInImg} src={props.item.image} onMouseOver={(a)=>{a.target.src = props.item.photo}} onMouseOut={(a)=>{a.target.src = props.item.image}}/></div>
                                     </Typography>
                                     <Typography id="transition-modal-title" variant="h6" component="h2">
                                         <h3>{props.item.text}</h3>
@@ -207,7 +206,7 @@ function Card(props) {
                                 </Fade>
                             </Modal>
                         </div>
-                        <Link onClick={()=>allFlowersAdd(props.item)} to={`/${props.item.id}`}><img src={props.item.img} onMouseOver={(a)=>{a.target.src = props.item.photo}} onMouseOut={(a)=>{a.target.src = props.item.photo}}/></Link>
+                        <Link onClick={()=>allFlowersAdd(props.item)} to={`/${props.item.id}`}><img src={props.item.image} onMouseOver={(a)=>{a.target.src = props.item.photo}} onMouseOut={(a)=>{a.target.src = props.item.photo}}/></Link>
                     </div>
                     <div className={styles.bottom}>
                         {/* <div className={styles.category}><a href='#'>{props.item.category}</a></div> */}

@@ -5,32 +5,33 @@ import {BsFillTelephoneFill} from 'react-icons/bs'
 import {AiFillCaretDown} from 'react-icons/ai'
 import {FiMapPin} from 'react-icons/fi'
 import {FiTruck} from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 import {SiTinyletter} from 'react-icons/si'
+
 // import {SiTinyletter} from 'react-icons/si'
 // import letter from '../img/letter.png'
 // import pin from '../img/pin.png'
 // import truck from '../img/truck.png'
 
-function TopHeader() {
-
-    const [language, setLanguage] = useState(() => {
-        const saved = localStorage.getItem("language");
-        console.log(saved)
-        const initialValue = JSON.parse(saved);
-        return initialValue || "";
-    });
-    useEffect(() => {
-        localStorage.setItem("language", JSON.stringify(language));
-    }, [language]);
+function TopHeader(props) {
+    // const [language, setLanguage] = useState(() => {
+    //     const saved = localStorage.getItem("language");
+    //     console.log(saved)
+    //     const initialValue = JSON.parse(saved);
+    //     return initialValue || "";
+    // });
+    // useEffect(() => {
+    //     localStorage.setItem("language", JSON.stringify(language));
+    // }, [language]);
 
     
-    const handleChangeLang = (e) => {
-        setLanguage(e.target.attributes.language.value)
-        let lang = document.getElementById('lang')
-        lang.innerText = e.target.innerText
-        // console.log(lang.nextElementSibling.getElementsByTagName('a'))
-        console.log(e.target.attributes.language.value)
-    }
+    // const handleChangeLang = (e) => {
+    //     setLanguage(e.target.attributes.language.value)
+    //     let lang = document.getElementById('lang')
+    //     lang.innerText = e.target.innerText
+    //     console.log(lang.nextElementSibling.getElementsByTagName('a'))
+    //     console.log(e.target.attributes.language.value)
+    // }
 
     return (
         <div className={styles.topHeader}>
@@ -62,11 +63,11 @@ function TopHeader() {
                         </div>
                     </div>
                     <div className={styles.langbar}>
-                        <span id='lang'>AZ <AiFillCaretDown/></span>
+                        <span id='lang'>{ props.lang ? props.lang.toUpperCase() : 'AZ' } <AiFillCaretDown/></span>
                         <div className={styles.activeDropdown}>
-                            <a onClick={(e)=>handleChangeLang(e)} language='AZ' href='#'>AZ</a>
-                            <a onClick={(e)=>handleChangeLang(e)} language='EN' href='#'>EN</a>
-                            <a onClick={(e)=>handleChangeLang(e)} language='RU' href='#'>RU</a>
+                            <Link to='/lang/az' style={!props.lang || props.lang == 'az' ? { display: 'none' } : null}>Az</Link>
+                            <Link to='/lang/en' style={props.lang == 'en' ? { display: 'none' } : null}>En</Link>
+                            <Link to='/lang/ru' style={props.lang == 'ru' ? { display: 'none' } : null}>Ru</Link>
                         </div>
                     </div>
                 </div>

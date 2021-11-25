@@ -6,9 +6,9 @@ const ProductsListing = () => {
 	const dispatch = useDispatch();
 	const { isLoading, products, errorMessage } = useSelector((state) => state.products);
 
-	useEffect(() => {
-		dispatch(loadProductsAsync());
-	}, []);
+	// useEffect(() => {
+	// 	dispatch(loadProductsAsync());
+	// }, []);
 
 
 	// products.data.map((item) => {

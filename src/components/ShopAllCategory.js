@@ -14,7 +14,7 @@ import Filter from './Filter'
 import ProductsInShop from './ProductsInShop'
 import ProductsService from '../services/products.service'
 
-function ShopAllCategory() {
+function ShopAllCategory(props) {
    
     const dispatch = useDispatch();
     const match = useRouteMatch()
@@ -30,7 +30,9 @@ function ShopAllCategory() {
 
     return (
         <div className={styles.shop}>
-            <Filter/>
+            {
+                props ? <Filter cats={props.cats}/> :  null
+            }
             {
                 products != null ? 
                     <ProductsInShop data={products.data.data}/>
