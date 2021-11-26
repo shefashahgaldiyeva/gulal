@@ -1,5 +1,6 @@
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
 import { Route, Switch } from "react-router-dom";
 import { StyledEngineProvider } from "@mui/material/styles";
@@ -29,8 +30,7 @@ import LanguageService from "./services/language.service";
 import UsersService  from "./services/users.service";
 
 function App() {
-  console.log(UsersService.getUser())
-  
+
   LanguageService.getLang();
   const currentLang = localStorage.getItem("locale");
 
@@ -38,11 +38,18 @@ function App() {
   const { isLoading, categories, errorMessage } = useSelector(
     (state) => state.categories
   );
+  const userr = useSelector(state => state.users)
+  const token = useSelector(state => state.tokenReducer)
   useEffect(() => {
-    dispatch(loadCategoriesAsync(),loadUsersAsync());
+    dispatch(loadCategoriesAsync());
   }, []);
+  useEffect(() => {
+    dispatch(loadUsersAsync(token[0]));
+  }, []);
+ console.log(token[0])
 
-
+//  axios.post('http://127.0.0.1:8000/api/auth/logout', { headers: { Authorization: `Bearer ${token[0]}` }})
+//     .then(res => console.log(res))
 
 
      // axios.get('http://127.0.0.1:8000/api/auth/user', { headers: { Authorization: `Bearer ${response.data.token}` }})
@@ -83,7 +90,7 @@ return (
           <WishList />
         </Route>
         <Route path="/Daxil-ol">
-          <Login />
+          <Login users = {userr} />
         </Route>
         <Route path="/Qeydiyyat">
           <SignUp />

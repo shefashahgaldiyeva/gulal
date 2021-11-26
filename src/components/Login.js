@@ -3,47 +3,38 @@ import { useDispatch,useSelector } from 'react-redux';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import styles from '../css/Login.module.css'
+import { loadUsersAsync } from '../redux/reducers/users/users.thunks'
 import {FcGoogle} from 'react-icons/fc'
 import {FaFacebookF} from 'react-icons/fa'
 import img from '../img/login.png'
+import { Redirect } from 'react-router';
 
 
-function Login() {
+function Login(props) {
 
  
         const dispatch = useDispatch()
-        useSelector(state => console.log(state.tokenReducer))   
-        
-        // fetch('http://127.0.0.1:8000/api/login')
-        // .then(res => res.json())
-        // .then(response => console.log(response))
-    
-    
-   
-    
-    // const [state, setstate] = useState(initialState)
-    const submit = () =>{
+        const token = useSelector(state => state.tokenReducer)
+         useSelector(state => console.log(state.users))
+    const submit = (e) =>{
         const email = document.getElementById('email').value
         const password = document.getElementById('password').value
         const article = { email: email, password: password};
         axios.post('http://127.0.0.1:8000/api/login', article)
         .then(response =>
-            // dispatch({
-            //     type: 'SET_TOKEN',
-            //     payload: response.data.token
-            // })
-            localStorage.setItem('token',response.data.token)
+            dispatch({
+                type: 'SET_TOKEN',
+                payload: response.data.token
+            })
         )
-        // .then(response => response.data.succses == true ? setToken(response.data.succses) : null);
+    console.log(props.users.isLoading)
+        
+    }
+    if(!props.users.isLoading && props.users.users){
+        return <Redirect to='/'/>
     }
 
-        // useEffect(() => {
-        //     axios.get('http://127.0.0.1:8000/api/user')
-        //     .then(response =>console.log(response));
-        // }, [])
-
     
-   
     return (
         <div className={styles.login}>
             <div className={styles.loginInner}>
@@ -51,7 +42,7 @@ function Login() {
                     <h2>Daxil ol</h2>
                     <input id='email' required type='text' placeholder='İstifadəçi adı və ya e-poçt...'/>
                     <input id='password' required type='password' placeholder='Şifrə...'/>
-                    <button onClick={()=>submit()}>Daxil ol</button>
+                        <button  onClick={(e)=>submit(e)}>Daxil ol</button>
                     <p>və ya</p>
                     <div>
                         <span><a href='https://www.google.com'><FcGoogle/></a></span>
