@@ -10,6 +10,7 @@ import paramsReducer from "./paramsReducer";
 import tokenReducer from "./tokenReducer";
 import allFlowersReducer from "./allFlowersReducer";
 import saleProductData from "./saleProductData";
+import registerReducer from "./users/registerReducer";
 // import allCategoriesReducer from "./allCategoriesReducer";
 
 const rootReducer = () =>
@@ -19,6 +20,7 @@ const rootReducer = () =>
 		products : productsReducer,
 		paramsReducer,
 		tokenReducer,
+		registerReducer,
 			newOfferData,
 		    bucketReducer,
 		    wishListReducers,

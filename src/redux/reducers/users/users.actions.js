@@ -14,8 +14,28 @@ const usersLoadError = (errorMessage) => ({
 	payload: errorMessage,
 });
 
+
+
+const registerLoadStart = () => ({
+	type: actionTypes.REGISTER_LOAD_START,
+});
+
+const registerLoadSuccess = (payload) => ({
+	type: actionTypes.REGISTER_LOAD_SUCCESS,
+	payload: payload,
+});
+
+const registerLoadError = (errorMessage) => ({
+	type: actionTypes.REGISTER_LOAD_ERROR,
+	payload: errorMessage,
+});
+
+
 export default {
 	usersLoadStart,
 	usersLoadSuccess,
 	usersLoadError,
+	registerLoadStart,
+	registerLoadSuccess,
+	registerLoadError,
 };
