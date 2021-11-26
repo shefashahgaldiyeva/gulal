@@ -1,0 +1,36 @@
+import actionTypes from "./users.actionTypes";
+import initialState from "./users.initialState";
+
+const usersReducer = (state = initialState, { type, payload }) => {
+	switch (type) {
+			case actionTypes.REGISTER_LOAD_START:
+
+				return {
+					...state,
+					isLoading: true,
+					users: null,
+					errorMessage: null,
+				};
+	
+			case actionTypes.REGISTER_LOAD_SUCCESS:
+	
+			return {
+					...state,
+					isLoading: false,
+					users: payload,
+				};
+	
+			case actionTypes.REGISTER_LOAD_ERROR:
+	
+			return {
+					...state,
+					isLoading: false,
+					errorMessage: payload,
+				};
+
+		default:
+			return state;
+	}
+};
+
+export default usersReducer;
