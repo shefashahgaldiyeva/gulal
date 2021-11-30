@@ -8,32 +8,30 @@ import {FcGoogle} from 'react-icons/fc'
 import {FaFacebookF} from 'react-icons/fa'
 import img from '../img/login.png'
 import { Redirect } from 'react-router';
+import AuthStore from '../services/AuthStore';
 
 
-function Login(props) {
+function Login() {
 
  
-        const dispatch = useDispatch()
-        const token = useSelector(state => state.tokenReducer)
-         useSelector(state => console.log(state.users))
+    const dispatch = useDispatch()
+    const token = useSelector(state => state.tokenReducer)
+    // const users = useSelector(state => state.users)
+    // console.log(users)
     const submit = (e) =>{
         const email = document.getElementById('email').value
         const password = document.getElementById('password').value
-        const article = { email: email, password: password};
+        const article = { email: email, password: password}
         axios.post('http://127.0.0.1:8000/api/login', article)
-        .then(response =>
-            dispatch({
-                type: 'SET_TOKEN',
-                payload: response.data.token
-            })
-        )
-    console.log(props.users.isLoading)
-        
+        .then(response =>{
+            AuthStore.saveToken(response.data.token)
+            window.location.reload()
+        })
     }
-    if(!props.users.isLoading && props.users.users){
+    if(AuthStore.appState){
         return <Redirect to='/'/>
     }
-
+    console.log(AuthStore.appState)
     
     return (
         <div className={styles.login}>

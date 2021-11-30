@@ -1,7 +1,7 @@
 import actionTypes from "./users.actionTypes";
 import initialState from "./users.initialState";
 
-const usersReducer = (state = initialState, { type, payload }) => {
+const registerReducer = (state = initialState, { type, payload }) => {
 	switch (type) {
 			case actionTypes.REGISTER_LOAD_START:
 
@@ -33,4 +33,4 @@ const usersReducer = (state = initialState, { type, payload }) => {
 	}
 };
 
-export default usersReducer;
+export default registerReducer;

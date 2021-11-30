@@ -9,8 +9,13 @@ import { BsBasket2 } from "react-icons/bs";
 import { FaRegUserCircle } from "react-icons/fa";
 import { BsBell } from "react-icons/bs";
 import logo from "../img/logo.jpg";
+import AuthStore from "../services/AuthStore";
+import { BiLogOut } from "react-icons/bi";
+import UsersService from "../services/users.service";
+import { logoutAsync } from '../redux/reducers/users/users.thunks'
 
 function Header(props) {
+	const dispatch = useDispatch()
   const bucket = useSelector((state) => state.bucketReducer);
     const cats = props.cats
   const [isPassive, setPassive] = useState(false);
@@ -25,6 +30,15 @@ function Header(props) {
       setShowMenu(!showMenu);
     }
   }
+
+  useSelector(state => console.log(state.logoutReducer))
+
+function logOut(){
+	// UsersService.logout()
+	// AuthStore.removeToken()
+	// window.location.href = '/'
+	dispatch(logoutAsync())
+}
 
   return (
  
@@ -79,8 +93,7 @@ function Header(props) {
                   <li key={1}>
                     <Link to="/category/all">Bütün Kateqoriyalar</Link>
                   </li>
-                  {cats &&
-                    cats.data.map((category) => (
+                  {cats && cats.data.map((category) => (
                       //   <h5 key={category.id}>{category.name}</h5>
                       <li key={category.id}>
                         <Link to={`/category/${category.id}`}>
@@ -92,15 +105,20 @@ function Header(props) {
               </div>
             </li>
             <li>
-              <Link to="/Daxil-ol" className={styles.myProfile} href="/DaxilOl">
-                <FaRegUserCircle />
-                Daxil ol
-              </Link>
+				<Link to={AuthStore.appState ? '/Hesabim' : '/Daxil-ol'} className={styles.myProfile}>
+					<FaRegUserCircle />
+					{AuthStore.appState ? 'Hesabim' : 'Daxil ol'}
+				</Link>
             </li>
             <li>
-              <span>
+				<span>
+					<Link onClick={()=>logOut()} style={ AuthStore.appState ? {visibility: 'visible'} : {visibility: 'hidden'}} to="/Cixis">
+						CIXIS
+					</Link>
+				</span>
+              {/* <span>
                 <BsBell />
-              </span>
+              </span> */}
             </li>
           </ul>
         </div>

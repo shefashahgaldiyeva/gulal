@@ -31,6 +31,21 @@ const registerLoadError = (errorMessage) => ({
 });
 
 
+
+const logoutLoadStart = () => ({
+	type: actionTypes.LOGOUT_LOAD_START,
+});
+
+const logoutLoadSuccess = (payload) => ({
+	type: actionTypes.LOGOUT_LOAD_SUCCESS,
+	payload: payload,
+});
+
+const logoutLoadError = (errorMessage) => ({
+	type: actionTypes.LOGOUT_LOAD_ERROR,
+	payload: errorMessage,
+});
+
 export default {
 	usersLoadStart,
 	usersLoadSuccess,
@@ -38,4 +53,7 @@ export default {
 	registerLoadStart,
 	registerLoadSuccess,
 	registerLoadError,
+	logoutLoadStart,
+	logoutLoadSuccess,
+	logoutLoadError,
 };

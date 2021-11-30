@@ -13,6 +13,8 @@ const productsLoadError = (errorMessage) => ({
 	type: actionTypes.PRODUCTS_LOAD_ERROR,
 	payload: errorMessage,
 });
+
+
 const getProductsLoadStart = () => ({
 	type: actionTypes.PRODUCTS_LOAD_START,
 });
@@ -49,16 +51,16 @@ const getProductDetailLoadError = (errorMessage) => ({
 
 
 const getDiscountProductLoadStart = () => ({
-	type: actionTypes.PRODUCTS_LOAD_START,
+	type: actionTypes.DISCOUNT_PRODUCTS_LOAD_START,
 });
 
 const getDiscountProductLoadSuccess = (products) => ({
-	type: actionTypes.PRODUCTS_LOAD_SUCCESS,
+	type: actionTypes.DISCOUNT_PRODUCTS_LOAD_SUCCESS,
 	payload: products,
 });
 
 const getDiscountProductLoadError = (errorMessage) => ({
-	type: actionTypes.PRODUCTS_LOAD_ERROR,
+	type: actionTypes.DISCOUNT_PRODUCTS_LOAD_ERROR,
 	payload: errorMessage,
 })
 

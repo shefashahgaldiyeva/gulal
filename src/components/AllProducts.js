@@ -1,17 +1,14 @@
-import React from 'react'
+import React,{ useEffect } from 'react'
 import { Swiper,SwiperSlide } from 'swiper/react';
 import SwiperCore, {Pagination} from 'swiper';
-import { useSelector } from 'react-redux';
 import Card from '../components/Card';
 import styles from '../css/AllProducts.module.css'
 import bottomHeading from '../img/bottomHeading.png'
 
-function AllProducts() {
+function AllProducts(props) {
 
     SwiperCore.use([Pagination]);
-
-    const selector = useSelector(state => state.newOfferData)
-
+ 
     return (
         <div className={styles.products}>
             <div className={styles.productsInner}>
@@ -23,7 +20,7 @@ function AllProducts() {
                     <div className={styles.swipInner}>
                     <Swiper className={styles.swiperPage} slidesPerView={4} spaceBetween={0} pagination={{"clickable": true},{ grabCursor: true}}>
                     {
-                        selector.map((item)=>(
+                        props.data && props.data.map((item)=>(
                             <SwiperSlide className={styles.allProductSwip}>
                                 <Card item={item}/>
                             </SwiperSlide>

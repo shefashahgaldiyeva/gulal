@@ -1,4 +1,7 @@
-import React from 'react'
+import React,{ useState,useEffect } from 'react'
+import { useSelector, useDispatch } from "react-redux";
+import { loadProductsAsync,loadDiscountProduct } from "../redux/reducers/products/products.thunks";
+
 import Container from '../components/Container';
 import NewOffer from '../components/NewOffer';
 // import SelectedCard from '../components/SelectedCard';
@@ -9,13 +12,34 @@ import Sale from '../components/Sale'
 
 function Home() {
 
+    const dispatch = useDispatch()
+    const {isLoading,products,errorMessage} = useSelector((state) => state.products);
+
+    useEffect(() => {
+        dispatch(loadProductsAsync());
+    }, []);
+
+    // if(!isLoading && products){
+    //     console.log(products.data)
+    // }
+
+    const {loading,discount,error} = useSelector((state) => state.discountReducer);
+    
+    useEffect(() => {
+        dispatch(loadDiscountProduct());
+    }, []);
+
+    // if(!loading && discount){
+    //     console.log(discount.data.data)
+    // }
+
     return (
         <div>
             <Container/>
             <NewOffer/>
-            <AllProducts/>
+            <AllProducts data={!isLoading && products && products.data}/>
             {/* <SelectedCard/> */}
-            <Sale/>
+            <Sale data={!loading && discount && discount.data.data}/>
             <WhoWeAre/>
         </div>
     )

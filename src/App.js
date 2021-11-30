@@ -1,7 +1,5 @@
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
-
 import { Route, Switch } from "react-router-dom";
 import { StyledEngineProvider } from "@mui/material/styles";
 import TopHeader from "./components/TopHeader";
@@ -14,20 +12,19 @@ import ShopAllCategory from "./components/ShopAllCategory";
 import SignUp from "./components/SignUp";
 import MyProfile from "./components/MyProfile";
 import WishList from "./components/WishList";
-import TransitionsModal from "./components/TransitionsModal";
+// import TransitionsModal from "./components/TransitionsModal";
 import Detail from "./components/Detail";
 import Arrow from "./components/Arrow";
 import Guest from "./components/Guest";
 import BottomMenu from "./components/BottomMenu";
 
 import Language from "./components/Language";
-import { useState } from "react";
 import { useEffect } from "react";
 import { loadCategoriesAsync } from "./redux/reducers/categories/categories.thunks";
 import { loadUsersAsync } from "./redux/reducers/users/users.thunks";
 
 import LanguageService from "./services/language.service";
-import UsersService  from "./services/users.service";
+import AuthStore from "./services/AuthStore";
 
 function App() {
 
@@ -38,33 +35,16 @@ function App() {
   const { isLoading, categories, errorMessage } = useSelector(
     (state) => state.categories
   );
-  const userr = useSelector(state => state.users)
+
   const token = useSelector(state => state.tokenReducer)
   useEffect(() => {
     dispatch(loadCategoriesAsync());
   }, []);
   useEffect(() => {
-    dispatch(loadUsersAsync(token[0]));
-  }, []);
- console.log(token[0])
-
-//  axios.post('http://127.0.0.1:8000/api/auth/logout', { headers: { Authorization: `Bearer ${token[0]}` }})
-//     .then(res => console.log(res))
-
-
-     // axios.get('http://127.0.0.1:8000/api/auth/user', { headers: { Authorization: `Bearer ${response.data.token}` }})
-            // .then(res => console.log(res))
-  // console.log(currentLang);
-  //   const [name, setName] = useState(() => {
-  //       const saved = localStorage.getItem("name");
-  //       console.log(saved)
-  //       const initialValue = JSON.parse(saved);
-  //       return initialValue || "";
-  //   });
-  //   useEffect(() => {
-  //       localStorage.setItem("name", JSON.stringify(name));
-  //       }, [name]);
-
+    dispatch(loadUsersAsync())
+  }, [])
+  AuthStore.getToken()
+  useSelector(state => console.log(state.users))
 
 return (
     <div className="App">
@@ -90,7 +70,7 @@ return (
           <WishList />
         </Route>
         <Route path="/Daxil-ol">
-          <Login users = {userr} />
+          <Login/>
         </Route>
         <Route path="/Qeydiyyat">
           <SignUp />

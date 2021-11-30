@@ -51,11 +51,9 @@ function SignUp() {
             password_confirmation: confirmPassword
         };
         dispatch(registerAsync(article));
-        if(users === 'successful'){
+        // if(users === 'successful'){
             setOpen(true);
-        }
-
-
+        // }
     }
     
 

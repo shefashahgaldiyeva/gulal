@@ -17,7 +17,7 @@ function Filter(props) {
         (state) => state.products
     );
 
-    useSelector(state => console.log(state))
+    // useSelector(state => console.log(state))
     // useSelector(state => console.log(state.newOfferData))
   const [cats, setCats] = useState([]);
   const [id, setId] = useState([]);

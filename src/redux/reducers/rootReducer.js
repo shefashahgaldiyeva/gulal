@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import usersReducer from "./users/users.reducer";
 import categoriesReducer from "./categories/categories.reducer";
 import productsReducer from "./products/products.reducer";
+import discountProductsReducer from "./products/discount.products.reducer";
 
 import newOfferData from "./newOfferData";
 import bucketReducer from "./bucketReducer";
@@ -11,6 +12,7 @@ import tokenReducer from "./tokenReducer";
 import allFlowersReducer from "./allFlowersReducer";
 import saleProductData from "./saleProductData";
 import registerReducer from "./users/registerReducer";
+import logoutReducer from "./users/logoutReducer";
 // import allCategoriesReducer from "./allCategoriesReducer";
 
 const rootReducer = () =>
@@ -18,9 +20,11 @@ const rootReducer = () =>
 		users: usersReducer,
 		categories : categoriesReducer,
 		products : productsReducer,
+		discountReducer : discountProductsReducer,
 		paramsReducer,
 		tokenReducer,
 		registerReducer,
+		logoutReducer,
 			newOfferData,
 		    bucketReducer,
 		    wishListReducers,
