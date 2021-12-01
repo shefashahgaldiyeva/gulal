@@ -6,6 +6,7 @@ class ProductsService {
 	getProductByCategory = (catId,params) => api().get(`category/productbycategory/${catId}`,{params});
 	getProductDetail = (id) => api().get(`product/show/${id}`);
 	getDiscountProduct = () => api().get(`product/discount`);
+	ProductAddToCart = (params) => api().post(`auth/addtocart`, params);
 }
 
 export default new ProductsService();

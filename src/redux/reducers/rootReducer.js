@@ -8,11 +8,11 @@ import newOfferData from "./newOfferData";
 import bucketReducer from "./bucketReducer";
 import wishListReducers from "./wishListReducers";
 import paramsReducer from "./paramsReducer";
-import tokenReducer from "./tokenReducer";
 import allFlowersReducer from "./allFlowersReducer";
 import saleProductData from "./saleProductData";
 import registerReducer from "./users/registerReducer";
 import logoutReducer from "./users/logoutReducer";
+import addToCartProductsReducer from "./products/addToCart.products.reducer";
 // import allCategoriesReducer from "./allCategoriesReducer";
 
 const rootReducer = () =>
@@ -21,8 +21,8 @@ const rootReducer = () =>
 		categories : categoriesReducer,
 		products : productsReducer,
 		discountReducer : discountProductsReducer,
+		cartReducer : addToCartProductsReducer,
 		paramsReducer,
-		tokenReducer,
 		registerReducer,
 		logoutReducer,
 			newOfferData,

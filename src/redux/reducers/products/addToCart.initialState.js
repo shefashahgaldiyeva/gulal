@@ -1,4 +1,5 @@
 export default {
-	logOut: false,
+	isLoading: false,
+	addToCart: null,
 	errorMessage: null,
 };

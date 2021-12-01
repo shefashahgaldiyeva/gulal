@@ -1,5 +1,5 @@
 import actionTypes from "./users.actionTypes";
-import initialState from "./users.initialState";
+import initialState from "./register.initialState";
 
 const registerReducer = (state = initialState, { type, payload }) => {
 	switch (type) {
@@ -8,7 +8,10 @@ const registerReducer = (state = initialState, { type, payload }) => {
 				return {
 					...state,
 					isLoading: true,
-					users: null,
+					registered: {
+						operation: 'unsuccessfull',
+						token: null
+					},
 					errorMessage: null,
 				};
 	
@@ -17,7 +20,10 @@ const registerReducer = (state = initialState, { type, payload }) => {
 			return {
 					...state,
 					isLoading: false,
-					users: payload,
+					registered: {
+						operation: payload.operation,
+						token: payload.token
+					},
 				};
 	
 			case actionTypes.REGISTER_LOAD_ERROR:

@@ -1,5 +1,5 @@
 import actionTypes from "./products.actionTypes";
-import initialState from "./products.initialState";
+import initialState from "./discount.initialState";
 
 const discountProductsReducer = (state = initialState, { type, payload }) => {
 	switch (type) {

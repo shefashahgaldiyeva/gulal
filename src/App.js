@@ -28,23 +28,30 @@ import AuthStore from "./services/AuthStore";
 
 function App() {
 
-  LanguageService.getLang();
-  const currentLang = localStorage.getItem("locale");
+	LanguageService.getLang();
+	const currentLang = localStorage.getItem("locale");
 
-  const dispatch = useDispatch();
-  const { isLoading, categories, errorMessage } = useSelector(
-    (state) => state.categories
-  );
+	const dispatch = useDispatch();
+	const { isLoading, categories, errorMessage } = useSelector(
+		(state) => state.categories
+	);
 
-  const token = useSelector(state => state.tokenReducer)
-  useEffect(() => {
-    dispatch(loadCategoriesAsync());
-  }, []);
-  useEffect(() => {
-    dispatch(loadUsersAsync())
-  }, [])
-  AuthStore.getToken()
-  useSelector(state => console.log(state.users))
+	useEffect(() => {
+		dispatch(loadCategoriesAsync());
+	}, []);
+	useEffect(() => {
+		dispatch(loadUsersAsync())
+	}, [])
+	useEffect(() => {
+	}, [])
+	AuthStore.getToken()
+	// console.log(AuthStore.getToken())
+	// const {loading, users, error} = useSelector(state => state.users)
+	// if(!loading && users){
+	// 	console.log(users.user.id)
+	// }
+	
+
 
 return (
     <div className="App">

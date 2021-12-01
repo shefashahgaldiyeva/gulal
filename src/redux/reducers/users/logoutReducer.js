@@ -7,8 +7,7 @@ const logoutReducer = (state = initialState, { type, payload }) => {
 
 					return {
 						...state,
-						isLoading: true,
-						logData: null,
+						logOut: false,
 						errorMessage: null,
 					};
 		
@@ -16,15 +15,14 @@ const logoutReducer = (state = initialState, { type, payload }) => {
 		
 				return {        
 						...state,
-						isLoading: false,
-						logData: payload,
+						logOut: true,
 					};
 		
 				case actionTypes.LOGOUT_LOAD_ERROR:
 		
 				return {
 						...state,
-						isLoading: false,
+						logOut: false,
 						errorMessage: payload,
 					};
 

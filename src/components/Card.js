@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import  styled  from '../css/WishList.module.css';
 import  styles from '../css/Card.module.css'
+import { loadAddToCartProductAsnync } from '../redux/reducers/products/products.thunks';
 import {FiHeart} from 'react-icons/fi'
 import {FaRegEye} from 'react-icons/fa'
 import {BsCartPlus} from 'react-icons/bs'
@@ -70,13 +71,18 @@ function Card(props) {
         if(addedItem.length !== 0){
             addedItem[0].quantity += 1
         }else{
-            dispatch({
-                type: 'ELAVE_ET',
-                payload: item 
+            loadAddToCartProductAsnync({
+                'uid': item.id,
+                'pid': item.id
             })
+            // dispatch({
+            //     type: 'ELAVE_ET',
+            //     payload: item 
+            // })
         }
-        
     }
+
+    useSelector(state => console.log(state.cartReducer))
     const handleAddWishlist = (item) =>{
         dispatch({
             type: 'SEVIMLIYE_ELAVE_ET',

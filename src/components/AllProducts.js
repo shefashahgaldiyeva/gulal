@@ -8,6 +8,10 @@ import bottomHeading from '../img/bottomHeading.png'
 function AllProducts(props) {
 
     SwiperCore.use([Pagination]);
+
+    // props.data.map((item)=>{
+    //     console.log(item)
+    // })
  
     return (
         <div className={styles.products}>

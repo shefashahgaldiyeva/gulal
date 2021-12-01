@@ -9,9 +9,9 @@ class AuthStore{
 
     constructor(){
         makeAutoObservable(this,{
-            appState:observable,
-            saveToken:action,
-            getToken:action
+            appState: observable,
+            saveToken: action,
+            getToken: action
         });
     }
 

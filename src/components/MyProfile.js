@@ -1,8 +1,10 @@
-import React from 'react'
+import React,{ useEffect } from 'react'
 // import styles from '../css/MyProfile.module.css'
 import '../css/MyProfilePure.css'
 // import '../css/MyProfilePure2.css'
 import styles from '../css/TopHeader.module.css'
+import { useSelector,useDispatch } from 'react-redux'
+import { loadUsersAsync } from '../redux/reducers/users/users.thunks'
 import { BiSpa } from 'react-icons/bi'
 import { AiOutlineUser } from 'react-icons/ai'
 import { GiFlowerEmblem } from 'react-icons/gi'
@@ -22,6 +24,19 @@ import { style } from '@mui/system'
 // import { RiMapPinLine } from 'react-icons/ri'
 
 function MyProfile() {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(loadUsersAsync())
+    }, [])
+
+    const authUser = useSelector((state) => state.users);
+    if(authUser.isLoading && !authUser.users){
+        return (<h1>Gozleyin ...</h1>)
+    }
+
+
     return (
         <div>
             <div id="ebazar-layout" className="theme-blue">
@@ -288,24 +303,24 @@ function MyProfile() {
                                         {/* </a> */}
                                         {/* <button className="btn btn-primary" style="position: absolute;top:15px;right: 15px;" data-bs-toggle="modal" data-bs-target="#editprofile"><i className="icofont-edit"></i></button> */}
                                         <div className="about-info d-flex align-items-center mt-3 justify-content-center flex-column">
-                                            <span className="text-muted small">İstifadəçi ID'si : PXL-0001</span>
+                                            <span className="text-muted small">İstifadəçi ID'si : {authUser.users.user.id}</span>
                                         </div>
                                     </div>
                                     <div className="profile-info w-100">
-                                        <h6  className="mb-0 mt-2  fw-bold d-block fs-6 text-center">Adrian	Allan</h6>
+                                        <h6  className="mb-0 mt-2  fw-bold d-block fs-6 text-center">{authUser.users.user.fullanme}</h6>
                                         {/* <span className="py-1 fw-bold small-11 mb-0 mt-1 text-muted text-center mx-auto d-block">24 years, California</span> */}
                                         {/* <p className="mt-2">Duis felis ligula, pharetra at nisl sit amet, ullamcorper fringilla mi. Cras luctus metus non enim porttitor sagittis. Sed tristique scelerisque arcu id dignissim.</p> */}
                                         <div className="row g-2 pt-2">
                                             <div className="col-xl-12">
                                                 <div className="d-flex align-items-center">
                                                     <BsTelephone/>
-                                                    <span className="ms-2">202-555-0174 </span>
+                                                    <span className="ms-2">{authUser.users.user.phone}</span>
                                                 </div>
                                             </div>
                                             <div className="col-xl-12">
                                                 <div className="d-flex align-items-center">
                                                     <SiGmail/>
-                                                    <span className="ms-2">adrianallan@gmail.com</span>
+                                                    <span className="ms-2">{authUser.users.user.email}</span>
                                                 </div>
                                             </div>
                                             {/* <div className="col-xl-12">
@@ -370,7 +385,7 @@ function MyProfile() {
                                         <div className="col-sm-6">
                                             <div className="form-group">
                                                 <label className="form-label">İstifadəçi adı</label>
-                                                <input className="form-control"  type="text"/>
+                                                <input className="form-control"  value={'salam'} type="text"/>
                                             </div>
                                         </div>
                                         <div className="col-sm-6">

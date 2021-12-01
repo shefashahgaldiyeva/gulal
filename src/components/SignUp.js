@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { useSelector,useDispatch } from 'react-redux'
+import { Redirect } from 'react-router'
 // import styled from '../css/SignUp.module.css'
 import styles from '../css/Login.module.css'
 import { Link } from 'react-router-dom'
@@ -15,6 +16,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import AuthStore from '../services/AuthStore'
 
 function SignUp() {
 
@@ -26,18 +28,17 @@ function SignUp() {
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
-        return;
+            return;
         }
-
         setOpen(false);
     };
 
     const dispatch = useDispatch()
-    const {isLoading, users, errorMessage} = useSelector(state => state.registerReducer)
-    console.log(users)
+    const {isLoading, registered, errorMessage} = useSelector(state => state.registerReducer)
     // console.log(errorMessage ? errorMessage.response.data.errors : 'yoxdur')
 
     const submit = () =>{ 
+
         const fullname = document.getElementById('fullname').value
         const phone = document.getElementById('tel').value
         const email = document.getElementById('email').value
@@ -51,11 +52,18 @@ function SignUp() {
             password_confirmation: confirmPassword
         };
         dispatch(registerAsync(article));
-        // if(users === 'successful'){
-            setOpen(true);
-        // }
+          
+       
     }
-    
+    console.log(registered)
+    if(!isLoading && registered.operation == 'successfull' && registered.token){ 
+        // setOpen(true);
+         AuthStore.saveToken(registered.token)
+        // window.location.reload()
+    }
+    if(AuthStore.appState){
+        return <Redirect to='/'/> 
+    }
 
     return (
     <div className={styles.login}>

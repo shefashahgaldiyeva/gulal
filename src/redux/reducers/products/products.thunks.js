@@ -40,3 +40,12 @@ export const loadByFilterAsync = (id,params) => (dispatch) => {
 		.then((response) => dispatch(actions.getProductsLoadSuccess(response)))
 		.catch((error) => dispatch(actions.getProductsLoadError(error)));
 };
+
+export const loadAddToCartProductAsnync = (params) => (dispatch) => {
+	// console.log(params)
+	dispatch(actions.addToCartProductLoadStart());
+
+	ProductsService.ProductAddToCart(params)
+		.then((response) => dispatch(actions.addToCartProductLoadSuccess(response)))
+		.catch((error) => dispatch(actions.addToCartProductLoadError(error)));
+};

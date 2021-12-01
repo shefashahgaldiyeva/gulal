@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styles from "../css/Header.module.css";
@@ -11,13 +11,13 @@ import { BsBell } from "react-icons/bs";
 import logo from "../img/logo.jpg";
 import AuthStore from "../services/AuthStore";
 import { BiLogOut } from "react-icons/bi";
-import UsersService from "../services/users.service";
-import { logoutAsync } from '../redux/reducers/users/users.thunks'
+import { logoutAsync } from "../redux/reducers/users/users.thunks";
 
 function Header(props) {
+
 	const dispatch = useDispatch()
   const bucket = useSelector((state) => state.bucketReducer);
-    const cats = props.cats
+  const cats = props.cats
   const [isPassive, setPassive] = useState(false);
   const toogleClass = () => {
     setPassive(!isPassive);
@@ -31,14 +31,15 @@ function Header(props) {
     }
   }
 
-  useSelector(state => console.log(state.logoutReducer))
-
-function logOut(){
-	// UsersService.logout()
-	// AuthStore.removeToken()
-	// window.location.href = '/'
-	dispatch(logoutAsync())
-}
+  const isLogOut = useSelector((state) => state.logoutReducer);
+  
+  function logOut() {
+    dispatch(logoutAsync());
+  }
+  if (isLogOut.logOut) {
+    AuthStore.removeToken();
+    window.location.href = "/";
+  } 
 
   return (
  

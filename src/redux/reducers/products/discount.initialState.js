@@ -1,4 +1,5 @@
 export default {
-	logOut: false,
+	isLoading: false,
+	discount: null,
 	errorMessage: null,
 };

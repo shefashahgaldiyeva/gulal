@@ -1,6 +1,7 @@
 import React,{ useState,useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { loadProductsAsync,loadDiscountProduct } from "../redux/reducers/products/products.thunks";
+import { loadAddToCartProductAsnync } from "../redux/reducers/products/products.thunks";
 
 import Container from '../components/Container';
 import NewOffer from '../components/NewOffer';
@@ -32,6 +33,9 @@ function Home() {
     // if(!loading && discount){
     //     console.log(discount.data.data)
     // }
+
+   
+    // useSelector(state => console.log(state.cartReducer))
 
     return (
         <div>

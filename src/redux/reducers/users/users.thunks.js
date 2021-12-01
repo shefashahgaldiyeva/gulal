@@ -13,7 +13,7 @@ export const registerAsync = (params) => (dispatch) => {
 	dispatch(actions.registerLoadStart());
 
 	UsersService.register(params)
-		.then((response) => dispatch(actions.registerLoadSuccess(response.data.operation)))
+		.then((response) => dispatch(actions.registerLoadSuccess(response.data)))
 		.catch((error) => dispatch(actions.registerLoadError(error)));
 };
 

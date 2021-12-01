@@ -65,6 +65,22 @@ const getDiscountProductLoadError = (errorMessage) => ({
 })
 
 
+
+const addToCartProductLoadStart = () => ({
+	type: actionTypes.ADDTOCART_PRODUCTS_LOAD_START,
+});
+
+const addToCartProductLoadSuccess = (products) => ({
+	type: actionTypes.ADDTOCART_PRODUCTS_LOAD_SUCCESS,
+	payload: products,
+});
+
+const addToCartProductLoadError = (errorMessage) => ({
+	type: actionTypes.ADDTOCART_PRODUCTS_LOAD_ERROR,
+	payload: errorMessage,
+})
+
+
 export default {
 	productsLoadStart,
 	productsLoadSuccess,
@@ -75,8 +91,10 @@ export default {
 	getProductDetailLoadStart,
 	getProductDetailLoadSuccess,
 	getProductDetailLoadError,
-
 	getDiscountProductLoadStart,
 	getDiscountProductLoadSuccess,
-	getDiscountProductLoadError
+	getDiscountProductLoadError,
+	addToCartProductLoadStart,
+	addToCartProductLoadSuccess,
+	addToCartProductLoadError
 };
