@@ -23,6 +23,9 @@ function ShopAllCategory(props) {
     const {isLoading,products,errorMessage} = useSelector( 
         (state) => state.products
     );
+    // if(products && !isLoading){
+    //     console.log(products.data.data)
+    // }
 
     useEffect(() => {
         dispatch(loadProductByCategoryAsync(catId));
@@ -34,7 +37,7 @@ function ShopAllCategory(props) {
                 props ? <Filter cats={props.cats}/> :  null
             }
             {
-                products != null ? 
+                products && !isLoading ? 
                     <ProductsInShop data={products.data.data}/>
                 : null
             }

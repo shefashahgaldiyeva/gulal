@@ -66,23 +66,25 @@ function Card(props) {
   
     
     const bucket = useSelector(state => state.bucketReducer)
+    const getCard = useSelector(state => state.getCartReducer)
+    console.log(getCard)
+    const {isLoading,users,errorMessage} = useSelector(state => state.users)
+    
     const handleAdd = (item) =>{
-        const addedItem = bucket.filter(index => index.id === item.id)
-        if(addedItem.length !== 0){
-            addedItem[0].quantity += 1
-        }else{
-            loadAddToCartProductAsnync({
-                'uid': item.id,
-                'pid': item.id
-            })
+        console.log(item.id)
+         // console.log(users.users.user ? users.users.user.id : null)
+         if(users){
+            dispatch(loadAddToCartProductAsnync({
+                pid : item.id
+            }))
+        }
             // dispatch({
             //     type: 'ELAVE_ET',
             //     payload: item 
             // })
-        }
     }
 
-    useSelector(state => console.log(state.cartReducer))
+    // useSelector(state => console.log(state.cartReducer))
     const handleAddWishlist = (item) =>{
         dispatch({
             type: 'SEVIMLIYE_ELAVE_ET',

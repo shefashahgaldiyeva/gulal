@@ -81,6 +81,65 @@ const addToCartProductLoadError = (errorMessage) => ({
 })
 
 
+const getCartLoadStart = () => ({
+	type: actionTypes.GETCART_PRODUCTS_LOAD_START,
+});
+
+const getCartSuccess = (products) => ({
+	type: actionTypes.GETCART_PRODUCTS_LOAD_SUCCESS,
+	payload: products,
+});
+
+const getCartError = (errorMessage) => ({
+	type: actionTypes.GETCART_PRODUCTS_LOAD_ERROR,
+	payload: errorMessage,
+})
+
+
+const allProductsLoadStart = () => ({
+	type: actionTypes.ALL_PRODUCTS_LOAD_START,
+});
+
+const allProductsLoadSuccess = (products) => ({
+	type: actionTypes.ALL_PRODUCTS_LOAD_SUCCESS,
+	payload: products,
+});
+
+const allProductsLoadError = (errorMessage) => ({
+	type: actionTypes.ALL_PRODUCTS_LOAD_ERROR,
+	payload: errorMessage,
+});
+
+
+const incrementLoadStart = () => ({
+	type: actionTypes.INCREMENT_LOAD_START,
+});
+
+const incrementLoadSuccess = (payload) => ({
+	type: actionTypes.INCREMENT_LOAD_SUCCESS,
+	payload: payload,
+});
+
+const incrementLoadError = (errorMessage) => ({
+	type: actionTypes.INCREMENT_LOAD_ERROR,
+	payload: errorMessage,
+});
+
+const decrementLoadStart = () => ({
+	type: actionTypes.DECREMENT_LOAD_START,
+});
+
+const decrementLoadSuccess = (payload) => ({
+	type: actionTypes.DECREMENT_LOAD_SUCCESS,
+	payload: payload,
+});
+
+const decrementLoadError = (errorMessage) => ({
+	type: actionTypes.DECREMENT_LOAD_ERROR,
+	payload: errorMessage,
+});
+
+
 export default {
 	productsLoadStart,
 	productsLoadSuccess,
@@ -96,5 +155,17 @@ export default {
 	getDiscountProductLoadError,
 	addToCartProductLoadStart,
 	addToCartProductLoadSuccess,
-	addToCartProductLoadError
+	addToCartProductLoadError,
+	getCartLoadStart,
+	getCartSuccess,
+	getCartError,
+	allProductsLoadStart,
+	allProductsLoadSuccess,
+	allProductsLoadError,
+	incrementLoadStart,
+	incrementLoadSuccess,
+	incrementLoadError,
+	decrementLoadStart,
+	decrementLoadSuccess,
+	decrementLoadError,
 };

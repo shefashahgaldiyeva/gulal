@@ -42,10 +42,41 @@ export const loadByFilterAsync = (id,params) => (dispatch) => {
 };
 
 export const loadAddToCartProductAsnync = (params) => (dispatch) => {
-	// console.log(params)
 	dispatch(actions.addToCartProductLoadStart());
 
 	ProductsService.ProductAddToCart(params)
-		.then((response) => dispatch(actions.addToCartProductLoadSuccess(response)))
+		.then((response) => dispatch(actions.addToCartProductLoadSuccess(response.data.operation)))
 		.catch((error) => dispatch(actions.addToCartProductLoadError(error)));
 };
+
+export const loadAllProductsAsync = () => (dispatch) => {
+	dispatch(actions.allProductsLoadStart());
+
+	ProductsService.getAllProducts()
+		.then((response) => dispatch(actions.allProductsLoadSuccess(response.data)))
+		.catch((error) => dispatch(actions.allProductsLoadError(error.message)));
+};
+
+export const getCartAsync = () => (dispatch) => {
+	dispatch(actions.getCartLoadStart());
+
+	ProductsService.GetCart()
+		.then((response) => dispatch(actions.getCartSuccess(response.data)))
+		.catch((error) => dispatch(actions.getCartError(error)));
+}
+
+export const loadIncrementAsync = (id) => (dispatch) => {
+	dispatch(actions.incrementLoadStart());
+
+	ProductsService.incrementQuantity(id)
+		.then((response) => dispatch(actions.incrementLoadSuccess(response.data)))
+		.catch((error) => dispatch(actions.incrementLoadError(error)));
+}
+
+export const loadDecrementAsync = (id) => (dispatch) => {
+	dispatch(actions.decrementLoadStart());
+
+	ProductsService.decrementQuantity(id)
+		.then((response) => dispatch(actions.decrementLoadSuccess(response.data)))
+		.catch((error) => dispatch(actions.decrementLoadError(error)));
+}

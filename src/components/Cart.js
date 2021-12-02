@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styles from '../css/Cart.module.css'
@@ -10,7 +10,16 @@ import cartBg from '../img/cardBg.jpg'
 
 function Cart() {
 
-    const selector = useSelector(state => state.bucketReducer)
+    // useEffect(() => {
+    //     window.location.reload()
+    // }, [])
+
+    const {getingCartProduct, getCartProduct, getCardErrorMessage} = useSelector(state => state.getCartReducer)
+    // console.log(getCartProduct)
+    
+    // if(getCartProduct){
+    //     console.log(getCartProduct.data)
+    // }
     // console.log(selector.length)
 
 
@@ -19,11 +28,11 @@ function Cart() {
             <div className={styles.cartTop} style={{backgroundImage: `url(${cartBg})`, backgroundPosition: '50% 10%'}}>
                 <h2>Səbət</h2>
             </div>
-            <div className={selector.length != 0 ? styles.cart : styles.none}>
+            <div className={!getingCartProduct && getCartProduct && getCartProduct.data.length > 0 ? styles.cart : styles.none}>
                 <ProductInCart/>
                 <TotalInCart/>
             </div>
-            <div className={selector.length == 0 ? styles.emptyCart : styles.none}>
+            <div className={!getingCartProduct && !getCartProduct ? styles.emptyCart : styles.none}>
                 <BsCartX/>
                 <Link to='/'>Ana səhifəyə keçid</Link>
             </div>

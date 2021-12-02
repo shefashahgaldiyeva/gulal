@@ -3,6 +3,9 @@ import usersReducer from "./users/users.reducer";
 import categoriesReducer from "./categories/categories.reducer";
 import productsReducer from "./products/products.reducer";
 import discountProductsReducer from "./products/discount.products.reducer";
+import allProductsReducer from "./products/all.products.inHome.reducer";
+import addToCartProductsReducer from "./products/addToCart.products.reducer";
+import getCartReducer from "./products/getCart.reducer";
 
 import newOfferData from "./newOfferData";
 import bucketReducer from "./bucketReducer";
@@ -12,7 +15,6 @@ import allFlowersReducer from "./allFlowersReducer";
 import saleProductData from "./saleProductData";
 import registerReducer from "./users/registerReducer";
 import logoutReducer from "./users/logoutReducer";
-import addToCartProductsReducer from "./products/addToCart.products.reducer";
 // import allCategoriesReducer from "./allCategoriesReducer";
 
 const rootReducer = () =>
@@ -20,8 +22,10 @@ const rootReducer = () =>
 		users: usersReducer,
 		categories : categoriesReducer,
 		products : productsReducer,
+		allProducts : allProductsReducer,
 		discountReducer : discountProductsReducer,
 		cartReducer : addToCartProductsReducer,
+		getCartReducer,
 		paramsReducer,
 		registerReducer,
 		logoutReducer,

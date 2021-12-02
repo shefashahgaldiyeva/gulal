@@ -14,11 +14,11 @@ import Sale from '../components/Sale'
 function Home() {
 
     const dispatch = useDispatch()
-    const {isLoading,products,errorMessage} = useSelector((state) => state.products);
+    // const {isLoading,products,errorMessage} = useSelector((state) => state.products);
 
-    useEffect(() => {
-        dispatch(loadProductsAsync());
-    }, []);
+    // useEffect(() => {
+    //     dispatch(loadProductsAsync());
+    // }, []);
 
     // if(!isLoading && products){
     //     console.log(products.data)
@@ -41,9 +41,9 @@ function Home() {
         <div>
             <Container/>
             <NewOffer/>
-            <AllProducts data={!isLoading && products && products.data}/>
+            <AllProducts/>
             {/* <SelectedCard/> */}
-            <Sale data={!loading && discount && discount.data.data}/>
+            <Sale data={!loading && discount && discount.data}/>
             <WhoWeAre/>
         </div>
     )

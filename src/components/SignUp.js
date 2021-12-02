@@ -52,14 +52,12 @@ function SignUp() {
             password_confirmation: confirmPassword
         };
         dispatch(registerAsync(article));
-          
-       
     }
     console.log(registered)
     if(!isLoading && registered.operation == 'successfull' && registered.token){ 
         // setOpen(true);
-         AuthStore.saveToken(registered.token)
-        // window.location.reload()
+        AuthStore.saveToken(registered.token)
+        window.location.reload()
     }
     if(AuthStore.appState){
         return <Redirect to='/'/> 

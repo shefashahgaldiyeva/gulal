@@ -6,23 +6,23 @@ const addToCartProductsReducer = (state = initialState, { type, payload }) => {
 			case actionTypes.ADDTOCART_PRODUCTS_LOAD_START:
 				return {
 					...state,
-					loading: true,
-					addToCart: null,
-					error: null,
+					addingToCart: true,
+					addedToCart: false,
+					addToCardErrorMessage: null,
 				};
 	
 			case actionTypes.ADDTOCART_PRODUCTS_LOAD_SUCCESS:
 				return {
 					...state,
-					loading: false,
-					addToCart: payload,
+					addingToCart: false,
+					addedToCart: payload,
 				};
 	
 			case actionTypes.ADDTOCART_PRODUCTS_LOAD_ERROR:
 				return {
 					...state,
-					loading: false,
-					error: payload,
+					addingToCart: false,
+					addedToCart: payload,
 				};			
 			
 		default:

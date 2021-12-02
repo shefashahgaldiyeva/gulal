@@ -14,6 +14,8 @@ import { loadByFilterAsync } from "../redux/reducers/products/products.thunks";
 
 function ProductsInShop(props) {
 
+    // console.log(props.data)
+
     const dispatch = useDispatch();
     const match = useRouteMatch();
   
@@ -43,7 +45,8 @@ function ProductsInShop(props) {
         <div className={styles.products}>
                 <div className={styles.productsTop}>
                     <div className={styles.productsTopLeft}>
-                        <p><span>{selectorData.length}</span> 'dən <span>{9}</span> 'u göstərilir</p>
+                        {/* <p>Mövcuddur: <span>{props.data ? props.data.length : 0}</span>, Göstərilir: <span>{props.data ? props.data.length : 0}</span></p> */}
+                        {/* <p><span>{props.data.length}</span> 'dən <span>{props.data.length}</span> 'u göstərilir</p> */}
                     </div>
                     <div className={styles.productsTopRight}>
                         <div>
