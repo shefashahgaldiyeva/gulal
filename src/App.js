@@ -53,7 +53,7 @@ function App() {
 	// 	console.log(users.user.id)
 	// }
 	
-	useSelector(state => console.log(state.cartReducer))
+	// useSelector(state => console.log(state.cartReducer))
 
 
 return (

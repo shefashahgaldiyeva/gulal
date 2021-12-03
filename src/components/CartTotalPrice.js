@@ -14,14 +14,17 @@ function CartTotalPrice(props) {
     const { getingQuantity, getDetail, getQuantityErrorMessage } = useSelector(
         (state) => state.quantityReducer
     );
+    if(!getingQuantity && getDetail){
+        console.log(getDetail)
+    }
     useEffect(() => {
         dispatch(loadQuantityAsync());
     }, [props.id]);
 
     return (
         <div>
-            {!getingQuantity &&
-                getDetail.data.map(item => item.product_id==props.id? 
+            {!getingQuantity && getDetail &&
+                getDetail.data.map(item => item.product_id == (props.id && props.id) ? 
                     <p className={styles.total}>{item.totalPrice} azn</p> : null
                 )}
         </div>

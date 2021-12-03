@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React,{ useEffect } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -44,22 +44,23 @@ const style = {
 
 function Card(props) { 
 
-  const [openSnack, setOpenSnack] = React.useState(false);
+    const {addingToCart, addedToCart, addToCardErrorMessage} = useSelector(state =>state.cartReducer)
+    console.log(addedToCart)
+    let bisey = addedToCart;
+  const [openSnack, setOpenSnack] = React.useState(addedToCart);
   const handleClickSnack = () => {
-    setOpenSnack(!openSnack);
+//     setOpenSnack(!addingToCart && addedToCart);
+//     setTimeout(() => {
+//         setOpenSnack(false)
+//     }, 2000);
   };
   const handleCloseSnack = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpenSnack(!openSnack);
+      bisey = false
+    // if (reason === 'clickaway') {
+    //   return;
+    // }
+    // setOpenSnack(false);
   };
-    const handleOpenSnack = () => setOpenSnack(!openSnack);
-//   const handleClose = () => setOpen(false);
-    // const selectorAll = useSelector(state => state.allDataReducer)
-    // selectorAll.map((item)=>{
-    //         console.log(item.id)
-    // })
     
    
     const dispatch = useDispatch();
@@ -70,26 +71,29 @@ function Card(props) {
     console.log(getCard)
     const {isLoading,users,errorMessage} = useSelector(state => state.users)
     
-    const {addingToCart, addedToCart, addToCardErrorMessage} = useSelector(state =>state.cartReducer)
-    console.log(addedToCart)
+    
     
     const handleAdd = (item) =>{
         console.log(item.id)
          // console.log(users.users.user ? users.users.user.id : null)
-         if(users){
-            dispatch(loadAddToCartProductAsnync({
-                pid : item.id
-            }))
-            if(addedToCart){
-                setOpenSnack(!openSnack);
-                console.log(`openSnack: ${openSnack}`)
+         if(!isLoading && users){
+             dispatch(loadAddToCartProductAsnync({
+                 pid : item.id
+                }))
+                console.log(`addedToCart: ${addedToCart}`)
             }
-        }
+            
             // dispatch({
             //     type: 'ELAVE_ET',
             //     payload: item 
             // }
         }
+        useEffect(() => {
+            if(!addingToCart && addedToCart){
+                setOpenSnack(!openSnack);
+                console.log(`openSnack: ${openSnack}`)
+            }
+        }, [addedToCart])
 
     // useSelector(state => console.log(state.cartReducer))
     const handleAddWishlist = (item) =>{
@@ -164,7 +168,7 @@ function Card(props) {
 
     return (
         <div className={styles.shoppingCardWrapper}>
-               <Snackbar className={styles.snackbar} style={{position: 'fixed'}} open={openSnack} autoHideDuration={60000} onClose={handleCloseSnack}>
+               <Snackbar className={styles.snackbar} style={{position: 'fixed'}} open={bisey} autoHideDuration={60000} onClose={handleCloseSnack}>
                     <Alert onClose={handleCloseSnack} severity="success" sx={{ width: '100%' }}>
                         Səbətə uğurla əlavə edildi!
                     </Alert>

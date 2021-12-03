@@ -91,6 +91,7 @@ export const loadQuantityAsync = () => (dispatch) => {
 }
 
 export const loadCartDeleteAsync = (id) => (dispatch) => {
+	console.log(id)
 	dispatch(actions.cartDeleteLoadStart());
 
 	ProductsService.cartDelete(id)

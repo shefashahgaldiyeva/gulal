@@ -8,6 +8,7 @@ import allProductsReducer from "./products/all.products.inHome.reducer";
 import addToCartProductsReducer from "./products/addToCart.products.reducer";
 import getCartReducer from "./products/getCart.reducer";
 import getQuantityReducer from "./products/getQuantity.reducer";
+import cartDeleteReducer from "./products/cartDelete.reducer";
 
 import newOfferData from "./newOfferData";
 import bucketReducer from "./bucketReducer";
@@ -29,6 +30,7 @@ const rootReducer = () =>
 		quantityReducer : getQuantityReducer,
 		getCartReducer,
 		paramsReducer,
+		cartDeleteReducer,
 		registerReducer,
 		logoutReducer,
 			newOfferData,

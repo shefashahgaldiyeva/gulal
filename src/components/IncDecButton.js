@@ -12,7 +12,10 @@ function IncDecButton(props) {
     const dispatch = useDispatch();
     const { getingQuantity, getDetail, getQuantityErrorMessage } = useSelector(
       (state) => state.quantityReducer
-    );
+    ); 
+    if(!getingQuantity && getDetail){
+        console.log(getDetail)
+    }
     useEffect(() => {
       dispatch(loadQuantityAsync());
     }, [props.id]);
@@ -36,7 +39,7 @@ function IncDecButton(props) {
 return (
     <div>
         <button onClick={() => handleMinus(props.id)}>-</button>
-        {!getingQuantity &&
+        {!getingQuantity && getDetail != 'undefined' &&
             getDetail.data.map(item => item.product_id == props.id ? 
                item.quantity : null
             )}

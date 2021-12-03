@@ -4,6 +4,7 @@ import styles from '../css/ProductInCart.module.css'
 import { GrClose } from 'react-icons/gr'
 import { loadIncrementAsync, loadQuantityAsync, loadDecrementAsync  } from '../redux/reducers/products/products.thunks';
 import { getCartAsync } from '../redux/reducers/products/products.thunks';
+import { loadCartDeleteAsync } from '../redux/reducers/products/products.thunks';
 import IncDecButton from './IncDecButton';
 import CartTotalPrice from './CartTotalPrice'
 
@@ -40,6 +41,14 @@ const ProductInCart = () =>{
     // })
 
 
+    function handleDelete(id){
+        dispatch(loadCartDeleteAsync({
+            pid: id,
+          }))
+        dispatch(getCartAsync)
+    }
+
+
     return (
         <div className={styles.table}>
             <table>
@@ -55,7 +64,7 @@ const ProductInCart = () =>{
                 <tbody id='tbody'>
                 {
                     !getingCartProduct && getCartProduct && getCartProduct.data.map((item)=>(
-                        <tr key={item.product.id}>
+                    <tr key={item.product.id}>
                         <td style={{with:'30%'}} className={styles.tdImgName}>
                             <div>
                                 <img className={styles.img} src={item.product.photo}/>
@@ -71,10 +80,7 @@ const ProductInCart = () =>{
                        <td style={{with:'25%'}}>
                             <CartTotalPrice id={item.product.id}/>
                         </td>
-                        <td style={{with:'10%'}}><button className={styles.btn} onClick={()=>dispatch({
-                            type: 'SEBETDEN_SIL',
-                            payload: item
-                            })}>
+                        <td style={{with:'10%'}}><button className={styles.btn} onClick={()=>handleDelete(item.product.id)}>
                             <GrClose/>
                         </button></td>
                     </tr>

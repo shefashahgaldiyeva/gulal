@@ -152,7 +152,21 @@ const quantityLoadStart = () => ({
 	type: actionTypes.QUANTITY_LOAD_ERROR,
 	payload: errorMessage,
   });
+  
 
+  const cartDeleteLoadStart = () => ({
+	type: actionTypes.QUANTITY_LOAD_START,
+  });
+  
+  const cartDeleteLoadSuccess = (payload) => ({
+	type: actionTypes.QUANTITY_LOAD_SUCCESS,
+	payload: payload,
+  });
+  
+  const cartDeleteLoadError = (errorMessage) => ({
+	type: actionTypes.QUANTITY_LOAD_ERROR,
+	payload: errorMessage,
+  });
 
 export default {
 	productsLoadStart,
@@ -185,4 +199,7 @@ export default {
 	quantityLoadStart,
   	quantityLoadSuccess,
   	quantityLoadError,
+	cartDeleteLoadStart,
+	cartDeleteLoadSuccess,
+	cartDeleteLoadError,
 };
