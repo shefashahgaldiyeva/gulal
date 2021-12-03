@@ -46,15 +46,15 @@ function Card(props) {
 
   const [openSnack, setOpenSnack] = React.useState(false);
   const handleClickSnack = () => {
-    setOpenSnack(true);
+    setOpenSnack(!openSnack);
   };
   const handleCloseSnack = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-    setOpenSnack(false);
+    setOpenSnack(!openSnack);
   };
-    const handleOpenSnack = () => setOpenSnack(true);
+    const handleOpenSnack = () => setOpenSnack(!openSnack);
 //   const handleClose = () => setOpen(false);
     // const selectorAll = useSelector(state => state.allDataReducer)
     // selectorAll.map((item)=>{
@@ -65,10 +65,13 @@ function Card(props) {
     const dispatch = useDispatch();
   
     
-    const bucket = useSelector(state => state.bucketReducer)
+    // const bucket = useSelector(state => state.bucketReducer)
     const getCard = useSelector(state => state.getCartReducer)
     console.log(getCard)
     const {isLoading,users,errorMessage} = useSelector(state => state.users)
+    
+    const {addingToCart, addedToCart, addToCardErrorMessage} = useSelector(state =>state.cartReducer)
+    console.log(addedToCart)
     
     const handleAdd = (item) =>{
         console.log(item.id)
@@ -77,12 +80,16 @@ function Card(props) {
             dispatch(loadAddToCartProductAsnync({
                 pid : item.id
             }))
+            if(addedToCart){
+                setOpenSnack(!openSnack);
+                console.log(`openSnack: ${openSnack}`)
+            }
         }
             // dispatch({
             //     type: 'ELAVE_ET',
             //     payload: item 
-            // })
-    }
+            // }
+        }
 
     // useSelector(state => console.log(state.cartReducer))
     const handleAddWishlist = (item) =>{
@@ -129,6 +136,8 @@ function Card(props) {
     //         minusItem[0].quantity -= 1
     //     }
     // }
+
+
 
     const handlePlus = (item) =>{
         console.log(item)
