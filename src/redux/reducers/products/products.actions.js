@@ -139,6 +139,20 @@ const decrementLoadError = (errorMessage) => ({
 	payload: errorMessage,
 });
 
+const quantityLoadStart = () => ({
+	type: actionTypes.QUANTITY_LOAD_START,
+  });
+  
+  const quantityLoadSuccess = (payload) => ({
+	type: actionTypes.QUANTITY_LOAD_SUCCESS,
+	payload: payload,
+  });
+  
+  const quantityLoadError = (errorMessage) => ({
+	type: actionTypes.QUANTITY_LOAD_ERROR,
+	payload: errorMessage,
+  });
+
 
 export default {
 	productsLoadStart,
@@ -168,4 +182,7 @@ export default {
 	decrementLoadStart,
 	decrementLoadSuccess,
 	decrementLoadError,
+	quantityLoadStart,
+  	quantityLoadSuccess,
+  	quantityLoadError,
 };
