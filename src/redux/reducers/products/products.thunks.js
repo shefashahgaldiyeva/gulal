@@ -80,3 +80,20 @@ export const loadDecrementAsync = (id) => (dispatch) => {
 		.then((response) => dispatch(actions.decrementLoadSuccess(response.data)))
 		.catch((error) => dispatch(actions.decrementLoadError(error)));
 }
+
+
+export const loadQuantityAsync = () => (dispatch) => {
+	dispatch(actions.quantityLoadStart());
+
+	ProductsService.getCartDetail()
+		.then((response) => dispatch(actions.quantityLoadSuccess(response.data)))
+		.catch((error) => dispatch(actions.quantityLoadError(error)));
+}
+
+export const loadCartDeleteAsync = (id) => (dispatch) => {
+	dispatch(actions.cartDeleteLoadStart());
+
+	ProductsService.cartDelete(id)
+		.then((response) => dispatch(actions.cartDeleteLoadSuccess(response.data)))
+		.catch((error) => dispatch(actions.cartDeleteLoadError(error)));
+}
