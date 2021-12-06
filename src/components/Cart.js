@@ -14,25 +14,20 @@ function Cart() {
     //     window.location.reload()
     // }, [])
 
-    const {getingCartProduct, getCartProduct, getCardErrorMessage} = useSelector(state => state.getCartReducer)
+    const {gettingProductInCart,productInCart,errorMessage} =  useSelector(state => state.getShoppingCart)
     // console.log(getCartProduct)
     
-    // if(getCartProduct){
-    //     console.log(getCartProduct.data)
-    // }
-    // console.log(selector.length)
-
 
     return (
         <div>
             <div className={styles.cartTop} style={{backgroundImage: `url(${cartBg})`, backgroundPosition: '50% 10%'}}>
                 <h2>Səbət</h2>
             </div>
-            <div className={!getingCartProduct && getCartProduct && getCartProduct.data.length > 0 ? styles.cart : styles.none}>
+            <div className={!gettingProductInCart && productInCart ? styles.cart : styles.none}>
                 <ProductInCart/>
                 <TotalInCart/>
             </div>
-            <div className={!getingCartProduct && !getCartProduct ? styles.emptyCart : styles.none}>
+            <div className={!gettingProductInCart && !productInCart ? styles.emptyCart : styles.none}>
                 <BsCartX/>
                 <Link to='/'>Ana səhifəyə keçid</Link>
             </div>

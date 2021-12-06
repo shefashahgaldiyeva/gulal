@@ -1,4 +1,4 @@
-import React,{ useEffect } from 'react';
+import React,{ useEffect, useState } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -14,13 +14,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import  styled  from '../css/WishList.module.css';
 import  styles from '../css/Card.module.css'
-import { loadAddToCartProductAsnync } from '../redux/reducers/products/products.thunks';
 import {FiHeart} from 'react-icons/fi'
 import {FaRegEye} from 'react-icons/fa'
 import {BsCartPlus} from 'react-icons/bs'
 import { FaCartPlus } from 'react-icons/fa'
 import flower from '../img/flower.jpg'
-
+import { addToCart } from '../redux/reducers/setterReducer/addToCartProduct/addToCart.thunk';
+import { addToWishlist } from '../redux/reducers/setterReducer/addToWishlistProduct/addToWishlist.thunk'
 
 const style = {
     position: 'absolute',
@@ -44,22 +44,20 @@ const style = {
 
 function Card(props) { 
 
-    const {addingToCart, addedToCart, addToCardErrorMessage} = useSelector(state =>state.cartReducer)
-    console.log(addedToCart)
-    let bisey = addedToCart;
-  const [openSnack, setOpenSnack] = React.useState(addedToCart);
+  const [openSnack, setOpenSnack] = useState(false);
+  const {addingToCart,addedToCart,addedErrorMessage} = useSelector(state => state.setAddToCart)
+  const [countToCart,setCountToCart] = useState(false);
+ 
   const handleClickSnack = () => {
-//     setOpenSnack(!addingToCart && addedToCart);
-//     setTimeout(() => {
-//         setOpenSnack(false)
-//     }, 2000);
   };
   const handleCloseSnack = (event, reason) => {
-      bisey = false
     // if (reason === 'clickaway') {
     //   return;
     // }
-    // setOpenSnack(false);
+    if(openSnack===true){
+        setOpenSnack(false);
+        // setOpenSnack(null);
+    }
   };
     
    
@@ -67,41 +65,39 @@ function Card(props) {
   
     
     // const bucket = useSelector(state => state.bucketReducer)
-    const getCard = useSelector(state => state.getCartReducer)
-    console.log(getCard)
     const {isLoading,users,errorMessage} = useSelector(state => state.users)
     
-    
-    
     const handleAdd = (item) =>{
-        console.log(item.id)
-         // console.log(users.users.user ? users.users.user.id : null)
-         if(!isLoading && users){
-             dispatch(loadAddToCartProductAsnync({
-                 pid : item.id
-                }))
-                console.log(`addedToCart: ${addedToCart}`)
-            }
-            
-            // dispatch({
-            //     type: 'ELAVE_ET',
-            //     payload: item 
-            // }
+        if(!isLoading && users){
+             dispatch(addToCart({pid : item.id}))
         }
-        useEffect(() => {
-            if(!addingToCart && addedToCart){
-                setOpenSnack(!openSnack);
-                console.log(`openSnack: ${openSnack}`)
-            }
-        }, [addedToCart])
-
-    // useSelector(state => console.log(state.cartReducer))
-    const handleAddWishlist = (item) =>{
-        dispatch({
-            type: 'SEVIMLIYE_ELAVE_ET',
-            payload: item 
-        })
+        setCountToCart(countToCart=>countToCart+1)
     }
+ useEffect(() => {
+    if(!addingToCart && addedToCart){
+        if(!openSnack){
+            setOpenSnack(true)
+        }  
+    }
+    console.log(openSnack)
+ }, [countToCart])
+
+        // useEffect(() => {
+            // if(!addingToCart && addedToCart){
+            //     setOpenSnack(!openSnack);
+            //     console.log(`openSnack: ${openSnack}`)
+            // }
+        // }, [addedToCart])
+    
+    const handleAddWishlist = (item) =>{
+        if(!isLoading && users){
+            dispatch(addToWishlist({pid : item.id}))
+       }
+    }
+// useSelector(state => console.log(state.addToWishlist))
+    // if(!settingToWishlist && setedToWishlist){
+    //     console.log(setedToWishlist)
+    // }
 
     const allFlowersAdd = (item) =>{
         dispatch({
@@ -162,13 +158,9 @@ function Card(props) {
             }
         })
     }
-    // cardData.map((item)=>{
-    //     console.log(item.quantity)
-    // })
-
     return (
         <div className={styles.shoppingCardWrapper}>
-               <Snackbar className={styles.snackbar} style={{position: 'fixed'}} open={bisey} autoHideDuration={60000} onClose={handleCloseSnack}>
+               <Snackbar className={styles.snackbar} style={{position: 'fixed'}} open={openSnack} autoHideDuration={60000} onClose={handleCloseSnack}>
                     <Alert onClose={handleCloseSnack} severity="success" sx={{ width: '100%' }}>
                         Səbətə uğurla əlavə edildi!
                     </Alert>
@@ -242,11 +234,6 @@ function Card(props) {
                             <Button variant="outlined" onClick={()=>handleClickSnack()}>
                                 <a href='javascript:void(0)' onClick={() => handleAdd(props.item)}><span><BsCartPlus/></span>Satın al</a>
                             </Button>
-                            {/* <Snackbar open={openSnack} autoHideDuration={6000} onClose={handleCloseSnack}>
-                                <Alert onClose={handleCloseSnack} severity="success" sx={{ width: '100%' }}>
-                                    This is a success message!
-                                </Alert>
-                            </Snackbar> */}
                         </Stack>
                         </div>
                     </div>

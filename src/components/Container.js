@@ -16,7 +16,6 @@ import '../css/Pure.css'
 // import SwiperCore, {Autoplay} from 'swiper';
 
 
-
 function Container() {
 
     // SwiperCore.use([Autoplay]);

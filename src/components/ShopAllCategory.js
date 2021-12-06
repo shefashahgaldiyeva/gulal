@@ -12,7 +12,7 @@ import {BsFillGrid3X3GapFill} from 'react-icons/bs'
 import {RiLayoutGridFill} from 'react-icons/ri'
 import Filter from './Filter'
 import ProductsInShop from './ProductsInShop'
-import ProductsService from '../services/products.service'
+import { getProductsByCategory } from "../redux/reducers/getterReducer/product/product.thunk";
 
 function ShopAllCategory(props) {
    
@@ -20,16 +20,13 @@ function ShopAllCategory(props) {
     const match = useRouteMatch()
     const catId = match.params.catId;
     
-    const {isLoading,products,errorMessage} = useSelector( 
-        (state) => state.products
+    const { gettingProduct, products, errorMessage } = useSelector(
+        (state) => state.getProducts
     );
-    // if(products && !isLoading){
-    //     console.log(products.data.data)
-    // }
-
     useEffect(() => {
-        dispatch(loadProductByCategoryAsync(catId));
+        dispatch(getProductsByCategory(catId));
     }, [catId]);
+  
 
     return (
         <div className={styles.shop}>
@@ -37,8 +34,8 @@ function ShopAllCategory(props) {
                 props ? <Filter cats={props.cats}/> :  null
             }
             {
-                products && !isLoading ? 
-                    <ProductsInShop data={products.data.data}/>
+                !gettingProduct && products  ? 
+                    <ProductsInShop data={products.data}/>  
                 : null
             }
         </div>

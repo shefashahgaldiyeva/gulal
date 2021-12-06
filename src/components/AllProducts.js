@@ -6,19 +6,17 @@ import Card from '../components/Card';
 import styles from '../css/AllProducts.module.css'
 import bottomHeading from '../img/bottomHeading.png'
 import { loadAllProductsAsync } from "../redux/reducers/products/products.thunks";
+import { getProducts } from '../redux/reducers/getterReducer/product/product.thunk';
 
 
 
 function AllProducts(props) {
 
     const dispatch = useDispatch()
-    const {isLoading,allProducts,errorMessage} = useSelector((state) => state.allProducts);
+    const {gettingProduct,products,errorMessage} = useSelector((state) => state.getProducts);
 
-    // if(allProducts && !isLoading){
-    //     console.log(allProducts.data)
-    // }
     useEffect(() => {
-        dispatch(loadAllProductsAsync());
+        dispatch(getProducts());
     }, []);
     
     SwiperCore.use([Pagination]);
@@ -35,7 +33,7 @@ function AllProducts(props) {
                     <div className={styles.swipInner}>
                     <Swiper className={styles.swiperPage} slidesPerView={4} spaceBetween={0} pagination={{"clickable": true},{ grabCursor: true}}>
                     {
-                        !isLoading && allProducts && allProducts.data.map((item)=>(
+                        !gettingProduct && products && products.data.map((item)=>(
                             <SwiperSlide className={styles.allProductSwip}>
                                 <Card item={item}/>
                             </SwiperSlide>

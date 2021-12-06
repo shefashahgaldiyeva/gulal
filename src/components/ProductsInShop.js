@@ -9,7 +9,7 @@ import styles from '../css/Shop.module.css'
 import Card from '../components/Card'
 import {BsFillGrid3X3GapFill} from 'react-icons/bs'
 import {RiLayoutGridFill} from 'react-icons/ri'
-import { loadByFilterAsync } from "../redux/reducers/products/products.thunks";
+import { getProductByFilter } from '../redux/reducers/getterReducer/product/product.thunk'
 
 
 function ProductsInShop(props) {
@@ -38,7 +38,7 @@ function ProductsInShop(props) {
         })
         console.log(paramsHeader)
         console.log(e.target.value)
-        dispatch(loadByFilterAsync(catId, paramsHeader));
+        dispatch(getProductByFilter(catId, paramsHeader));
     }
 
     return (
