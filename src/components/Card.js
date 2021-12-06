@@ -20,6 +20,7 @@ import {FaRegEye} from 'react-icons/fa'
 import {BsCartPlus} from 'react-icons/bs'
 import { FaCartPlus } from 'react-icons/fa'
 import flower from '../img/flower.jpg'
+import { addToCart } from '../redux/reducers/setterReducer/addToCartProduct/addToCart.thunk';
 
 
 const style = {
@@ -44,22 +45,20 @@ const style = {
 
 function Card(props) { 
 
-    const {addingToCart, addedToCart, addToCardErrorMessage} = useSelector(state =>state.cartReducer)
-    console.log(addedToCart)
-    let bisey = addedToCart;
-  const [openSnack, setOpenSnack] = React.useState(addedToCart);
+  const [openSnack, setOpenSnack] = React.useState(false);
+  const {addingToCart,addedToCart,addedErrorMessage} = useSelector(state => state.setAddToCart)
+  const [countToCart,setCountToCart] = React.useState(false);
+ 
   const handleClickSnack = () => {
-//     setOpenSnack(!addingToCart && addedToCart);
-//     setTimeout(() => {
-//         setOpenSnack(false)
-//     }, 2000);
   };
   const handleCloseSnack = (event, reason) => {
-      bisey = false
     // if (reason === 'clickaway') {
     //   return;
     // }
-    // setOpenSnack(false);
+    if(openSnack===true){
+        setOpenSnack(false);
+        // setOpenSnack(null);
+    }
   };
     
    
@@ -67,35 +66,30 @@ function Card(props) {
   
     
     // const bucket = useSelector(state => state.bucketReducer)
-    const getCard = useSelector(state => state.getCartReducer)
-    console.log(getCard)
     const {isLoading,users,errorMessage} = useSelector(state => state.users)
     
-    
-    
     const handleAdd = (item) =>{
-        console.log(item.id)
-         // console.log(users.users.user ? users.users.user.id : null)
          if(!isLoading && users){
-             dispatch(loadAddToCartProductAsnync({
-                 pid : item.id
-                }))
-                console.log(`addedToCart: ${addedToCart}`)
-            }
-            
-            // dispatch({
-            //     type: 'ELAVE_ET',
-            //     payload: item 
-            // }
+             dispatch(addToCart({pid : item.id}))
         }
-        useEffect(() => {
-            if(!addingToCart && addedToCart){
-                setOpenSnack(!openSnack);
-                console.log(`openSnack: ${openSnack}`)
-            }
-        }, [addedToCart])
+        setCountToCart(countToCart=>countToCart+1)
+    }
+ useEffect(() => {
+    if(!addingToCart && addedToCart){
+        if(!openSnack){
+            setOpenSnack(true)
+        }  
+    }
+    console.log(openSnack)
+ }, [countToCart])
 
-    // useSelector(state => console.log(state.cartReducer))
+        // useEffect(() => {
+            // if(!addingToCart && addedToCart){
+            //     setOpenSnack(!openSnack);
+            //     console.log(`openSnack: ${openSnack}`)
+            // }
+        // }, [addedToCart])
+    
     const handleAddWishlist = (item) =>{
         dispatch({
             type: 'SEVIMLIYE_ELAVE_ET',
@@ -162,13 +156,9 @@ function Card(props) {
             }
         })
     }
-    // cardData.map((item)=>{
-    //     console.log(item.quantity)
-    // })
-
     return (
         <div className={styles.shoppingCardWrapper}>
-               <Snackbar className={styles.snackbar} style={{position: 'fixed'}} open={bisey} autoHideDuration={60000} onClose={handleCloseSnack}>
+               <Snackbar className={styles.snackbar} style={{position: 'fixed'}} open={openSnack} autoHideDuration={60000} onClose={handleCloseSnack}>
                     <Alert onClose={handleCloseSnack} severity="success" sx={{ width: '100%' }}>
                         Səbətə uğurla əlavə edildi!
                     </Alert>

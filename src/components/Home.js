@@ -9,33 +9,15 @@ import NewOffer from '../components/NewOffer';
 import AllProducts from '../components/AllProducts';
 import WhoWeAre from '../components/WhoWeAre'
 import Sale from '../components/Sale'
+import { getProductByDiscount } from '../redux/reducers/getterReducer/product/product.thunk';
 
 
 function Home() {
-
     const dispatch = useDispatch()
-    // const {isLoading,products,errorMessage} = useSelector((state) => state.products);
-
-    // useEffect(() => {
-    //     dispatch(loadProductsAsync());
-    // }, []);
-
-    // if(!isLoading && products){
-    //     console.log(products.data)
-    // }
-
-    const {loading,discount,error} = useSelector((state) => state.discountReducer);
-    
+    const {gettingProduct,products,errorMessage} = useSelector((state) => state.getProducts);
     useEffect(() => {
-        dispatch(loadDiscountProduct());
+        dispatch(getProductByDiscount());
     }, []);
-
-    // if(!loading && discount){
-    //     console.log(discount.data.data)
-    // }
-
-   
-    // useSelector(state => console.log(state.cartReducer))
 
     return (
         <div>
@@ -43,7 +25,10 @@ function Home() {
             <NewOffer/>
             <AllProducts/>
             {/* <SelectedCard/> */}
-            <Sale data={!loading && discount && discount.data}/>
+            {
+                !gettingProduct && products ?
+                <Sale data={products.data}/> : null
+            }
             <WhoWeAre/>
         </div>
     )

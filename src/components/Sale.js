@@ -3,10 +3,7 @@ import styles from "../css/Sale.module.css";
 import Card from "../components/Card";
 
 function Sale(props) {
-	// if(props.data){
-	// 	console.log(props)
-	// }
-	
+
 return (
     <div className={styles.sale}>
         <div className={styles.saleInner}>
@@ -15,7 +12,7 @@ return (
             </div>
             <div className={styles.saleRight}>
                 {
-                    props.data && props.data.data.map((item) => (
+                    props && props.data.map((item) => (
                         <div className={styles.cardWrapper}>
                             <Card item={item} />
                         </div>

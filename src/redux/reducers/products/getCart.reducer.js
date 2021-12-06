@@ -12,7 +12,6 @@ const getCartReducer = (state = initialState, { type, payload }) => {
 				};
 
 			case actionTypes.GETCART_PRODUCTS_LOAD_SUCCESS:
-				console.log(payload);
 				return {
 					...state,
 					getingCartProduct: false,

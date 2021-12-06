@@ -17,20 +17,28 @@ import paramsReducer from "./paramsReducer";
 import allFlowersReducer from "./allFlowersReducer";
 import saleProductData from "./saleProductData";
 import registerReducer from "./users/registerReducer";
+import { getCategories } from "./getterReducer/category/category.thunk";
 // import allCategoriesReducer from "./allCategoriesReducer";
+import getCategory from './getterReducer/category/getCategory.reducer'
+import  getProducts  from './getterReducer/product/getProduct.reducer';
+import addToCart from "./setterReducer/addToCartProduct/addToCart.reducer";
+import deleteCartProductReducer from "./setterReducer/deleteCartProduct/deleteCartProduct.reducer";
+import decrementQuantityToCart from "./setterReducer/cartDecrementQuantity/decrementQuantity.reducer";
+import incrementQuantityToCart from "./setterReducer/cartIncrementQuantity/incrementQuantity.reducer";
+import getShoppingCart from "./getterReducer/shoppingCart/getShoppingCart.reducer";
 
 const rootReducer = () =>
 	combineReducers({
 		users: usersReducer,
-		categories : categoriesReducer,
-		products : productsReducer,
-		allProducts : allProductsReducer,
-		discountReducer : discountProductsReducer,
-		cartReducer : addToCartProductsReducer,
-		quantityReducer : getQuantityReducer,
-		getCartReducer,
+		// categories : categoriesReducer,
+		// products : productsReducer,
+		// allProducts : allProductsReducer,
+		// discountReducer : discountProductsReducer,
+		// cartReducer : addToCartProductsReducer,
+		// quantityReducer : getQuantityReducer,
+		// getCartReducer,
 		paramsReducer,
-		cartDeleteReducer,
+		// cartDeleteReducer,
 		registerReducer,
 		logoutReducer,
 			newOfferData,
@@ -39,6 +47,16 @@ const rootReducer = () =>
 		    allFlowersReducer,
 		    saleProductData,
 		    // allCategoriesReducer
+
+		////////////////////////////
+		getCategories : getCategory,
+		getProducts : getProducts,
+		setAddToCart : addToCart,
+		deleteCartProductReducer : deleteCartProductReducer,
+		getShoppinCartProducts : getShoppingCart,
+		decrementQuantityReducer : decrementQuantityToCart,
+		incrementQuantityReducer : incrementQuantityToCart,
+
 	});
 
 export default rootReducer;

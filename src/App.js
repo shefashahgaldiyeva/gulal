@@ -26,40 +26,26 @@ import { getCartAsync } from "./redux/reducers/products/products.thunks";
 
 import LanguageService from "./services/language.service";
 import AuthStore from "./services/AuthStore";
+import { getCategories } from "./redux/reducers/getterReducer/category/category.thunk";
 
 function App() {
-
 	LanguageService.getLang();
 	const currentLang = localStorage.getItem("locale");
-
 	const dispatch = useDispatch();
-	const { isLoading, categories, errorMessage } = useSelector(
-		(state) => state.categories
+	const { gettingCategory, categories, errorMessage } = useSelector(
+		(state) => state.getCategories
 	);
-
 	useEffect(() => {
-		dispatch(loadCategoriesAsync());
-	}, []);
-	useEffect(() => {
+		// dispatch(getCartAsync())
+		dispatch(getCategories())
 		dispatch(loadUsersAsync())
-	}, [])
-	useEffect(() => {
-		dispatch(getCartAsync())
+
 	}, [])
 	AuthStore.getToken()
-	// console.log(AuthStore.getToken())
-	// const {loading, users, error} = useSelector(state => state.users)
-	// if(!loading && users){
-	// 	console.log(users.user.id)
-	// }
-	
-	// useSelector(state => console.log(state.cartReducer))
-
-
 return (
     <div className="App">
 		<TopHeader lang={currentLang} />
-		{!isLoading && categories ? <Header cats={categories} /> : null}
+		{!gettingCategory && categories ? <Header cats={categories} /> : null}
 		<Switch>
 			<Route exact path="/">
 			<StyledEngineProvider injectFirst>
@@ -71,12 +57,12 @@ return (
 				<Language />
 			</Route>
 			<Route path="/category/:catId">
-				<ShopAllCategory cats={!isLoading && categories ? categories : null} />
+				<ShopAllCategory cats={!gettingCategory && categories ? categories : null} />
 			</Route>
-			<Route path="/Sebet">
+			 <Route path="/Sebet">
 				<Cart />
 			</Route>
-			<Route path="/Sevimliler">
+		{/*	<Route path="/Sevimliler">
 				<WishList />
 			</Route>
 			<Route path="/Daxil-ol">
@@ -92,7 +78,7 @@ return (
 			</Route>
 			<Route path="/Hesabim">
 				<MyProfile />
-			</Route>
+			</Route> */}
 			{/* <Route path="/Butun-Kateqoriyalar">
 			<ShopAllCategory />
 			</Route> */}

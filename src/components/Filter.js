@@ -8,6 +8,7 @@ import Slider from "@material-ui/core/Slider";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouteMatch } from "react-router";
 import { loadByFilterAsync } from "../redux/reducers/products/products.thunks";
+import { getProductByFilter } from "../redux/reducers/getterReducer/product/product.thunk";
 
 function Filter(props) {
     const dispatch = useDispatch();
@@ -64,7 +65,7 @@ function Filter(props) {
 
 function handleSubmitFilter(){
 //   console.log(params)
-  dispatch(loadByFilterAsync(catId,params));
+  dispatch(getProductByFilter(catId,params));
 }
 
   const handleAddClass = (e) => {
