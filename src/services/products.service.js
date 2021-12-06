@@ -12,6 +12,7 @@ class ProductsService {
 	decrementQuantity = (id) => api().post(`auth/minuscart`, id);
 	getCartDetail = () => api().post('auth/getcartquantity')
 	cartDelete = (id) => api().post('auth/cartdelete', id)
+	getSearch = (params) => api().get(`product/search/${params}`)
 }
 
 export default new ProductsService();

@@ -24,7 +24,7 @@ function CartTotalPrice(props) {
     return (
         <div>
             {!getingQuantity && getDetail &&
-                getDetail.data.map(item => item.product_id == (props.id && props.id) ? 
+                getDetail.data.map(item => item.product_id == props.id ? 
                     <p className={styles.total}>{item.totalPrice} azn</p> : null
                 )}
         </div>

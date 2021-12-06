@@ -31,4 +31,8 @@ const incrementQuantityToCart = (state = initialState, { type, payload }) => {
 	}
 };
 
+<<<<<<< HEAD
 export default incrementQuantityToCart;
+=======
+export default incrementQuantityToCart; 
+>>>>>>> master

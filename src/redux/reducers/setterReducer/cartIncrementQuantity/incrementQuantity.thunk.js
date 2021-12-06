@@ -7,4 +7,8 @@ export const incrementQuantityToCart = (productId) => (dispatch) => {
 	ShoppingCart.incrementQuantity(productId)
 		.then((response) => dispatch(actions.incrementedgQuantityToCart(response.data.operation)))
 		.catch((error) => dispatch(actions.incrementedToCartError(error)));
+<<<<<<< HEAD
 };
+=======
+}; 
+>>>>>>> master

@@ -39,11 +39,11 @@ function IncDecButton(props) {
 return (
     <div>
         <button onClick={() => handleMinus(props.id)}>-</button>
-        {!getingQuantity && getDetail != 'undefined' &&
+        {!getingQuantity && getDetail &&
             getDetail.data.map(item => item.product_id == props.id ? 
                item.quantity : null
-            )}
-          <button onClick={() => handlePlus(props.id)}>+</button>
+        )}
+        <button onClick={() => handlePlus(props.id)}>+</button>
     </div>
   );
 }

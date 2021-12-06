@@ -2,6 +2,7 @@ import React,{ useState,useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { loadProductsAsync,loadDiscountProduct } from "../redux/reducers/products/products.thunks";
 import { loadAddToCartProductAsnync } from "../redux/reducers/products/products.thunks";
+import { getProductByDiscount } from '../redux/reducers/getterReducer/product/product.thunk';
 
 import Container from '../components/Container';
 import NewOffer from '../components/NewOffer';
@@ -14,7 +15,13 @@ import { getProductByDiscount } from '../redux/reducers/getterReducer/product/pr
 
 function Home() {
     const dispatch = useDispatch()
+<<<<<<< HEAD
     const {gettingProduct,products,errorMessage} = useSelector((state) => state.getProducts);
+=======
+
+     const {gettingProduct,products,errorMessage} = useSelector((state) => state.getProducts);
+    
+>>>>>>> master
     useEffect(() => {
         dispatch(getProductByDiscount());
     }, []);

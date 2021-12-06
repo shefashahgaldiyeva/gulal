@@ -31,4 +31,8 @@ const decrementQuantityToCart = (state = initialState, { type, payload }) => {
 	}
 };
 
+<<<<<<< HEAD
 export default decrementQuantityToCart;
+=======
+export default decrementQuantityToCart; 
+>>>>>>> master

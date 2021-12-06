@@ -31,4 +31,8 @@ const addToCart = (state = initialState, { type, payload }) => {
 	}
 };
 
+<<<<<<< HEAD
 export default addToCart;
+=======
+export default addToCart; 
+>>>>>>> master

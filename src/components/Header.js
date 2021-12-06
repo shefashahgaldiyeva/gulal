@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styles from "../css/Header.module.css";
@@ -12,11 +12,11 @@ import logo from "../img/logo.jpg";
 import AuthStore from "../services/AuthStore";
 import { BiLogOut } from "react-icons/bi";
 import { logoutAsync } from "../redux/reducers/users/users.thunks";
+import { getSearchAsync } from "../redux/reducers/getterReducer/search/search.thunk"
 
 function Header(props) {
 
 	const dispatch = useDispatch()
-  const bucket = useSelector((state) => state.bucketReducer);
   const cats = props.cats
   const [isPassive, setPassive] = useState(false);
   const toogleClass = () => {
@@ -41,6 +41,17 @@ function Header(props) {
     window.location.href = "/";
   } 
 
+  const {gettingProductInCart,productInCart,errorMessage} = useSelector(state=>state.getShoppingCart)
+  if(!gettingProductInCart && productInCart){
+      console.log(productInCart.data)
+  }
+  useSelector(state=>console.log(state.getSearch))
+
+function handleSearch(e){
+	// console.log(e.target.value)
+	dispatch(getSearchAsync(e.target.value))
+  }
+
   return (
  
     <header>
@@ -60,6 +71,7 @@ function Header(props) {
               name="search"
               type="text"
               placeholder="Axtarış et..."
+			  onKeyUp = {(e)=>handleSearch(e)}
             />
           </div>
           <ul className={styles.ul1}>
@@ -75,7 +87,7 @@ function Header(props) {
                 <span className={styles.pocket}>
                   <BsBasket2 />
                 </span>
-                <span className={styles.count}>{bucket.length}</span>
+                <span className={styles.count}>{!gettingProductInCart && productInCart ?  productInCart.data.length : 0}</span>
               </Link>
             </li>
             <li>

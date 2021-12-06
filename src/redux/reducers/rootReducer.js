@@ -26,6 +26,12 @@ import deleteCartProductReducer from "./setterReducer/deleteCartProduct/deleteCa
 import decrementQuantityToCart from "./setterReducer/cartDecrementQuantity/decrementQuantity.reducer";
 import incrementQuantityToCart from "./setterReducer/cartIncrementQuantity/incrementQuantity.reducer";
 import getShoppingCart from "./getterReducer/shoppingCart/getShoppingCart.reducer";
+<<<<<<< HEAD
+=======
+import addToWishlist from "./setterReducer/addToWishlistProduct/addToWishlist.reducer";
+import getWishlist from "./getterReducer/getWishlist/getWishlist.reducer";
+import getSearch from "./getterReducer/search/search.reducer"
+>>>>>>> master
 
 const rootReducer = () =>
 	combineReducers({
@@ -43,7 +49,7 @@ const rootReducer = () =>
 		logoutReducer,
 			newOfferData,
 		    bucketReducer,
-		    wishListReducers,
+		    // wishListReducers,
 		    allFlowersReducer,
 		    saleProductData,
 		    // allCategoriesReducer
@@ -52,11 +58,21 @@ const rootReducer = () =>
 		getCategories : getCategory,
 		getProducts : getProducts,
 		setAddToCart : addToCart,
+<<<<<<< HEAD
 		deleteCartProductReducer : deleteCartProductReducer,
 		getShoppinCartProducts : getShoppingCart,
 		decrementQuantityReducer : decrementQuantityToCart,
 		incrementQuantityReducer : incrementQuantityToCart,
 
+=======
+		deleteCartProductReducer,
+		getShoppingCart,
+		decrementQuantityReducer : decrementQuantityToCart,
+		incrementQuantityReducer : incrementQuantityToCart,
+		addToWishlist,
+		getWishlist,
+		getSearch,
+>>>>>>> master
 	});
 
 export default rootReducer;

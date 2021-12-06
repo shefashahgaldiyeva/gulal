@@ -9,6 +9,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouteMatch } from "react-router";
 import { loadByFilterAsync } from "../redux/reducers/products/products.thunks";
 import { getProductByFilter } from "../redux/reducers/getterReducer/product/product.thunk";
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 
 function Filter(props) {
     const dispatch = useDispatch();
