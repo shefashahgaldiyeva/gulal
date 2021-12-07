@@ -20,11 +20,8 @@ import {BsCartPlus} from 'react-icons/bs'
 import { FaCartPlus } from 'react-icons/fa'
 import flower from '../img/flower.jpg'
 import { addToCart } from '../redux/reducers/setterReducer/addToCartProduct/addToCart.thunk';
-<<<<<<< HEAD
 
-=======
 import { addToWishlist } from '../redux/reducers/setterReducer/addToWishlistProduct/addToWishlist.thunk'
->>>>>>> master
 
 const style = {
     position: 'absolute',
@@ -48,15 +45,10 @@ const style = {
 
 function Card(props) { 
 
-<<<<<<< HEAD
-  const [openSnack, setOpenSnack] = React.useState(false);
-  const {addingToCart,addedToCart,addedErrorMessage} = useSelector(state => state.setAddToCart)
-  const [countToCart,setCountToCart] = React.useState(false);
-=======
+
   const [openSnack, setOpenSnack] = useState(false);
   const {addingToCart,addedToCart,addedErrorMessage} = useSelector(state => state.setAddToCart)
   const [countToCart,setCountToCart] = useState(false);
->>>>>>> master
  
   const handleClickSnack = () => {
   };
@@ -78,11 +70,8 @@ function Card(props) {
     const {isLoading,users,errorMessage} = useSelector(state => state.users)
     
     const handleAdd = (item) =>{
-<<<<<<< HEAD
-         if(!isLoading && users){
-=======
+
         if(!isLoading && users){
->>>>>>> master
              dispatch(addToCart({pid : item.id}))
         }
         setCountToCart(countToCart=>countToCart+1)

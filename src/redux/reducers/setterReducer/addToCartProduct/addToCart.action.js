@@ -19,8 +19,5 @@ export default {
 	setingToCart,
 	setedToCart,
 	addedToCartError,
-<<<<<<< HEAD
 };
-=======
-}; 
->>>>>>> master
+

@@ -1,7 +1,6 @@
-<<<<<<< HEAD
+
 // import apiProducts from "../helpers/apiProducts";
-=======
->>>>>>> master
+
 import api from "../helpers/api";
 
 class ShoppingCart {
@@ -13,8 +12,6 @@ class ShoppingCart {
 	cartDelete = (id) => api().post('auth/cartdelete', id)
 }
 
-<<<<<<< HEAD
+
 export default new ShoppingCart();
-=======
-export default new ShoppingCart(); 
->>>>>>> master
+

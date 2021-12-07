@@ -15,13 +15,7 @@ import { getProductByDiscount } from '../redux/reducers/getterReducer/product/pr
 
 function Home() {
     const dispatch = useDispatch()
-<<<<<<< HEAD
-    const {gettingProduct,products,errorMessage} = useSelector((state) => state.getProducts);
-=======
-
      const {gettingProduct,products,errorMessage} = useSelector((state) => state.getProducts);
-    
->>>>>>> master
     useEffect(() => {
         dispatch(getProductByDiscount());
     }, []);

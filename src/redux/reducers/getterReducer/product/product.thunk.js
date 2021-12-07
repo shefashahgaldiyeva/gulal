@@ -31,8 +31,5 @@ export const getProductByDiscount = () => (dispatch) => {
 	ProductsService.getDiscountProduct()
 		.then((response) => dispatch(actions.setProduct(response.data)))
 		.catch((error) => dispatch(actions.errorProduct(error)));
-<<<<<<< HEAD
 };
-=======
-}; 
->>>>>>> master
+

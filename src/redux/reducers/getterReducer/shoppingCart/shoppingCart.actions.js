@@ -19,8 +19,6 @@ export default {
 	getProduct,
 	setProduct,
 	errorProduct,
-<<<<<<< HEAD
+
 };
-=======
-}; 
->>>>>>> master
+

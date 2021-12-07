@@ -19,8 +19,4 @@ export default {
 	getCategory,
 	setCategory,
 	errorCategory,
-<<<<<<< HEAD
 };
-=======
-}; 
->>>>>>> master

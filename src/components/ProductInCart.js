@@ -18,11 +18,8 @@ import { deleteCartProduct } from "../redux/reducers/setterReducer/deleteCartPro
 
 const ProductInCart = () => {
   const dispatch = useDispatch();
-<<<<<<< HEAD
-  const { gettingProductInCart, productInCart, errorMessage } = useSelector((state) => state.getShoppinCartProducts);
-=======
+
   const { gettingProductInCart, productInCart, errorMessage } = useSelector((state) => state.getShoppingCart);
->>>>>>> master
   const {decrementingQuantityToCart,decrementedQuantityToCart,decrementedQuantityerrorMessage} = useSelector((state) => state.decrementQuantityReducer);
   const {incrementingQuantityToCart,incrementedQuantityToCart,incrementedQuantityerrorMessage} = useSelector((state) => state.incrementQuantityReducer);
   const {deletingCartProduct,deletedCartProduct,deletedErrorMessage} = useSelector((state) => state.deleteCartProductReducer);
@@ -47,16 +44,7 @@ const ProductInCart = () => {
         )
     );
   };
-<<<<<<< HEAD
-  const handleMinus = (e,id) => {
-    e.target.disabled = true;
-    dispatch(decrementQuantityToCart({pid: id,}));
-    setCartProducts((cartProducts) => 
-        cartProducts.map(
-            (item) =>  item.id == id? { ...item, quantity: item.quantity - 1, totalPrice: item.totalPrice - item.currentPrice } : item
-        )
-    );
-=======
+
   const handleMinus = (e, id) => {
         e.target.disabled = true;
         dispatch(decrementQuantityToCart({pid: id}));
@@ -65,24 +53,13 @@ const ProductInCart = () => {
                 (item) =>  item.id == id ? { ...item, quantity: item.quantity - 1, totalPrice: item.totalPrice - item.currentPrice } : item
             )
         );
->>>>>>> master
   };
 
   function handleDelete(id) {
     // Array.from(document.getElementsByClassName("removeCart")).map((item) => item.disabled=true);
     dispatch(deleteCartProduct({ pid: id}))
     setCartProducts((cartProducts) =>
-<<<<<<< HEAD
-      cartProducts.filter(
-          (item) => item.id !== id)
-    );
-  }
-  if (!decrementingQuantityToCart && decrementedQuantityToCart) {
-    Array.from(document.getElementsByClassName("decrement")).map((item) => item.disabled=false);
-  }
-  if (!incrementingQuantityToCart && incrementedQuantityToCart) {
-    Array.from(document.getElementsByClassName("increment")).map((item) => item.disabled=false);
-=======
+
         cartProducts.filter(
             (item) => item.id !== id)
     );
@@ -92,7 +69,6 @@ const ProductInCart = () => {
   }
   if (!incrementingQuantityToCart && incrementedQuantityToCart) {
         Array.from(document.getElementsByClassName("increment")).map((item) => item.disabled = false);
->>>>>>> master
   }
 
   return (
@@ -141,12 +117,7 @@ const ProductInCart = () => {
                   </div>
                 </td>
                 <td >
-                  {/* <CartTotalPrice id={item.product.id}/> */}
-<<<<<<< HEAD
-                  <p className={styles.total}>{item.totalPrice.toFixed(2)} azn</p>
-=======
                   <p className={styles.total}>{item.totalPrice} azn</p>
->>>>>>> master
                 </td>
                 <td >
                   <button className={styles.btn,'removeCart'} onClick={() => handleDelete(item.id)} >

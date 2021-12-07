@@ -14,11 +14,8 @@ function Cart() {
     //     window.location.reload()
     // }, [])
 
-<<<<<<< HEAD
-    const {gettingProductInCart,productInCart,errorMessage} =  useSelector(state => state.getShoppinCartProducts)
-=======
+
     const {gettingProductInCart,productInCart,errorMessage} =  useSelector(state => state.getShoppingCart)
->>>>>>> master
     // console.log(getCartProduct)
     
 

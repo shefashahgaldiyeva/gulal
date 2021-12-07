@@ -19,8 +19,6 @@ export default {
 	decrementingQuantityToCart,
 	decrementedgQuantityToCart,
 	decrementedToCartError,
-<<<<<<< HEAD
+
 };
-=======
-}; 
->>>>>>> master
+

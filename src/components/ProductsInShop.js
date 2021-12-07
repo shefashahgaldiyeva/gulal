@@ -9,10 +9,7 @@ import styles from '../css/Shop.module.css'
 import Card from '../components/Card'
 import {BsFillGrid3X3GapFill} from 'react-icons/bs'
 import {RiLayoutGridFill} from 'react-icons/ri'
-<<<<<<< HEAD
-import { loadByFilterAsync } from "../redux/reducers/products/products.thunks";
-=======
->>>>>>> master
+
 import { getProductByFilter } from '../redux/reducers/getterReducer/product/product.thunk'
 
 

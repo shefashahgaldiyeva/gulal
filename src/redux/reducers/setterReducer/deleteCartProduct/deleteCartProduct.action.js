@@ -19,8 +19,6 @@ export default {
 	deletingToCart,
 	deletedToCart,
 	addedToCartError,
-<<<<<<< HEAD
+
 };
-=======
-}; 
->>>>>>> master
+

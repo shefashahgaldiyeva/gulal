@@ -31,8 +31,6 @@ const deleteCartProductReducer = (state = initialState, { type, payload }) => {
 	}
 };
 
-<<<<<<< HEAD
+
 export default deleteCartProductReducer;
-=======
-export default deleteCartProductReducer; 
->>>>>>> master
+

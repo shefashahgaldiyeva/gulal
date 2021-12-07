@@ -7,8 +7,5 @@ export const addToCart = (productId) => (dispatch) => {
 	ShoppingCart.addToCartProduct(productId)
 		.then((response) => dispatch(actions.setedToCart(response.data.operation)))
 		.catch((error) => dispatch(actions.addedToCartError(error)));
-<<<<<<< HEAD
 };
-=======
-}; 
->>>>>>> master
+

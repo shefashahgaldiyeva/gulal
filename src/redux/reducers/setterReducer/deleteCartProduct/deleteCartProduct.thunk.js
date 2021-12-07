@@ -7,8 +7,6 @@ export const deleteCartProduct = (productId) => (dispatch) => {
 	ShoppingCart.cartDelete(productId)
 		.then((response) => dispatch(actions.deletedToCart(response.data)))
 		.catch((error) => dispatch(actions.addedToCartError(error)));
-<<<<<<< HEAD
+
 };
-=======
-}; 
->>>>>>> master
+

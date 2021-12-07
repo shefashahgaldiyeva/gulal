@@ -14,8 +14,5 @@ export const getCategories = () => (dispatch) => {
 // 	CategoriesService.getProductByCategory(id)
 // 		.then((response) => dispatch(actions.getProductsLoadSuccess(response)))
 // 		.catch((error) => dispatch(actions.getProductsLoadError(error)));
-<<<<<<< HEAD
 // };
-=======
-// }; 
->>>>>>> master
+

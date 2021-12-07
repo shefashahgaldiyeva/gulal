@@ -2,8 +2,4 @@ export default {
 	ADDING_TO_CART: "ADDING_TO_CART",
 	SET_TO_CART_SUCCESS: "SET_TO_CART_SUCCESS",
 	SET_TO_CART_ERROR_MESSAGE: "SET_TO_CART_ERROR_MESSAGE",
-<<<<<<< HEAD
 };
-=======
-}; 
->>>>>>> master

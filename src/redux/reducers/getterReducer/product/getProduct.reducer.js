@@ -31,8 +31,5 @@ const getProductsReducer = (state = initialState, { type, payload }) => {
 	}
 };
 
-<<<<<<< HEAD
 export default getProductsReducer;
-=======
-export default getProductsReducer; 
->>>>>>> master
+

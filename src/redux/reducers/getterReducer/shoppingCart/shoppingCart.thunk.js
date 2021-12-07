@@ -8,7 +8,4 @@ export const getCartProducts = () => (dispatch) => {
 		.then((response) => dispatch(actions.setProduct(response.data)))
 		.catch((error) => dispatch(actions.errorProduct(error)));
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> master

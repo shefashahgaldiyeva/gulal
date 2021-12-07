@@ -30,12 +30,8 @@ import AuthStore from "./services/AuthStore";
 import { getCategories } from "./redux/reducers/getterReducer/category/category.thunk";
 
 function App() {
-<<<<<<< HEAD
 	LanguageService.getLang();
-=======
 
-LanguageService.getLang();
->>>>>>> master
 	const currentLang = localStorage.getItem("locale");
 	const dispatch = useDispatch();
 	const { gettingCategory, categories, errorMessage } = useSelector(
@@ -48,10 +44,7 @@ LanguageService.getLang();
 
 	}, [])
 	AuthStore.getToken()
-<<<<<<< HEAD
-=======
 
->>>>>>> master
 return (
     <div className="App">
 		<TopHeader lang={currentLang} />
@@ -67,11 +60,8 @@ return (
 				<Language />
 			</Route>
 			<Route path="/category/:catId">
-<<<<<<< HEAD
 				<ShopAllCategory cats={!gettingCategory && categories ? categories : null} />
-=======
-				<ShopAllCategory cats={!gettingCategory  && categories ? categories : null} />
->>>>>>> master
+aster
 			</Route>
 			 <Route path="/Sebet">
 				<Cart />
