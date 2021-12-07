@@ -23,7 +23,6 @@ import { useEffect } from "react";
 import { loadCategoriesAsync } from "./redux/reducers/categories/categories.thunks";
 import { loadUsersAsync } from "./redux/reducers/users/users.thunks";
 import { getCartAsync } from "./redux/reducers/products/products.thunks";
-import { getCategories } from "./redux/reducers/getterReducer/category/category.thunk";
 
 import LanguageService from "./services/language.service";
 import AuthStore from "./services/AuthStore";
