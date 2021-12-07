@@ -29,6 +29,7 @@ import getShoppingCart from "./getterReducer/shoppingCart/getShoppingCart.reduce
 import addToWishlist from "./setterReducer/addToWishlistProduct/addToWishlist.reducer";
 import getWishlist from "./getterReducer/getWishlist/getWishlist.reducer";
 import getSearch from "./getterReducer/search/search.reducer"
+import subscribeReducer from "./setterReducer/subscribe/subscribe.reducer"
 
 const rootReducer = () =>
 	combineReducers({
@@ -53,7 +54,7 @@ const rootReducer = () =>
 
 		////////////////////////////
 		getCategories : getCategory,
-		getProducts : getProducts,
+		getProducts,
 		setAddToCart : addToCart,
 		deleteCartProductReducer,
 		getShoppingCart,
@@ -62,6 +63,7 @@ const rootReducer = () =>
 		addToWishlist,
 		getWishlist,
 		getSearch,
+		subscribeReducer,
 	});
 
 export default rootReducer;

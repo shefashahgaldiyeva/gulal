@@ -21,6 +21,10 @@ import { FaCartPlus } from 'react-icons/fa'
 import flower from '../img/flower.jpg'
 import { addToCart } from '../redux/reducers/setterReducer/addToCartProduct/addToCart.thunk';
 import { addToWishlist } from '../redux/reducers/setterReducer/addToWishlistProduct/addToWishlist.thunk'
+import { getCartProducts } from "../redux/reducers/getterReducer/shoppingCart/shoppingCart.thunk";
+import { decrementQuantityToCart } from "../redux/reducers/setterReducer/cartDecrementQuantity/decrementQuantity.thunk";
+import { incrementQuantityToCart } from "../redux/reducers/setterReducer/cartIncrementQuantity/incrementQuantity.thunk";
+
 
 const style = {
     position: 'absolute',
@@ -43,6 +47,7 @@ const style = {
 
 
 function Card(props) { 
+    // console.log(props)
 
   const [openSnack, setOpenSnack] = useState(false);
   const {addingToCart,addedToCart,addedErrorMessage} = useSelector(state => state.setAddToCart)
@@ -60,27 +65,23 @@ function Card(props) {
     }
   };
     
-   
     const dispatch = useDispatch();
-  
-    
-    // const bucket = useSelector(state => state.bucketReducer)
-    const {isLoading,users,errorMessage} = useSelector(state => state.users)
+    const {isLoading,users,userErrorMessage} = useSelector(state => state.users)
     
     const handleAdd = (item) =>{
         if(!isLoading && users){
-             dispatch(addToCart({pid : item.id}))
+            dispatch(addToCart({pid : item.id}))
         }
         setCountToCart(countToCart=>countToCart+1)
     }
- useEffect(() => {
-    if(!addingToCart && addedToCart){
-        if(!openSnack){
-            setOpenSnack(true)
-        }  
-    }
-    console.log(openSnack)
- }, [countToCart])
+    useEffect(() => {
+        if(!addingToCart && addedToCart){
+            if(!openSnack){
+                setOpenSnack(true)
+            }  
+        }
+        console.log(openSnack)
+    }, [countToCart])
 
         // useEffect(() => {
             // if(!addingToCart && addedToCart){
@@ -107,57 +108,79 @@ function Card(props) {
         // console.log(index)
     }
 
+    const [itemQuantity, setitemQuantity] = useState()
     const [open, setOpen] = React.useState(false);
     const handleOpen = (item) => {
         setOpen(true);
-        console.log(cardData.length)
-            dispatch({
-                type: 'ELAVE_ET',
-                payload: item 
+        if(quantityView != null){
+            quantityView.data.map((index)=>{
+                if(index.id == item.id){
+                    setitemQuantity(index.quantity)
+                    console.log(index.quantity,index.id)
+                }
             })
+        }
     }
     const handleClose = () => setOpen(false);
 
     const cardData = useSelector(state => state.bucketReducer)
+    const { gettingProductInCart, productInCart, errorMessage } = useSelector((state) => state.getShoppingCart);
+    const [quantityView, setQuantityView] = useState(null)
+   
+    useEffect(() => {
+        if(!gettingProductInCart && productInCart){
+            setQuantityView(productInCart)
+            console.log(quantityView)
+        }
+    }, [productInCart])
+    const {decrementingQuantityToCart,decrementedQuantityToCart,decrementedQuantityerrorMessage} = useSelector((state) => state.decrementQuantityReducer);
+    const {incrementingQuantityToCart,incrementedQuantityToCart,incrementedQuantityerrorMessage} = useSelector((state) => state.incrementQuantityReducer);
 
-    // const handlePlus = (item) =>{
-    //     const plusItem = cardData.filter(index => index.id == item.id)
-    //     console.log(plusItem)
-    //     if(plusItem){
-    //         plusItem[0].quantity += 1
+    const [cartProducts, setCartProducts] = useState(null);
+
+    useEffect(() => {
+        dispatch(getCartProducts());
+    }, []);
+    useEffect(() => {
+        if (!gettingProductInCart && productInCart) {
+            setCartProducts(productInCart.data);
+        }
+    }, [productInCart]);
+
+    const handlePlus = (e, id) => {
+        e.target.disabled = true;
+        dispatch(incrementQuantityToCart({pid: id}));
+        setCartProducts((cartProducts) =>
+            cartProducts.map(
+                (item) => item.id == id  ? { ...item,quantity: item.quantity + 1,totalPrice: item.totalPrice + item.currentPrice,} : item
+            )
+        );
+      };
+    const handleMinus = (e, id) => {
+        e.target.disabled = true;
+        dispatch(decrementQuantityToCart({pid: id}));
+        setCartProducts((cartProducts) => 
+            cartProducts.map(
+                (item) =>  item.id == id ? { ...item, quantity: item.quantity - 1, totalPrice: item.totalPrice - item.currentPrice } : item
+            )
+        );
+  };
+
+   if (!decrementingQuantityToCart && decrementedQuantityToCart) {
+        Array.from(document.getElementsByClassName("decrement")).map((item) => item.disabled = false);
+  }
+  if (!incrementingQuantityToCart && incrementedQuantityToCart) {
+        Array.from(document.getElementsByClassName("increment")).map((item) => item.disabled = false);
+  }
+
+    // const {gettingProduct,products,productsErrorMessage} = useSelector((state) => state.getProducts)
+    // if(!gettingProduct && products){
+    //     if(!gettingProduct && products){
+    //         console.log(products)
     //     }
-    //     // item.quantity += 1
-    //     // console.log(item.quantity)
-    // }
-    // const handleMinus = (item) =>{
-    //     const minusItem = cardData.filter(index => index.id == item.id)
-    //     console.log(minusItem)
-    //     if(minusItem){
-    //         minusItem[0].quantity -= 1
-    //     }
     // }
 
 
-
-    const handlePlus = (item) =>{
-        console.log(item)
-        dispatch({
-            type: 'UPDATE_BUCKET_MINUS',
-            payload: {
-                id: item.id,
-                quantity: 1
-            }
-        })
-    }
-    const handleMinus = (item) =>{
-        dispatch({
-            type: 'UPDATE_BUCKET_PLUS',
-            payload: {
-                id: item.id,
-                quantity: 1
-            }
-        })
-    }
     return (
         <div className={styles.shoppingCardWrapper}>
                <Snackbar className={styles.snackbar} style={{position: 'fixed'}} open={openSnack} autoHideDuration={60000} onClose={handleCloseSnack}>
@@ -177,9 +200,7 @@ function Card(props) {
                                 onClose={handleClose}
                                 closeAfterTransition
                                 BackdropComponent={Backdrop}
-                                BackdropProps={{
-                                timeout: 600,
-                                }}
+                                BackdropProps={{timeout: 600}}
                             >
                                 <Fade in={open}>
                                 <Box sx={style}>
@@ -187,19 +208,19 @@ function Card(props) {
                                         <div style={{width: '100%'}}><img className={styles.modalInImg} src={props.item.image} onMouseOver={(a)=>{a.target.src = props.item.photo}} onMouseOut={(a)=>{a.target.src = props.item.image}}/></div>
                                     </Typography>
                                     <Typography id="transition-modal-title" variant="h6" component="h2">
-                                        <h3>{props.item.text}</h3>
+                                        <h3>{props.item.name}</h3>
                                         <span className={styles.price}>{props.item.price} azn</span>
                                         <p>{props.item.p}</p>
                                         <div className={styles.df}>
                                             <div className={styles.quantity}>
-                                                {
-                                                    cardData.map( item => (
+                                                {cartProducts &&
+                                                    cartProducts.map( item => (
                                                         <>
-                                                        <button onClick={() => handleMinus(item)}>
+                                                        <button className="decrement" onClick={(e) => handleMinus(e, item.id)}>
                                                         -
                                                         </button>
-                                                        {item.quantity} 
-                                                        <button onClick={() => handlePlus(item)}>
+                                                        <span>{itemQuantity}</span>
+                                                        <button className="increment" onClick={(e) => handlePlus(e, item.id)}>
                                                         +
                                                         </button>
                                                         </>
@@ -207,7 +228,6 @@ function Card(props) {
 
                                                 }
                                             </div>
-
                                             {/* <a href='javascript:void(0)'><button className={styled.btn} onClick={()=>dispatch({
                                                 type: 'ELAVE_ET',
                                                 payload: props.item

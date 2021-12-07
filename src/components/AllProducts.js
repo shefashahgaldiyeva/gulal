@@ -13,7 +13,7 @@ import { getProducts } from '../redux/reducers/getterReducer/product/product.thu
 function AllProducts(props) {
 
     const dispatch = useDispatch()
-    const {gettingProduct,products,errorMessage} = useSelector((state) => state.getProducts);
+    const {gettingProduct,products,productsErrorMessage} = useSelector((state) => state.getProducts);
 
     useEffect(() => {
         dispatch(getProducts());

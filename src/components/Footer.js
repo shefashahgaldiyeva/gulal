@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from '../css/Footer.module.css'
+import { useDispatch } from 'react-redux';
 import { GrFacebookOption } from "react-icons/gr";
 import { AiOutlineTwitter } from "react-icons/ai";
 import { AiOutlineInstagram } from "react-icons/ai";
@@ -7,9 +8,17 @@ import { AiOutlineYoutube } from "react-icons/ai";
 import visa from '../img/visa.png'
 import masterCard from '../img/mastercard.png'
 import paypal from '../img/paypal.png'
+import { subscribeAsync } from '../redux/reducers/setterReducer/subscribe/subscribe.thunk'
 
 
 function Footer() {
+
+    const dispatch = useDispatch()
+    function handleSubmit(){
+        let params = document.getElementById('subscribe').value
+        dispatch(subscribeAsync({email:params}))
+        console.log({email:params})
+    }
     return (
         <footer className={styles.footer}>
             <div className={styles.footerInner}>
@@ -50,8 +59,8 @@ function Footer() {
                     <div className={styles.footerTopRight}>
                        <div className={styles.footerTopRightInner}>
                             <span>Ən son yenilikləri və təklifləri əldə etmək üçün abunə olun</span>
-                            <input type='email' placeholder='e-Poçt ünvanınızı yazın...'/>
-                            <button title='Abunə olun' type='submit'>Abunə olun</button>
+                            <input id='subscribe' type='email' placeholder='e-Poçt ünvanınızı yazın...'/>
+                            <button onClick={() => handleSubmit()} title='Abunə olun' type='submit'>Abunə olun</button>
                        </div>
                     </div>
                 </div>

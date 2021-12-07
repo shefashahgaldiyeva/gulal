@@ -16,41 +16,48 @@ import { getSearchAsync } from "../redux/reducers/getterReducer/search/search.th
 
 function Header(props) {
 
-	const dispatch = useDispatch()
-  const cats = props.cats
-  const [isPassive, setPassive] = useState(false);
-  const toogleClass = () => {
-    setPassive(!isPassive);
-  };
-  const [showMenu, setShowMenu] = useState(true);
-  function toogleButton(e) {
-    if (showMenu) {
-      setShowMenu(!showMenu);
-    } else {
-      setShowMenu(!showMenu);
+    const dispatch = useDispatch()
+    const cats = props.cats
+    const [isPassive, setPassive] = useState(false);
+    const toogleClass = () => {
+        setPassive(!isPassive);
+    };
+    const [showMenu, setShowMenu] = useState(true);
+    function toogleButton(e) {
+        if (showMenu) {
+        setShowMenu(!showMenu);
+        } else {
+        setShowMenu(!showMenu);
+        }
     }
-  }
 
-  const isLogOut = useSelector((state) => state.logoutReducer);
-  
-  function logOut() {
-    dispatch(logoutAsync());
-  }
-  if (isLogOut.logOut) {
-    AuthStore.removeToken();
-    window.location.href = "/";
-  } 
+    const isLogOut = useSelector((state) => state.logoutReducer);
+    
+    function logOut() {
+        dispatch(logoutAsync());
+    }
+    if (isLogOut.logOut) {
+        AuthStore.removeToken();
+        window.location.href = "/";
+    } 
 
-  const {gettingProductInCart,productInCart,errorMessage} = useSelector(state=>state.getShoppingCart)
-  if(!gettingProductInCart && productInCart){
-      console.log(productInCart.data)
-  }
-  useSelector(state=>console.log(state.getSearch))
+    const {gettingProductInCart,productInCart,errorMessage} = useSelector(state=>state.getShoppingCart)
+    if(!gettingProductInCart && productInCart){
+        productInCart.data.map((item)=>{
+            console.log(item.productName)
+        })
+    }
+    // useSelector(state=>console.log(state.getSearch))
 
-function handleSearch(e){
-	// console.log(e.target.value)
-	dispatch(getSearchAsync(e.target.value))
+    const {gettingSearch,getedSearch,getSearchErrorMessage} = useSelector(state => state.getSearch)
+  if(!gettingSearch && getedSearch){
+    getedSearch.data.map((item)=>{
+        // console.log(item.name)
+    })
   }
+    function handleSearch(e){
+        dispatch(getSearchAsync(e.target.value))
+    }
 
   return (
  
@@ -66,6 +73,7 @@ function handleSearch(e){
             <label onClick={toogleClass} for="search">
               <BsSearch />
             </label>
+            <div className={styles.searchWrapper}>
             <input
               className={isPassive ? "passive" : "activee"}
               name="search"
@@ -73,6 +81,15 @@ function handleSearch(e){
               placeholder="Axtarış et..."
 			  onKeyUp = {(e)=>handleSearch(e)}
             />
+            <ul className={!gettingSearch && getedSearch && getedSearch.data.length > 3 ? styles.searchList : null}>
+                    {
+                        !gettingSearch && getedSearch && 
+                        getedSearch.data.map((item)=>(
+                            <li>{item.name}</li>
+                        ))
+                    }
+            </ul>
+            </div>
           </div>
           <ul className={styles.ul1}>
             <li>
@@ -96,8 +113,7 @@ function handleSearch(e){
                 id="menu-button"
                 className={styles.menuButton}
               >
-                <div
-                  className={!showMenu ? styles.child1 : styles.menuButtonLine}></div>
+                <div className={!showMenu ? styles.child1 : styles.menuButtonLine}></div>
                 <div className={!showMenu ? styles.child2 : styles.menuButtonLine}></div>
                 <div className={!showMenu ? styles.child3 : styles.menuButtonLine}></div>
               </div>

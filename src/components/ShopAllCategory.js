@@ -20,7 +20,7 @@ function ShopAllCategory(props) {
     const match = useRouteMatch()
     const catId = match.params.catId;
     
-    const { gettingProduct, products, errorMessage } = useSelector(
+    const { gettingProduct, products, productsErrorMessage } = useSelector(
         (state) => state.getProducts
     );
     useEffect(() => {

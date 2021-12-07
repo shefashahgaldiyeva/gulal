@@ -9,7 +9,7 @@ const usersReducer = (state = initialState, { type, payload }) => {
 				...state,
 				isLoading: true,
 				users: null,
-				errorMessage: null,
+				userErrorMessage: null,
 			};
 
 		case actionTypes.USERS_LOAD_SUCCESS:
@@ -25,7 +25,7 @@ const usersReducer = (state = initialState, { type, payload }) => {
 		return {
 				...state,
 				isLoading: false,
-				errorMessage: payload,
+				userErrorMessage: payload,
 			};
 
 

@@ -37,10 +37,9 @@ LanguageService.getLang();
 		(state) => state.getCategories
 	);
 	useEffect(() => {
-		// dispatch(getCartAsync())
+		dispatch(getCartAsync())
 		dispatch(getCategories())
 		dispatch(loadUsersAsync())
-
 	}, [])
 	AuthStore.getToken()
 

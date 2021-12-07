@@ -10,7 +10,7 @@ const getProductsReducer = (state = initialState, { type, payload }) => {
 				...state,
 				gettingProduct: true,
 				products: null,
-				errorMessage: null,
+				productsErrorMessage: null,
 			};
 
 		case actionTypes.SET_PRODUCT_SUCCESS:
@@ -24,7 +24,7 @@ const getProductsReducer = (state = initialState, { type, payload }) => {
 			return {
 				...state,
 				gettingProduct: false,
-				errorMessage: payload,
+				productsErrorMessage: payload,
 			};
 		default:
 			return state;
