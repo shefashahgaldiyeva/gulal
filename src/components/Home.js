@@ -10,7 +10,6 @@ import NewOffer from '../components/NewOffer';
 import AllProducts from '../components/AllProducts';
 import WhoWeAre from '../components/WhoWeAre'
 import Sale from '../components/Sale'
-import { getProductByDiscount } from '../redux/reducers/getterReducer/product/product.thunk';
 
 
 function Home() {

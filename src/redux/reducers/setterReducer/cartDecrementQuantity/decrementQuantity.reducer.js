@@ -32,4 +32,4 @@ const decrementQuantityToCart = (state = initialState, { type, payload }) => {
 };
 
 export default decrementQuantityToCart; 
->>>>>>> master
+
