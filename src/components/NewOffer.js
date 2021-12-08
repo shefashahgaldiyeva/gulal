@@ -2,16 +2,25 @@ import React, { useEffect, useState } from 'react'
 import styles from '../css/NewOffer.module.css'
 import NewOfferCard from './NewOfferCard';
 import {BiSpa} from 'react-icons/bi'
-import { useSelector } from  'react-redux'
+import { useSelector,useDispatch } from  'react-redux'
 import svg from '../img/bottomHeading.jpg'
+import { getNewProductsAsync } from '../redux/reducers/getterReducer/newProducts/newProducts.thunk'
 
 function NewOffer() {
 
+    const dispatch = useDispatch()
     const selector = useSelector(state => state.newOfferData)
     // selector.map((item)=>{
     //     console.log(item)
     // })
     // console.log(selector)
+    useEffect(() => {
+        dispatch(getNewProductsAsync())
+    }, [])
+    const {gettingNewProduct, newProducts, newProductsErrorMessage} = useSelector(state => state.getNewProducts)
+    if(!gettingNewProduct && newProducts){
+        console.log(newProducts.data)
+    }
     
     return (
         <div className={styles.newOffer}>
@@ -25,9 +34,9 @@ function NewOffer() {
                     <span><BiSpa/></span>
                 </div>
                 <div className={styles.newOfferCards}>
-                {
-                selector.map((item)=>(
-                    <NewOfferCard data={item}/>))
+                {!gettingNewProduct && newProducts && 
+                    newProducts.data.map((item)=>(
+                        <NewOfferCard data={item}/>))
                 }
                 </div>
             </div>

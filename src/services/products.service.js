@@ -13,6 +13,7 @@ class ProductsService {
 	getCartDetail = () => api().post('auth/getcartquantity')
 	cartDelete = (id) => api().post('auth/cartdelete', id)
 	getSearch = (params) => api().get(`product/search/${params}`)
+	getNewProducts = () => api().get(`product/latest`)
 }
 
 export default new ProductsService();

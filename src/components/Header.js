@@ -44,7 +44,7 @@ function Header(props) {
     const {gettingProductInCart,productInCart,errorMessage} = useSelector(state=>state.getShoppingCart)
     if(!gettingProductInCart && productInCart){
         productInCart.data.map((item)=>{
-            console.log(item.productName)
+            // console.log(item.productName)
         })
     }
     // useSelector(state=>console.log(state.getSearch))

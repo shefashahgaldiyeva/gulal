@@ -16,7 +16,6 @@ export const getProductsByCategory = (id) => (dispatch) => {
 		.catch((error) => dispatch(actions.errorProduct(error)));
 };
 
-
 export const getProductByFilter = (id,params) => (dispatch) => {
 	dispatch(actions.getProduct());
 
@@ -32,3 +31,4 @@ export const getProductByDiscount = () => (dispatch) => {
 		.then((response) => dispatch(actions.setProduct(response.data)))
 		.catch((error) => dispatch(actions.errorProduct(error)));
 }; 
+

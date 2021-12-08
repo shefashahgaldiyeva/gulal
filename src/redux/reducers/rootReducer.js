@@ -20,7 +20,7 @@ import registerReducer from "./users/registerReducer";
 import { getCategories } from "./getterReducer/category/category.thunk";
 // import allCategoriesReducer from "./allCategoriesReducer";
 import getCategory from './getterReducer/category/getCategory.reducer'
-import  getProducts  from './getterReducer/product/getProduct.reducer';
+import getProductsReducer  from './getterReducer/product/getProduct.reducer';
 import addToCart from "./setterReducer/addToCartProduct/addToCart.reducer";
 import deleteCartProductReducer from "./setterReducer/deleteCartProduct/deleteCartProduct.reducer";
 import decrementQuantityToCart from "./setterReducer/cartDecrementQuantity/decrementQuantity.reducer";
@@ -30,6 +30,7 @@ import addToWishlist from "./setterReducer/addToWishlistProduct/addToWishlist.re
 import getWishlist from "./getterReducer/getWishlist/getWishlist.reducer";
 import getSearch from "./getterReducer/search/search.reducer"
 import subscribeReducer from "./setterReducer/subscribe/subscribe.reducer"
+import getNewProductsReducer from "./getterReducer/newProducts/getNewProducts.reducer"
 
 const rootReducer = () =>
 	combineReducers({
@@ -54,7 +55,8 @@ const rootReducer = () =>
 
 		////////////////////////////
 		getCategories : getCategory,
-		getProducts,
+		getProducts : getProductsReducer,
+		getNewProducts : getNewProductsReducer,
 		setAddToCart : addToCart,
 		deleteCartProductReducer,
 		getShoppingCart,

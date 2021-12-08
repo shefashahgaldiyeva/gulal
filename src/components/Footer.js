@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../css/Footer.module.css'
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { GrFacebookOption } from "react-icons/gr";
 import { AiOutlineTwitter } from "react-icons/ai";
 import { AiOutlineInstagram } from "react-icons/ai";
@@ -19,6 +19,10 @@ function Footer() {
         dispatch(subscribeAsync({email:params}))
         console.log({email:params})
     }
+    // const {subscribeLoad,subscribeSuccess,subscribeErrorMessage} = useSelector(state => state.subscribeReducer)
+    // if(!subscribeLoad && subscribeSuccess){
+    //     console.log(subscribeSuccess)
+    // }
     return (
         <footer className={styles.footer}>
             <div className={styles.footerInner}>

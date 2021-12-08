@@ -56,7 +56,7 @@ function Card(props) {
   const handleClickSnack = () => {
   };
   const handleCloseSnack = (event, reason) => {
-    // if (reason === 'clickaway') {
+    // if (reason === 'clickaway') { 
     //   return;
     // }
     if(openSnack===true){
@@ -64,13 +64,13 @@ function Card(props) {
         // setOpenSnack(null);
     }
   };
-    
+    const [itemQuantity, setitemQuantity] = useState(1)
     const dispatch = useDispatch();
     const {isLoading,users,userErrorMessage} = useSelector(state => state.users)
     
     const handleAdd = (item) =>{
         if(!isLoading && users){
-            dispatch(addToCart({pid : item.id}))
+            dispatch(addToCart({pid : item.id, quantity: itemQuantity}))
         }
         setCountToCart(countToCart=>countToCart+1)
     }
@@ -83,6 +83,8 @@ function Card(props) {
         console.log(openSnack)
     }, [countToCart])
 
+
+        
         // useEffect(() => {
             // if(!addingToCart && addedToCart){
             //     setOpenSnack(!openSnack);
@@ -108,18 +110,18 @@ function Card(props) {
         // console.log(index)
     }
 
-    const [itemQuantity, setitemQuantity] = useState()
     const [open, setOpen] = React.useState(false);
     const handleOpen = (item) => {
         setOpen(true);
-        if(quantityView != null){
-            quantityView.data.map((index)=>{
-                if(index.id == item.id){
-                    setitemQuantity(index.quantity)
-                    console.log(index.quantity,index.id)
-                }
-            })
-        }
+        // if(quantityView != null){
+        //     quantityView.data.map((index)=>{
+        //         if(index.id == item.id){
+        //             setitemQuantity(index.quantity)
+        //             // console.log(index.quantity,index.id)
+        //         }
+        //     })
+        // }
+        console.log(item.id)
     }
     const handleClose = () => setOpen(false);
 
@@ -130,7 +132,7 @@ function Card(props) {
     useEffect(() => {
         if(!gettingProductInCart && productInCart){
             setQuantityView(productInCart)
-            console.log(quantityView)
+            // console.log(quantityView)
         }
     }, [productInCart])
     const {decrementingQuantityToCart,decrementedQuantityToCart,decrementedQuantityerrorMessage} = useSelector((state) => state.decrementQuantityReducer);
@@ -148,30 +150,24 @@ function Card(props) {
     }, [productInCart]);
 
     const handlePlus = (e, id) => {
-        e.target.disabled = true;
-        dispatch(incrementQuantityToCart({pid: id}));
-        setCartProducts((cartProducts) =>
-            cartProducts.map(
-                (item) => item.id == id  ? { ...item,quantity: item.quantity + 1,totalPrice: item.totalPrice + item.currentPrice,} : item
-            )
-        );
+        setitemQuantity(itemQuantity+1)
+
       };
     const handleMinus = (e, id) => {
-        e.target.disabled = true;
-        dispatch(decrementQuantityToCart({pid: id}));
-        setCartProducts((cartProducts) => 
-            cartProducts.map(
-                (item) =>  item.id == id ? { ...item, quantity: item.quantity - 1, totalPrice: item.totalPrice - item.currentPrice } : item
-            )
-        );
+        setitemQuantity(itemQuantity-1)
+        
   };
 
-   if (!decrementingQuantityToCart && decrementedQuantityToCart) {
-        Array.from(document.getElementsByClassName("decrement")).map((item) => item.disabled = false);
+  function handleAddQuantity(item){
+    console.log(item.id)
+
   }
-  if (!incrementingQuantityToCart && incrementedQuantityToCart) {
-        Array.from(document.getElementsByClassName("increment")).map((item) => item.disabled = false);
-  }
+//    if (!decrementingQuantityToCart && decrementedQuantityToCart) {
+//         Array.from(document.getElementsByClassName("decrement")).map((item) => item.disabled = false);
+//   }
+//   if (!incrementingQuantityToCart && incrementedQuantityToCart) {
+//         Array.from(document.getElementsByClassName("increment")).map((item) => item.disabled = false);
+//   }
 
     // const {gettingProduct,products,productsErrorMessage} = useSelector((state) => state.getProducts)
     // if(!gettingProduct && products){
@@ -213,33 +209,28 @@ function Card(props) {
                                         <p>{props.item.p}</p>
                                         <div className={styles.df}>
                                             <div className={styles.quantity}>
-                                                {cartProducts &&
-                                                    cartProducts.map( item => (
-                                                        <>
-                                                        <button className="decrement" onClick={(e) => handleMinus(e, item.id)}>
+                                               
+                                                        <button className="decrement" onClick={(e) => handleMinus(e, 184)}>
                                                         -
                                                         </button>
                                                         <span>{itemQuantity}</span>
-                                                        <button className="increment" onClick={(e) => handlePlus(e, item.id)}>
+                                                        <button className="increment" onClick={(e) => handlePlus(e, 184)}>
                                                         +
                                                         </button>
-                                                        </>
-                                                    ))
-
-                                                }
+                                                       
                                             </div>
                                             {/* <a href='javascript:void(0)'><button className={styled.btn} onClick={()=>dispatch({
                                                 type: 'ELAVE_ET',
                                                 payload: props.item
                                             })}><FaCartPlus/>SATIN AL</button></a> */}
-                                              <a href='javascript:void(0)'><button className={styled.btn}><FaCartPlus/>SATIN AL</button></a>
+                                              <a href='javascript:void(0)'><button onClick={()=>handleAdd(props.item)} className={styled.btn}><FaCartPlus/>SATIN AL</button></a>
                                        </div>
                                     </Typography>
                                 </Box>
                                 </Fade>
                             </Modal>
                         </div>
-                        <Link onClick={()=>allFlowersAdd(props.item)} to={`/${props.item.id}`}><img src={props.item.image} onMouseOver={(a)=>{a.target.src = props.item.photo}} onMouseOut={(a)=>{a.target.src = props.item.photo}}/></Link>
+                        <Link onClick={()=>allFlowersAdd(props.item)} to={`/${props.item.id}`}><img src={props.item.photo} onMouseOver={(a)=>{a.target.src = props.item.photo}} onMouseOut={(a)=>{a.target.src = props.item.photo}}/></Link>
                     </div>
                     <div className={styles.bottom}>
                         {/* <div className={styles.category}><a href='#'>{props.item.category}</a></div> */}
