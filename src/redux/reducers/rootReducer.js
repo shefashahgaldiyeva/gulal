@@ -2,9 +2,7 @@ import { combineReducers } from "redux";
 import usersReducer from "./users/users.reducer";
 import categoriesReducer from "./categories/categories.reducer";
 import productsReducer from "./products/products.reducer";
-import discountProductsReducer from "./products/discount.products.reducer";
 import logoutReducer from "./users/logoutReducer";
-import allProductsReducer from "./products/all.products.inHome.reducer";
 import addToCartProductsReducer from "./products/addToCart.products.reducer";
 import getCartReducer from "./products/getCart.reducer";
 import getQuantityReducer from "./products/getQuantity.reducer";
@@ -31,14 +29,17 @@ import getWishlist from "./getterReducer/getWishlist/getWishlist.reducer";
 import getSearch from "./getterReducer/search/search.reducer"
 import subscribeReducer from "./setterReducer/subscribe/subscribe.reducer"
 import getNewProductsReducer from "./getterReducer/newProducts/getNewProducts.reducer"
+import allProductsReducer from "./getterReducer/allProducts/all.products.inHome.reducer";
+import discountProductsReducer from "./getterReducer/discountProducts/discount.reducer";
+
 
 const rootReducer = () =>
 	combineReducers({
 		users: usersReducer,
 		// categories : categoriesReducer,
 		// products : productsReducer,
-		// allProducts : allProductsReducer,
-		// discountReducer : discountProductsReducer,
+		allProducts : allProductsReducer,
+		discountReducer : discountProductsReducer,
 		// cartReducer : addToCartProductsReducer,
 		// quantityReducer : getQuantityReducer,
 		// getCartReducer,

@@ -1,4 +1,4 @@
-import actionTypes from "./products.actionTypes";
+import actionTypes from "./all.products.inHome.actionTypes";
 import initialState from "./all.products.inHome.initialState";
 
 const allProductsReducer = (state = initialState, { type, payload }) => {

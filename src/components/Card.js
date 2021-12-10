@@ -38,32 +38,31 @@ const style = {
     p: 4,
     display: 'flex',
     justifyContent: 'space-evenly'
-  };
+};
 
-  const Alert = React.forwardRef(function Alert(props, ref) {
+const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-  });
+});
 
 
 
 function Card(props) { 
-    // console.log(props)
 
-  const [openSnack, setOpenSnack] = useState(false);
-  const {addingToCart,addedToCart,addedErrorMessage} = useSelector(state => state.setAddToCart)
-  const [countToCart,setCountToCart] = useState(false);
- 
-  const handleClickSnack = () => {
-  };
-  const handleCloseSnack = (event, reason) => {
-    // if (reason === 'clickaway') { 
-    //   return;
-    // }
-    if(openSnack===true){
-        setOpenSnack(false);
-        // setOpenSnack(null);
-    }
-  };
+    const [openSnack, setOpenSnack] = useState(false);
+    const {addingToCart,addedToCart,addedErrorMessage} = useSelector(state => state.setAddToCart)
+    const [countToCart,setCountToCart] = useState(false);
+    
+    const handleClickSnack = () => {
+    };
+    const handleCloseSnack = (event, reason) => {
+        // if (reason === 'clickaway') { 
+        //   return;
+        // }
+        if(openSnack===true){
+            setOpenSnack(false);
+            // setOpenSnack(null);
+        }
+    };
     const [itemQuantity, setitemQuantity] = useState(1)
     const dispatch = useDispatch();
     const {isLoading,users,userErrorMessage} = useSelector(state => state.users)
@@ -72,7 +71,7 @@ function Card(props) {
         if(!isLoading && users){
             dispatch(addToCart({pid : item.id, quantity: itemQuantity}))
         }
-        setCountToCart(countToCart=>countToCart+1)
+        setCountToCart(countToCart+1)
     }
     useEffect(() => {
         if(!addingToCart && addedToCart){
@@ -83,8 +82,6 @@ function Card(props) {
         console.log(openSnack)
     }, [countToCart])
 
-
-        
         // useEffect(() => {
             // if(!addingToCart && addedToCart){
             //     setOpenSnack(!openSnack);
@@ -97,84 +94,24 @@ function Card(props) {
             dispatch(addToWishlist({pid : item.id}))
        }
     }
-// useSelector(state => console.log(state.addToWishlist))
-    // if(!settingToWishlist && setedToWishlist){
-    //     console.log(setedToWishlist)
-    // }
 
-    const allFlowersAdd = (item) =>{
-        dispatch({
-            type: 'GELEN_DATA',
-            payload: item 
-        })
-        // console.log(index)
-    }
-
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = (item) => {
         setOpen(true);
-        // if(quantityView != null){
-        //     quantityView.data.map((index)=>{
-        //         if(index.id == item.id){
-        //             setitemQuantity(index.quantity)
-        //             // console.log(index.quantity,index.id)
-        //         }
-        //     })
-        // }
-        console.log(item.id)
+        // console.log(item.id)
     }
     const handleClose = () => setOpen(false);
-
-    const cardData = useSelector(state => state.bucketReducer)
-    const { gettingProductInCart, productInCart, errorMessage } = useSelector((state) => state.getShoppingCart);
-    const [quantityView, setQuantityView] = useState(null)
-   
-    useEffect(() => {
-        if(!gettingProductInCart && productInCart){
-            setQuantityView(productInCart)
-            // console.log(quantityView)
-        }
-    }, [productInCart])
-    const {decrementingQuantityToCart,decrementedQuantityToCart,decrementedQuantityerrorMessage} = useSelector((state) => state.decrementQuantityReducer);
-    const {incrementingQuantityToCart,incrementedQuantityToCart,incrementedQuantityerrorMessage} = useSelector((state) => state.incrementQuantityReducer);
-
-    const [cartProducts, setCartProducts] = useState(null);
 
     useEffect(() => {
         dispatch(getCartProducts());
     }, []);
-    useEffect(() => {
-        if (!gettingProductInCart && productInCart) {
-            setCartProducts(productInCart.data);
-        }
-    }, [productInCart]);
 
-    const handlePlus = (e, id) => {
+    const handlePlus = () => {
         setitemQuantity(itemQuantity+1)
-
       };
-    const handleMinus = (e, id) => {
+    const handleMinus = () => {
         setitemQuantity(itemQuantity-1)
-        
-  };
-
-  function handleAddQuantity(item){
-    console.log(item.id)
-
-  }
-//    if (!decrementingQuantityToCart && decrementedQuantityToCart) {
-//         Array.from(document.getElementsByClassName("decrement")).map((item) => item.disabled = false);
-//   }
-//   if (!incrementingQuantityToCart && incrementedQuantityToCart) {
-//         Array.from(document.getElementsByClassName("increment")).map((item) => item.disabled = false);
-//   }
-
-    // const {gettingProduct,products,productsErrorMessage} = useSelector((state) => state.getProducts)
-    // if(!gettingProduct && products){
-    //     if(!gettingProduct && products){
-    //         console.log(products)
-    //     }
-    // }
+    };
 
 
     return (
@@ -210,11 +147,11 @@ function Card(props) {
                                         <div className={styles.df}>
                                             <div className={styles.quantity}>
                                                
-                                                        <button className="decrement" onClick={(e) => handleMinus(e, 184)}>
+                                                        <button className="decrement" onClick={() => handleMinus()}>
                                                         -
                                                         </button>
                                                         <span>{itemQuantity}</span>
-                                                        <button className="increment" onClick={(e) => handlePlus(e, 184)}>
+                                                        <button className="increment" onClick={() => handlePlus()}>
                                                         +
                                                         </button>
                                                        
@@ -230,7 +167,7 @@ function Card(props) {
                                 </Fade>
                             </Modal>
                         </div>
-                        <Link onClick={()=>allFlowersAdd(props.item)} to={`/${props.item.id}`}><img src={props.item.photo} onMouseOver={(a)=>{a.target.src = props.item.photo}} onMouseOut={(a)=>{a.target.src = props.item.photo}}/></Link>
+                        <Link to={`/${props.item.id}`}><img src={props.item.photo} onMouseOver={(a)=>{a.target.src = props.item.photo}} onMouseOut={(a)=>{a.target.src = props.item.photo}}/></Link>
                     </div>
                     <div className={styles.bottom}>
                         {/* <div className={styles.category}><a href='#'>{props.item.category}</a></div> */}

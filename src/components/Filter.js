@@ -12,99 +12,95 @@ import { getProductByFilter } from "../redux/reducers/getterReducer/product/prod
 
 
 function Filter(props) {
+
     const dispatch = useDispatch();
     const match = useRouteMatch();
     const catId = match.params.catId;
-    const {isLoading,products,errorMessage} = useSelector(
-        (state) => state.products
-    );
 
-    // useSelector(state => console.log(state))
-    // useSelector(state => console.log(state.newOfferData))
-  const [cats, setCats] = useState([]);
-  const [id, setId] = useState([]);
-  const [value, setValue] = useState([1, 1000]);
-  const [params, setParams] = useState({
-    // mcategory : '',
-    // price: `${value}`,
-    // orderp: `${sort}`,
-  });
-  const rangeSelector = (event, newValue) => {
-    setValue(newValue);
-    params.price = `${newValue[0]},${newValue[1]}`;
-    dispatch({
-      type: "SET_PRICE",
-      payload: params.price,
+    const [cats, setCats] = useState([]);
+    const [id, setId] = useState([]);
+    const [value, setValue] = useState([1, 1000]);
+    const [params, setParams] = useState({
+        // mcategory : '',
+        // price: `${value}`,
+        // orderp: `${sort}`,
     });
-  };
-  function handleChangeValue(e) {
-    if (!id.includes(e.target.value)) {
-      id.push(e.target.value);
-    } else {
-      for (var i = 0; i < id.length; i++) {
-        if (id[i] == e.target.value) {
-          id.splice(i, 1);
+    const rangeSelector = (event, newValue) => {
+        setValue(newValue);
+        params.price = `${newValue[0]},${newValue[1]}`;
+        dispatch({
+            type: "SET_PRICE",
+            payload: params.price,
+        });
+    };
+    function handleChangeValue(e) {
+        if (!id.includes(e.target.value)) {
+        id.push(e.target.value);
+        } else {
+        for (var i = 0; i < id.length; i++) {
+            if (id[i] == e.target.value) {
+            id.splice(i, 1);
+            }
         }
-      }
+        }
+        params.mcategory = id.toString()
+        dispatch({
+            type: "SET_CATEGORY",
+            payload: params.mcategory,
+        });
     }
-    params.mcategory = id.toString()
-    dispatch({
-      type: "SET_CATEGORY",
-      payload: params.mcategory,
-    });
-  }
-//   function handleSort(){
-//       dispatch({
-//         type: 'SORT_ELAVE_ET',
-//         payload: 
-//       })
-//   }
-//   console.log(params);
-//   useEffect(() => {
-//     dispatch(loadByFilterAsync(catId,params));
-// }, [params]);
+    //   function handleSort(){
+    //       dispatch({
+    //         type: 'SORT_ELAVE_ET',
+    //         payload: 
+    //       })
+    //   }
+    //   console.log(params);
+    //   useEffect(() => {
+    //     dispatch(loadByFilterAsync(catId,params));
+    // }, [params]);
 
-function handleSubmitFilter(){
-//   console.log(params)
-  dispatch(getProductByFilter(catId,params));
-}
+    function handleSubmitFilter(){
+    //   console.log(params)
+    dispatch(getProductByFilter(catId,params));
+    }
 
-  const handleAddClass = (e) => {
-    if (e.target.tagName == "A") {
-      if (e.target.nextSibling.classList.contains("closeDrop")) {
-        e.target.nextSibling.classList.remove("closeDrop");
-        e.target.nextSibling.classList.add("openDrop");
-        if (e.target.querySelector("span").classList.contains("notRotate")) {
-          e.target.querySelector("span").classList.remove("notRotate");
-          e.target.querySelector("span").classList.add("rotate");
+    const handleAddClass = (e) => {
+        if (e.target.tagName == "A") {
+        if (e.target.nextSibling.classList.contains("closeDrop")) {
+            e.target.nextSibling.classList.remove("closeDrop");
+            e.target.nextSibling.classList.add("openDrop");
+            if (e.target.querySelector("span").classList.contains("notRotate")) {
+            e.target.querySelector("span").classList.remove("notRotate");
+            e.target.querySelector("span").classList.add("rotate");
+            }
+        } else if (e.target.nextSibling.classList.contains("openDrop")) {
+            e.target.nextSibling.classList.remove("openDrop");
+            e.target.nextSibling.classList.add("closeDrop");
+            if (e.target.querySelector("span").classList.contains("rotate")) {
+            e.target.querySelector("span").classList.remove("rotate");
+            e.target.querySelector("span").classList.add("notRotate");
+            }
         }
-      } else if (e.target.nextSibling.classList.contains("openDrop")) {
-        e.target.nextSibling.classList.remove("openDrop");
-        e.target.nextSibling.classList.add("closeDrop");
-        if (e.target.querySelector("span").classList.contains("rotate")) {
-          e.target.querySelector("span").classList.remove("rotate");
-          e.target.querySelector("span").classList.add("notRotate");
         }
-      }
+    };
+    // console.log(products)
+    // if (paramsHeader.mcategory) {
+    //   const strArray = paramsHeader.mcategory.split(",");
+    //   for (let i = 0; i < input.length; i++) {
+    //     if (strArray.includes(input[i].value)) {
+    //       // input[i].checked = true;
+    //       input[i].setAttribute("checked", "checked");
+    //     }
+    //   }
+    // }
+    function idCheck(catid){
+    for(let i=0;i<id.length;i++){
+        if(catid==id[i]){
+        return 'checked';
+        }
     }
-  };
-// console.log(products)
-  // if (paramsHeader.mcategory) {
-  //   const strArray = paramsHeader.mcategory.split(",");
-  //   for (let i = 0; i < input.length; i++) {
-  //     if (strArray.includes(input[i].value)) {
-  //       // input[i].checked = true;
-  //       input[i].setAttribute("checked", "checked");
-  //     }
-  //   }
-  // }
-function idCheck(catid){
-  for(let i=0;i<id.length;i++){
-    if(catid==id[i]){
-      return 'checked';
     }
-  }
-}
 
 return (
     <div className={styles.filter}>

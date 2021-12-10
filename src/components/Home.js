@@ -2,7 +2,7 @@ import React,{ useState,useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { loadProductsAsync,loadDiscountProduct } from "../redux/reducers/products/products.thunks";
 import { loadAddToCartProductAsnync } from "../redux/reducers/products/products.thunks";
-import { getProductByDiscount } from '../redux/reducers/getterReducer/product/product.thunk';
+import { loadDiscountProductsAsync } from '../redux/reducers/getterReducer/discountProducts/discount.thunk';
 
 import Container from '../components/Container';
 import NewOffer from '../components/NewOffer';
@@ -16,10 +16,10 @@ function Home() {
 
     const dispatch = useDispatch()
 
-     const {gettingProduct,products,productsErrorMessage} = useSelector((state) => state.getProducts);
+     const {isLoadingDiscount,discountProducts,discountErrorMessage} = useSelector((state) => state.discountReducer);
     
     useEffect(() => {
-        dispatch(getProductByDiscount());
+        dispatch(loadDiscountProductsAsync());
     }, []);
 
     return (
@@ -29,8 +29,8 @@ function Home() {
             <AllProducts/>
             {/* <SelectedCard/> */}
             {
-                !gettingProduct && products ?
-                <Sale data={products.data}/> : null
+                !isLoadingDiscount && discountProducts ?
+                <Sale data={discountProducts.data}/> : null
             }
             <WhoWeAre/>
         </div>
