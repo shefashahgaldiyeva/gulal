@@ -18,9 +18,9 @@ function NewOffer() {
         dispatch(getNewProductsAsync())
     }, [])
     const {gettingNewProduct, newProducts, newProductsErrorMessage} = useSelector(state => state.getNewProducts)
-    if(!gettingNewProduct && newProducts){
-        console.log(newProducts.data)
-    }
+    // if(!gettingNewProduct && newProducts){
+    //     console.log(newProducts.data)
+    // }
     
     return (
         <div className={styles.newOffer}>

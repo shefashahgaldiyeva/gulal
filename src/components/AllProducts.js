@@ -13,9 +13,9 @@ function AllProducts() {
 
     const dispatch = useDispatch()
     const {isLoading,allProducts,errorMessage} = useSelector((state) => state.allProducts);
-    if(!isLoading && allProducts){
-        console.log(allProducts)
-    }
+    // if(!isLoading && allProducts){
+    //     console.log(allProducts)
+    // }
 
     useEffect(() => {
         dispatch(loadAllProductsAsync());

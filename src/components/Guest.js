@@ -33,7 +33,6 @@ function Guest() {
                         </LocalizationProvider>
                     </div>
                     <textarea type='text' placeholder='Qeyd...'/>
-
                 </div>
                 <div className={styles.right}>
                     <TotalInCart className={styles.total}/>

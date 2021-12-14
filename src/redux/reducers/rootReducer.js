@@ -31,7 +31,9 @@ import subscribeReducer from "./setterReducer/subscribe/subscribe.reducer"
 import getNewProductsReducer from "./getterReducer/newProducts/getNewProducts.reducer"
 import allProductsReducer from "./getterReducer/allProducts/all.products.inHome.reducer";
 import discountProductsReducer from "./getterReducer/discountProducts/discount.reducer";
-
+import deleteWishlistProductReducer from "./setterReducer/deleteWishlistProduct/deleteWishlistProduct.reducer"
+import guestSetTokenReducer from "./setterReducer/guestSetToken/guestSetToken.reducer"
+import guestAddToCartReducer from "./setterReducer/guestAddToCart/guestAddToCart.reducer"
 
 const rootReducer = () =>
 	combineReducers({
@@ -60,6 +62,7 @@ const rootReducer = () =>
 		getNewProducts : getNewProductsReducer,
 		setAddToCart : addToCart,
 		deleteCartProductReducer,
+		deleteWishlistProductReducer,
 		getShoppingCart,
 		decrementQuantityReducer : decrementQuantityToCart,
 		incrementQuantityReducer : incrementQuantityToCart,
@@ -67,6 +70,9 @@ const rootReducer = () =>
 		getWishlist,
 		getSearch,
 		subscribeReducer,
+		guestSetTokenReducer,
+		guestAddToCartReducer,
+
 	});
 
 export default rootReducer;

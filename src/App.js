@@ -1,4 +1,5 @@
 import "./App.css";
+import axios from 'axios';
 import { useSelector, useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { StyledEngineProvider } from "@mui/material/styles";
@@ -24,7 +25,9 @@ import { loadCategoriesAsync } from "./redux/reducers/categories/categories.thun
 import { loadUsersAsync } from "./redux/reducers/users/users.thunks";
 import { getCartAsync } from "./redux/reducers/products/products.thunks";
 import { getCategories } from "./redux/reducers/getterReducer/category/category.thunk";
+import { guestSetTokenAsync } from "./redux/reducers/setterReducer/guestSetToken/guestSetToken.thunk";
 import AuthStore from "./services/AuthStore";
+import GuestStore from "./services/GuestStore";
 
 function App() {
 
@@ -37,8 +40,18 @@ function App() {
 		dispatch(getCartAsync())
 		dispatch(getCategories())
 		dispatch(loadUsersAsync())
+		dispatch(guestSetTokenAsync())
 	}, [])
 	AuthStore.getToken()
+	const {isLoadingGuest,guestAssignedToken,guestErrorMessage} = useSelector(state => state.guestSetTokenReducer)
+	// if(!isLoadingGuest && guestAssignedToken){
+	// 	console.log(guestAssignedToken)
+	// }
+	axios.post('http://127.0.0.1:8000/api/guest/setToken')
+	.then(response =>{
+		GuestStore.saveGuestToken(response.data.guestToken)
+		// window.location.reload()
+	})
 
 return (
     <div className="App">

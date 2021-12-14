@@ -24,6 +24,8 @@ import { addToWishlist } from '../redux/reducers/setterReducer/addToWishlistProd
 import { getCartProducts } from "../redux/reducers/getterReducer/shoppingCart/shoppingCart.thunk";
 import { decrementQuantityToCart } from "../redux/reducers/setterReducer/cartDecrementQuantity/decrementQuantity.thunk";
 import { incrementQuantityToCart } from "../redux/reducers/setterReducer/cartIncrementQuantity/incrementQuantity.thunk";
+import { guestAddToCartAsync } from '../redux/reducers/setterReducer/guestAddToCart/guestAddToCart.thunk';
+import GuestStore from '../services/GuestStore';
 
 
 const style = {
@@ -66,10 +68,15 @@ function Card(props) {
     const [itemQuantity, setitemQuantity] = useState(1)
     const dispatch = useDispatch();
     const {isLoading,users,userErrorMessage} = useSelector(state => state.users)
+    const {isLoadingGuest,guestAssignedToken,guestErrorMessage} = useSelector(state => state.guestSetTokenReducer)
     
+    GuestStore.getGuestToken()
     const handleAdd = (item) =>{
         if(!isLoading && users){
             dispatch(addToCart({pid : item.id, quantity: itemQuantity}))
+        }
+        else if(!users && !isLoadingGuest && guestAssignedToken){
+            dispatch(guestAddToCartAsync({product_id : item.id, guest_id: GuestStore.appState}))
         }
         setCountToCart(countToCart+1)
     }
@@ -79,7 +86,7 @@ function Card(props) {
                 setOpenSnack(true)
             }  
         }
-        console.log(openSnack)
+        // console.log(openSnack)
     }, [countToCart])
 
         // useEffect(() => {

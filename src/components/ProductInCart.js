@@ -21,7 +21,6 @@ const ProductInCart = () => {
   const { gettingProductInCart, productInCart, errorMessage } = useSelector((state) => state.getShoppingCart);
   const {decrementingQuantityToCart,decrementedQuantityToCart,decrementedQuantityerrorMessage} = useSelector((state) => state.decrementQuantityReducer);
   const {incrementingQuantityToCart,incrementedQuantityToCart,incrementedQuantityerrorMessage} = useSelector((state) => state.incrementQuantityReducer);
-  const {deletingCartProduct,deletedCartProduct,deletedErrorMessage} = useSelector((state) => state.deleteCartProductReducer);
   
   const [cartProducts, setCartProducts] = useState(null);
 

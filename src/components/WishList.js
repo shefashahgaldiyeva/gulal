@@ -8,34 +8,46 @@ import { FiHeart } from 'react-icons/fi'
 import { GrClose } from "react-icons/gr";
 import wishBg from '../img/wishBg.jpg'
 import {getWishlistProducts} from '../redux/reducers/getterReducer/getWishlist/getWishlist.thunk';
+import { addToCart } from '../redux/reducers/setterReducer/addToCartProduct/addToCart.thunk'
+import { deleteWishlistProduct } from '../redux/reducers/setterReducer/deleteWishlistProduct/deleteWishlistProduct.thunk'
 
 function WishList() {
 
     const dispatch = useDispatch();
-    const cardData = useSelector(state => state.wishListReducers)
-    const reducerData = useSelector(state => state.bucketReducer)
-
-    const selector = useSelector(state => state.wishListReducers)
-
-    // cardData.map((item)=>{
-    //     item.total = Number(item.price) * item.quantity
-    //     console.log(item.total)
-    // })
-
+    const { gettingProductInWishlist,productInWishlist,errorMessage } = useSelector(state => state.getWishlist)
+    const { isLoading,users,usersErrorMessage} = useSelector(state=>state.users)
+    const { addingToCart, addedToCart, addedErrorMessage } = useSelector(state => state.setAddToCart)
     
+    if(!addingToCart && addedToCart){
+        console.log(addedToCart)
+    }
+
     useEffect(() => {
         dispatch(getWishlistProducts());
-    }, []);
-    const { gettingProductInWishlist,productInWishlist,errorMessage} = useSelector(state=>state.getWishlist)
+    }, [])
 
-    const [cartProducts, setCartProducts] = useState(null);
-    function handleDelete(id) {
-        // dispatch(deleteCartProduct({ pid: id}))
-        // setCartProducts((cartProducts) =>
-        //     cartProducts.filter(
-        //         (item) => item.id !== id)
-        // );
-      }
+    useEffect(() => {
+        if(!gettingProductInWishlist && productInWishlist){
+            setWishlistProducts(productInWishlist.data)
+        }
+    }, [productInWishlist])
+
+    function handleAdd(item){
+        if(!isLoading && users){
+            dispatch(addToCart({pid : item.id, quantity : 1}))
+            // console.log(item)
+        }
+    }
+    const [wishlistProducts, setWishlistProducts] = useState(null)
+    function handleDelete(id){
+        setWishlistProducts(
+            wishlistProducts.filter(
+                item => item.id !== id
+            )
+        )
+        dispatch(deleteWishlistProduct({pid: id}))
+    }
+
     
     return (
         <>
@@ -53,8 +65,8 @@ function WishList() {
                     </tr>
                 </thead>
                 <tbody id='tbody'>
-                {!gettingProductInWishlist &&  productInWishlist &&
-                    productInWishlist.data.map((item)=>(
+                {wishlistProducts &&
+                    wishlistProducts.map((item)=>(
                         <tr key={item.id}>
                             <td>
                                 <div>
@@ -65,10 +77,7 @@ function WishList() {
                             <td><span className={styles.price}>{item.price} azn</span></td>
                             <td className={styles.tdP}><p>Stokda var</p></td>
                             <td>
-                                <Link to='/cart'><button className={styles.btn} onClick={()=>dispatch({
-                                    type: 'ELAVE_ET',
-                                    payload: item
-                                })}><FaCartPlus/>SATIN AL</button></Link>
+                                <Link to='/cart'><button className={styles.btn} onClick={()=>handleAdd(item)}><FaCartPlus/>SATIN AL</button></Link>
                             </td>
                             <td >
                                 <button className={styles.btn,'removeCart'} onClick={() => handleDelete(item.id)} >

@@ -60,7 +60,6 @@ function Header(props) {
     }
 
   return (
- 
     <header>
       <div className={styles.header}>
         <div className={styles.logo}>
@@ -81,7 +80,7 @@ function Header(props) {
               placeholder="Axtarış et..."
 			  onKeyUp = {(e)=>handleSearch(e)}
             />
-            <ul className={!gettingSearch && getedSearch && getedSearch.data.length > 3 ? styles.searchList : null}>
+            <ul className={!gettingSearch && getedSearch && getedSearch.data.length > 7 ? styles.searchList : null}>
                     {
                         !gettingSearch && getedSearch && 
                         getedSearch.data.map((item)=>(
