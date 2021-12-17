@@ -1,34 +1,36 @@
-import actionTypes from "./guestGetShoppingCart.actionTypes";
-import initialState from "./guestGetShoppingCart.initialState";
+const initialState = {
+	gettingGuestCart : true,
+	guestCart: null,
+	guestError: null,
+}; 
 
-
-const guestGetShoppingCart = (state = initialState, { type, payload }) => {
+const guestGetCartReducer = (state = initialState, { type, payload }) => {
 
 	switch (type) {
-		case actionTypes.GUEST_GET_PRODUCT_IN_CART_LOAD:
+		case "GUEST_GET_PRODUCT_IN_CART_LOAD_START":
 			return {
 				...state,
-				gettingProductInCart: true,
-				productInCart: null,
-				errorMessage: null,
+				gettingGuestCart: true,
+				guestCart: null,
+				guestError: null,
 			};
 
-		case actionTypes.GUEST_SET_PRODUCT_IN_CART_SUCCESS:
+		case "GUEST_SET_PRODUCT_IN_CART_SUCCESS":
 			return {
 				...state,
-				gettingProductInCart: false,
-				productInCart: payload,
+				gettingGuestCart: false,
+				guestCart: payload,
 			};
 
-		case actionTypes.gUEST_ERROR_PRODUCT_IN_CART_MESSAGE:
+		case "GUEST_ERROR_PRODUCT_IN_CART_MESSAGE":
 			return {
 				...state,
-				gettingProductInCart: false,
-				errorMessage: payload,
+				gettingGuestCart: false,
+				guestError: payload,
 			};
 		default:
 			return state;
 	}
 };
 
-export default guestGetShoppingCart;
+export default guestGetCartReducer;

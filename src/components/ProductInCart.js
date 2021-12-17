@@ -15,6 +15,8 @@ import { getCartProducts } from "../redux/reducers/getterReducer/shoppingCart/sh
 import { decrementQuantityToCart } from "../redux/reducers/setterReducer/cartDecrementQuantity/decrementQuantity.thunk";
 import { incrementQuantityToCart } from "../redux/reducers/setterReducer/cartIncrementQuantity/incrementQuantity.thunk";
 import { deleteCartProduct } from "../redux/reducers/setterReducer/deleteCartProduct/deleteCartProduct.thunk";
+import { guestGetCartAsync } from '../redux/reducers/getterReducer/guestShoppingCart/guestGetShoppingCart.thunk';
+
 
 const ProductInCart = () => {
   const dispatch = useDispatch();
@@ -69,6 +71,13 @@ const ProductInCart = () => {
   if (!incrementingQuantityToCart && incrementedQuantityToCart) {
         Array.from(document.getElementsByClassName("increment")).map((item) => item.disabled = false);
   }
+
+    useEffect(() => {
+        dispatch(guestGetCartAsync())
+    }, [])
+
+    // const { gettingGuestCart, guestCart, guestError } = 
+    useSelector(state => console.log(state.guestCartReducer))
 
   return (
     <div className={styles.table}>

@@ -1,4 +1,5 @@
 import React,{ useEffect, useState } from 'react';
+import axios from 'axios';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -26,6 +27,8 @@ import { decrementQuantityToCart } from "../redux/reducers/setterReducer/cartDec
 import { incrementQuantityToCart } from "../redux/reducers/setterReducer/cartIncrementQuantity/incrementQuantity.thunk";
 import { guestAddToCartAsync } from '../redux/reducers/setterReducer/guestAddToCart/guestAddToCart.thunk';
 import GuestStore from '../services/GuestStore';
+import AuthStore from '../services/AuthStore';
+import { guestSetTokenAsync } from '../redux/reducers/setterReducer/guestSetToken/guestSetToken.thunk';
 
 
 const style = {
@@ -69,19 +72,35 @@ function Card(props) {
     const dispatch = useDispatch();
     const {isLoading,users,userErrorMessage} = useSelector(state => state.users)
     const {isLoadingGuest,guestAssignedToken,guestErrorMessage} = useSelector(state => state.guestSetTokenReducer)
-    if(!isLoadingGuest && guestAssignedToken){
-        console.log(guestAssignedToken)
-    }
+    // if(!isLoadingGuest && guestAssignedToken){
+    //     console.log(guestAssignedToken)
+    // }
 
     GuestStore.getGuestToken()
+    console.log(GuestStore.appState)
     const handleAdd = (item) =>{
+        if(!AuthStore.appState && !GuestStore.appState){
+            dispatch(guestSetTokenAsync())
+            if(!isLoadingGuest && guestAssignedToken){
+                console.log(guestAssignedToken)
+               GuestStore.saveGuestToken(guestAssignedToken.guestToken)
+            }
+         
+        }
         if(!isLoading && users){
+            console.log('else if(1)')
             dispatch(addToCart({pid : item.id, quantity: itemQuantity}))
         }
-        else if(!users && !isLoadingGuest && guestAssignedToken){
-            dispatch(guestAddToCartAsync({product_id : item.id, count: itemQuantity, guestToken: GuestStore.appState}))
+        if(!users && !isLoadingGuest && guestAssignedToken){
+            console.log('else if(2)')
+            dispatch(guestAddToCartAsync({product_id : item.id, quantity: itemQuantity, guestToken: GuestStore.appState}))
         }
         setCountToCart(countToCart+1)
+        
+    }
+    const {addingCartForGuest,addedCartForGuest,errorMessageForGuest} = useSelector(state => state.guestAddToCartReducer)
+    if(!addingCartForGuest && addedCartForGuest){
+        console.log(addedCartForGuest)
     }
     useEffect(() => {
         if(!addingToCart && addedToCart){

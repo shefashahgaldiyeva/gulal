@@ -35,6 +35,7 @@ import deleteWishlistProductReducer from "./setterReducer/deleteWishlistProduct/
 import guestSetTokenReducer from "./setterReducer/guestSetToken/guestSetToken.reducer"
 import guestAddToCartReducer from "./setterReducer/guestAddToCart/guestAddToCart.reducer"
 import saleReducer from "./setterReducer/sale/sale.reducer"
+import guestGetCartReducer from "./getterReducer/guestShoppingCart/guestGetShoppingCart.reducer";
 
 
 const rootReducer = () =>
@@ -75,6 +76,7 @@ const rootReducer = () =>
 		guestSetTokenReducer,
 		guestAddToCartReducer,
 		saleReducer,
+		guestCartReducer: guestGetCartReducer,
 
 	});
 
