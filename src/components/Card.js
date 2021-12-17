@@ -69,14 +69,17 @@ function Card(props) {
     const dispatch = useDispatch();
     const {isLoading,users,userErrorMessage} = useSelector(state => state.users)
     const {isLoadingGuest,guestAssignedToken,guestErrorMessage} = useSelector(state => state.guestSetTokenReducer)
-    
+    if(!isLoadingGuest && guestAssignedToken){
+        console.log(guestAssignedToken)
+    }
+
     GuestStore.getGuestToken()
     const handleAdd = (item) =>{
         if(!isLoading && users){
             dispatch(addToCart({pid : item.id, quantity: itemQuantity}))
         }
         else if(!users && !isLoadingGuest && guestAssignedToken){
-            dispatch(guestAddToCartAsync({product_id : item.id, guest_id: GuestStore.appState}))
+            dispatch(guestAddToCartAsync({product_id : item.id, count: itemQuantity, guestToken: GuestStore.appState}))
         }
         setCountToCart(countToCart+1)
     }
@@ -153,15 +156,13 @@ function Card(props) {
                                         <p>{props.item.p}</p>
                                         <div className={styles.df}>
                                             <div className={styles.quantity}>
-                                               
-                                                        <button className="decrement" onClick={() => handleMinus()}>
-                                                        -
-                                                        </button>
-                                                        <span>{itemQuantity}</span>
-                                                        <button className="increment" onClick={() => handlePlus()}>
-                                                        +
-                                                        </button>
-                                                       
+                                                <button className="decrement" onClick={() => handleMinus()}>
+                                                    -
+                                                </button>
+                                                <span>{itemQuantity}</span>
+                                                <button className="increment" onClick={() => handlePlus()}>
+                                                    +
+                                                </button>
                                             </div>
                                             {/* <a href='javascript:void(0)'><button className={styled.btn} onClick={()=>dispatch({
                                                 type: 'ELAVE_ET',

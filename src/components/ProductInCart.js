@@ -19,9 +19,12 @@ import { deleteCartProduct } from "../redux/reducers/setterReducer/deleteCartPro
 const ProductInCart = () => {
   const dispatch = useDispatch();
   const { gettingProductInCart, productInCart, errorMessage } = useSelector((state) => state.getShoppingCart);
-  const {decrementingQuantityToCart,decrementedQuantityToCart,decrementedQuantityerrorMessage} = useSelector((state) => state.decrementQuantityReducer);
-  const {incrementingQuantityToCart,incrementedQuantityToCart,incrementedQuantityerrorMessage} = useSelector((state) => state.incrementQuantityReducer);
+  const { decrementingQuantityToCart,decrementedQuantityToCart,decrementedQuantityerrorMessage } = useSelector((state) => state.decrementQuantityReducer);
+  const { incrementingQuantityToCart,incrementedQuantityToCart,incrementedQuantityerrorMessage } = useSelector((state) => state.incrementQuantityReducer);
   
+  if (!gettingProductInCart && productInCart) {
+    console.log(productInCart);
+  }
   const [cartProducts, setCartProducts] = useState(null);
 
   useEffect(() => {
@@ -35,7 +38,7 @@ const ProductInCart = () => {
 
   const handlePlus = (e, id) => {
     e.target.disabled = true;
-    dispatch(incrementQuantityToCart({pid: id,}));
+    dispatch(incrementQuantityToCart({pid: id}));
     setCartProducts((cartProducts) =>
         cartProducts.map(
             (item) => item.id == id  ? { ...item,quantity: item.quantity + 1,totalPrice: item.totalPrice + item.currentPrice,} : item

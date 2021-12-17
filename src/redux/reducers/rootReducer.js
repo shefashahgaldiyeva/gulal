@@ -34,6 +34,8 @@ import discountProductsReducer from "./getterReducer/discountProducts/discount.r
 import deleteWishlistProductReducer from "./setterReducer/deleteWishlistProduct/deleteWishlistProduct.reducer"
 import guestSetTokenReducer from "./setterReducer/guestSetToken/guestSetToken.reducer"
 import guestAddToCartReducer from "./setterReducer/guestAddToCart/guestAddToCart.reducer"
+import saleReducer from "./setterReducer/sale/sale.reducer"
+
 
 const rootReducer = () =>
 	combineReducers({
@@ -72,6 +74,7 @@ const rootReducer = () =>
 		subscribeReducer,
 		guestSetTokenReducer,
 		guestAddToCartReducer,
+		saleReducer,
 
 	});
 
