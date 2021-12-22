@@ -1,4 +1,5 @@
 import ProductsService from "../../../services/products.service";
+import ShoppingCart from "../../../services/shoppingCart.service"
 import actions from "./products.actions";
 
 export const loadProductsAsync = () => (dispatch) => {
@@ -60,7 +61,7 @@ export const loadAllProductsAsync = () => (dispatch) => {
 export const getCartAsync = () => (dispatch) => {
 	dispatch(actions.getCartLoadStart());
 
-	ProductsService.GetCart()
+	ShoppingCart.GetCart()
 		.then((response) => dispatch(actions.getCartSuccess(response.data)))
 		.catch((error) => dispatch(actions.getCartError(error)));
 }

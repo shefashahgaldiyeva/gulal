@@ -15,7 +15,8 @@ function Cart() {
     // }, [])
 
     const {gettingProductInCart,productInCart,errorMessage} =  useSelector(state => state.getShoppingCart)
-    // console.log(getCartProduct)
+    const { gettingGuestCart, guestCart, guestError } = useSelector(state => state.guestCartReducer)
+
     
 
     return (
@@ -23,11 +24,11 @@ function Cart() {
             <div className={styles.cartTop} style={{backgroundImage: `url(${cartBg})`, backgroundPosition: '50% 10%'}}>
                 <h2>Səbət</h2>
             </div>
-            <div className={!gettingProductInCart && productInCart ? styles.cart : styles.none}>
+            <div className={!gettingProductInCart && productInCart || !gettingGuestCart && guestCart ? styles.cart : styles.none}>
                 <ProductInCart/>
                 <TotalInCart/>
             </div>
-            <div className={!gettingProductInCart && !productInCart ? styles.emptyCart : styles.none}>
+            <div className={!gettingProductInCart && !productInCart || !gettingGuestCart && !guestCart ? styles.emptyCart : styles.none}>
                 <BsCartX/>
                 <Link to='/'>Ana səhifəyə keçid</Link>
             </div>

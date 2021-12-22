@@ -159,7 +159,7 @@ a{
 }
 .quantity{
     border: 1px solid #999;
-    width: 30% !important;
+    /* width: 30% !important; */
     display: inline-flex;
     justify-content: space-around;
     align-items: center;

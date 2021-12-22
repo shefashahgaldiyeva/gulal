@@ -40,18 +40,8 @@ function App() {
 		dispatch(getCartAsync())
 		dispatch(getCategories())
 		dispatch(loadUsersAsync())
-		// dispatch(guestSetTokenAsync())
 	}, [])
 	AuthStore.getToken()
-	const {isLoadingGuest,guestAssignedToken,guestErrorMessage} = useSelector(state => state.guestSetTokenReducer)
-	// if(!isLoadingGuest && guestAssignedToken){
-	// 	console.log(guestAssignedToken)
-	// }
-	// axios.post('http://127.0.0.1:8000/api/guest/setToken')
-	// .then(response =>{
-	// 	GuestStore.saveGuestToken(response.data.guestToken)
-	// 	// window.location.reload()
-	// })
 
 return (
     <div className="App">
@@ -117,7 +107,7 @@ return (
 			<Route path="/En-Çox-Satılanlar">
 			<ShopAllCategory />
 			</Route> */}
-			<Route path="/product/:productId">
+			<Route path="/:productId">
 				<Detail />
 			</Route>
 		</Switch>

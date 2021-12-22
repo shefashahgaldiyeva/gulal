@@ -1,43 +1,162 @@
 import React,{useState,useEffect} from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch,useSelector } from 'react-redux';
 import styles from '../css/Guest.module.css'
+import styled from '../css/TotalInCart.module.css'
 import TotalInCart from './TotalInCart'
 import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
-import { useDispatch,useSelector } from 'react-redux';
+import { HiOutlineRefresh } from 'react-icons/hi'
+import { saleAsync } from '../redux/reducers/setterReducer/sale/sale.thunk';
+import AuthStore from '../services/AuthStore';
+import GuestStore from '../services/GuestStore';
 
 function Guest() {
-    const [value, setValue] = React.useState(new Date());
+
+    const dispatch = useDispatch();
+    const [dateValue, setDateValue] = React.useState(new Date());
+    const cardData = useSelector(state => state.bucketReducer)
+    
+        let subTotal = 0;
+        cardData.map(item=>{
+            subTotal += item.total
+        })
+
+    const [total, setTotal] = useState(0)
+
+    const shippingClick = () => {
+        let val = document.querySelector('input[name="shipping"]:checked').value;
+        console.log(val)
+        // let totall = subTotal + Number(val);
+        // setTotal(totall)
+        // console.log(totall)
+        // return totall
+    }
+
+    
+    AuthStore.getToken()
+    GuestStore.getGuestToken()
+    const {isLoading,users,userErrorMessage} = useSelector(state => state.users)
+    const {isLoadingGuest,guestAssignedToken,guestErrorMessage} = useSelector(state => state.guestSetTokenReducer)
+    const [userType, setUserType] = useState()
+    const [tokenType, setTokenType] = useState()
+    function handleSale(e){
+        const fullname = document.getElementById('fullname')
+        const phone = document.getElementById('phone')
+        const recipient_fullname = document.getElementById('recipient_fullname')
+        const recipient_phone = document.getElementById('recipient_phone')
+        const location = document.getElementById('location')
+        // const formated = new Formater('dollar').validate('001234.1234')
+        // const delivery_datetime = document.getElementById('delivery_datetime')
+        const note = document.getElementById('note')
+        if(!isLoading && users && guestAssignedToken){
+            setUserType('user')
+        }else if(!users && !isLoadingGuest && guestAssignedToken){
+            setUserType('guest')
+        }
+        const article = {
+            fullname: fullname.value,
+            phone: phone.value,
+            recipient_fullname: recipient_fullname.value,
+            recipient_phone: recipient_phone.value,
+            location: location.value,
+            delivery_datetime:'2012-12-12 00:00:00',
+            // '2021-12-20 12:53:17'  dateValue.toISOString() 994(70)-777-77-77
+            note: note.value,
+        }
+        if(!isLoadingGuest && guestAssignedToken){
+            article.token = GuestStore.appState
+        }
+        console.log(article)
+        dispatch(saleAsync(article))
+    }
+    // const {setingSale,setedSale,saleErrorMessage} = 
+    useSelector(state => console.log(state.saleReducer))
 
     return (
         <div className={styles.login}>
             <div className={styles.loginInner}>
                 <div className={styles.left}>
                     <h2>Sifarişçi məlumatları</h2>
-                    <input required type='text' placeholder='Sifarişçinin Ad və Soyadı...'/>
-                    <input required type='tel' placeholder='Mobil Telefon...'/>
-                    <input required type='text' placeholder='Çatdırılacaq Şəxsin Ad və Soyadı...'/>
-                    <input required type='tel' placeholder='Çatdırılacaq Şəxsin Mobil Telefonu...'/>
-                    <input required type='text' placeholder='Ünvan...'/>
+                    <input required id='fullname' type='text' placeholder='Sifarişçinin Ad və Soyadı...'/>
+                    <input required id='phone' type='tel' placeholder='Mobil Telefon...'/>
+                    <input required id='recipient_fullname' type='text' placeholder='Çatdırılacaq Şəxsin Ad və Soyadı...'/>
+                    <input required id='recipient_phone' type='tel' placeholder='Çatdırılacaq Şəxsin Mobil Telefonu...'/>
+                    <input required id='location' type='text' placeholder='Ünvan...'/>
                     {/* <input required type='text' placeholder='Çatdırılacaq gün və saat...'/> */}
                     <div className={styles.date}>
                         <LocalizationProvider className={styles.LocalProvider} dateAdapter={AdapterDateFns}>
-                        <DateTimePicker  className={styles.DatePicker}
+                        <DateTimePicker  
+                            className={styles.DatePicker}
                             renderInput={(props) => <TextField {...props} />}
                             label="Çatdırılacaq gün və saat"
-                            value={value}
+                            id='delivery_datetime'
+                            // value={dateValue}
+                          
+                            // valueFormatter ={({ dateValue }) => valueFormatter.format(Number(dateValue))}
                             onChange={(newValue) => {
-                            setValue(newValue);
+                                setDateValue(newValue);
                             }}
                         />
                         </LocalizationProvider>
                     </div>
-                    <textarea type='text' placeholder='Qeyd...'/>
+                    <textarea id='note' type='text' placeholder='Qeyd...'/>
                 </div>
                 <div className={styles.right}>
-                    <TotalInCart className={styles.total}/>
-                    <div className={styles.bgColor}></div>
+                    {/* <TotalInCart className={styles.total}/> */}
+                    <div className={styles.total}>
+                    <div className={styled.total}>
+                        <div className={styled.subTotal}>
+                            <h3>Toplam</h3>
+                            <div className={styled.sum}>
+                                <span>Ümumi cəm:</span>
+                                <span>{subTotal.toFixed(2)} azn</span>
+                            </div>
+                            <form>
+                                <p>Çatdırılma:</p>
+                                <div className={styled.shipping}>
+                                    <label for='free'>
+                                        <input tabindex="0" checked="checked" onChange={shippingClick} id='free' name='shipping' value={0} type='radio'/>&nbsp;
+                                        Mağazadan alış:
+                                    </label>
+                                    <span>0.00 azn</span>
+                                </div>
+                                <div className={styled.shipping}>
+                                    <label for='standart'>
+                                        <input tabindex="0" onChange={shippingClick} id='standart' name='shipping' value={5} type='radio'/>&nbsp;
+                                        Standard çatdırılma:
+                                    </label>
+                                    <span>5.00 azn</span>
+                                </div>
+                                <div className={styled.shipping}>
+                                    <label for='express'>
+                                        <input tabindex="0" onChange={shippingClick} id='express' name='shipping' value={10} type='radio'/>&nbsp;
+                                        Express:
+                                    </label>
+                                    <span>10.00 azn</span>
+                                </div>
+                            </form>
+                            <div className={styled.adres}>
+                                <h2>Bölgəni seçin</h2>
+                                <a href='#'>Adres daxil et</a>
+                            </div>
+                            <div className={styled.totalSpan}>
+                                <span>Toplam:</span>
+                                <span>{total}.00 azn</span>
+                            </div>
+                            <Link className={styled.btn} to='/Sifariş-et' onClick={()=>handleSale()}>SIFARİŞ ET </Link>
+                        </div>
+                        <div>
+                        <Link className={styled.continue} to='/'>
+                            ALIŞ VERİŞƏ DAVAM ET
+                            <HiOutlineRefresh/>
+                        </Link>
+                        </div>
+                    </div>
+                    <div className={styled.bgColor}></div>
+                    </div>
                 </div>
             </div>
         </div>

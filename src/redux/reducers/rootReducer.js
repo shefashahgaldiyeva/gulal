@@ -36,6 +36,10 @@ import guestSetTokenReducer from "./setterReducer/guestSetToken/guestSetToken.re
 import guestAddToCartReducer from "./setterReducer/guestAddToCart/guestAddToCart.reducer"
 import saleReducer from "./setterReducer/sale/sale.reducer"
 import guestGetCartReducer from "./getterReducer/guestShoppingCart/guestGetShoppingCart.reducer";
+import guestIncrementReducer from "./setterReducer/guestCartIncrementQuantity/guestCartIncrementQuantity.reducer";
+import guestDecrementReducer  from "./setterReducer/guestCartDecrementQuantity/guestCartDecrementQuantity.reducer";
+import deleteGuestCartProductReducer from "./setterReducer/deleteGuestCartProduct/deleteGuestCartProduct.reducer";
+import productDetailReducer from "./getterReducer/productDetail/productDetail.reducer";
 
 
 const rootReducer = () =>
@@ -77,7 +81,10 @@ const rootReducer = () =>
 		guestAddToCartReducer,
 		saleReducer,
 		guestCartReducer: guestGetCartReducer,
-
+		guestIncrementReducer,
+		guestDecrementReducer,
+		deleteGuestCartReducer : deleteGuestCartProductReducer,
+		productDetailReducer
 	});
 
 export default rootReducer;

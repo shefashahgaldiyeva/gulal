@@ -2,6 +2,7 @@ import ShoppingCart from "../../../../services/shoppingCart.service";
 import actions from "./addToCart.action";
 
 export const addToCart = (productId) => (dispatch) => {
+	console.log(productId)
 	dispatch(actions.setingToCart());
 
 	ShoppingCart.addToCartProduct(productId)

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 
 function App(props) {
 
+    console.log(props.data.image)
     // console.log(props.data)
     // const selector = useSelector(state=>state.newOfferData)
     // console.log(selector[0].img)
@@ -69,7 +70,7 @@ function App(props) {
           padding: "0 20px"
         }}>
           <Carousel
-            data={props.data}
+            data={props.data.image}
             time={2000}
             width="850px"
             height="500px"

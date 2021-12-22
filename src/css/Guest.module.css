@@ -87,7 +87,7 @@
 }
 .right>div>div:first-child{
     border-radius: 2rem !important;
-    background-color: #fff !important;
+    /* background-color: #fff !important; */
 }
 .right>div>div:last-child>a{
     border-radius: 2rem !important;

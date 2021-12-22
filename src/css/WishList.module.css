@@ -55,8 +55,9 @@ button{
     background-color: white;
 }
 .btn{
-    width: 70%;
-    height: 2.5rem;
+    /* width: 70%;
+    height: 2.5rem; */
+    padding: .7rem;
     background-color: #e4dad7;
     color: #fff;
     display: inline-flex;

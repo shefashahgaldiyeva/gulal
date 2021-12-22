@@ -1,5 +1,4 @@
 import React,{ useEffect, useState } from 'react';
-import axios from 'axios';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -56,7 +55,9 @@ function Card(props) {
     const [openSnack, setOpenSnack] = useState(false);
     const {addingToCart,addedToCart,addedErrorMessage} = useSelector(state => state.setAddToCart)
     const [countToCart,setCountToCart] = useState(false);
-    
+    if(!addingToCart && addedToCart){
+        console.log(addedToCart)
+    }
     const handleClickSnack = () => {
     };
     const handleCloseSnack = (event, reason) => {
@@ -77,19 +78,18 @@ function Card(props) {
     // }
 
     GuestStore.getGuestToken()
-    console.log(GuestStore.appState)
+    // console.log(GuestStore.appState)
     const handleAdd = (item) =>{
         if(!AuthStore.appState && !GuestStore.appState){
             dispatch(guestSetTokenAsync())
             if(!isLoadingGuest && guestAssignedToken){
                 console.log(guestAssignedToken)
-               GuestStore.saveGuestToken(guestAssignedToken.guestToken)
+                GuestStore.saveGuestToken(guestAssignedToken.guestToken)
             }
-         
         }
         if(!isLoading && users){
             console.log('else if(1)')
-            dispatch(addToCart({pid : item.id, quantity: itemQuantity}))
+            dispatch(addToCart({pid : item.id, count: itemQuantity}))
         }
         if(!users && !isLoadingGuest && guestAssignedToken){
             console.log('else if(2)')
@@ -98,10 +98,10 @@ function Card(props) {
         setCountToCart(countToCart+1)
         
     }
-    const {addingCartForGuest,addedCartForGuest,errorMessageForGuest} = useSelector(state => state.guestAddToCartReducer)
-    if(!addingCartForGuest && addedCartForGuest){
-        console.log(addedCartForGuest)
-    }
+    // const {addingCartForGuest,addedCartForGuest,errorMessageForGuest} = useSelector(state => state.guestAddToCartReducer)
+    // if(!addingCartForGuest && addedCartForGuest){
+    //     console.log(addedCartForGuest)
+    // }
     useEffect(() => {
         if(!addingToCart && addedToCart){
             if(!openSnack){
@@ -137,9 +137,11 @@ function Card(props) {
 
     const handlePlus = () => {
         setitemQuantity(itemQuantity+1)
+        console.log(itemQuantity)
       };
     const handleMinus = () => {
         setitemQuantity(itemQuantity-1)
+        console.log(itemQuantity)
     };
 
 
@@ -166,8 +168,8 @@ function Card(props) {
                             >
                                 <Fade in={open}>
                                 <Box sx={style}>
-                                    <Typography id="transition-modal-description" sx={{ mt: 20 }}>
-                                        <div style={{width: '100%'}}><img className={styles.modalInImg} src={props.item.image} onMouseOver={(a)=>{a.target.src = props.item.photo}} onMouseOut={(a)=>{a.target.src = props.item.image}}/></div>
+                                    <Typography style={{width: '50%'}}  id="transition-modal-description" sx={{ mt: 20 }}>
+                                        <div style={{width: '100%'}}><img className={styles.modalInImg} src={props.item.photo} onMouseOver={(a)=>{a.target.src = props.item.photo}} onMouseOut={(a)=>{a.target.src = props.item.photo}}/></div>
                                     </Typography>
                                     <Typography id="transition-modal-title" variant="h6" component="h2">
                                         <h3>{props.item.name}</h3>

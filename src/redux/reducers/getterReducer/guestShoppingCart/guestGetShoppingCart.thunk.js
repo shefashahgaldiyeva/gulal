@@ -1,11 +1,11 @@
 import GuestService from "../../../../services/guest.service";
 
-export const guestGetCartAsync = () => (dispatch) => {
+export const guestGetCartAsync = (guestToken) => (dispatch) => {
 	dispatch({
         type: "GUEST_GET_PRODUCT_IN_CART_LOAD_START",
     });
 
-	GuestService.guestGetCart()
+	GuestService.guestGetCart(guestToken)
 		.then((response) => dispatch({
             type: "GUEST_SET_PRODUCT_IN_CART_SUCCESS",
 	        payload: response.data,

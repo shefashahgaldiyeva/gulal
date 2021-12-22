@@ -6,7 +6,6 @@ class ProductsService {
 	getProductDetail = (id) => api().get(`product/show/${id}`);
 	getDiscountProducts = () => api().get(`product/discount`);
 	ProductAddToCart = (params) => api().post(`auth/addtocart`, params);
-	GetCart = () => api().get(`auth/getcart`);
 	incrementQuantity = (id) => api().post(`auth/pluscart`, id);
 	decrementQuantity = (id) => api().post(`auth/minuscart`, id);
 	getCartDetail = () => api().post('auth/getcartquantity')

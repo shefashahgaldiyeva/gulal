@@ -1,40 +1,40 @@
-import React from "react";
+import React,{ useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouteMatch } from "react-router";
 import styles from "../css/Detail.module.css";
 import DetailSlider from "../components/DetailSlider";
 import DetailRight from "../components/DetailRight";
-import { useEffect } from "react";
-
-import { loadProductDetail } from "../redux/reducers/products/products.thunks";
+import { getProductDetailAsync } from "../redux/reducers/getterReducer/productDetail/productDetail.thunk";
 
 function Detail() {
+
   const dispatch = useDispatch();
   const match = useRouteMatch();
   const productId = match.params.productId;
+  console.log(productId)
 
-  const { isLoading, products, errorMessage } = useSelector(
-    (state) => state.products
+  const { gettingDetail, productDetail, detailErrorMessage } = useSelector(
+    (state) => state.productDetailReducer
   );
+  if(!gettingDetail && productDetail){
+	  console.log(productDetail.data[0])
+  }
+
 
   useEffect(() => {
-    dispatch(loadProductDetail(productId));
+    dispatch(getProductDetailAsync(productId));
   }, [productId]);
 
-  if (!isLoading && products) {
-    console.log(products.data.data[0]);
-  }
+
   return (
-    //   <></>
     <div className={styles.detail}>
         <div className={styles.detailInner}>
             <div className={styles.left}>
-                {/* { !isLoading && products ? <DetailSlider data={products.data.data[0]}/> : null } */}
-                
+                {/* { !gettingDetail && productDetail ? <DetailSlider data={productDetail.data[0]}/> : null } */}
             </div>
             <div className={styles.right}>
                 {
-                    !isLoading && products ? <DetailRight item={products.data.data[0]}/> : null
+                    !gettingDetail && productDetail ? <DetailRight item={productDetail.data[0]}/> : null
                 }
             </div>
         </div>

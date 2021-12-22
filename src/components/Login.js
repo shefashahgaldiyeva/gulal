@@ -24,6 +24,7 @@ function Login() {
         const article = { email: email, password: password}
         axios.post('http://127.0.0.1:8000/api/login', article)
         .then(response =>{
+            console.log(response)
             AuthStore.saveToken(response.data.token)
             window.location.reload()
         })

@@ -129,7 +129,7 @@ body {
 	line-height: 32px;
 }
 .MuiTypography-root span{
-    margin-bottom: 6px;
+    /* margin-bottom: 6px; */
     font-size: 24px;
     font-weight: 600;
     display: inline-block;
