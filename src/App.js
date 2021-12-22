@@ -42,7 +42,8 @@ function App() {
 		dispatch(loadUsersAsync())
 	}, [])
 	AuthStore.getToken()
-
+    console.log(AuthStore.appState)
+	
 return (
     <div className="App">
 		<TopHeader lang={currentLang} />

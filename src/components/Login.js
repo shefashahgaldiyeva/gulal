@@ -32,7 +32,7 @@ function Login() {
     if(AuthStore.appState){
         return <Redirect to='/'/>
     }
-    // console.log(AuthStore.appState)
+    console.log(AuthStore.appState)
     
     return (
         <div className={styles.login}>

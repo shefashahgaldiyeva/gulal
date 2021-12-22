@@ -1,4 +1,4 @@
-import React,{ useEffect } from 'react'
+import React,{ useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styles from '../css/Cart.module.css'
@@ -10,25 +10,32 @@ import cartBg from '../img/cardBg.jpg'
 
 function Cart() {
 
-    // useEffect(() => {
-    //     window.location.reload()
-    // }, [])
-
-    const {gettingProductInCart,productInCart,errorMessage} =  useSelector(state => state.getShoppingCart)
     const { gettingGuestCart, guestCart, guestError } = useSelector(state => state.guestCartReducer)
+    const { gettingProductInCart,productInCart,errorMessage } =  useSelector(state => state.getShoppingCart)
 
-    
+	const [guestCartProducts, setGuestCartProducts] = useState();
+    const [cartProducts, setCartProducts] = useState();
+	const [products, setProducts] = useState(null);
+	useEffect(() => {
+		if(!gettingProductInCart && guestCart){
+			setProducts(guestCart)
+		}
+		else if(!gettingProductInCart && productInCart){
+			setProducts(productInCart)
+		}
+	}, [products])
+	console.log(products)
 
     return (
         <div>
             <div className={styles.cartTop} style={{backgroundImage: `url(${cartBg})`, backgroundPosition: '50% 10%'}}>
                 <h2>Səbət</h2>
             </div>
-            <div className={!gettingProductInCart && productInCart || !gettingGuestCart && guestCart ? styles.cart : styles.none}>
+            <div className={products && products.data.length>0 ? styles.cart : styles.none}>
                 <ProductInCart/>
                 <TotalInCart/>
             </div>
-            <div className={!gettingProductInCart && !productInCart || !gettingGuestCart && !guestCart ? styles.emptyCart : styles.none}>
+            <div className={!products ? styles.emptyCart : styles.none}>
                 <BsCartX/>
                 <Link to='/'>Ana səhifəyə keçid</Link>
             </div>

@@ -3,8 +3,8 @@ import React,{ useEffect } from 'react'
 import '../css/MyProfilePure.css'
 // import '../css/MyProfilePure2.css'
 import styles from '../css/TopHeader.module.css'
-import { useSelector,useDispatch } from 'react-redux'
-import { loadUsersAsync } from '../redux/reducers/users/users.thunks'
+import { useDispatch, useSelector } from 'react-redux'
+import { loadUsersAsync, logoutAsync } from '../redux/reducers/users/users.thunks'
 import { BiSpa } from 'react-icons/bi'
 import { AiOutlineUser } from 'react-icons/ai'
 import { GiFlowerEmblem } from 'react-icons/gi'
@@ -19,6 +19,8 @@ import { IoMdNotificationsOutline } from 'react-icons/io'
 import { BsTelephone } from 'react-icons/bs'
 import { SiGmail } from 'react-icons/si'
 import { style } from '@mui/system'
+import AuthStore from '../services/AuthStore'
+import { updateUserAsync } from '../redux/reducers/users/updateUser/updateUser.thunk'
 // import { RiMapPinLine } from 'react-icons/ri'
 // import { RiMapPinLine } from 'react-icons/ri'
 // import { RiMapPinLine } from 'react-icons/ri'
@@ -26,17 +28,47 @@ import { style } from '@mui/system'
 function MyProfile() {
 
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(loadUsersAsync())
     }, [])
-
-    const authUser = useSelector((state) => state.users);
-    if(authUser.isLoading && !authUser.users){
+    const { isLoading,users, userErrorMessage } = useSelector((state) => state.users);
+    if(!isLoading && users){
+        console.log(users.user)
+    }
+    if(isLoading && !users){
         return (<h1>Gozleyin ...</h1>)
     }
 
+    // const { logOut, errorMessage } = useSelector((state) => state.logoutReducer);
+    function handleLogout() {
+        dispatch(logoutAsync());
+        AuthStore.removeToken();
+        window.location.href = "/";
+    }
+    // if (logOut && !errorMessage) {} 
+    const fullname = document.getElementById('fullname')
+    const email = document.getElementById('email')
+    const phone = document.getElementById('phone')
+    const password = document.getElementById('password')
+    const password_confirmation = document.getElementById('password_confirmation')
+    const address = document.getElementById('address')
+    const userId = users && users.user.id
+    const article = {
+        fullname: fullname,
+        email: email,
+        phone: phone,
+        password: password,
+        password_confirmation: password_confirmation,
+        address: address,
+        id: userId
+    }
+    function handleUpdate(){
+        dispatch(updateUserAsync(article))
+    }
+    // const { updatingUser,updatedUser, updateUserError } =
+    useSelector((state) => console.log(state.updateUserReducer));
 
+    
     return (
         <div>
             <div id="ebazar-layout" className="theme-blue">
@@ -54,7 +86,7 @@ function MyProfile() {
                 <ul className="menu-list flex-grow-1 mt-3">
                     {/* <li><a className="m-link" href="index.html"><i className="icofont-home fs-5"></i> <span>Dashboard</span></a></li> */}
                     <li className="collapsed">
-                        <a  className="m-link" href="#">
+                        <a  className="m-link" href="/Hesabim">
                         <AiOutlineUser/>&nbsp;<span>Hesab haqqında</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>
                     </li>
                     <li className="collapsed">
@@ -62,7 +94,7 @@ function MyProfile() {
                         <GiFlowerEmblem/>&nbsp; <span>Sifarişlərim</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>
                     </li>
                     <li className="collapsed">
-                        <a className="m-link" href="#">
+                        <a className="m-link" href="/Sevimliler">
                         <BiHeart/>&nbsp; <span>Sevimlilər</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>
                     </li>
                     <li className="collapsed">
@@ -82,7 +114,7 @@ function MyProfile() {
                         <i className="icofont-ui-calculator"></i> <span>Accounts</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>
                     </li> */}
                     <li className="collapsed">
-                        <a className="m-link" href="#">
+                        <a onClick={()=>handleLogout()} className="m-link" href="/">
                         <MdOutlineLogout/>&nbsp; <span>Çıxış</span> <span className="arrow icofont-rounded-down ms-auto text-end fs-5"></span></a>
                     </li>
                     {/* <li><a className="m-link" href="store-locator.html"><i className="icofont-focus fs-5"></i> <span>Store Locator</span></a></li> */}
@@ -228,7 +260,7 @@ function MyProfile() {
                             </div>
                             <div style={{display: 'flex'},{justifyContent: 'flex-end'}} className="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
                                 <div className="u-info me-2">
-                                    <p className="mb-0 text-end line-height-sm "><span className="font-weight-bold">John Quinn</span>&nbsp;<AiOutlineSetting/></p>
+                                    <p className="mb-0 text-end line-height-sm "><span className="font-weight-bold">{users && users.user.fullname}</span>&nbsp;<AiOutlineSetting/></p>
                                     <small>İstifadəçi paneli</small>
                                 </div>
                                 {/* <a className="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
@@ -240,8 +272,8 @@ function MyProfile() {
                                             <div className="d-flex py-1">
                                                 {/* <img className="avatar rounded-circle" src="assets/images/profile_av.svg" alt="profile"/> */}
                                                 <div className="flex-fill ms-3">
-                                                    <p className="mb-0"><span className="font-weight-bold">John	Quinn</span></p>
-                                                    <small className="">Johnquinn@gmail.com</small>
+                                                    <p className="mb-0"><span className="font-weight-bold">{users && users.user.fullname}</span></p>
+                                                    <small className="">{users && users.user.email}</small>
                                                 </div>
                                             </div>
                                             
@@ -303,24 +335,24 @@ function MyProfile() {
                                         {/* </a> */}
                                         {/* <button className="btn btn-primary" style="position: absolute;top:15px;right: 15px;" data-bs-toggle="modal" data-bs-target="#editprofile"><i className="icofont-edit"></i></button> */}
                                         <div className="about-info d-flex align-items-center mt-3 justify-content-center flex-column">
-                                            <span className="text-muted small">İstifadəçi ID'si : {authUser.users.user.id}</span>
+                                            <span className="text-muted small">İstifadəçi ID'si : {users && users.user.id}</span>
                                         </div>
                                     </div>
                                     <div className="profile-info w-100">
-                                        <h6  className="mb-0 mt-2  fw-bold d-block fs-6 text-center">{authUser.users.user.fullanme}</h6>
+                                        <h6  className="mb-0 mt-2  fw-bold d-block fs-6 text-center">{users && users.user.fullname}</h6>
                                         {/* <span className="py-1 fw-bold small-11 mb-0 mt-1 text-muted text-center mx-auto d-block">24 years, California</span> */}
                                         {/* <p className="mt-2">Duis felis ligula, pharetra at nisl sit amet, ullamcorper fringilla mi. Cras luctus metus non enim porttitor sagittis. Sed tristique scelerisque arcu id dignissim.</p> */}
                                         <div className="row g-2 pt-2">
                                             <div className="col-xl-12">
                                                 <div className="d-flex align-items-center">
                                                     <BsTelephone/>
-                                                    <span className="ms-2">{authUser.users.user.phone}</span>
+                                                    <span className="ms-2">{users && users.user.phone}</span>
                                                 </div>
                                             </div>
                                             <div className="col-xl-12">
                                                 <div className="d-flex align-items-center">
                                                     <SiGmail/>
-                                                    <span className="ms-2">{authUser.users.user.email}</span>
+                                                    <span className="ms-2">{users && users.user.email}</span>
                                                 </div>
                                             </div>
                                             {/* <div className="col-xl-12">
@@ -332,7 +364,7 @@ function MyProfile() {
                                             <div className="col-xl-12">
                                                 <div className="d-flex align-items-center">
                                                     <RiMapPinLine/>
-                                                    <span className="ms-2">2734  West Fork Street,EASTON 02334.</span>
+                                                    <span className="ms-2">{users && users.user.address}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -384,22 +416,22 @@ function MyProfile() {
                                     <form className="row g-4">
                                         <div className="col-sm-6">
                                             <div className="form-group">
-                                                <label className="form-label">İstifadəçi adı</label>
-                                                <input className="form-control"  value={'salam'} type="text"/>
+                                                <label className="form-label">İstifadəçi adı<span className="text-danger">*</span></label>
+                                                <input id='fullname' className="form-control" type="text"/>
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="form-group">
-                                                <label className="form-label">Şifrə</label>
-                                                <input className="form-control" type="Password"/>
+                                                <label className="form-label">Şifrə<span className="text-danger">*</span></label>
+                                                <input id='password' className="form-control" type="Password"/>
                                             </div>
                                         </div>
-                                        {/* <div className="col-md-4 col-sm-12">
+                                        <div className="col-md-4 col-sm-12">
                                             <div className="form-group">
-                                                <label className="form-label">Company Name <span className="text-danger">*</span></label>
-                                                <input className="form-control" type="text" value=""/>
+                                                <label className="form-label">Təkrar Şifrə<span className="text-danger">*</span></label>
+                                                <input id='password_confirmation' className="form-control" type="text" value=""/>
                                             </div>
-                                        </div> */}
+                                        </div>
                                         <div className="col-md-4 col-sm-12">
                                             <div className="form-group">
                                                 <label className="form-label">Əlaqədar şəxs</label>
@@ -408,21 +440,21 @@ function MyProfile() {
                                         </div>
                                         <div className="col-md-4 col-sm-12">
                                             <div className="form-group">
-                                                <label className="form-label">Mobil Telefon <span className="text-danger">*</span></label>
+                                                <label className="form-label">Mobil Telefon<span className="text-danger">*</span></label>
                                                 <input className="form-control"  type="text"/>
                                             </div>
                                         </div>
                                         <div className="col-12">
                                             <div className="form-group">
-                                                <label className="form-label">Address</label>
-                                                <textarea className="form-control"  aria-label="With textarea"></textarea>
+                                                <label className="form-label">Ünvan<span className="text-danger">*</span> </label>
+                                                <textarea id='address' className="form-control"  aria-label="With textarea"></textarea>
                                             </div>
                                         </div>
                                         <div className="col-md-6 col-sm-12">
                                             <label className="form-label">Email <span className="text-danger">*</span></label>
                                             <div className="input-group">
                                                 <span className="input-group-text">@</span>
-                                                <input type="text" className="form-control"/>
+                                                <input id='email' type="text" className="form-control"/>
                                             </div>
                                         </div>
                                         {/* <div className="col-md-6 col-sm-12">
@@ -712,7 +744,7 @@ function MyProfile() {
                                         </div> */}
                                         
                                         <div className="col-12 mt-4">
-                                            <button type="button" className="btn btn-primary text-uppercase px-5">Yadda saxla</button>
+                                            <button onClick={()=>handleUpdate()} type="button" className="btn btn-primary text-uppercase px-5">Yadda saxla</button>
                                         </div>
                                     </form>
                                 </div>
@@ -726,7 +758,7 @@ function MyProfile() {
                                     <div className="row g-3">
                                         <div className="col-12">
                                             <label className="form-label col-6 col-sm-5">İstifadəçi adı :</label>
-                                            <span><strong>Adrian007</strong></span>
+                                            <span><strong>{users && users.user.fullname}</strong></span>
                                         </div>
                                         <div className="col-12">
                                             <label className="form-label col-6 col-sm-5">Şifrə :</label>
@@ -738,7 +770,7 @@ function MyProfile() {
                                         </div>
                                         <div className="col-12">
                                             <label className="form-label col-6 col-sm-5">Son parol dəyişikliyi :</label>
-                                            <span><strong>3 Ay Əvvəl</strong></span>
+                                            <span><strong>{users && users.user.updated_at}</strong></span>
                                         </div>
                                     </div>
                                 </div>
@@ -910,7 +942,7 @@ function MyProfile() {
                                         <input type="password" className="form-control" id="taxtno111" value="abcxyzabc"/>
                                     </div>
                                     <div className="col-sm-12">
-                                        <label for="taxtno11" className="form-label">Conform Password</label>
+                                        <label for="taxtno11" className="form-label">Confirm Password</label>
                                         <input type="text" className="form-control" id="taxtno11"/>
                                     </div>
                                 </div>
@@ -971,7 +1003,7 @@ function MyProfile() {
                                     </div>
                                     <div className="col-sm-6">
                                         <label for="phoneid" className="form-label">Phone</label>
-                                        <input type="text" className="form-control" id="phoneid" value="202-555-0174"/>
+                                        <input id='phone' type="text" className="form-control" id="phoneid" value="202-555-0174"/>
                                     </div>
                                 </div>
                                 <div className="row g-3 mb-3">

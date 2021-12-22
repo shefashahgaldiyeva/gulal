@@ -37,11 +37,16 @@ function Header(props) {
         dispatch(logoutAsync());
     }
     if (isLogOut.logOut) {
+		console.log(isLogOut.logOut)
         AuthStore.removeToken();
         window.location.href = "/";
     } 
 
     const {gettingProductInCart,productInCart,errorMessage} = useSelector(state=>state.getShoppingCart)
+    const {gettingGuestCart,guestCart,guestError} = useSelector(state=>state.guestCartReducer)
+    if(!gettingGuestCart && guestCart){
+        console.log(guestCart.data.length)
+    }
     if(!gettingProductInCart && productInCart){
         productInCart.data.map((item)=>{
             // console.log(item.productName)
@@ -103,7 +108,7 @@ function Header(props) {
                 <span className={styles.pocket}>
                   <BsBasket2 />
                 </span>
-                <span className={styles.count}>{!gettingProductInCart && productInCart ?  productInCart.data.length : 0}</span>
+                <span className={styles.count}>{!gettingGuestCart && guestCart ? guestCart.data.length : (!gettingProductInCart && productInCart ?  productInCart.data.length : 0 )}</span>
               </Link>
             </li>
             <li>

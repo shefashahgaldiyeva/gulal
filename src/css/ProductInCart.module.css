@@ -84,6 +84,9 @@ button{
     z-index: 9;
     transform: translateY(350%);
 }
+.display{
+    display: none;
+}
 @media only screen and (max-width: 1440px) {}
 @media only screen and (max-width: 1024px) {
     .table{

@@ -52,7 +52,7 @@ function DetailRight(props) {
             <h1>{props.item.name}</h1>
             <p className={styles.p}>{props.item.detail}</p>
             <span className={styles.review}>({props.item.review}5 baxış)</span>
-            <span className={styles.price}>{props.item.price} azn</span>
+            <span className={styles.price}><del className={props.item.price == props.item.totalPrice ? styles.display : styles.delPrice}>{props.item.price}azn &nbsp;  /</del> {props.item.totalPrice}azn</span>
             <div className={styles.df}>
                 <div className={styles.quantity}>
                     <button onClick={() => handleMinus()}>

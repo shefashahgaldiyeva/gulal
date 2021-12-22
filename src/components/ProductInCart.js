@@ -152,7 +152,7 @@ const ProductInCart = () => {
             console.log('userCart')
 		}
 	}, [guestCartProducts,cartProducts])
-	console.log(products)
+	// console.log(products)
 
   return (
     <div className={styles.table}>
@@ -180,7 +180,7 @@ const ProductInCart = () => {
                   </div>
                 </td>
                 <td  className={styles.price}>
-                  <span> <del className={styles.delPrice}>{item.price}azn</del> &nbsp;  / {item.currentPrice}azn</span>
+                  <span> <del className={item.price == item.currentPrice ? styles.display : styles.delPrice}>{item.price}azn &nbsp;  /</del> {item.currentPrice}azn</span>
                 </td>
                 {/* <td  className={styles.price}>
                   <span> {item.discount ? item.discount : 0} %</span>
