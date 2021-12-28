@@ -19,7 +19,7 @@ function DetailRight(props) {
     const dispatch = useDispatch();
     const {isLoading,users,userErrorMessage} = useSelector(state => state.users)
     const {isLoadingGuest,guestAssignedToken,guestErrorMessage} = useSelector(state => state.guestSetTokenReducer)
-    useSelector(state => console.log(state.setAddToCart))
+    // useSelector(state => console.log(state.setAddToCart))
     const [itemQuantity, setitemQuantity] = useState(1)
 
     const handlePlus = () => {
@@ -28,22 +28,21 @@ function DetailRight(props) {
     const handleMinus = () => {
         setitemQuantity(itemQuantity-1)
     };
-
+    
     GuestStore.getGuestToken()
-    const handleAdd = (item) =>{
-        console.log(item)
-        if(!AuthStore.appState && !GuestStore.appState){
+    function handleAdd(item) {
+        if (!AuthStore.appState && !GuestStore.appState) {
             dispatch(guestSetTokenAsync())
-            if(!isLoadingGuest && guestAssignedToken){
-                console.log(guestAssignedToken)
+            if (!isLoadingGuest && guestAssignedToken) {
+                // console.log(guestAssignedToken)
                 GuestStore.saveGuestToken(guestAssignedToken.guestToken)
             }
         }
-        if(!isLoading && users){
-            dispatch(addToCart({pid : item.id, count: itemQuantity}))
+        if (!isLoading && users) {
+            dispatch(addToCart({ pid: item.id, count: itemQuantity }))
         }
-        if(!users && !isLoadingGuest && guestAssignedToken){
-            dispatch(guestAddToCartAsync({product_id : item.id, quantity: itemQuantity, guestToken: GuestStore.appState}))
+        else if (!users && !isLoadingGuest && guestAssignedToken) {
+            dispatch(guestAddToCartAsync({ product_id: item.id, quantity: itemQuantity, guestToken: GuestStore.appState }))
         }
     }
 

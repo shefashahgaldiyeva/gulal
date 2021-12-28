@@ -1,0 +1,111 @@
+.table{
+    width: 100%;
+}
+.tablee{
+    width: 100%;
+    padding: 0 2rem;
+    margin-bottom: 1rem;
+    color: #212529;
+    border-bottom: .1rem solid #a5a5a5;
+}
+.tablee tr{
+    width: 100%;
+}
+.tablee th{
+    text-align: left;
+    padding: 1.4rem 0;
+    font-weight: 400;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #999;
+}
+.tablee td{
+    padding: 1rem 0;
+    text-align: left;
+    border: none;
+}
+.tablee td div{
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+.tablee img{
+    margin: 0 2.8rem 0 0;
+    width: 70px;
+}
+.tablee div h3{
+    display: inline-block;
+    color: #333;
+    font-weight: 400;
+    font-size: 1rem;  
+    line-height: 1.25;
+}
+.quantity{
+    border: 1px solid #999;
+}
+.quantity button{
+    padding: .8rem;
+    font-size: 1.1rem;
+}
+.price{
+    color: black;
+}
+.none{
+    display: none;
+}
+.detail{
+    display: flex;
+    flex-direction: column;
+}
+.orderCard{
+    width: 100%;
+    
+    /* width: 30% !important; */
+    border-bottom: .1rem solid #4e4e4e;
+}
+.images{
+    border-bottom: .1rem solid #a5a5a5;
+}
+.img{
+    margin: 1rem;
+}
+.orderCard>td{
+    /* width: 100%; */
+    padding: 1rem 0 0 0 !important;
+    /* border-bottom: .1rem solid #4e4e4e; */
+}
+.orderCard td>div{
+    padding: 1rem;
+    border-bottom: .1rem solid #ebebeb;
+}
+@media only screen and (max-width: 1440px) {}
+@media only screen and (max-width: 1024px) {}
+@media only screen and (max-width: 768px) {
+    .tablee td div{
+        width: 50%;
+    }
+}
+@media only screen and (max-width: 426px) {
+    .table th{
+        padding: 1.4rem .5rem 1.4rem 0;
+        font-size: 1rem;
+        line-height: 1;
+        white-space: nowrap;
+    }
+    .table div h3{
+        font-size: .9rem;  
+        line-height: 1;
+    }
+    .table img{
+        margin: 0 .8rem 0 0;
+        width: 60px;
+    }
+}
+@media only screen and (max-width: 376px) {
+    .table div h3{
+        font-size: .8rem;  
+    }
+    .table .tdP{
+        font-size: .75rem;
+    }
+}

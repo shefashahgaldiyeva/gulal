@@ -64,10 +64,10 @@ function Card(props) {
         // if (reason === 'clickaway') { 
         //   return;
         // }
-        if(openSnack===true){
+        // if(openSnack==true){
             setOpenSnack(false);
-            // setOpenSnack(null);
-        }
+            console.log(`close: ${openSnack}`)
+        // }
     };
     const [itemQuantity, setitemQuantity] = useState(1)
     const dispatch = useDispatch();
@@ -88,35 +88,34 @@ function Card(props) {
             }
         }
         if(!isLoading && users){
-            console.log('else if(1)')
+            console.log('user')
             dispatch(addToCart({pid : item.id, count: itemQuantity}))
         }
-        if(!users && !isLoadingGuest && guestAssignedToken){
-            console.log('else if(2)')
+        else if(!users && !isLoadingGuest && guestAssignedToken){
+            console.log('guest')
             dispatch(guestAddToCartAsync({product_id : item.id, quantity: itemQuantity, guestToken: GuestStore.appState}))
         }
         setCountToCart(countToCart+1)
-        
     }
-    // const {addingCartForGuest,addedCartForGuest,errorMessageForGuest} = useSelector(state => state.guestAddToCartReducer)
-    // if(!addingCartForGuest && addedCartForGuest){
-    //     console.log(addedCartForGuest)
-    // }
+    const {addingCartForGuest,addedCartForGuest,errorMessageForGuest} = useSelector(state => state.guestAddToCartReducer)
+    if(!addingCartForGuest && addedCartForGuest){
+        console.log(addedCartForGuest)
+    }
     useEffect(() => {
         if(!addingToCart && addedToCart){
             if(!openSnack){
                 setOpenSnack(true)
             }  
         }
-        // console.log(openSnack)
+        console.log(`add olundu: ${openSnack}`)
     }, [countToCart])
 
-        // useEffect(() => {
-            // if(!addingToCart && addedToCart){
-            //     setOpenSnack(!openSnack);
-            //     console.log(`openSnack: ${openSnack}`)
-            // }
-        // }, [addedToCart])
+        useEffect(() => {
+            if(!addingToCart && addedToCart){
+                setOpenSnack(true);
+                // console.log(`openSnack: ${openSnack}`)
+            }
+        }, [addedToCart])
     
     const handleAddWishlist = (item) =>{
         if(!isLoading && users){
@@ -196,7 +195,7 @@ function Card(props) {
                                 </Fade>
                             </Modal>
                         </div>
-                        <Link to={`/${props.item.id}`}><img src={props.item.photo} onMouseOver={(a)=>{a.target.src = props.item.photo}} onMouseOut={(a)=>{a.target.src = props.item.photo}}/></Link>
+                        <Link to={`/product/${props.item.slug}/${props.item.id}`}><img src={props.item.photo} onMouseOver={(a)=>{a.target.src = props.item.photo}} onMouseOut={(a)=>{a.target.src = props.item.photo}}/></Link>
                     </div>
                     <div className={styles.bottom}>
                         {/* <div className={styles.category}><a href='#'>{props.item.category}</a></div> */}

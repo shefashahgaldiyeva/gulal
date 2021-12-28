@@ -160,6 +160,23 @@
 .openFilter input{
     margin-right: 4px;
 }
+.paginex{
+    float: right !important;
+    margin: 1rem !important;
+    display:flex;
+    padding-right:0;
+    list-style:none;
+    border: 1px solid red;
+}
+.paginex li a{
+    background-color: cadetblue !important;
+}
+.paginationWrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
 @media only screen and (max-width: 1440px) {}
 @media only screen and (max-width: 1024px) {
     .shop .products .productsTopRight{

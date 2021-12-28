@@ -3987,7 +3987,8 @@ textarea.form-control-lg{
 .pagination{
     display:flex;
     padding-left:0;
-    list-style:none
+    list-style:none;
+    color: #e4dad7;
 }
 .page-link{
     position:relative;
@@ -4022,8 +4023,8 @@ textarea.form-control-lg{
 .page-item.active .page-link{
     z-index:3;
     color:#fff;
-    background-color:#0d6efd;
-    border-color:#0d6efd
+    background-color:#e4dad7;
+    border-color:#e4dad7
 }
 .page-item.disabled .page-link{
     color:#6c757d;
@@ -4035,12 +4036,12 @@ textarea.form-control-lg{
     padding:.375rem .75rem
 }
 .page-item:first-child .page-link{
-    border-top-left-radius:.25rem;
-    border-bottom-left-radius:.25rem
+    /* border-top-left-radius:.25rem;
+    border-bottom-left-radius:.25rem */
 }
 .page-item:last-child .page-link{
-    border-top-right-radius:.25rem;
-    border-bottom-right-radius:.25rem
+    /* border-top-right-radius:.25rem;
+    border-bottom-right-radius:.25rem */
 }
 .pagination-lg .page-link{
     padding:.75rem 1.5rem;
@@ -17182,11 +17183,11 @@ body.rtl_mode .modal.right.fade.show .modal-dialog{
 .page-item .page-link{
     background-color:var(--card-color);
     border-color:var(--border-color);
-    color:var(--primary-color)
+    color: #d4b9bd
 }
 .page-item.active .page-link{
-    background-color:var(--primary-color);
-    border-color:var(--primary-color)
+    background-color:#e4dad7;
+    border-color:#e4dad7
 }
 .side-navbar li{
     margin-bottom:5px

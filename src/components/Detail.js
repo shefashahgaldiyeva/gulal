@@ -17,27 +17,33 @@ function Detail() {
     (state) => state.productDetailReducer
   );
   if(!gettingDetail && productDetail){
-	  console.log(productDetail.data[0])
+	  console.log(productDetail)
+	  productDetail.data.map((item)=>{
+		  console.log(item)
+	  })
   }
 
 
   useEffect(() => {
     dispatch(getProductDetailAsync(productId));
   }, [productId]);
-
-
+console.log(productId)
+//  return<></>
   return (
     <div className={styles.detail}>
-        <div className={styles.detailInner}>
-            <div className={styles.left}>
-                {/* { !gettingDetail && productDetail ? <DetailSlider data={productDetail.data[0]}/> : null } */}
-            </div>
-            <div className={styles.right}>
-                {
-                    !gettingDetail && productDetail ? <DetailRight item={productDetail.data[0]}/> : null
-                }
-            </div>
-        </div>
+        {!gettingDetail && productDetail && 
+		productDetail.data.map((item)=>(
+
+			<div className={styles.detailInner}>
+				<div className={styles.left}>
+					<DetailSlider data={item}/>
+				</div>
+				<div className={styles.right}>
+					<DetailRight item={item}/> 
+				</div>
+        	</div>
+		))
+		}
     </div>
   );
 }

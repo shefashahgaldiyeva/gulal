@@ -13,6 +13,7 @@ import {RiLayoutGridFill} from 'react-icons/ri'
 import Filter from './Filter'
 import ProductsInShop from './ProductsInShop'
 import { getProductsByCategory } from "../redux/reducers/getterReducer/product/product.thunk";
+import { StyledEngineProvider } from '@mui/styled-engine';
 
 function ShopAllCategory(props) {
    
@@ -35,7 +36,9 @@ function ShopAllCategory(props) {
             }
             {
                 !gettingProduct && products  ? 
-                    <ProductsInShop data={products.data}/>  
+                <StyledEngineProvider injectFirst>
+                    <ProductsInShop data={products.data} catId={catId}/>  
+                </StyledEngineProvider>
                 : null
             }
         </div>

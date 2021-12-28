@@ -12,15 +12,16 @@ export const getProductsByCategory = (id) => (dispatch) => {
 	dispatch(actions.getProduct());
 	console.log(id);
 	ProductsService.getProductByCategory(id)
-		.then((response) => dispatch(actions.setProduct(response.data)))
+		.then((response) => dispatch(actions.setProduct(response)))
 		.catch((error) => dispatch(actions.errorProduct(error)));
 };
 
 export const getProductByFilter = (id,params) => (dispatch) => {
+	console.log(params)
 	dispatch(actions.getProduct());
 
 	ProductsService.getProductByCategory(id,params)
-		.then((response) => dispatch(actions.setProduct(response.data)))
+		.then((response) => dispatch(actions.setProduct(response)))
 		.catch((error) => dispatch(actions.errorProduct(error)));
 };
 

@@ -41,6 +41,8 @@ import guestDecrementReducer  from "./setterReducer/guestCartDecrementQuantity/g
 import deleteGuestCartProductReducer from "./setterReducer/deleteGuestCartProduct/deleteGuestCartProduct.reducer";
 import productDetailReducer from "./getterReducer/productDetail/productDetail.reducer";
 import updateUserReducer from "./users/updateUser/updateUser.reducer";
+import getOrdersReducer from "./getterReducer/orders/orders.reducer";
+import containerSliderReducer from "./getterReducer/containerSlider/containerSlider.reducer";
 
 const rootReducer = () =>
 	combineReducers({
@@ -86,6 +88,8 @@ const rootReducer = () =>
 		deleteGuestCartReducer : deleteGuestCartProductReducer,
 		productDetailReducer,
 		updateUserReducer,
+		getOrdersReducer,
+		sliderReducer: containerSliderReducer,
 	});
 
 export default rootReducer;

@@ -5,7 +5,7 @@ export const loadUsersAsync = () => (dispatch) => {
 	dispatch(actions.usersLoadStart());
 
 	UsersService.getUser()
-		.then((response) => dispatch(actions.usersLoadSuccess(response.data)))
+		.then((response) => dispatch(actions.usersLoadSuccess(response.data.data[0])))
 		.catch((error) => dispatch(actions.usersLoadError(error.message)));
 };
 

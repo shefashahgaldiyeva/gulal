@@ -28,6 +28,7 @@ import { getCategories } from "./redux/reducers/getterReducer/category/category.
 import { guestSetTokenAsync } from "./redux/reducers/setterReducer/guestSetToken/guestSetToken.thunk";
 import AuthStore from "./services/AuthStore";
 import GuestStore from "./services/GuestStore";
+import Orders from "./components/Orders";
 
 function App() {
 
@@ -81,6 +82,12 @@ return (
 			<Route path="/Hesabim">
 				<MyProfile />
 			</Route>
+			<Route path="/Sifarislerim">
+				<Orders />
+			</Route>
+			<Route path="/product/:slug/:productId">
+				<Detail />
+			</Route>
 			{/* <Route path="/Butun-Kateqoriyalar">
 			<ShopAllCategory />
 			</Route> */}
@@ -108,9 +115,7 @@ return (
 			<Route path="/En-Çox-Satılanlar">
 			<ShopAllCategory />
 			</Route> */}
-			<Route path="/:productId">
-				<Detail />
-			</Route>
+		
 		</Switch>
 		<Footer />
 		{/* <TransitionsModal/> */}

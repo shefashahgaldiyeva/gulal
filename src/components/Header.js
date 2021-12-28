@@ -13,6 +13,7 @@ import AuthStore from "../services/AuthStore";
 import { BiLogOut } from "react-icons/bi";
 import { logoutAsync } from "../redux/reducers/users/users.thunks";
 import { getSearchAsync } from "../redux/reducers/getterReducer/search/search.thunk"
+import { getProductDetailAsync } from "../redux/reducers/getterReducer/productDetail/productDetail.thunk";
 
 function Header(props) {
 
@@ -55,14 +56,26 @@ function Header(props) {
     // useSelector(state=>console.log(state.getSearch))
 
     const {gettingSearch,getedSearch,getSearchErrorMessage} = useSelector(state => state.getSearch)
-  if(!gettingSearch && getedSearch){
-    getedSearch.data.map((item)=>{
-        // console.log(item.name)
-    })
-  }
+	if(!gettingSearch && getedSearch){
+		getedSearch.data.map((item)=>{
+			console.log(item)
+		})
+	}
     function handleSearch(e){
         dispatch(getSearchAsync(e.target.value))
     }
+
+	const { gettingDetail, productDetail, detailErrorMessage } = useSelector(
+		(state) => state.productDetailReducer
+	  );
+	  if(!gettingDetail && productDetail){
+		  console.log(productDetail)
+	  }
+	//   useEffect(() => {
+	// 	dispatch(getProductDetailAsync(productId));
+	//   }, [productId]);
+
+	
 
   return (
     <header>
@@ -85,11 +98,11 @@ function Header(props) {
               placeholder="Axtarış et..."
 			  onKeyUp = {(e)=>handleSearch(e)}
             />
-            <ul className={!gettingSearch && getedSearch && getedSearch.data.length > 7 ? styles.searchList : null}>
+            <ul className={!gettingSearch && getedSearch ? (getedSearch.data.length > 7 ? styles.searchList : styles.searchListMin7) : styles.visible}>
                     {
-                        !gettingSearch && getedSearch && 
+                        !gettingSearch && getedSearch &&
                         getedSearch.data.map((item)=>(
-                            <li>{item.name}</li>
+                            <Link to={`/product/${item.slug}/${item.id}`} className={styles.searchListLi}>{item.name}</Link>
                         ))
                     }
             </ul>

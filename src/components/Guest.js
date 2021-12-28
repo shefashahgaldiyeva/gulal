@@ -63,6 +63,7 @@ function Guest() {
             recipient_phone: recipient_phone.value,
             location: location.value,
             delivery_datetime:'2012-12-12 00:00:00',
+            date: '2012-12-12',
             // '2021-12-20 12:53:17'  dateValue.toISOString() 994(70)-777-77-77
             note: note.value,
         }
