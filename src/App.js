@@ -20,7 +20,7 @@ import Guest from "./components/Guest";
 import BottomMenu from "./components/BottomMenu";
 
 import Language from "./components/Language";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { loadCategoriesAsync } from "./redux/reducers/categories/categories.thunks";
 import { loadUsersAsync } from "./redux/reducers/users/users.thunks";
 import { getCartAsync } from "./redux/reducers/products/products.thunks";
@@ -29,30 +29,60 @@ import { guestSetTokenAsync } from "./redux/reducers/setterReducer/guestSetToken
 import AuthStore from "./services/AuthStore";
 import GuestStore from "./services/GuestStore";
 import Orders from "./components/Orders";
+import NotFound from "./components/NotFound";
+import Loader from "./components/Loader";
+import { loadDiscountProductsAsync } from "./redux/reducers/getterReducer/discountProducts/discount.thunk";
+import { getContainerSliderAsync } from "./redux/reducers/getterReducer/containerSlider/containerSlider.thunk";
+import SnackBar from "./components/Snackbar";
+import { GiConsoleController } from "react-icons/gi";
+import MapDistance from './components/MapDistance'
+// import MyMapComponent from "./components/Map";
+
 
 function App() {
 
-	const currentLang = localStorage.getItem("locale");
 	const dispatch = useDispatch();
-	const { gettingCategory, categories, errorMessage } = useSelector(
-		(state) => state.getCategories
-	);
+	const currentLang = localStorage.getItem("locale");
+	const { gettingCategory, categories } = useSelector((state) => state.getCategories);
+    const {sliderLoading,containerSlider,sliderError } = useSelector(state => state.sliderReducer);
+	const {gettingNewProduct, newProducts, newProductsErrorMessage} = useSelector(state => state.getNewProducts);
+    const {isLoadingProduct,allProducts,errorMessageProduct} = useSelector((state) => state.allProducts);
+    const {isLoadingDiscount,discountProducts,discountErrorMessage} = useSelector((state) => state.discountReducer);
+    // const {isLoading,users,userErrorMessage} = useSelector(state => state.users)
+	// const { gettingGuestCart, guestCart, guestError } = useSelector(state => state.guestCartReducer)
+    const { gettingProductInCart,productInCart,errorMessage } =  useSelector(state => state.getShoppingCart)
+
 	useEffect(() => {
-		dispatch(getCartAsync())
+		// dispatch(getCartAsync())
 		dispatch(getCategories())
 		dispatch(loadUsersAsync())
+		dispatch(getContainerSliderAsync())
+        // dispatch(loadDiscountProductsAsync())
+		
 	}, [])
 	AuthStore.getToken()
     console.log(AuthStore.appState)
+    console.log(GuestStore.appState)
+
+	const {addingToCart,addedToCart,addedErrorMessage} = useSelector(state => state.setAddToCart)
+
 	
 return (
     <div className="App">
+		{ gettingCategory
+			? 
+		  <Loader/>
+			:
+		  null 
+		}
+		<div style={ gettingCategory
+			? {display: 'none'} : null }>
 		<TopHeader lang={currentLang} />
-		{!gettingCategory && categories ? <Header cats={categories} /> : null}
+		<Header cats={!gettingCategory && categories ? categories : null} />
 		<Switch>
 			<Route exact path="/">
 			<StyledEngineProvider injectFirst>
-				<Home />
+				<Home/>
 				{/* <IntegrationNotistack /> */}
 			</StyledEngineProvider>
 			</Route>
@@ -62,12 +92,18 @@ return (
 			<Route path="/category/:catId">
 				<ShopAllCategory cats={!gettingCategory  && categories ? categories : null} />
 			</Route>
-			<Route path="/Sebet">
-				<Cart />
-			</Route>
-			<Route path="/Sevimliler">
-				<WishList />
-			</Route>
+				<Route path="/Sebet">
+					<Cart />
+				</Route>
+				<Route path="/Sevimliler">
+				{
+					AuthStore.appState || GuestStore.appState
+					?
+					<WishList />
+					:
+					null
+				}
+				</Route>
 			<Route path="/Daxil-ol">
 				<Login/>
 			</Route>
@@ -88,6 +124,12 @@ return (
 			<Route path="/product/:slug/:productId">
 				<Detail />
 			</Route>
+			<Route path="*">
+				<NotFound/>
+			</Route>
+			{/* <Route path="/Map">
+				<MyMapComponent />
+			</Route> */}
 			{/* <Route path="/Butun-Kateqoriyalar">
 			<ShopAllCategory />
 			</Route> */}
@@ -121,7 +163,13 @@ return (
 		{/* <TransitionsModal/> */}
 		<Arrow />
 		<BottomMenu />
+		{!addingToCart && addedToCart ? <SnackBar/> : null}
+		{/* <MapDistance/> */}
+		</div>
     </div>
+	// <div>
+	// 	<Loader/>
+	// </div>
   );
 }
 

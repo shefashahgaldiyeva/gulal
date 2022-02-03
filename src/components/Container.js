@@ -16,20 +16,21 @@ function Container() {
     }, []);
     // console.log(window.scrollY)
 
-    useEffect(() => {
-        dispatch(getContainerSliderAsync())
-    }, []);
+    // useEffect(() => {
+    //     dispatch(getContainerSliderAsync())
+    // }, []);
     const { sliderLoading,containerSlider,sliderError } = useSelector(state => state.sliderReducer)
     // if(!sliderLoading && containerSlider){
     //     console.log(containerSlider.data)
     // }
 
+    // useSelector(state =>console.log( state.sliderReducer))
     return (
         <div className='swip-container'>
             <Swiper effect={'cards'} grabCursor={true} className="mySwiper">
-            {containerSlider &&
+            {!sliderLoading && containerSlider &&
                 containerSlider.data.map((item)=>(
-                    <SwiperSlide style={!sliderLoading && containerSlider ? {backgroundImage: `url(${item.image})`} : null} className={styles.lilacSwip}>
+                    <SwiperSlide style={containerSlider.data ? {backgroundImage: `url(${item.image})`} : null} className={styles.lilacSwip}>
                         <div className={styles.lecekBack}>
                             <p>{item.text}</p>
                             {/* <span>Cashback</span> */}
@@ -42,6 +43,24 @@ function Container() {
 
         </div>
     )
+    // return (
+    //     <div className='swip-container'>
+    //         <Swiper effect={'cards'} grabCursor={true} className="mySwiper">
+    //         {!sliderLoading && containerSlider && containerSlider.data &&
+    //             containerSlider.data.map((item)=>(
+    //                 <SwiperSlide style={!sliderLoading && containerSlider ? {backgroundImage: `url(${item.image})`} : null} className={styles.lilacSwip}>
+    //                     <div className={styles.lecekBack}>
+    //                         <p>{item.text}</p>
+    //                         {/* <span>Cashback</span> */}
+    //                         <a href={item.link} className={styles.btn}>Ətraflı</a>
+    //                     </div>
+    //                 </SwiperSlide>
+    //             ))
+    //         }
+    //         </Swiper>
+
+    //     </div>
+    // )
 }
 
 export default Container;

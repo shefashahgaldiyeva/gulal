@@ -43,6 +43,7 @@ import productDetailReducer from "./getterReducer/productDetail/productDetail.re
 import updateUserReducer from "./users/updateUser/updateUser.reducer";
 import getOrdersReducer from "./getterReducer/orders/orders.reducer";
 import containerSliderReducer from "./getterReducer/containerSlider/containerSlider.reducer";
+import productIdForSnackReducer from "./productIdForSnackReducer";
 
 const rootReducer = () =>
 	combineReducers({
@@ -90,6 +91,7 @@ const rootReducer = () =>
 		updateUserReducer,
 		getOrdersReducer,
 		sliderReducer: containerSliderReducer,
+		productIdForSnackReducer
 	});
 
 export default rootReducer;

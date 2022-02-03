@@ -12,7 +12,7 @@ import { loadAllProductsAsync } from '../redux/reducers/getterReducer/allProduct
 function AllProducts() {
 
     const dispatch = useDispatch()
-    const {isLoading,allProducts,errorMessage} = useSelector((state) => state.allProducts);
+    const {isLoadingProduct,allProducts,errorMessageProduct} = useSelector((state) => state.allProducts);
     // if(!isLoading && allProducts){
     //     console.log(allProducts)
     // }
@@ -35,7 +35,7 @@ function AllProducts() {
                     <div className={styles.swipInner}>
                     <Swiper className={styles.swiperPage} slidesPerView={4} spaceBetween={0} pagination={{"clickable": true},{ grabCursor: true}}>
                     {
-                        !isLoading && allProducts && allProducts.data.map((item)=>(
+                        !isLoadingProduct && allProducts && allProducts.data.map((item)=>(
                             <SwiperSlide className={styles.allProductSwip}>
                                 <Card item={item}/>
                             </SwiperSlide>

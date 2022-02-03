@@ -30,8 +30,8 @@ const ProductInCart = () => {
     const { incrementingQuantityToCart,incrementedQuantityToCart,incrementedQuantityerrorMessage } = useSelector((state) => state.incrementQuantityReducer);
     const { gettingGuestCartIncrement,guestCartIncrement,guestIncrementError } = useSelector((state) => state.guestIncrementReducer)
     const { gettingGuestCartDecrement,guestCartDecrement,guestDecrementError } = useSelector((state) => state.guestDecrementReducer)
-    useSelector((state) => console.log(state.getShoppingCart));
     GuestStore.getGuestToken()
+    useSelector((state) => console.log(state.getShoppingCart));
 	// console.log(GuestStore.appState)
 	useEffect(() => {
     if(GuestStore.appState){
@@ -66,7 +66,7 @@ const ProductInCart = () => {
   useEffect(() => {
     if (!gettingProductInCart && productInCart) {
       setCartProducts(productInCart.data);
-      console.log(productInCart.data)
+    //   console.log(productInCart.data)
     }
   }, [productInCart]);
 //   console.log(cartProducts)
@@ -77,7 +77,7 @@ const ProductInCart = () => {
 		dispatch(incrementQuantityToCart({pid: id}));
 		setCartProducts((cartProducts) =>
 			cartProducts.map(
-				(item) => item.id == id  ? { ...item,quantity: item.quantity + 1,totalPrice: item.totalPrice + item.currentPrice,} : item
+				(item) => item.id == id  ? { ...item,quantity: item.quantity + 1,totalPrice: item.totalPrice + item.currentPrice} : item
 			)
 		);
 	}else if(!gettingGuestCart && guestCart){
@@ -88,7 +88,7 @@ const ProductInCart = () => {
 		}));
 		setGuestCartProducts((guestCartProducts) =>
 			guestCartProducts.map(
-				(item) => item.id == id  ? { ...item,quantity: item.quantity + 1,totalPrice: item.totalPrice + item.currentPrice,} : item
+				(item) => item.id == id  ? { ...item,quantity: item.quantity + 1,totalPrice: item.totalPrice + item.currentPrice} : item
 			)
 		);
 		}
@@ -97,11 +97,16 @@ const ProductInCart = () => {
 	if(!gettingProductInCart && productInCart){
         e.target.disabled = true;
         dispatch(decrementQuantityToCart({pid: id}));
-        setCartProducts((guestCartProducts) => 
-            guestCartProducts.map(
-                (item) =>  item.id == id ? { ...item, quantity: item.quantity - 1, totalPrice: item.totalPrice - item.currentPrice } : item
-            )
+        setCartProducts((cartProducts) => 
+            cartProducts.map(
+               (item) => item.id == id && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 , totalPrice:  item.totalPrice - item.currentPrice  } : item
+           )
         );
+    
+        // setCartProducts((cartProducts) => 
+        //     cartProducts.filter((item) => item.id !== id && item.quantity !== 0 )
+        //     )
+
 	}else if(!gettingGuestCart && guestCart){
 		e.target.disabled = true;
 		dispatch(guestDecrementQuantity({
@@ -202,7 +207,7 @@ const ProductInCart = () => {
                 </td>
                 <td >
                   {/* <CartTotalPrice id={item.product.id}/> */}
-                  <p className={styles.total}>{item.totalPrice} azn</p>
+                  <p className={styles.total}>{item.totalPrice.toFixed(2)} azn</p>
                 </td>
                 <td >
                   <button className={styles.btn,'removeCart'} onClick={() => handleDelete(item.id)} >

@@ -14,9 +14,10 @@ import Sale from '../components/Sale'
 
 function Home() {
 
+    // console.log('===>',props.data.data)
     const dispatch = useDispatch()
 
-     const {isLoadingDiscount,discountProducts,discountErrorMessage} = useSelector((state) => state.discountReducer);
+    const {isLoadingDiscount,discountProducts,discountErrorMessage} = useSelector((state) => state.discountReducer);
     
     useEffect(() => {
         dispatch(loadDiscountProductsAsync());

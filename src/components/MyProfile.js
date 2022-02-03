@@ -21,8 +21,7 @@ import { SiGmail } from 'react-icons/si'
 import { style } from '@mui/system'
 import AuthStore from '../services/AuthStore'
 import { updateUserAsync } from '../redux/reducers/users/updateUser/updateUser.thunk'
-// import { RiMapPinLine } from 'react-icons/ri'
-// import { RiMapPinLine } from 'react-icons/ri'
+// import Loader from './Loader'
 // import { RiMapPinLine } from 'react-icons/ri'
 
 function MyProfile() {
@@ -38,9 +37,9 @@ function MyProfile() {
     if(!isLoading && users){
         console.log(users)
     }
-    if(isLoading && !users){
-        return (<h1>Gozleyin ...</h1>)
-    }
+    // if(isLoading && !users){
+    //     return (<Loader style={{ background: 'transparent !important' }}/>)
+    // }
 
     function handleLogout() {
         dispatch(logoutAsync());
@@ -147,13 +146,13 @@ function MyProfile() {
                                     {/* <i className="icofont-info-square fs-5"></i> */}
                                 {/* </a> */}
                             </div>
-                            <div className={styles.langbar}>
+                            {/* <div className={styles.langbar}>
                                         <span>AZ &nbsp; <AiFillCaretDown/></span>
                                         <div className={styles.activeDropdown}>
                                             <a href='#'>EN</a>
                                             <a href='#'>RU</a>
                                         </div>
-                            </div>
+                            </div> */}
                             {/* <div className="dropdown zindex-popover">
                                 <a className="nav-link dropdown-toggle pulse" href="#" role="button" data-bs-toggle="dropdown">
                                     <img src="assets/images/flag/GB.png" alt=""/>

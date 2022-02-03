@@ -143,6 +143,7 @@ header{
 }
 .header .right>ul{
     width: 43%;
+    padding-right: .5rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -347,7 +348,7 @@ header ul li a{
         width: 55%;
     }
     .ul1>li:nth-child(5){
-        /* display: none; */
+        display: none;
         visibility: hidden;
     }
     .ul1>li:nth-child(3){
@@ -370,6 +371,9 @@ header ul li a{
         /* top: 0; */
         margin-top: 3.6rem;
         right: .3rem;
+    }
+    .myProfile{
+        margin-right: 1rem;
     }
 }
 @media only screen and (max-width: 426px) {

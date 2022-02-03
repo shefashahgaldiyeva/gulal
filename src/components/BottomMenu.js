@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styles from '../css/BottomMenu.module.css'
 import {BsBasket2} from 'react-icons/bs'
 import {FaRegUserCircle} from 'react-icons/fa'
@@ -9,22 +10,22 @@ function BottomMenu() {
     return (
         <div className={styles.bottomMenu}>
             <div className={styles.bottomMenuInner}>
-                <div>
+                <Link to='/'>
                     <GoHome/>
                     <span>Ana Səhifə</span>
-                </div>
-                <div>
+                </Link>
+                 <Link to='/category/all'>
                     <BiCategory/>
                     <span>Kateqoriyalar</span>
-                </div>
-                <div>
+                </Link>
+                 <Link to='/Sebet'>
                     <BsBasket2/>
                     <span>Səbət</span>
-                </div>
-                <div>
+                </Link>
+                 <Link to='/Hesabim'>
                     <FaRegUserCircle/>
                     <span>Hesabım</span>
-                </div>
+                </Link>
             </div>
         </div>
     )

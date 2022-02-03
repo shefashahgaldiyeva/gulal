@@ -44,31 +44,16 @@ const style = {
     justifyContent: 'space-evenly'
 };
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
-
 
 
 function Card(props) { 
 
     const [openSnack, setOpenSnack] = useState(false);
     const {addingToCart,addedToCart,addedErrorMessage} = useSelector(state => state.setAddToCart)
-    const [countToCart,setCountToCart] = useState(false);
+    const [countToCart,setCountToCart] = useState(0);
     if(!addingToCart && addedToCart){
-        console.log(addedToCart)
+        console.log('addedToCart: ' + addedToCart)
     }
-    const handleClickSnack = () => {
-    };
-    const handleCloseSnack = (event, reason) => {
-        // if (reason === 'clickaway') { 
-        //   return;
-        // }
-        // if(openSnack==true){
-            setOpenSnack(false);
-            console.log(`close: ${openSnack}`)
-        // }
-    };
     const [itemQuantity, setitemQuantity] = useState(1)
     const dispatch = useDispatch();
     const {isLoading,users,userErrorMessage} = useSelector(state => state.users)
@@ -77,6 +62,7 @@ function Card(props) {
     //     console.log(guestAssignedToken)
     // }
 
+    AuthStore.getToken();
     GuestStore.getGuestToken()
     // console.log(GuestStore.appState)
     const handleAdd = (item) =>{
@@ -88,35 +74,23 @@ function Card(props) {
             }
         }
         if(!isLoading && users){
-            console.log('user')
+            console.log(itemQuantity)
             dispatch(addToCart({pid : item.id, count: itemQuantity}))
         }
         else if(!users && !isLoadingGuest && guestAssignedToken){
-            console.log('guest')
+            console.log(itemQuantity)
             dispatch(guestAddToCartAsync({product_id : item.id, quantity: itemQuantity, guestToken: GuestStore.appState}))
         }
-        setCountToCart(countToCart+1)
+        dispatch({
+            type: 'SET_COUNT',
+            payload : item
+        })
     }
     const {addingCartForGuest,addedCartForGuest,errorMessageForGuest} = useSelector(state => state.guestAddToCartReducer)
     if(!addingCartForGuest && addedCartForGuest){
         console.log(addedCartForGuest)
     }
-    useEffect(() => {
-        if(!addingToCart && addedToCart){
-            if(!openSnack){
-                setOpenSnack(true)
-            }  
-        }
-        console.log(`add olundu: ${openSnack}`)
-    }, [countToCart])
 
-        useEffect(() => {
-            if(!addingToCart && addedToCart){
-                setOpenSnack(true);
-                // console.log(`openSnack: ${openSnack}`)
-            }
-        }, [addedToCart])
-    
     const handleAddWishlist = (item) =>{
         if(!isLoading && users){
             dispatch(addToWishlist({pid : item.id}))
@@ -146,11 +120,6 @@ function Card(props) {
 
     return (
         <div className={styles.shoppingCardWrapper}>
-               <Snackbar className={styles.snackbar} style={{position: 'fixed'}} open={openSnack} autoHideDuration={60000} onClose={handleCloseSnack}>
-                    <Alert onClose={handleCloseSnack} severity="success" sx={{ width: '100%' }}>
-                        Səbətə uğurla əlavə edildi!
-                    </Alert>
-                </Snackbar>
                     <div key={props.item.id} className={styles.ShoppingCard}>
                     <div className={styles.image}>
                         <div className={styles.view}>
@@ -207,18 +176,13 @@ function Card(props) {
                         </div>
                         <div className={styles.btn}>
                         <Stack spacing={2} sx={{ width: '100%' }}>
-                            <Button variant="outlined" onClick={()=>handleClickSnack()}>
+                            <Button variant="outlined">
                                 <a href='javascript:void(0)' onClick={() => handleAdd(props.item)}><span><BsCartPlus/></span>Satın al</a>
                             </Button>
                         </Stack>
                         </div>
                     </div>
             </div>
-                        {/* <Snackbar style={{position: 'fixed'}} open={openSnack} autoHideDuration={6000} onClose={handleCloseSnack}>
-                                <Alert onClose={handleCloseSnack} severity="success" sx={{ width: '100%' }}>
-                                    Səbətə uğurla əlavə edildi!
-                                </Alert>
-                        </Snackbar> */}
         </div>
     )
 }

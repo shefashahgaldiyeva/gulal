@@ -1,5 +1,9 @@
 .total{
-    /* width: 29%; */
+    width: 29%;
+    color: #333;
+}
+.totalInSale{
+    width: 100%;
     color: #333;
 }
 .subTotal{
@@ -31,6 +35,7 @@
     align-items: center;
 }
 .shipping span{
+    font-size: 1rem;
     padding-top: .5rem;
     padding-bottom: .5rem;
 }
@@ -43,13 +48,13 @@ h2{
     font-weight: 400;
     font-size: 1.15rem;
 }
-.subTotal .adres a{
+.subTotal .adres button{
     margin-top: .6rem;
     margin-bottom: 1.6rem;
     display: inline-block;
     font-weight: 300;
     color: #999;
-    font-size: 1rem;
+    font-size: .8rem;
     border-bottom: .1rem solid #999;
 }
 .totalSpan{
@@ -73,7 +78,7 @@ h2{
     color: #fff !important;
     background-color: #d4b9bd;
 }
-.total .continue{
+.continue{
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -89,7 +94,7 @@ h2{
 .continue svg{
     margin-left: .5rem;
 }
-.total .continue:hover{
+.continue:hover{
     color: #d4b9bd;
     background-color: #fafafa;
     border-color: #ebebeb;
@@ -108,17 +113,20 @@ h2{
 }
 @media only screen and (max-width: 1440px) {}
 @media only screen and (max-width: 1024px) {
-    .total{
-        width: 34%;
+    .total,
+    .totalInSale{
+        width: 100%;
     }
 }
 @media only screen and (max-width: 768px) {
-    .total{
-        width: 50%;
+    .total,
+    .totalInSale{
+        width: 100%;
     }
 }
 @media only screen and (max-width: 426px) {
-    .total{
+    .total,
+    .totalInSale{
         width: 100%;
     }
 }

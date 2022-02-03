@@ -54,7 +54,7 @@ function SignUp() {
         dispatch(registerAsync(article));
     }
     console.log(registered)
-    if(!isLoading && registered.operation == 'successfull' && registered.token){ 
+    if(!isLoading && registered.operation == true && registered.token){ 
         // setOpen(true);
         AuthStore.saveToken(registered.token)
         window.location.reload()

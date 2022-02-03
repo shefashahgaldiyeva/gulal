@@ -1,5 +1,5 @@
 export default {
-	isLoading: false,
+	isLoadingProduct: false,
 	allProducts: null,
-	errorMessage: null,
+	errorMessageProduct: null,
 };

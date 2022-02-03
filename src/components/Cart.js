@@ -6,6 +6,8 @@ import ProductInCart from './ProductInCart';
 import TotalInCart from './TotalInCart'
 import { BsCartX } from 'react-icons/bs'
 import cartBg from '../img/cardBg.jpg'
+import AuthStore from "../services/AuthStore";
+import GuestStore from "../services/GuestStore";
 
 
 function Cart() {
@@ -13,25 +15,25 @@ function Cart() {
     const { gettingGuestCart, guestCart, guestError } = useSelector(state => state.guestCartReducer)
     const { gettingProductInCart,productInCart,errorMessage } =  useSelector(state => state.getShoppingCart)
 
-	const [guestCartProducts, setGuestCartProducts] = useState();
-    const [cartProducts, setCartProducts] = useState();
-	const [products, setProducts] = useState(null);
+	const [products, setProducts] = useState();
 	useEffect(() => {
-		if(!gettingProductInCart && guestCart){
-			setProducts(guestCart)
+		if(!gettingGuestCart && guestCart){
+			setProducts(guestCart.data)
+            // console.log(guestCart.data)
 		}
-		else if(!gettingProductInCart && productInCart){
-			setProducts(productInCart)
+		if(!gettingProductInCart && productInCart){
+			setProducts(productInCart.data)
+            // console.log(productInCart.data)
 		}
-	}, [products])
-	console.log(products)
+	}, [guestCart,productInCart])
+	// console.log(products)
 
     return (
         <div>
             <div className={styles.cartTop} style={{backgroundImage: `url(${cartBg})`, backgroundPosition: '50% 10%'}}>
                 <h2>Səbət</h2>
             </div>
-            <div className={products && products.data.length>0 ? styles.cart : styles.none}>
+            <div className={products && products.length>0 ? styles.cart : styles.none}>
                 <ProductInCart/>
                 <TotalInCart/>
             </div>

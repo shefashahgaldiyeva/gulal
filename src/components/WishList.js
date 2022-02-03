@@ -18,6 +18,8 @@ function WishList() {
     const { isLoading,users,usersErrorMessage} = useSelector(state=>state.users)
     const { addingToCart, addedToCart, addedErrorMessage } = useSelector(state => state.setAddToCart)
     
+    useSelector(state => console.log(state.getWishlist))
+
     if(!addingToCart && addedToCart){
         console.log(addedToCart)
     }
@@ -74,7 +76,8 @@ function WishList() {
                                     <h3>{item.productName}</h3>
                                 </div>
                             </td>
-                            <td><span className={styles.price}>{item.price} azn</span></td>
+                            {/* <td><span className={styles.price}>{item.price} azn</span></td> */}
+                            <td><span className={styles.price}><del className={item.price == item.currentPrice ? styles.display : styles.delPrice}>{item.price}azn &nbsp;  /</del> {item.currentPrice}azn</span></td>
                             <td className={styles.tdP}><p>Stokda var</p></td>
                             <td>
                                 <Link to='/cart'><button className={styles.btn} onClick={()=>handleAdd(item)}><FaCartPlus/>SATIN AL</button></Link>

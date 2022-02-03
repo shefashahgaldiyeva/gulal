@@ -6,23 +6,23 @@ const allProductsReducer = (state = initialState, { type, payload }) => {
 		case actionTypes.ALL_PRODUCTS_LOAD_START:
 			return {
 				...state,
-				isLoading: true,
+				isLoadingProduct: true,
 				allProducts: null,
-				errorMessage: null,
+				errorMessageProduct: null,
 			};
 
 		case actionTypes.ALL_PRODUCTS_LOAD_SUCCESS:
 			return {
 				...state,
-				isLoading: false,
+				isLoadingProduct: false,
 				allProducts: payload,
 			};
 
 		case actionTypes.ALL_PRODUCTS_LOAD_ERROR:
 			return {
 				...state,
-				isLoading: false,
-				errorMessage: payload,
+				isLoadingProduct: false,
+				errorMessageProduct: payload,
 			};
 			
 			

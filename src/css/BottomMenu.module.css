@@ -22,14 +22,15 @@
     justify-content: space-between;
     align-items: center;
 }
-.bottomMenuInner>div{
+.bottomMenuInner>a{
     width: 25%;
     margin: 1rem 0;
+    color: black;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.bottomMenuInner>div:not(:last-child){
+.bottomMenuInner>a:not(:last-child){
     border-right: 1px solid #BBBBBB;
 }
 .bottomMenuInner span{
@@ -39,6 +40,7 @@
     .bottomMenu{
         /* visibility: visible; */
         display: inline-block;
+        /* width: 50%; */
     }
 }
 @media only screen and (max-width: 426px) {
@@ -48,9 +50,9 @@
         display: inline-block;
     }
     .bottomMenuInner{
-        width: 95%;
+        width: 100%;
     }
-    .bottomMenuInner>div{
+    .bottomMenuInner>a{
         width: 25%;
         margin: 1rem 0;
     }

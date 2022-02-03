@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from '../css/Footer.module.css'
+import { Link } from 'react-router-dom'
 import { useDispatch,useSelector } from 'react-redux';
 import { GrFacebookOption } from "react-icons/gr";
 import { AiOutlineTwitter } from "react-icons/ai";
@@ -9,6 +10,7 @@ import visa from '../img/visa.png'
 import masterCard from '../img/mastercard.png'
 import paypal from '../img/paypal.png'
 import { subscribeAsync } from '../redux/reducers/setterReducer/subscribe/subscribe.thunk'
+import AuthStore from '../services/AuthStore';
 
 
 function Footer() {
@@ -23,6 +25,7 @@ function Footer() {
     // if(!subscribeLoad && subscribeSuccess){
     //     console.log(subscribeSuccess)
     // }
+    
     return (
         <footer className={styles.footer}>
             <div className={styles.footerInner}>
@@ -32,21 +35,22 @@ function Footer() {
                             <div>
                                 <h3>SÜRƏTLİ KEÇİD</h3>
                                 <ul>
-                                    <li><a herf='#'>Haqqımızda</a></li>
-                                    <li><a herf='#'>FAQ</a></li>
-                                    <li><a herf='#'>Məhsullar</a></li>
-                                    <li><a herf='#'>Bloq</a></li>
-                                    <li><a herf='#'>Qeydiyyat</a></li>
+                                    <li><Link to='/BizdenAlinRaziQalin'>Haqqımızda</Link></li>
+                                    <li><Link to='#'>FAQ</Link></li>
+                                    <li><Link to='/category/all'>Məhsullar</Link></li>
+                                    <li><Link to='#'>Bloq</Link></li>
+                                    <li><Link to='/Qeydiyyat'>Qeydiyyat</Link></li>
                                 </ul>
                             </div>
                             <div>
                                 <h3>MÜŞTƏRİLƏR ÜÇÜN</h3>
                                 <ul>
-                                    <li><a herf='#'>Hesabım</a></li>
-                                    <li><a herf='#'>Sifarişlərim</a></li>
-                                    <li><a herf='#'>Məhsul izləmə</a></li>
-                                    <li><a herf='#'>Qaydalar və Gizlilik siyasəti</a></li>
-                                    <li><a herf='#'>Səbət</a></li>
+                                    <li><Link to={AuthStore.appState ? '/Hesabim' : '/Qeydiyyat'}>Hesabım</Link></li>
+                                    <li><Link to='/Sifarislerim'>Sifarişlərim</Link></li>
+                                    {/* <li><Link to='#'>Məhsul izləmə</Link></li> */}
+                                    <li><Link to='/Sevimliler'>Sevimli listim</Link></li>
+                                    <li><Link to='#'>Qaydalar və Gizlilik siyasəti</Link></li>
+                                    <li><Link to='/Sebet'>Səbət</Link></li>
                                 </ul>
                             </div>
                         </div>
@@ -70,7 +74,7 @@ function Footer() {
                 </div>
                 <div className={styles.footerBottom}>
                     <div>Logo</div>
-                    <div>Gülal.az - © 2021 Bütün hüquqlar qorunur.</div>
+                    <div>Gülal.az - © 2022 Bütün hüquqlar qorunur.</div>
                     <div className={styles.footerCard}>
                         <span>Ödəniş üsulları:</span>
                         <img src={visa}/>

@@ -43,8 +43,10 @@
     padding-bottom: 1.5rem;
 }
 .footerTopLeft ul li{
-    color: #4d4d4d;
     padding-bottom: .8rem;
+}
+.footerTopLeft ul li a{
+    color: #4d4d4d;
 }
 
 .footerTopRight{

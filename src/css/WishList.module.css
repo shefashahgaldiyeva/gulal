@@ -82,6 +82,23 @@ button{
 .none{
     display: none;
 }
+.delPrice{
+    position: relative;
+}
+.delPrice::before{
+    content: '';
+    left: 0;
+    top: 0;
+    width: 50px;
+    height: 2px;
+    background-color: #923b3b;
+    position: absolute;
+    z-index: 9;
+    transform: translateY(350%);
+}
+.display{
+    display: none;
+}
 @media only screen and (max-width: 1440px) {}
 @media only screen and (max-width: 1024px) {}
 @media only screen and (max-width: 768px) {

@@ -45,14 +45,14 @@ function Header(props) {
 
     const {gettingProductInCart,productInCart,errorMessage} = useSelector(state=>state.getShoppingCart)
     const {gettingGuestCart,guestCart,guestError} = useSelector(state=>state.guestCartReducer)
-    if(!gettingGuestCart && guestCart){
+    if(!gettingGuestCart && guestCart && guestCart.data){
         console.log(guestCart.data.length)
     }
-    if(!gettingProductInCart && productInCart){
-        productInCart.data.map((item)=>{
-            // console.log(item.productName)
-        })
-    }
+    // if(!gettingProductInCart && productInCart){
+    //     productInCart.data.map((item)=>{
+    //         console.log(item.productName)
+    //     })
+    // }
     // useSelector(state=>console.log(state.getSearch))
 
     const {gettingSearch,getedSearch,getSearchErrorMessage} = useSelector(state => state.getSearch)
@@ -63,6 +63,10 @@ function Header(props) {
 	}
     function handleSearch(e){
         dispatch(getSearchAsync(e.target.value))
+        console.log(e)
+    }
+    function handleSearchLeave(){
+        dispatch(getSearchAsync(''))
     }
 
 	const { gettingDetail, productDetail, detailErrorMessage } = useSelector(
@@ -98,7 +102,10 @@ function Header(props) {
               placeholder="Axtarış et..."
 			  onKeyUp = {(e)=>handleSearch(e)}
             />
-            <ul className={!gettingSearch && getedSearch ? (getedSearch.data.length > 7 ? styles.searchList : styles.searchListMin7) : styles.visible}>
+            <ul
+                className={!gettingSearch && getedSearch ? (getedSearch.data.length > 7 ? styles.searchList : styles.searchListMin7) : styles.visible}
+                onMouseLeave = {()=>handleSearchLeave()}
+              >
                     {
                         !gettingSearch && getedSearch &&
                         getedSearch.data.map((item)=>(
@@ -121,7 +128,7 @@ function Header(props) {
                 <span className={styles.pocket}>
                   <BsBasket2 />
                 </span>
-                <span className={styles.count}>{!gettingGuestCart && guestCart ? guestCart.data.length : (!gettingProductInCart && productInCart ?  productInCart.data.length : 0 )}</span>
+                <span className={styles.count}>{!gettingGuestCart && guestCart && guestCart.data ? guestCart.data.length : (!gettingProductInCart && productInCart && productInCart.data ?  productInCart.data.length : 0 )}</span>
               </Link>
             </li>
             <li>
@@ -159,7 +166,7 @@ function Header(props) {
             <li>
 				<span>
 					<Link onClick={()=>logOut()} style={ AuthStore.appState ? {visibility: 'visible'} : {visibility: 'hidden'}} to="/Cixis">
-						CIXIS
+						ÇIXIŞ
 					</Link>
 				</span>
               {/* <span>
