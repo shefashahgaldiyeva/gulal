@@ -91,7 +91,7 @@ function Header(props) {
         </div>
         <div className={styles.right}>
           <div className={styles.searchCart}>
-            <label onClick={toogleClass} for="search">
+            <label onClick={toogleClass} htmlFor="search">
               <BsSearch />
             </label>
             <div className={styles.searchWrapper}>

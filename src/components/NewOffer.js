@@ -36,7 +36,7 @@ function NewOffer() {
                 <div className={styles.newOfferCards}>
                 {!gettingNewProduct && newProducts && 
                     newProducts.data.map((item)=>(
-                        <NewOfferCard data={item}/>))
+                        <NewOfferCard key={item.id} data={item}/>))
                 }
                 </div>
             </div>

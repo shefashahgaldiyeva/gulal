@@ -177,21 +177,21 @@ function Guest() {
                             <form style={mapFare ? {display: 'block'} : {display: 'none'}}>
                                 <p>Çatdırılma qiyməti:</p>
                                 {/* <div className={styled.shipping}>
-                                    <label for='free'>
+                                    <label htmlFor='free'>
                                         <input tabindex="0" checked="checked" onChange={shippingClick} id='free' name='shipping' value={0} type='radio'/>&nbsp;
                                         Mağazadan alış:
                                     </label>
                                     <span>0.00 azn</span>
                                 </div> */}
                                 <div className={styled.shipping}>
-                                    {/* <label for='standart'>
+                                    {/* <label htmlFor='standart'>
                                         <input tabindex="0" onChange={shippingClick} id='standart' name='shipping' value={5} type='radio'/>&nbsp;
                                         Standard çatdırılma:
                                     </label> */}
                                     <span>{mapFare} azn</span>
                                 </div>
                                 {/* <div className={styled.shipping}>
-                                    <label for='express'>
+                                    <label htmlFor='express'>
                                         <input tabindex="0" onChange={shippingClick} id='express' name='shipping' value={10} type='radio'/>&nbsp;
                                         Express:
                                     </label>

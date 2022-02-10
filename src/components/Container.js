@@ -28,6 +28,7 @@ function Container() {
     // useSelector(state =>console.log( state.sliderReducer))
     SwiperCore.use([Autoplay]);
 
+    
     return (
         <div className='swip-container'>
             <Swiper 
@@ -43,7 +44,7 @@ function Container() {
 
             {!sliderLoading && containerSlider &&
                 containerSlider.data.map((item)=>(
-                    <SwiperSlide style={containerSlider.data ? {backgroundImage: `url(${item.image})`} : null} className={styles.lilacSwip}>
+                    <SwiperSlide key={item.image} style={containerSlider.data ? {backgroundImage: `url(${item.image})`} : null} className={styles.lilacSwip}>
                         <div className={styles.lecekBack}>
                             <p>{item.text}</p>
                             {/* <span>Cashback</span> */}

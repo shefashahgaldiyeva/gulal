@@ -28,8 +28,8 @@ function Detail() {
     dispatch(getProductDetailAsync(productId));
   }, [productId]);
 console.log(productId)
-//  return<></>
-  return (
+
+return (
     <div className={styles.detail}>
         {!gettingDetail && productDetail && 
 		productDetail.data.map((item)=>(

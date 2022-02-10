@@ -26,7 +26,7 @@ function AllProducts() {
 
  
     return (
-        <div className={styles.products}>
+        <div className={styles.products}> 
             <div className={styles.productsInner}>
                 <div className={styles.headingInner}>
                     <h2>Bütün məhsullar</h2>
@@ -47,7 +47,7 @@ function AllProducts() {
                         >
                     {
                         !isLoadingProduct && allProducts && allProducts.data.map((item)=>(
-                            <SwiperSlide className={styles.allProductSwip}>
+                            <SwiperSlide key={item.id} className={styles.allProductSwip}>
                                 <Card item={item}/>
                             </SwiperSlide>
                         ))

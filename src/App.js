@@ -58,7 +58,6 @@ function App() {
 		dispatch(loadUsersAsync())
 		dispatch(getContainerSliderAsync())
         // dispatch(loadDiscountProductsAsync())
-		
 	}, [])
 	AuthStore.getToken()
     console.log(AuthStore.appState)
@@ -70,6 +69,15 @@ function App() {
     renderCounter.current = renderCounter.current + 1;
 	console.log('renderCount: ',renderCounter.current)
 	
+	// wishlist
+    // totalincart
+    // snackbar
+    // productincart
+    // incdecbutton
+    // guest
+    // carttotalprice
+    // cart
+
 return (
     <div className="App">
 		{ gettingCategory

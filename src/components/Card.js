@@ -127,6 +127,7 @@ function Card(props) {
     //     }
     // }
 
+   
     return (
         <div className={styles.shoppingCardWrapper}>
                     <div key={props.item.id} className={styles.ShoppingCard}>

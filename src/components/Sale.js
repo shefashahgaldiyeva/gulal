@@ -13,8 +13,8 @@ function Sale(props) {
                 <div className={styles.saleRight}>
                     {
                         props && props.data.map((item) => (
-                            <div className={styles.cardWrapper}>
-                                <Card item={item} />
+                            <div key={item.id} className={styles.cardWrapper}>
+                                <Card key={item.id} item={item} />
                             </div>
                             ))
                     }
