@@ -20,7 +20,7 @@ import Guest from "./components/Guest";
 import BottomMenu from "./components/BottomMenu";
 
 import Language from "./components/Language";
-import { useEffect,useState } from "react";
+import { useEffect,useRef,useState } from "react";
 import { loadCategoriesAsync } from "./redux/reducers/categories/categories.thunks";
 import { loadUsersAsync } from "./redux/reducers/users/users.thunks";
 import { getCartAsync } from "./redux/reducers/products/products.thunks";
@@ -66,6 +66,9 @@ function App() {
 
 	const {addingToCart,addedToCart,addedErrorMessage} = useSelector(state => state.setAddToCart)
 
+	const renderCounter  = useRef(0);
+    renderCounter.current = renderCounter.current + 1;
+	console.log('renderCount: ',renderCounter.current)
 	
 return (
     <div className="App">

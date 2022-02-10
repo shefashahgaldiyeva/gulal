@@ -91,10 +91,14 @@ function Card(props) {
         console.log(addedCartForGuest)
     }
 
+    const [heartColor,setHeartColor] = useState(null)
     const handleAddWishlist = (item) =>{
+        dispatch(addToWishlist({pid : item.id}))
         if(!isLoading && users){
-            dispatch(addToWishlist({pid : item.id}))
+            console.log('item')
        }
+       console.log(item)
+       setHeartColor(!heartColor) 
     }
 
     const [open, setOpen] = useState(false);
@@ -117,13 +121,19 @@ function Card(props) {
         console.log(itemQuantity)
     };
 
+    // if(!addingToWishlist && addedToWishlist){
+    //     console.log(addedToWishlist.data.operation)
+    //     if(addedToWishlist.data.operation){
+    //     }
+    // }
 
     return (
         <div className={styles.shoppingCardWrapper}>
                     <div key={props.item.id} className={styles.ShoppingCard}>
                     <div className={styles.image}>
                         <div className={styles.view}>
-                            <a href='javascript:void(0)' onClick={() => handleAddWishlist(props.item)}><span>sevimliyə əlavə et</span><FiHeart/></a>
+                            <a href='javascript:void(0)' style={ heartColor ? { backgroundColor:'#e4dad7', color: 'white' } : null } onClick={() => handleAddWishlist(props.item)}><span>sevimliyə əlavə et</span><FiHeart/></a>
+                            {/* <a href='javascript:void(0)' onClick={() => handleAddWishlist(props.item)}><span>sevimliyə əlavə et</span><FiHeart/></a> */}
                             <a onClick={()=>handleOpen(props.item)} href='javascript:void(0)' title='ön baxış'><FaRegEye/></a>
                             <Modal
                                 aria-labelledby="transition-modal-title"

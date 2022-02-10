@@ -44,6 +44,7 @@ table div h3{
     line-height: 1.25;
 }
 .quantity{
+    width: 5rem;
     border: 1px solid #999;
     /* width: 75% !important; */
     display: flex;

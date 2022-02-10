@@ -3,6 +3,7 @@ import { useDispatch,useSelector } from 'react-redux'
 import styles from '../css/Container.module.css'
 import '../css/Pure.css'
 import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, {Autoplay} from 'swiper';
 import { getContainerSliderAsync } from '../redux/reducers/getterReducer/containerSlider/containerSlider.thunk'
 
 function Container() {
@@ -25,9 +26,21 @@ function Container() {
     // }
 
     // useSelector(state =>console.log( state.sliderReducer))
+    SwiperCore.use([Autoplay]);
+
     return (
         <div className='swip-container'>
-            <Swiper effect={'cards'} grabCursor={true} className="mySwiper">
+            <Swiper 
+                effect={'cards'} 
+                grabCursor={true} 
+                className="mySwiper"
+                autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                  }}
+                modules={[Autoplay]}
+            >
+
             {!sliderLoading && containerSlider &&
                 containerSlider.data.map((item)=>(
                     <SwiperSlide style={containerSlider.data ? {backgroundImage: `url(${item.image})`} : null} className={styles.lilacSwip}>

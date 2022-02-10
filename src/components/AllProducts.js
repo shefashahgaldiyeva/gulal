@@ -1,7 +1,7 @@
 import React,{ useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { Swiper,SwiperSlide } from 'swiper/react';
-import SwiperCore, {Pagination} from 'swiper';
+import SwiperCore, {Pagination,Autoplay} from 'swiper';
 import Card from '../components/Card';
 import styles from '../css/AllProducts.module.css'
 import bottomHeading from '../img/bottomHeading.png'
@@ -22,6 +22,7 @@ function AllProducts() {
     }, []);
     
     SwiperCore.use([Pagination]);
+    SwiperCore.use([Autoplay]);
 
  
     return (
@@ -33,7 +34,17 @@ function AllProducts() {
                 </div>
                 <div className={styles.swipWrapper}>
                     <div className={styles.swipInner}>
-                    <Swiper className={styles.swiperPage} slidesPerView={4} spaceBetween={0} pagination={{"clickable": true},{ grabCursor: true}}>
+                    <Swiper 
+                        className={styles.swiperPage} 
+                        slidesPerView={4} 
+                        spaceBetween={0} 
+                        pagination={{"clickable": true},{ grabCursor: true}}
+                        autoplay={{
+                            delay: 2000,
+                            disableOnInteraction: false,
+                          }}
+                        modules={[Autoplay, Pagination]}
+                        >
                     {
                         !isLoadingProduct && allProducts && allProducts.data.map((item)=>(
                             <SwiperSlide className={styles.allProductSwip}>
