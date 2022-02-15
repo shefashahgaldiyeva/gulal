@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react'
+import React,{ useEffect,useState} from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux';
 import  styles  from '../css/WishList.module.css';

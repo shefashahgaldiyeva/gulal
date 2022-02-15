@@ -36,11 +36,13 @@ import { getContainerSliderAsync } from "./redux/reducers/getterReducer/containe
 import SnackBar from "./components/Snackbar";
 import { GiConsoleController } from "react-icons/gi";
 import MapDistance from './components/MapDistance'
+// import { store } from "react-notifications-component";
 // import MyMapComponent from "./components/Map";
 
 
-function App() {
+function App(store) {
 
+	console.log(store.store)
 	const dispatch = useDispatch();
 	const currentLang = localStorage.getItem("locale");
 	const { gettingCategory, categories } = useSelector((state) => state.getCategories);
@@ -80,14 +82,8 @@ function App() {
 
 return (
     <div className="App">
-		{ gettingCategory
-			? 
-		  <Loader/>
-			:
-		  null 
-		}
-		<div style={ gettingCategory
-			? {display: 'none'} : null }>
+		{ gettingCategory ? <Loader/> : null }
+		<div style={ gettingCategory ? {display: 'none'} : null }>
 		<TopHeader lang={currentLang} />
 		<Header cats={!gettingCategory && categories ? categories : null} />
 		<Switch>
@@ -107,13 +103,7 @@ return (
 					<Cart />
 				</Route>
 				<Route path="/Sevimliler">
-				{
-					AuthStore.appState || GuestStore.appState
-					?
 					<WishList />
-					:
-					null
-				}
 				</Route>
 			<Route path="/Daxil-ol">
 				<Login/>
@@ -123,7 +113,7 @@ return (
 			</Route>
 			<Route path="/Sifariş-et">
 				<StyledEngineProvider injectFirst>
-					<Guest />
+					<Guest props={store.store}/>
 				</StyledEngineProvider>
 			</Route>
 			<Route path="/Hesabim">

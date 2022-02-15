@@ -1,15 +1,23 @@
 // AIzaSyDV7LAIOHzy4PvS_pylcJaw0ZY4djYH5r8
 import { DistanceMatrixService } from '@react-google-maps/api';
+import axios from 'axios';
+import { useState } from 'react';
+
 // import { Marker } from '@react-google-maps/api';
 // import { StandaloneSearchBox } from '@react-google-maps/api';
 import StandaloneSearchBox from "react-google-maps/lib/components/places/StandaloneSearchBox";
+import { useDispatch } from 'react-redux';
+import { setOriginAsync } from '../redux/reducers/setterReducer/originSeller/originSeller.thunk';
 
 const google = window.google;
 
 const _ = require("lodash");
 const { compose, withProps, lifecycle } = require("recompose");
 const { withScriptjs, withGoogleMap, GoogleMap, Marker} = require("react-google-maps");
-let abortController = new AbortController();  
+let abortController = new AbortController(); 
+let arr ; 
+let dataLocation = [];
+
 
 const MapWithASearchBox = compose(
   withProps({
@@ -40,10 +48,12 @@ const MapWithASearchBox = compose(
         onSearchBoxMounted: ref => {
           refs.searchBox = ref; 
         },
-		onMarkerDragEnd: (coord, index) => {
+	onMarkerDragEnd: (coord, index) => {
       const nextMarkers = [{position : null}]
       nextMarkers[0].position = coord.latLng;
       const nextCenter = _.get(nextMarkers, '0.position', this.state.center);
+      console.log(nextCenter.lat())
+      console.log(nextCenter.lng())
       console.log(nextCenter)
       var destination = {}
       destination.lat = parseFloat(nextMarkers[0].position.lat())
@@ -53,9 +63,34 @@ const MapWithASearchBox = compose(
       this.setState({
         center: nextCenter,
         markers: nextMarkers,
-        destination: dest
+        destination: dest,
+		arr: this.props.sellerLocation
       });
-		},
+      console.log(destination.lat)
+      console.log(destination.lng)
+	  this.props.store.dispatch(setOriginAsync(destination.lat,destination.lng))
+	//   let unique = Array.from(new Set(arr.map(JSON.stringify))).map(JSON.parse);
+	//   console.log('unique===>',unique)
+	// console.log(`${unique[1].lat}/${unique[1].lng}/${destination.lat}/${destination.lng}`)
+		let max = 0;
+	  	//  unique.map((item)=>{
+			// axios.post(`http://127.0.0.1:8000/api/origin/${Number(destination.lat)}/${Number(destination.lng)}`)
+            // console.log(item[0]+`/`+item[1])
+			// .then((response) => {
+			//   console.log('response=>',response);
+			// //   dataLocation.push(response.data)
+			// }).catch(e=>console.log(e));
+            // console.log(this.props.store)
+		// })
+		
+		dataLocation.map((index)=>{
+			if(max<index){
+				max = index
+				console.log(max)
+			}
+			console.log(max)
+		})
+	},
 	
         onPlacesChanged: () => {
           const places = refs.searchBox && refs.searchBox.getPlaces();
@@ -82,7 +117,8 @@ const MapWithASearchBox = compose(
             markers: nextMarkers,
             destination: dest
           });
-          console.log(places)  
+		  this.props.store.dispatch(setOriginAsync(destination.lat,destination.lng))
+        //   console.log(places)  
           refs.map && refs.map.fitBounds(bounds);
         },
         onTrigger: (childData) => {
@@ -96,7 +132,38 @@ const MapWithASearchBox = compose(
   withGoogleMap
 )(props => 
 {
-	//console.log('===>', props)
+	arr  = props.sellerLocation;
+	// console.log('===>', props)
+	// console.log('===>', props)
+//   const [origin,setOrigin] = useState([]);
+//   props.sellerLocation.forEach((item)=>{
+//     console.log(item)
+//   })
+  // const filter = (tag, arr) => arr.filter(item => item.tag === tag);
+//   let arr = props.sellerLocation;
+	// setArr(props.sellerLocation)
+  // var arr = [[55, 4],[55, 4],[40.4244291, 49.8251384], [40.4244291, 49.8251384],[40.41059, 49.813623]];
+  // let i = 0;
+  // for(i=0; i<arr.length; i++){
+  //   arr[i].forEach((item)=>{
+  //     console.log(item)
+  //     const a = [...new Set(arr[i])]
+  //     console.log(a)
+  //   });
+  // }
+  // var unique = [...new Set(arr)]
+  // const unique = [...new Set(arr.map(item => item))];
+  // console.log(unique)
+  // const unique = arr.filter(function(item,pos){
+  //   return arr.indexOf(item)==pos;
+  // });
+  // console.log(unique)
+
+  
+
+  // console.log(arr)
+
+
   return (
   <GoogleMap
     ref={props.onMapMounted}
@@ -146,13 +213,13 @@ const MapWithASearchBox = compose(
             options={{
               // destinations: [{ lat: 1.296788, lng: 103.778961 }],
               destinations: props.destination,
-              origins: [{ lng: 49.831215, lat: 40.416847 }],
-              travelMode: "DRIVING",
+			  origins: [{ lng: 49.831215, lat: 40.416847 }],
+			  travelMode: "DRIVING",
             }}
             callback={(res) => {
               props.onTrigger(((res.rows[0].elements[0].distance.value * 0.001 * 0.6).toFixed(2) < 2 ? 2 : (res.rows[0].elements[0].distance.value * 0.001 * 0.6).toFixed(2)))
-              // console.log("RESPONSE", res);
-              console.log("STATUS", res.rows[0].elements[0]);
+            //   console.log("RESPONSE", res);
+            //   console.log("STATUS", res.rows[0].elements[0]);
               // this.setState({
               //   totalTime: res.rows[0].elements[0].duration.text,
               //   totalDistance: res.rows[0].elements[0].distance.text,

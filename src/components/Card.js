@@ -1,4 +1,4 @@
-import React,{ useEffect, useState } from 'react';
+import React,{ useEffect, useMemo, useState } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -45,12 +45,10 @@ const style = {
 };
 
 
-
 function Card(props) { 
 
-    const [openSnack, setOpenSnack] = useState(false);
+    // const [openSnack, setOpenSnack] = useState(false);
     const {addingToCart,addedToCart,addedErrorMessage} = useSelector(state => state.setAddToCart)
-    const [countToCart,setCountToCart] = useState(0);
     if(!addingToCart && addedToCart){
         console.log('addedToCart: ' + addedToCart)
     }
@@ -108,7 +106,7 @@ function Card(props) {
     }
     const handleClose = () => setOpen(false);
 
-    useEffect(() => {
+    useMemo(() => {
         dispatch(getCartProducts());
     }, []);
 
@@ -133,9 +131,9 @@ function Card(props) {
                     <div key={props.item.id} className={styles.ShoppingCard}>
                     <div className={styles.image}>
                         <div className={styles.view}>
-                            <a href='javascript:void(0)' style={ heartColor ? { backgroundColor:'#e4dad7', color: 'white' } : null } onClick={() => handleAddWishlist(props.item)}><span>sevimliyə əlavə et</span><FiHeart/></a>
+                            <a style={ heartColor ? { backgroundColor:'#e4dad7', color: 'white' } : null } onClick={() => handleAddWishlist(props.item)}><span>sevimliyə əlavə et</span><FiHeart/></a>
                             {/* <a href='javascript:void(0)' onClick={() => handleAddWishlist(props.item)}><span>sevimliyə əlavə et</span><FiHeart/></a> */}
-                            <a onClick={()=>handleOpen(props.item)} href='javascript:void(0)' title='ön baxış'><FaRegEye/></a>
+                            <a onClick={()=>handleOpen(props.item)} title='ön baxış'><FaRegEye/></a>
                             <Modal
                                 aria-labelledby="transition-modal-title"
                                 aria-describedby="transition-modal-description"
@@ -168,7 +166,7 @@ function Card(props) {
                                                 type: 'ELAVE_ET',
                                                 payload: props.item
                                             })}><FaCartPlus/>SATIN AL</button></a> */}
-                                              <a href='javascript:void(0)'><button onClick={()=>handleAdd(props.item)} className={styled.btn}><FaCartPlus/>SATIN AL</button></a>
+                                              <a><button onClick={()=>handleAdd(props.item)} className={styled.btn}><FaCartPlus/>SATIN AL</button></a>
                                        </div>
                                     </Typography>
                                 </Box>
@@ -179,7 +177,7 @@ function Card(props) {
                     </div>
                     <div className={styles.bottom}>
                         {/* <div className={styles.category}><a href='#'>{props.item.category}</a></div> */}
-                        <h3><a href='javascript:void(0)'>{props.item.name}</a></h3>
+                        <h3><a>{props.item.name}</a></h3>
                         <span className={styles.price}>{props.item.price} azn</span>
                         <div>
                             {/* <div className={styles.stars}>stars</div> */}
@@ -188,7 +186,7 @@ function Card(props) {
                         <div className={styles.btn}>
                         <Stack spacing={2} sx={{ width: '100%' }}>
                             <Button variant="outlined">
-                                <a href='javascript:void(0)' onClick={() => handleAdd(props.item)}><span><BsCartPlus/></span>Satın al</a>
+                                <a onClick={() => handleAdd(props.item)}><span><BsCartPlus/></span>Satın al</a>
                             </Button>
                         </Stack>
                         </div>

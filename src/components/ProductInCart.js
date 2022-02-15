@@ -74,6 +74,7 @@ const ProductInCart = () => {
   const handlePlus = (e, id) => {
 	  if(!gettingProductInCart && productInCart){
 		e.target.disabled = true;
+    console.log(id)
 		dispatch(incrementQuantityToCart({pid: id}));
 		setCartProducts((cartProducts) =>
 			cartProducts.map(

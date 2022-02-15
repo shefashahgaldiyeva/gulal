@@ -17,9 +17,9 @@ function Container() {
     }, []);
     // console.log(window.scrollY)
 
-    // useEffect(() => {
-    //     dispatch(getContainerSliderAsync())
-    // }, []);
+    useEffect(() => {
+        dispatch(getContainerSliderAsync())
+    }, []);
     const { sliderLoading,containerSlider,sliderError } = useSelector(state => state.sliderReducer)
     // if(!sliderLoading && containerSlider){
     //     console.log(containerSlider.data)

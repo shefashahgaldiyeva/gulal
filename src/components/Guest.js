@@ -32,7 +32,9 @@ const style = {
     p: 2,
   };
 
-function Guest() {
+function Guest(props) {
+
+    console.log(props.props)
 
     const dispatch = useDispatch();
     const [dateValue, setDateValue] = React.useState(new Date());
@@ -112,9 +114,17 @@ function Guest() {
 
     const [mapFare,setMapFare] = useState(0);
     function handleCallback(childData){
-        setMapFare(childData)
-        console.log('FARE=>',mapFare)
+        // setMapFare(childData)
+        // console.log('FARE=>',mapFare)
     }
+
+    const {settingOrigin,setOrigin,originError} = useSelector((state)=> state.setOriginReducer)
+    useEffect(()=>{
+        if(!settingOrigin && setOrigin){
+            console.log(setOrigin)
+            setMapFare(setOrigin.toFixed(2))
+        }
+    },[setOrigin])
 
     const { gettingProductInCart, productInCart, errorMessage } = useSelector((state) => state.getShoppingCart);
 	const { gettingGuestCart, guestCart, guestError } = useSelector(state => state.guestCartReducer)
@@ -136,6 +146,22 @@ function Guest() {
             })
 		} 
 	}, [productInCart,guestCart])
+
+    // useSelector((state) =>console.log(state.getShoppingCart))
+    // const [origin,setOrigin] = useState([])
+    // useEffect(()=>{
+    //     if(!gettingProductInCart && productInCart){
+    //         productInCart.data.map((item)=>{
+    //             // let alik = {lat: item.latitude,lng: item.longitude}
+    //             // origin.push(alik)
+    //             // origin.push([`Number(${item.latitude}/${item.longitude})`])
+    //             origin.push([item.latitude + `/` + item.longitude])
+    //         })
+    //     }
+    // },[])
+    // console.log('origin ==>',origin)
+    
+
 
     return (
         <div className={styles.login}>
@@ -216,7 +242,12 @@ function Guest() {
                                     <Fade in={open}>
                                         <Box sx={style}>
                                             <div>
-                                                <MapWithASearchBox parentCallback={(childData)=>handleCallback(childData)} data={mapFare} style={{ zIndex: '1000' }}/>
+                                                <MapWithASearchBox 
+                                                    parentCallback={(childData)=>handleCallback(childData)}
+                                                    sellerLocation={origin}
+                                                    style={{ zIndex: '1000' }}
+                                                    store={props.props}
+                                                    />
                                             </div>
                                         </Box>
                                     </Fade>
@@ -224,7 +255,7 @@ function Guest() {
                             </div>
                             <div className={styled.totalSpan}>
                                 <span>Toplam:</span>
-                                <span>{eval((parseFloat(mapFare) + parseFloat(total)))}</span>
+                                <span>{(eval((parseFloat(mapFare) + parseFloat(total)))).toFixed(2)} azn</span>
                             </div>
                             <Link className={styled.btn} to='/Sifariş-et' onClick={()=>handleSale()}>SIFARİŞ ET </Link>
                         </div>

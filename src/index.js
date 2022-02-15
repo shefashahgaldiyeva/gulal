@@ -16,7 +16,7 @@ const store = configureStore();
 ReactDOM.render(
   	<BrowserRouter>
     	<Provider store={store}>
-      		<App/>
+      		<App store={store}/>
 			{/* <UsersPage /> */}
 			{/* <ProductsPage /> */}
       	</Provider>
