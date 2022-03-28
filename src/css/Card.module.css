@@ -1,9 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap'); */
+@font-face {
+    font-family: 'Cormorant Garamond', serif;
+    src: url(../font/Cormorant_Garamond/CormorantGaramond-Light.ttf);
+}
 .shoppingCardWrapper{
     width: 100%;
     margin-right: 22px;
     position: relative;
     margin-top: .6rem;
+    transform: translateZ(20px);
 }
 .ShoppingCard{
     /* width: 100%; */
@@ -108,7 +113,6 @@ a{
 }
 .ShoppingCard:hover .btn,
 .ShoppingCard .btn{
-    visibility: visible !important;
     animation-duration: 500ms;
     animation-timing-function: ease;
     animation-delay: 100ms;

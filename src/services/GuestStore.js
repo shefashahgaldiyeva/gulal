@@ -20,6 +20,7 @@ class GuestStore{
         {
             localStorage.setItem('guestToken',CryptoJS.AES.encrypt(sign(appState,"secret"),"udemy-laravel-js").toString());
             this.getGuestToken();
+            console.log(appState)
         }
         catch (e) {
             console.log(e);

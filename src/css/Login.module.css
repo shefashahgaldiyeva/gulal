@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'Cormorant Garamond', serif;
+    src: url(../font/Cormorant_Garamond/CormorantGaramond-Light.ttf);
+}
 .login{
     width: 100%;
     padding: 3rem 0;

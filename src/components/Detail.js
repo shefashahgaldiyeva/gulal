@@ -34,7 +34,7 @@ return (
         {!gettingDetail && productDetail && 
 		productDetail.data.map((item)=>(
 
-			<div className={styles.detailInner}>
+			<div key={item.id} className={styles.detailInner}>
 				<div className={styles.left}>
 					<DetailSlider data={item}/>
 				</div>

@@ -20,6 +20,7 @@ import GuestStore from "../services/GuestStore";
 import { guestIncrementQuantity } from "../redux/reducers/setterReducer/guestCartIncrementQuantity/guestCartIncrementQuantity.thunk";
 import { guestDecrementQuantity } from "../redux/reducers/setterReducer/guestCartDecrementQuantity/guestCartDecrementQuantity.thunk";
 import { deleteGuestCartProduct } from "../redux/reducers/setterReducer/deleteGuestCartProduct/deleteGuestCartProduct.thunk";
+import AuthStore from "../services/AuthStore";
 
 
 const ProductInCart = () => {
@@ -31,7 +32,7 @@ const ProductInCart = () => {
     const { gettingGuestCartIncrement,guestCartIncrement,guestIncrementError } = useSelector((state) => state.guestIncrementReducer)
     const { gettingGuestCartDecrement,guestCartDecrement,guestDecrementError } = useSelector((state) => state.guestDecrementReducer)
     GuestStore.getGuestToken()
-    useSelector((state) => console.log(state.getShoppingCart));
+    AuthStore.getToken()
 	// console.log(GuestStore.appState)
 	useEffect(() => {
     if(GuestStore.appState){
@@ -39,7 +40,10 @@ const ProductInCart = () => {
         guestToken: GuestStore.appState
       }))
     }
-	}, [])
+    if(AuthStore.appState){
+        dispatch(getCartProducts());
+      }
+	}, [AuthStore.appState,GuestStore.appState])
 
 	const { gettingGuestCart, guestCart, guestError } = useSelector(state => state.guestCartReducer)
 	// if(!gettingGuestCart && guestCart){
@@ -60,9 +64,9 @@ const ProductInCart = () => {
   }
   const [cartProducts, setCartProducts] = useState(null);
 
-  useEffect(() => {
-    dispatch(getCartProducts());
-  }, []);
+//   useEffect(() => {
+//     dispatch(getCartProducts());
+//   }, []);
   useEffect(() => {
     if (!gettingProductInCart && productInCart) {
       setCartProducts(productInCart.data);
@@ -162,7 +166,7 @@ const ProductInCart = () => {
 
   return (
     <div className={styles.table}>
-      <table>
+      <table className={styles.tableWrapper}>
         <thead id="table">
           <tr>
             <th >Məhsul</th>

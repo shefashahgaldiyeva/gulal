@@ -1,19 +1,19 @@
 .table{
     width: 70%;
 }
-table{
+.tableWrapper{
     width: 100%;
-    padding: 0 2rem;
+    padding: 0rem;
     margin-bottom: 1rem;
     color: #212529;
 }
-table tr{
+.tableWrapper tr{
     width: 100%;
 }
-table thead th{
+.tableWrapper thead th{
     border-bottom: .1rem solid #ebebeb;
 }
-table th{
+.tableWrapper th{
     text-align: left;
     padding: 1.4rem 0;
     font-weight: 400;
@@ -21,22 +21,22 @@ table th{
     line-height: 1.5;
     color: #999;
 }
-table td{
+.tableWrapper td{
     padding: 1rem 0;
     text-align: left;
     border-bottom: .1rem solid #ebebeb;
 }
-table td div{
+.tableWrapper td div{
     width: 70%;
     display: flex;
     /* justify-content: space-between; */
     align-items: center;
 }
-table img{
+.tableWrapper img{
     margin: 0 2.8rem 0 0;
     width: 70px;
 }
-table div h3{
+.tableWrapper div h3{
     display: inline-block;
     color: #333;
     font-weight: 400;
@@ -56,6 +56,7 @@ table div h3{
     font-size: 1.1rem;
     display: flex;
     justify-content: space-between;
+    background: transparent;
 }
 button{
     border: transparent;
@@ -99,11 +100,14 @@ button{
     .table .img{
         margin: 0 2rem 0 0;
     }
-    table td div {
+    .tableWrapper td div {
         width: 92%;
     }
 }
 @media only screen and (max-width: 768px) {
+    .tableWrapper{
+        padding: 0;
+    }
     .table{
         width: 100%;
         padding: 0;
@@ -116,7 +120,7 @@ button{
     .table .img{
         margin: 0 1rem 0 0;
     }
-    table div h3{
+    .tableWrapper div h3{
         font-size: 1rem;
     }
     .quantity button{

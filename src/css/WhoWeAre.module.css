@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'Cormorant Garamond', serif;
+    src: url(../font/Cormorant_Garamond/CormorantGaramond-Light.ttf);
+}
 .whoWeAre{
     width: 100%;
     padding: 15rem 0 12rem 0;
@@ -40,6 +44,20 @@
 .who p{
     padding-top: .5rem;
     display: inline-block;
+}
+.who .scrollUp{
+    transition: .6s ease-in-out;
+    animation: scrollUp 1s ease-in 1 alternate ;
+}
+@keyframes scrollUp {
+    0% {
+        transform: translateY(-30%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 @media only screen and (max-width: 1440px) {
     .whoWeAre {

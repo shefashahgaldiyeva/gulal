@@ -3,37 +3,47 @@ import { useDispatch,useSelector } from 'react-redux';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import styles from '../css/Login.module.css'
-import { loadUsersAsync } from '../redux/reducers/users/users.thunks'
+import { loadUsersAsync, loginAsync } from '../redux/reducers/users/users.thunks'
 import {FcGoogle} from 'react-icons/fc'
 import {FaFacebookF} from 'react-icons/fa'
 import img from '../img/login.png'
 import { Redirect } from 'react-router';
 import AuthStore from '../services/AuthStore';
+import SnackBar from './Snackbar';
 
 
 function Login() {
 
  
     const dispatch = useDispatch()
-    const token = useSelector(state => state.tokenReducer)
-    // const users = useSelector(state => state.users)
-    // console.log(users)
+    
+    // const token = useSelector(state => state.tokenReducer)
+	// useSelector(state=>console.log('loginReducer = >',state.loginReducer))
+	// const {isLoadingLogin,logging,errorMessageLogin} = useSelector(state=>state.loginReducer)
+  
     const submit = (e) =>{
+
         const email = document.getElementById('email').value
         const password = document.getElementById('password').value
         const article = { email: email, password: password}
-        axios.post('http://127.0.0.1:8000/api/login', article)
-        .then(response =>{
-            console.log(response)
-            AuthStore.saveToken(response.data.token)
-            window.location.reload()
-        })
-    }
-    if(AuthStore.appState){
-        return <Redirect to='/'/>
-    }
+        dispatch(loginAsync(article))
+        // await axios.post('http://127.0.0.1:8000/api/login', article)
+        // .then(response => {
+            //     console.log('login response ===>',response)
+            // AuthStore.saveToken(response.data.token)
+            //     // window.location.reload()
+            // })
+            // .catch(err => {
+                //     console.log(err)
+                //     console.log('Istifadeci tapilmadi')
+                // })
+            }
+        if(AuthStore.appState){
+            return <Redirect to='/'/>
+        }
+                
     console.log(AuthStore.appState)
-    
+
     return (
         <div className={styles.login}>
             <div className={styles.loginInner}>
@@ -56,6 +66,7 @@ function Login() {
                     <div className={styles.bgColor}></div>
                 </div>
             </div>
+            {/* {logging.msg==='unsuccessfull' ? <SnackBar/> : null} */}
         </div>
     )
 }

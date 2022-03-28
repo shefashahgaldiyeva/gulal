@@ -1,4 +1,4 @@
-import React,{ useEffect, useMemo, useState } from 'react';
+import React,{ useEffect, useState } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -47,11 +47,10 @@ const style = {
 
 function Card(props) { 
 
-    // const [openSnack, setOpenSnack] = useState(false);
-    const {addingToCart,addedToCart,addedErrorMessage} = useSelector(state => state.setAddToCart)
-    if(!addingToCart && addedToCart){
-        console.log('addedToCart: ' + addedToCart)
-    }
+    // const {addingToCart,addedToCart,addedErrorMessage} = useSelector(state => state.setAddToCart) 
+    // if(!addingToCart && addedToCart){
+    //     console.log('addedToCart: ' + addedToCart)
+    // }
     const [itemQuantity, setitemQuantity] = useState(1)
     const dispatch = useDispatch();
     const {isLoading,users,userErrorMessage} = useSelector(state => state.users)
@@ -71,13 +70,13 @@ function Card(props) {
                 GuestStore.saveGuestToken(guestAssignedToken.guestToken)
             }
         }
-        if(!isLoading && users){
-            console.log(itemQuantity)
-            dispatch(addToCart({pid : item.id, count: itemQuantity}))
-        }
-        else if(!users && !isLoadingGuest && guestAssignedToken){
+        if(!users && !isLoadingGuest && guestAssignedToken){
             console.log(itemQuantity)
             dispatch(guestAddToCartAsync({product_id : item.id, quantity: itemQuantity, guestToken: GuestStore.appState}))
+        }
+        else if(!isLoading && users){
+            console.log(itemQuantity)
+            dispatch(addToCart({pid : item.id, count: itemQuantity}))
         }
         dispatch({
             type: 'SET_COUNT',
@@ -89,15 +88,24 @@ function Card(props) {
         console.log(addedCartForGuest)
     }
 
-    const [heartColor,setHeartColor] = useState(null)
+   
+    const {addingToWishlist,addedToWishlist,addedErrorMessage} = useSelector(state=>state.addToWishlist)
+    const [heartColor,setHeartColor] = useState()
     const handleAddWishlist = (item) =>{
-        dispatch(addToWishlist({pid : item.id}))
         if(!isLoading && users){
-            console.log('item')
-       }
-       console.log(item)
-       setHeartColor(!heartColor) 
+            dispatch(addToWishlist({pid : item.id}))
+        }
+        setHeartColor(!heartColor)
+        console.log(item)
     }
+    // useEffect(()=>{
+    //     if(!addingToWishlist && addedToWishlist){
+    //         console.log(addedToWishlist.data.operation)
+    //         if(addedToWishlist.data.operation){
+    //             console.log('users wishlist added')
+    //        }
+    //    }
+    // },[])
 
     const [open, setOpen] = useState(false);
     const handleOpen = (item) => {
@@ -106,8 +114,10 @@ function Card(props) {
     }
     const handleClose = () => setOpen(false);
 
-    useMemo(() => {
-        dispatch(getCartProducts());
+    useEffect(() => {
+        if(!isLoading && users){
+            dispatch(getCartProducts());
+        }
     }, []);
 
     const handlePlus = () => {
@@ -119,15 +129,9 @@ function Card(props) {
         console.log(itemQuantity)
     };
 
-    // if(!addingToWishlist && addedToWishlist){
-    //     console.log(addedToWishlist.data.operation)
-    //     if(addedToWishlist.data.operation){
-    //     }
-    // }
-
    
     return (
-        <div className={styles.shoppingCardWrapper}>
+        <div id='card' className={styles.shoppingCardWrapper}>
                     <div key={props.item.id} className={styles.ShoppingCard}>
                     <div className={styles.image}>
                         <div className={styles.view}>

@@ -8,7 +8,6 @@ import { Provider } from 'react-redux'
 import configureStore from "./redux/stores/configureStore";
 import UsersPage from "./pages/Users";
 import ProductsPage from "./pages/Products";
-// import AuthStore from './services/AuthStore';
 
 
 const store = configureStore();

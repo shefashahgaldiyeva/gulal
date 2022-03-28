@@ -1,8 +1,13 @@
+@font-face {
+    font-family: 'Cormorant Garamond', serif;
+    src: url(../font/Cormorant_Garamond/CormorantGaramond-Light.ttf);
+}
 .cart{
     width: 100%;
     padding: 2rem;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 .cartTop{
     width: 100%;

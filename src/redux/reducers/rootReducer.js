@@ -14,6 +14,7 @@ import wishListReducers from "./wishListReducers";
 import paramsReducer from "./paramsReducer";
 import allFlowersReducer from "./allFlowersReducer";
 import saleProductData from "./saleProductData";
+import loginReducer from "./users/loginReducer";
 import registerReducer from "./users/registerReducer";
 import { getCategories } from "./getterReducer/category/category.thunk";
 // import allCategoriesReducer from "./allCategoriesReducer";
@@ -58,6 +59,7 @@ const rootReducer = () =>
 		// getCartReducer,
 		paramsReducer,
 		// cartDeleteReducer,
+		loginReducer,
 		registerReducer,
 		logoutReducer,
 			newOfferData,

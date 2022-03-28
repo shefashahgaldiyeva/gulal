@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch,useSelector } from 'react-redux';
 import styles from '../css/Guest.module.css'
@@ -19,6 +19,8 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { getCartProducts } from '../redux/reducers/getterReducer/shoppingCart/shoppingCart.thunk';
+import { guestGetCartAsync } from '../redux/reducers/getterReducer/guestShoppingCart/guestGetShoppingCart.thunk';
 
 
 const style = {
@@ -30,11 +32,14 @@ const style = {
     bgcolor: 'background.paper',
     boxShadow: 24,
     p: 2,
+    ['@media (max-width:426px)']: {
+        width: 273
+      }
   };
 
 function Guest(props) {
 
-    console.log(props.props)
+    // console.log(props.props)
 
     const dispatch = useDispatch();
     const [dateValue, setDateValue] = React.useState(new Date());
@@ -98,6 +103,9 @@ function Guest(props) {
             date: '2012-12-12',
             // '2021-12-20 12:53:17' ---------- 994(70)-777-77-77
             note: note.value,
+            latitude: lat,
+            longitude: lng,
+            email: 'shefa@gmail.com'
         }
         if(!isLoadingGuest && guestAssignedToken){
             article.token = GuestStore.appState
@@ -106,17 +114,32 @@ function Guest(props) {
         dispatch(saleAsync(article))
     }
     // const {setingSale,setedSale,saleErrorMessage} = 
-       useSelector(state => console.log(state.saleReducer))
+    //    useSelector(state => console.log(state.saleReducer))
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     const [mapFare,setMapFare] = useState(0);
-    function handleCallback(childData){
-        // setMapFare(childData)
-        // console.log('FARE=>',mapFare)
+    const [lat,setLat] = useState(null);
+    const [lng,setLng] = useState(null);
+    function handleCallback(lat,lng){
+        setLat(lat)
+        setLng(lng)
     }
+    const [destAdress,setDestAdress] = useState('Adres daxil et');
+    const [titleAdress,setTitleAdress] = useState();
+    function handleCallbackForDest(childData){
+        setDestAdress(childData)
+        setTitleAdress(childData)
+    }
+  useEffect(()=>{
+    if(destAdress){
+        if (destAdress.length > 15) {
+            setDestAdress(destAdress.substring(0, 15)+'...')
+        }
+    }
+  },[destAdress])
 
     const {settingOrigin,setOrigin,originError} = useSelector((state)=> state.setOriginReducer)
     useEffect(()=>{
@@ -129,16 +152,31 @@ function Guest(props) {
     const { gettingProductInCart, productInCart, errorMessage } = useSelector((state) => state.getShoppingCart);
 	const { gettingGuestCart, guestCart, guestError } = useSelector(state => state.guestCartReducer)
 
+    useEffect(() => {
+        if(!isLoading && users){
+            dispatch(getCartProducts());
+        }
+      }, []);
+    useEffect(() => {
+        if(GuestStore.appState){
+          dispatch(guestGetCartAsync({
+            guestToken: GuestStore.appState
+          }))
+        }
+    }, [])
+
     const [total, setTotal] = useState(0)
 	useEffect(() => {
 		if(!gettingGuestCart && guestCart.data){
+            console.log('guestCart=======>',guestCart)
             let sum = 0;
             guestCart.data.map((item)=>{
                 sum = sum + item.totalPrice
                 setTotal(sum.toFixed(2))
             })
 		}
-		if(!gettingProductInCart && productInCart){
+		if(!gettingProductInCart && productInCart.data){
+            console.log('productInCart =====>',productInCart)
             let sum = 0;
             productInCart.data.map((item)=>{
                 sum = sum + item.totalPrice
@@ -147,21 +185,18 @@ function Guest(props) {
 		} 
 	}, [productInCart,guestCart])
 
-    // useSelector((state) =>console.log(state.getShoppingCart))
     // const [origin,setOrigin] = useState([])
     // useEffect(()=>{
     //     if(!gettingProductInCart && productInCart){
     //         productInCart.data.map((item)=>{
-    //             // let alik = {lat: item.latitude,lng: item.longitude}
-    //             // origin.push(alik)
+    //             // let array = {lat: item.latitude,lng: item.longitude}
+    //             // origin.push(array)
     //             // origin.push([`Number(${item.latitude}/${item.longitude})`])
     //             origin.push([item.latitude + `/` + item.longitude])
     //         })
     //     }
     // },[])
     // console.log('origin ==>',origin)
-    
-
 
     return (
         <div className={styles.login}>
@@ -193,7 +228,7 @@ function Guest(props) {
                 <div className={styles.right}>
                     {/* <TotalInCart className={styles.total}/> */}
                     <div className={styles.total}>
-                    <div className={styled.totalInSale}>
+                    <div className={styled.totalGuest}>
                         <div className={styled.subTotal}>
                             <h3>Toplam</h3>
                             <div className={styled.sum}>
@@ -226,7 +261,11 @@ function Guest(props) {
                             </form>
                             <div className={styled.adres}>
                                 <h2>Bölgəni seçin:</h2>
-                                <Button onClick={handleOpen}>Adres daxil et</Button>
+                                <Button 
+                                    id={'btn'}
+                                    onClick={handleOpen}
+                                    title={titleAdress}
+                                    >{destAdress}</Button>
                                 <Modal
                                  aria-labelledby="transition-modal-title"
                                  aria-describedby="transition-modal-description"
@@ -243,11 +282,12 @@ function Guest(props) {
                                         <Box sx={style}>
                                             <div>
                                                 <MapWithASearchBox 
-                                                    parentCallback={(childData)=>handleCallback(childData)}
+                                                    parentCallback={(lat,lng)=>handleCallback(lat,lng)}
+                                                    parentCallbackForDest={(childData)=>handleCallbackForDest(childData)}
                                                     sellerLocation={origin}
                                                     style={{ zIndex: '1000' }}
                                                     store={props.props}
-                                                    />
+                                                />
                                             </div>
                                         </Box>
                                     </Fade>

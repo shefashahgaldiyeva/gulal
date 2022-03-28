@@ -2,6 +2,7 @@
     width: 29%;
     color: #333;
 }
+.totalGuest,
 .totalInSale{
     width: 100%;
     color: #333;
@@ -115,18 +116,27 @@ h2{
 @media only screen and (max-width: 1024px) {
     .total,
     .totalInSale{
+        width: 32%;
+    }
+    .totalGuest{
         width: 100%;
     }
 }
 @media only screen and (max-width: 768px) {
     .total,
     .totalInSale{
-        width: 100%;
+        width: 48%;
+    }
+    .totalGuest{
+        width: 94%;
     }
 }
 @media only screen and (max-width: 426px) {
     .total,
     .totalInSale{
+        width: 100%;
+    }
+    .totalGuest{
         width: 100%;
     }
 }

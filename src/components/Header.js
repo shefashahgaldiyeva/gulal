@@ -14,6 +14,7 @@ import { BiLogOut } from "react-icons/bi";
 import { logoutAsync } from "../redux/reducers/users/users.thunks";
 import { getSearchAsync } from "../redux/reducers/getterReducer/search/search.thunk"
 import { getProductDetailAsync } from "../redux/reducers/getterReducer/productDetail/productDetail.thunk";
+import { display } from "@material-ui/system";
 
 function Header(props) {
 
@@ -45,9 +46,9 @@ function Header(props) {
 
     const {gettingProductInCart,productInCart,errorMessage} = useSelector(state=>state.getShoppingCart)
     const {gettingGuestCart,guestCart,guestError} = useSelector(state=>state.guestCartReducer)
-    if(!gettingGuestCart && guestCart && guestCart.data){
-        console.log(guestCart.data.length)
-    }
+    // if(!gettingGuestCart && guestCart && guestCart.data){
+    //     console.log(guestCart.data.length)
+    // }
     // if(!gettingProductInCart && productInCart){
     //     productInCart.data.map((item)=>{
     //         console.log(item.productName)
@@ -56,60 +57,89 @@ function Header(props) {
     // useSelector(state=>console.log(state.getSearch))
 
     const {gettingSearch,getedSearch,getSearchErrorMessage} = useSelector(state => state.getSearch)
-	if(!gettingSearch && getedSearch){
-		getedSearch.data.map((item)=>{
-			console.log(item)
-		})
-	}
+	// if(!gettingSearch && getedSearch){
+	// 	getedSearch.data.map((item)=>{
+	// 		console.log(item)
+	// 	})
+	// }
     function handleSearch(e){
-        dispatch(getSearchAsync(e.target.value))
-        console.log(e)
+     dispatch(getSearchAsync(e.target.value))
+     	if(!gettingSearch && getedSearch && getedSearch.data.length>0){
+            searchResult.style.display = 'inline-flex'
+        }else{
+        	searchResult.style.display = 'none'
+        }
     }
-    function handleSearchLeave(){
-        dispatch(getSearchAsync(''))
-    }
-
-	const { gettingDetail, productDetail, detailErrorMessage } = useSelector(
-		(state) => state.productDetailReducer
-	  );
+   
+	const { gettingDetail, productDetail, detailErrorMessage } = useSelector((state) => state.productDetailReducer);
 	  if(!gettingDetail && productDetail){
 		  console.log(productDetail)
 	  }
+    // useSelector((state) =>console.log(state.getSearch));
 	//   useEffect(() => {
 	// 	dispatch(getProductDetailAsync(productId));
 	//   }, [productId]);
 
-	
+	let searchInput = document.getElementById('searchInput')
+	let searchResult = document.getElementById('searchResult')
+	document.addEventListener('click',(e)=>{
+		if(e.composedPath().includes(searchInput)){
+            searchInput.style.border = '1px solid #e4dad7'
+            searchInput.style.boxShadow = '0px 9px 27px #e4dad7'
+            if(searchResult.classList.contains(`${styles.searchList}`) ||
+                searchResult.classList.contains(`${styles.searchListMin7}`)){
+                    searchResult.style.display = 'inline-flex'
+            }
+		}else{
+            searchResult.style.display = 'none'
+            searchInput.style.border = '1px solid rgb(189, 187, 187)'
+            searchInput.style.boxShadow = 'none'
+		}
+	})
+    useEffect(()=>{
+        if(!gettingSearch && getedSearch && getedSearch.data.length>0){
+            searchResult.style.display = 'inline-flex'
+        }
+    })
+
+    // let card = document.getElementById('button');
+    // document.addEventListener('mousemove', function (e) {
+    //     let xAxis = (window.innerWidth / 2 - e.pageX) / 50;
+    //     let yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+    //     card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+    // });
 
   return (
-    <header>
+    <header className={props.klas}>
       <div className={styles.header}>
         <div className={styles.logo}>
-          <Link to="/">
-            <img src={logo} />
-          </Link>
+			<Link to="/">
+				<img src={logo} />
+			</Link>
         </div>
         <div className={styles.right}>
           <div className={styles.searchCart}>
             <label onClick={toogleClass} htmlFor="search">
-              <BsSearch />
+               <BsSearch />
             </label>
-            <div className={styles.searchWrapper}>
+            <div id="searchWrapper" className={styles.searchWrapper}>
             <input
-              className={isPassive ? "passive" : "activee"}
-              name="search"
-              type="text"
-              placeholder="Axtarış et..."
-			  onKeyUp = {(e)=>handleSearch(e)}
+				id="searchInput"
+				// className={isPassive ? "passive" : "activee"}
+				className={"activee"}
+				name="search"
+				type="text"
+				placeholder="Axtarış et..."
+				onKeyUp = {(e)=>handleSearch(e)}
             />
             <ul
+				id="searchResult"
                 className={!gettingSearch && getedSearch ? (getedSearch.data.length > 7 ? styles.searchList : styles.searchListMin7) : styles.visible}
-                onMouseLeave = {()=>handleSearchLeave()}
               >
                     {
                         !gettingSearch && getedSearch &&
                         getedSearch.data.map((item)=>(
-                            <Link to={`/product/${item.slug}/${item.id}`} className={styles.searchListLi}>{item.name}</Link>
+                            <Link key={item.id} to={`/product/${item.slug}/${item.id}`} className={styles.searchListLi}>{item.name}</Link>
                         ))
                     }
             </ul>
@@ -158,7 +188,7 @@ function Header(props) {
               </div>
             </li>
             <li>
-				<Link to={AuthStore.appState ? '/Hesabim' : '/Daxil-ol'} className={styles.myProfile}>
+				<Link id='button' to={AuthStore.appState ? '/Hesabim' : '/Daxil-ol'} className={styles.myProfile}>
 					<FaRegUserCircle />
 					{AuthStore.appState ? 'Hesabim' : 'Daxil ol'}
 				</Link>

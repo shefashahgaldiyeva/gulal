@@ -1,4 +1,5 @@
 import "./App.css";
+import styles from './css/Header.module.css'
 import axios from 'axios';
 import { useSelector, useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
@@ -34,58 +35,82 @@ import Loader from "./components/Loader";
 import { loadDiscountProductsAsync } from "./redux/reducers/getterReducer/discountProducts/discount.thunk";
 import { getContainerSliderAsync } from "./redux/reducers/getterReducer/containerSlider/containerSlider.thunk";
 import SnackBar from "./components/Snackbar";
-import { GiConsoleController } from "react-icons/gi";
-import MapDistance from './components/MapDistance'
-// import { store } from "react-notifications-component";
-// import MyMapComponent from "./components/Map";
 
 
 function App(store) {
 
-	console.log(store.store)
+	const [headerScroll, setHeaderScroll] = useState(null);
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+			// console.log(window.scrollY)
+			if(window.scrollY > 360){
+				setHeaderScroll(styles.headerScroll)
+			}else{
+				setHeaderScroll(styles.headerScrollIn)
+			}
+        });
+    }, [window.scrollY]);
+
+	// const {isLoadingLogin,logging,errorMessageLogin} = useSelector(state=>state.loginReducer)
+	// if(!isLoadingLogin && logging){
+	// 	console.log(logging.msg)
+	// }
+
 	const dispatch = useDispatch();
 	const currentLang = localStorage.getItem("locale");
 	const { gettingCategory, categories } = useSelector((state) => state.getCategories);
     const {sliderLoading,containerSlider,sliderError } = useSelector(state => state.sliderReducer);
 	const {gettingNewProduct, newProducts, newProductsErrorMessage} = useSelector(state => state.getNewProducts);
-    const {isLoadingProduct,allProducts,errorMessageProduct} = useSelector((state) => state.allProducts);
-    const {isLoadingDiscount,discountProducts,discountErrorMessage} = useSelector((state) => state.discountReducer);
+    // const {isLoadingProduct,allProducts,errorMessageProduct} = useSelector((state) => state.allProducts);
+    // const {isLoadingDiscount,discountProducts,discountErrorMessage} = useSelector((state) => state.discountReducer);
     // const {isLoading,users,userErrorMessage} = useSelector(state => state.users)
 	// const { gettingGuestCart, guestCart, guestError } = useSelector(state => state.guestCartReducer)
-    const { gettingProductInCart,productInCart,errorMessage } =  useSelector(state => state.getShoppingCart)
+    // const { gettingProductInCart,productInCart,errorMessage } =  useSelector(state => state.getShoppingCart) 
 
 	useEffect(() => {
 		// dispatch(getCartAsync())
+		if(AuthStore.appState){
+			dispatch(loadUsersAsync())
+		}
 		dispatch(getCategories())
-		dispatch(loadUsersAsync())
 		dispatch(getContainerSliderAsync())
         // dispatch(loadDiscountProductsAsync())
 	}, [])
+	
+    const {isLoadingGuest,guestAssignedToken,guestErrorMessage} = useSelector(state => state.guestSetTokenReducer)
+	useEffect(()=>{
+		if(!AuthStore.appState && !GuestStore.appState){
+            dispatch(guestSetTokenAsync())
+            if(!isLoadingGuest && guestAssignedToken){
+                console.log(guestAssignedToken)
+                GuestStore.saveGuestToken(guestAssignedToken.guestToken)
+            }
+        }
+	},[])
 	AuthStore.getToken()
+	GuestStore.getGuestToken()
     console.log(AuthStore.appState)
     console.log(GuestStore.appState)
 
 	const {addingToCart,addedToCart,addedErrorMessage} = useSelector(state => state.setAddToCart)
+	const {addingCartForGuest,addedCartForGuest,errorMessageForGuest} = useSelector(state => state.guestAddToCartReducer)
+	// useSelector(state =>console.log(state.guestAddToCartReducer))
+	if(!addingCartForGuest && addedCartForGuest){
+		console.log(addedCartForGuest.operation)
+	}
 
 	const renderCounter  = useRef(0);
     renderCounter.current = renderCounter.current + 1;
 	console.log('renderCount: ',renderCounter.current)
+
 	
-	// wishlist
-    // totalincart
-    // snackbar
-    // productincart
-    // incdecbutton
-    // guest
-    // carttotalprice
-    // cart
 
 return (
     <div className="App">
-		{ gettingCategory ? <Loader/> : null }
+		{ gettingCategory || sliderLoading || gettingNewProduct ? <Loader/> : null }
 		<div style={ gettingCategory ? {display: 'none'} : null }>
 		<TopHeader lang={currentLang} />
-		<Header cats={!gettingCategory && categories ? categories : null} />
+		<Header klas={headerScroll} cats={!gettingCategory && categories ? categories : null} />
 		<Switch>
 			<Route exact path="/">
 			<StyledEngineProvider injectFirst>
@@ -164,7 +189,7 @@ return (
 		{/* <TransitionsModal/> */}
 		<Arrow />
 		<BottomMenu />
-		{!addingToCart && addedToCart ? <SnackBar/> : null}
+		{(!addingToCart && addedToCart) || (!addingCartForGuest && addedCartForGuest) ? <SnackBar/> : null}
 		{/* <MapDistance/> */}
 		</div>
     </div>

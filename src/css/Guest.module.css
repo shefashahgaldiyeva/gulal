@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'Cormorant Garamond', serif;
+    src: url(../font/Cormorant_Garamond/CormorantGaramond-Light.ttf);
+}
 .login{
     width: 100%;
     padding: 3rem 0;
@@ -60,7 +64,7 @@
     margin-bottom: 1rem;
 }
 .login .right{
-    width: 50%;
+    width: 55%;
     /* height: 70vh; */
     display: flex;
     position: relative;
@@ -118,6 +122,7 @@
     width: 70% !important;
     box-shadow: none !important;
 }
+
 @media only screen and (max-width: 1440px) {}
 @media only screen and (max-width: 1024px) {
     .login .right{
@@ -134,6 +139,11 @@
         width: 50%;
     }
 }
+@media only screen and (max-width: 1024px) {
+    .right>div{
+        transform: translateX(37%);
+    }
+}
 @media only screen and (max-width: 768px) {
     .right>div{
         width: 110% !important;
@@ -141,7 +151,7 @@
         transform: translateX(7%);
     }
     .login .left{
-        width: 70%;
+        width: 60%;
     }
     .login .right .bgColor{
         height: 110%;

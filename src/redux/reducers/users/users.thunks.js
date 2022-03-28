@@ -1,3 +1,5 @@
+import AuthStore from "../../../services/AuthStore";
+import GuestStore from "../../../services/GuestStore";
 import UsersService from "../../../services/users.service";
 import actions from "./users.actions";
 
@@ -7,6 +9,19 @@ export const loadUsersAsync = () => (dispatch) => {
 	UsersService.getUser()
 		.then((response) => dispatch(actions.usersLoadSuccess(response.data.data[0])))
 		.catch((error) => dispatch(actions.usersLoadError(error.message)));
+};
+
+export const loginAsync = (params) => (dispatch) => {
+	dispatch(actions.loginLoadStart());
+
+	UsersService.login(params)
+		.then((response) => 
+			dispatch(actions.loginLoadSuccess(response.data),
+			GuestStore.removeToken(),
+			AuthStore.saveToken(response.data.token),
+			console.log(response.data),
+		))
+		.catch((error) => dispatch(actions.loginLoadError(error)));
 };
 
 export const registerAsync = (params) => (dispatch) => {

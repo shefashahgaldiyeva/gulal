@@ -8,7 +8,7 @@ function Sale(props) {
         <div className={styles.sale}>
             <div className={styles.saleInner}>
                 <div className={styles.saleLeft}>
-                <h2>Endirimli <br /> məhsullar</h2>
+                    <h2>Endirimli <br /> məhsullar</h2>
                 </div>
                 <div className={styles.saleRight}>
                     {

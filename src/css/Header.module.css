@@ -4,7 +4,54 @@ header{
     align-content: center;
     justify-content: space-between;
     overflow: hidden;
+    z-index: 1000;
 }
+.headerScroll{
+    width: 100%;
+    top: 0;
+    border-bottom: 1.3px dashed #e4dad7;
+    position: fixed;
+    background-color: #fff;
+    transition: .6s ease-in-out;
+    animation: headerScroll 1s ease-in-out alternate;
+}
+.headerScrollIn{
+    width: 100%;
+    background-color: #fff;
+    position: sticky;
+    transition: .6s ease-in-out;
+    animation: headerScrollIn 1s ease-in-out alternate;
+}
+@keyframes headerScroll {
+    from {top: -100% ; left: 0}
+    to {top: 0 ; left: 0}
+}
+@keyframes headerScrollIn {
+    from {top: 0% ; left: 0}
+    to {top: -100% ; left: 0}
+}
+.headerScroll .header .logo{
+    width: 100px;
+    height: 100px;
+}
+.headerScroll .bottom ul{
+    width: 100%;
+    padding: 0.3rem 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+.headerScroll .myProfile{
+    box-shadow: 0px 9px 16px #e4dad7;
+}
+.headerScroll .searchWrapper ul{
+    z-index: 1000;
+    position: fixed;
+}
+.headerScrollIn .searchList{
+    height: 5.4rem;
+  
+}
+
 .header{
     width: 100%;
     padding: 0 2rem;
@@ -35,6 +82,7 @@ header{
     flex-direction: column;
     background-color: white;
     /* box-shadow: 0 5px 15px #b3b3b3; */
+    z-index: 1000;
     border-radius: 20px;
     border: 1px solid rgb(189, 187, 187);
 }
@@ -42,7 +90,7 @@ header{
     margin-top: .15rem;
 }
 .searchList{
-    height: 12.4rem;
+    height: 5.4rem;
     overflow-y: scroll;
     z-index: 999;
 }
@@ -129,7 +177,9 @@ header{
     justify-content: center;
     border: 1px solid #e4dad7;
     transition: .3s ease;
-    /* position: relative; */
+    transform-style: preserve-3d;
+    display: flex;
+    flex-wrap: wrap;
 }
 .myProfile:hover{
     background-color: #d4b9bd;
@@ -276,7 +326,7 @@ header ul li a{
 	  animation-fill-mode: both;
 	  animation-iteration-count: 1;
 	  animation-name: openMenuAnimation;
-      z-index: 998;
+      z-index: 9999;
       box-shadow: 0px 14px 17px -9px rgba(92, 92, 92, 0.85);
 
   }
@@ -295,7 +345,7 @@ header ul li a{
     animation-fill-mode: both;
     animation-iteration-count: 1;
 	animation-name: showMenuAnimation;
-    z-index: 998;
+    z-index: 9999;
     box-shadow: 0px 11px 17px -9px rgba(92, 92, 92, 0.85);
 
 }

@@ -10,6 +10,10 @@ import wishBg from '../img/wishBg.jpg'
 import {getWishlistProducts} from '../redux/reducers/getterReducer/getWishlist/getWishlist.thunk';
 import { addToCart } from '../redux/reducers/setterReducer/addToCartProduct/addToCart.thunk'
 import { deleteWishlistProduct } from '../redux/reducers/setterReducer/deleteWishlistProduct/deleteWishlistProduct.thunk'
+import AuthStore from '../services/AuthStore';
+import GuestStore from '../services/GuestStore';
+import { guestAddToCartAsync } from '../redux/reducers/setterReducer/guestAddToCart/guestAddToCart.thunk';
+import { guestSetTokenAsync } from '../redux/reducers/setterReducer/guestSetToken/guestSetToken.thunk';
 
 function WishList() {
 
@@ -25,7 +29,9 @@ function WishList() {
     }
 
     useEffect(() => {
-        dispatch(getWishlistProducts());
+        if(!isLoading && users){
+            dispatch(getWishlistProducts());
+        }
     }, [])
 
     useEffect(() => {
@@ -34,11 +40,33 @@ function WishList() {
         }
     }, [productInWishlist])
 
-    function handleAdd(item){
+    // function handleAdd(item){
+    //     if(!isLoading && users){
+    //         dispatch(addToCart({pid : item.id, count : 1}))
+    //         // console.log(item)
+    //     }
+    // }
+
+    const {isLoadingGuest,guestAssignedToken,guestErrorMessage} = useSelector(state => state.guestSetTokenReducer)
+
+    const handleAdd = (item) =>{
+        // if(!AuthStore.appState && !GuestStore.appState){
+        //     dispatch(guestSetTokenAsync())
+        //     if(!isLoadingGuest && guestAssignedToken){
+        //         console.log(guestAssignedToken)
+        //         GuestStore.saveGuestToken(guestAssignedToken.guestToken)
+        //     }
+        // }
         if(!isLoading && users){
-            dispatch(addToCart({pid : item.id, quantity : 1}))
-            // console.log(item)
+            dispatch(addToCart({pid : item.id, count: 1}))
         }
+        else if(!users && !isLoadingGuest && guestAssignedToken){
+            dispatch(guestAddToCartAsync({product_id : item.id, quantity: 1, guestToken: GuestStore.appState}))
+        }
+        dispatch({
+            type: 'SET_COUNT',
+            payload : item
+        })
     }
     const [wishlistProducts, setWishlistProducts] = useState(null)
     function handleDelete(id){
@@ -80,7 +108,7 @@ function WishList() {
                             <td><span className={styles.price}><del className={item.price == item.currentPrice ? styles.display : styles.delPrice}>{item.price}azn &nbsp;  /</del> {item.currentPrice}azn</span></td>
                             <td className={styles.tdP}><p>Stokda var</p></td>
                             <td>
-                                <Link to='/cart'><button className={styles.btn} onClick={()=>handleAdd(item)}><FaCartPlus/>SATIN AL</button></Link>
+                                <Link to='/Sebet'><button className={styles.btn} onClick={()=>handleAdd(item)}><FaCartPlus/>SATIN AL</button></Link>
                             </td>
                             <td >
                                 <button className={styles.btn,'removeCart'} onClick={() => handleDelete(item.id)} >

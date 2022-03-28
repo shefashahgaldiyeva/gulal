@@ -1,4 +1,8 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Open+Sans:wght@300&family=Zen+Antique&display=swap'); */
+@font-face {
+    font-family: 'Cormorant Garamond', serif;
+    src: url(../font/Cormorant_Garamond/CormorantGaramond-Light.ttf);
+}
 .footer{
     width: 100%;
     padding: 10rem 0 0 0;

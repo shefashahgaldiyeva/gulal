@@ -17,28 +17,14 @@ import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import AuthStore from '../services/AuthStore'
+import GuestStore from '../services/GuestStore'
 
 function SignUp() {
 
-    const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-    });
-
-    const [open, setOpen] = React.useState(false);
-
-    const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-        setOpen(false);
-    };
-
     const dispatch = useDispatch()
     const {isLoading, registered, errorMessage} = useSelector(state => state.registerReducer)
-    // console.log(errorMessage ? errorMessage.response.data.errors : 'yoxdur')
 
     const submit = () =>{ 
-
         const fullname = document.getElementById('fullname').value
         const phone = document.getElementById('tel').value
         const email = document.getElementById('email').value
@@ -51,12 +37,12 @@ function SignUp() {
             password: password,
             password_confirmation: confirmPassword
         };
-        dispatch(registerAsync(article));
+        dispatch(registerAsync(article)); 
     }
-    console.log(registered)
+    console.log('registered =>', registered)
     if(!isLoading && registered.operation == true && registered.token){ 
-        // setOpen(true);
         AuthStore.saveToken(registered.token)
+        GuestStore.removeToken()
         window.location.reload()
     }
     if(AuthStore.appState){
@@ -86,21 +72,17 @@ function SignUp() {
                 }
                 <input id='confirmPassword' required type='password' placeholder='Şifrəni təkrarlayın...'/>
                 <button onClick={()=>submit()} type='submit'>Qeydiyyatı tamamla</button>
-                {/* <span className={styles.signUp}><Link to='/Qeydiyyat'>Qeydiyyatdan keç</Link></span> */}
             </div>
             <div className={styles.right}>
                 <img src={img}/>
                 <div className={styles.bgColor}></div>
             </div>
         </div>
-        {/* <Button variant="outlined" onClick={handleClick}>
-            Open success snackbar
-        </Button> */}
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        {/* <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
             Qeydiyyat uğurludur!
         </Alert>
-        </Snackbar>
+        </Snackbar> */}
     </div>
     )
 }

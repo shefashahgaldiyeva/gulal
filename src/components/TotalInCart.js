@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import styles from '../css/TotalInCart.module.css'
 import { HiOutlineRefresh } from 'react-icons/hi'
-import { linkClasses } from '@mui/material'
+
 
 const TotalInCart = () =>{
 

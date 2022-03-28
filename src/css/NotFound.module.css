@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'Cormorant Garamond', serif;
+    src: url(../font/Cormorant_Garamond/CormorantGaramond-Light.ttf);
+}
 .NotFoundWrapper{
     width: 100%;
     height: 30vh;

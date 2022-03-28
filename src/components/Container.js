@@ -8,13 +8,15 @@ import { getContainerSliderAsync } from '../redux/reducers/getterReducer/contain
 
 function Container() {
 
+    SwiperCore.use([Autoplay]);
+
     const dispatch = useDispatch()
     const [scroll, setScroll] = useState(false);
-    useEffect(() => {
-        window.addEventListener("scroll", () => {
-            setScroll(window.scrollY > 85);
-        });
-    }, []);
+    // useEffect(() => {
+    //     window.addEventListener("scroll", () => {
+    //         setScroll(window.scrollY > 85);
+    //     });
+    // }, []);
     // console.log(window.scrollY)
 
     useEffect(() => {
@@ -26,7 +28,6 @@ function Container() {
     // }
 
     // useSelector(state =>console.log( state.sliderReducer))
-    SwiperCore.use([Autoplay]);
 
     
     return (
@@ -57,24 +58,6 @@ function Container() {
 
         </div>
     )
-    // return (
-    //     <div className='swip-container'>
-    //         <Swiper effect={'cards'} grabCursor={true} className="mySwiper">
-    //         {!sliderLoading && containerSlider && containerSlider.data &&
-    //             containerSlider.data.map((item)=>(
-    //                 <SwiperSlide style={!sliderLoading && containerSlider ? {backgroundImage: `url(${item.image})`} : null} className={styles.lilacSwip}>
-    //                     <div className={styles.lecekBack}>
-    //                         <p>{item.text}</p>
-    //                         {/* <span>Cashback</span> */}
-    //                         <a href={item.link} className={styles.btn}>Ətraflı</a>
-    //                     </div>
-    //                 </SwiperSlide>
-    //             ))
-    //         }
-    //         </Swiper>
-
-    //     </div>
-    // )
 }
 
 export default Container;
